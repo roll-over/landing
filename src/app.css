@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+    background-color: black;
+    color: white;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+p {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+ul {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+a {
+    color: blueviolet;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
