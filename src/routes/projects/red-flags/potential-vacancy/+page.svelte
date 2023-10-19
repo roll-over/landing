@@ -58,7 +58,7 @@
   </section>
   <section>
     <h2>Как это работает?</h2>
-    <ul>
+    <ul class="list-disc pl-10 grid grid-col gap-2">
       <li>
         Вы заполняете <a href="https://forms.gle/ZKc6UYADyizm8LULA">форму</a> со
         ссылкой на вакансию и контактной информацией.
