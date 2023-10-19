@@ -11,7 +11,7 @@
       description: "Твой консультант при поиске работы",
     },
     {
-      href: "https://www.notion.so/hide-hire-coming-soon-d3b4178cc7474595aa28c583c3322b7c?pvs=21",
+      href: "/projects/hide-hire",
       title: "hide-hire",
       description: "Сервис поиска работы и кандидатов",
       status: Status.comingSoon,

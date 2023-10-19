@@ -1,43 +1,5 @@
 <script>
-  const vacancies = [
-    {
-      title: "СТО",
-      company: "roll-over",
-      description: "Принятие решений и поддержка команд разработки",
-      requirments: ["Технический бекграунд"],
-    },
-    {
-      title: "Project manager",
-      company: "red-flags",
-      description: "Управление проектом red-flags",
-      requirments: ["Любить людей"],
-    },
-    {
-      title: "Маркетолог",
-      company: "roll-over",
-      description: "Разработка и реализация стратегии продвижения проектов",
-      requirments: ["Желание разобраться в том, как продвигать продукты"],
-    },
-    {
-      title: "smm менеджер",
-      company: "roll-over",
-      description:
-        "Разработка и реализация стратегии продвижения проектов в соц. сетях",
-      requirments: ["Желание разобраться в том, как вести соц. сети"],
-    },
-    {
-      title: "Svelte разработчик",
-      company: "hide-hire",
-      description: 'Разработка сервиса "hide-hire"',
-      requirments: ["Желание разобраться в том, как вести соц. сети"],
-    },
-    {
-      title: "Front-end разработчик",
-      company: "roll-over",
-      description: "Разработка фронтенда для проектов, включая эту страницу",
-      requirments: ["Желание научиться писать фронтенд"],
-    },
-  ];
+  import { vacancies } from "$lib/vacancies.js";
 </script>
 
 <div class="flex flex-col gap-10 p-10 sm:pl-0 max-w-2xl justify-left">
@@ -78,6 +40,12 @@
           </ul>
         {/if}
       </div>
+      <a
+        href="/vacancies/{project.id}"
+        class="bg-blue-800 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-xl text-center"
+      >
+        Подробнее</a
+      >
     </li>
   {/each}
 </ul>

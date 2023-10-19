@@ -1,4 +1,8 @@
 <script>
+  import { vacancies } from "$lib/vacancies.js";
+  const redFlagsVacancies = vacancies.filter(
+    (vacancy) => vacancy.company === "red-flags"
+  );
 </script>
 
 <div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
@@ -27,8 +31,7 @@
         <a href="/projects/red-flags/check-cv"> Проверка резюме </a>
       </li>
       <li>
-        <a
-          href="/projects/red-flags/potential-vacancy"
+        <a href="/projects/red-flags/potential-vacancy"
           >Проверка потенциальной вакансии</a
         >
       </li>
@@ -51,5 +54,31 @@
       >
       (Да, мы ее читаем и стараемся ответить как можно скорее)
     </p>
+  </section>
+  <section>
+    <h2>Связаться</h2>
+    <ul class="list-disc pl-10 grid grid-col gap-2">
+      <li>
+        <a
+          href="mailto:red.flags.service@gmail.com"
+          >red.flags.service@gmail.com
+       </a>
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h2>Участие</h2>
+    <ul class="list-disc pl-10 grid grid-col gap-2">
+      <li>
+        <a href="https://github.com/roll-over/unknown-interview"
+          >https://github.com/roll-over/unknown-interview</a
+        >
+      </li>
+      {#each redFlagsVacancies as vacancies}
+        <li>
+          <a href={"/vacancies/" + vacancies.id}>Вакансия: {vacancies.title}</a>
+        </li>
+      {/each}
+    </ul>
   </section>
 </div>
