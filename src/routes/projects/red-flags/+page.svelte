@@ -1,11 +1,15 @@
 <script>
+  import { articles } from "$lib/assets/articles/articles";
   import { vacancies } from "$lib/vacancies.js";
+
   const redFlagsVacancies = vacancies.filter(
     (vacancy) => vacancy.company === "red-flags"
   );
+  const source = articles.redFlags.employee.cv[0];
 </script>
 
 <div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
+
   <h2>red-flags</h2>
   <p>Твой консультант при поиске работы</p>
   <h2>Миссия</h2>
@@ -28,10 +32,10 @@
     <h2>Наши сервисы:</h2>
     <ul>
       <li>
-        <a href="/projects/red-flags/check-cv"> Проверка резюме </a>
+        <a href="/projects/red-flags/employee/check-cv"> Проверка резюме </a>
       </li>
       <li>
-        <a href="/projects/red-flags/potential-vacancy"
+        <a href="/projects/red-flags/employee/potential-vacancy"
           >Проверка потенциальной вакансии</a
         >
       </li>
@@ -59,10 +63,9 @@
     <h2>Связаться</h2>
     <ul class="list-disc pl-10 grid grid-col gap-2">
       <li>
-        <a
-          href="mailto:red.flags.service@gmail.com"
+        <a href="mailto:red.flags.service@gmail.com"
           >red.flags.service@gmail.com
-       </a>
+        </a>
       </li>
     </ul>
   </section>

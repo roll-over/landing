@@ -22,34 +22,50 @@
     },
   ];
 
-  console.log($page.url.pathname);
   $: path = $page.url.pathname;
   $: steps = path.split("/").filter((step) => step !== "");
   const stepsWithLinksAndTitles = {
     projects: {
       title: "Проекты",
-      href: "/projects",
     },
     contacts: {
       title: "Контакты",
-      href: "/contacts",
     },
     vacancies: {
       title: "Вакансии",
-      href: "/vacancies",
     },
     "red-flags": {
       title: "red-flags",
-      href: "/projects/red-flags",
     },
+    employee: {
+      title: "Работникам",
+    },
+    "check-cv": {
+      title: "Проверка резюме",
+    },
+
     "potential-vacancy": {
       title: "Проверка потенциальной вакансии",
-      href: "/projects/red-flags/potential-vacancy",
+    },
+    posts: {
+      title: "Статьи",
     },
   };
 
   $: title =
     stepsWithLinksAndTitles[steps[steps.length - 1]]?.title || "roll-over";
+
+  const getUrl = (steps, step) => {
+    const index = steps.indexOf(step);
+    return "/" + steps.slice(0, index + 1).join("/");
+  };
+
+  const getTitle = (title) => {
+    if (title.length > 10) {
+      return title.slice(0, 10) + "...";
+    }
+    return title;
+  };
 </script>
 
 <svelte:head>
@@ -100,8 +116,8 @@
     </div>
     <div class="pl-5">
       {#each steps as step, i}
-        <a href={stepsWithLinksAndTitles[step]?.href || path}
-          >{stepsWithLinksAndTitles[step]?.title || step}</a
+        <a href={getUrl(steps, step)}
+          >{getTitle(stepsWithLinksAndTitles[step]?.title || step)}</a
         >
         {#if step !== steps[steps.length - 1]} {" > "} {/if}
       {/each}

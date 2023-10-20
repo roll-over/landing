@@ -65,8 +65,20 @@
     </p>
   </section>
   <section>
+    <h2>Как подготовиться самостоятельно</h2>
+    <p>
+      Если вы хотите подготовиться самостоятельно, то мы рекомендуем вам
+      ознакомиться с нашими статьями:
+    </p>
+    <a
+      href="/projects/red-flags/employee/check-cv/posts"
+      class="text-teal-400 hover:text-teal-400 border-2 border-cyan-900 hover:border-cyan-800 hover:underline underline-offset-1 rounded-2xl p-2"
+      >Читать статьи</a
+    >
+  </section>
+  <section>
     <h2>Как это работает?</h2>
-    <ul  class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="list-disc pl-10 grid grid-col gap-2">
       <li>
         Вы заполняете <a href="https://forms.gle/ZKc6UYADyizm8LULA">форму</a> с резюме
         и контактной информацией.
