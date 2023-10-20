@@ -7,7 +7,7 @@
 </script>
 
 <section class="border-2 border-gray-800 p-10 rounded-lg">
-  <div class="h-36 overflow-hidden">
+  <div class="h-56 sm:h-36  overflow-hidden">
     <OnePost {source} />
   </div>
   <a
