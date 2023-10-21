@@ -6,7 +6,7 @@
 </script>
 
 {#if article.type === "md"}
-  <OnePost {article} />
+  <OnePost source={article.source} />
 {:else if article.type === "youtube"}
   <div class="flex flex-col gap-10">
     <div class="overflow-hidden">

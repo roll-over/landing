@@ -14,7 +14,7 @@
   <h2>Статья</h2>
   <div class="flex flex-col gap-15">
     <section class="border-2 border-gray-800 p-2 sm:p-10 rounded-lg">
-      <Article source={a.source} />
+      <Article article={a} />
     </section>
   </div>
 </div>

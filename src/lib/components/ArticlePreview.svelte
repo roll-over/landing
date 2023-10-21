@@ -67,9 +67,9 @@
   }
   .frosted {
     position: absolute;
-    bottom: -10px;
+    bottom: -20px;
     width: 100%;
-    height: 20px;
+    height: 40px;
     filter: url("#blur");
     background-color: rgba(0, 0, 0, 0.479);
     background-size: cover;
