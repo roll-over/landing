@@ -5,13 +5,13 @@
 </script>
 
 {#if ordered}
-  <ul class="list-disc pl-10 flex flex-col gap-5">
+  <ul class="list-decimal pl-10 flex flex-col gap-5">
     {#each $$props.items as item}
       <li>{item.text}</li>
     {/each}
   </ul>
 {:else}
-  <ol>
+  <ol class="list-disc pl-10 flex flex-col gap-5">
     {#each $$props.items as item}
       <li>{item.text}</li>
     {/each}

@@ -4,7 +4,7 @@
   import Article from "$lib/components/Article.svelte";
   const article = $page.params.article;
 
-  const a = articles.redFlags.employee.cv.articles.find(
+  const a = articles.itsOpenMic.articles.find(
     (_article) => _article.id === article
   );
   const link = articles.redFlags.employee.cv.link;
@@ -14,7 +14,7 @@
   <h2>Статья</h2>
   <div class="flex flex-col gap-15">
     <section class="border-2 border-gray-800 p-2 sm:p-10 rounded-lg">
-      <Article source={a.source} />
+      <Article article={a} />
     </section>
   </div>
 </div>

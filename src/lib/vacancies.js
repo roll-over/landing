@@ -42,4 +42,11 @@ export const vacancies = [
     description: "Разработка фронтенда для проектов, включая эту страницу",
     requirments: ["Желание научиться писать фронтенд"],
   },
+  {
+    id: "Shorts-maker-its-open-mic",
+    title: "Shorts maker (video)",
+    company: "its-open-mic",
+    description: "Выделение коротких, но полноценных видео из полных",
+    requirments: ["Желание научиться монтировать видео"],
+  },
 ];

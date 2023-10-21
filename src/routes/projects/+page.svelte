@@ -17,7 +17,7 @@
       status: Status.comingSoon,
     },
     {
-      href: "https://www.notion.so/IT-s-open-mic-coming-soon-67bdf02f766741d4ade58754e5a72a7b?pvs=21",
+      href: "/projects/its-open-mic",
       title: "IT’s-open-mic",
       description:
         "Открытая онлайн-платформа для проведения выступлений об или около IT.",
