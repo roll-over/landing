@@ -24,6 +24,21 @@
       <li>Сделать процесс обучения новой профессии простым</li>
     </ul>
   </section>
+
+  <section>
+    <h2>Смотрите так же:</h2>
+    <ul class="list-disc pl-10 grid grid-col gap-2">
+      <li>
+        <a href="/projects"> Наши проекты </a>
+      </li>
+      <li>
+        <a href="/vacancies"> Вакансии </a>
+      </li>
+      <li>
+        <a href="/contacts"> Контакты </a>
+      </li>
+    </ul>
+  </section>
 </div>
 
 <style lang="postcss">

@@ -15,6 +15,11 @@
       title: "Подписывайтесь на нас:",
       description: "Twitter",
     },
+    {
+      href: "https://github.com/roll-over",
+      title: "Подключайтейсь к нам в open source:",
+      description: "Github",
+    },
   ];
 </script>
 

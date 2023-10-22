@@ -9,7 +9,6 @@
 </script>
 
 <div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
-
   <h2>red-flags</h2>
   <p>Твой консультант при поиске работы</p>
   <h2>Миссия</h2>
@@ -29,8 +28,23 @@
     </p>
   </section>
   <section>
+    <h2>Самостоятельная подготовка:</h2>
+    <ul class="list-disc pl-10 grid grid-col gap-2">
+      <li>
+        <a href="https://t.me/red_flags_project"
+          >https://t.me/red_flags_project</a
+        >
+      </li>
+      <li>
+        <a href="/projects/red-flags/employee/check-cv/posts"
+          >Статьи по проверке резюме</a
+        >
+      </li>
+    </ul>
+  </section>
+  <section>
     <h2>Наши сервисы:</h2>
-    <ul>
+    <ul class="list-disc pl-10 grid grid-col gap-2">
       <li>
         <a href="/projects/red-flags/employee/check-cv"> Проверка резюме </a>
       </li>
