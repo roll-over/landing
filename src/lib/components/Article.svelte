@@ -9,10 +9,6 @@
   <OnePost source={article.source} />
 {:else if article.type === "youtube"}
   <div class="flex flex-col gap-10">
-    <div class="overflow-hidden">
-      <OnePost source={article.description} />
-    </div>
-
     <iframe
       height="315"
       src={article.url}
@@ -21,5 +17,8 @@
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen
     />
+    <div class="overflow-hidden">
+      <OnePost source={article.description} />
+    </div>
   </div>
 {/if}

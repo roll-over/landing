@@ -19,6 +19,14 @@
     >
   {:else if article.type === "youtube"}
     <div class="flex flex-col gap-10">
+      <iframe
+        height="315"
+        src={article.url}
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      />
       <div class="max-h-56 sm:h-36 overflow-hidden article">
         <OnePost source={article.description} />
         <div class="frosted" />
@@ -28,26 +36,9 @@
         class="text-teal-400 hover:text-teal-600 border-2 border-cyan-900 hover:border-cyan-800 hover:underline underline-offset-1 rounded-xl p-2"
         >Подробнее</a
       >
-
-      <iframe
-        height="315"
-        src={article.url}
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      />
     </div>
   {/if}
 </section>
-
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-  <defs>
-    <filter id="blur">
-      <feGaussianBlur stdDeviation="5" />
-    </filter>
-  </defs>
-</svg>
 
 <style>
   .article {
@@ -55,23 +46,16 @@
   }
   /* The content */
   .frosted::before {
-    filter: url("#blur");
     background-color: black;
-    -webkit-filter: blur(8px);
-    -moz-filter: blur(8px);
-    -ms-filter: blur(8px);
-    -o-filter: blur(8px);
-    filter: url("#blur");
     z-index: 2;
     background-size: cover;
   }
   .frosted {
     position: absolute;
-    bottom: -20px;
+    bottom: 0px;
     width: 100%;
-    height: 40px;
-    filter: url("#blur");
-    background-color: rgba(0, 0, 0, 0.479);
+    height: 60px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 255));
     background-size: cover;
   }
 </style>
