@@ -12,8 +12,12 @@
 
 
 
-  async function switchTab(index) {
+  function switchTab(index) {
     activeTab = index;
+    getData(index)
+  }
+
+  async function getData(index) {
     const response = await fetch(`https://api.github.com/repos/roll-over/${tabs[index].name}/contributors`)
     const contributors = await response.json()
     activeTabContent = [...contributors];
@@ -51,5 +55,7 @@
       {#each activeTabContent as content}
         <p>{content.login}</p>
       {/each}
+  {:else}
+    Loading.render..
   {/if}
 </div>
