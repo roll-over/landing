@@ -20,6 +20,10 @@
       title: "Вакансии",
       href: "/vacancies",
     },
+    {
+      title: "Контрибьюторы",
+      href: "/contributors"
+    },
   ];
 
   console.log($page.url.pathname);
@@ -37,6 +41,10 @@
     vacancies: {
       title: "Вакансии",
       href: "/vacancies",
+    },
+    contributors: {
+      title: "Контрибьюторы",
+      href: "/contributors"
     },
     "red-flags": {
       title: "red-flags",
