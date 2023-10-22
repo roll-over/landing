@@ -4,13 +4,13 @@
   export { article, link };
   let article = {};
   let link = "";
-  console.log(article);
 </script>
 
 <section class="border-2 border-gray-800 p-2 sm:p-5 rounded-2xl">
   {#if article.type === "md"}
-    <div class="max-h-56 sm:h-36 overflow-hidden">
+    <div class="max-h-56 sm:h-36 overflow-hidden article">
       <OnePost source={article.source} />
+      <div class="frosted" />
     </div>
     <a
       href={link}
