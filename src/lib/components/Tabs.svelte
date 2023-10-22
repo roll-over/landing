@@ -1,13 +1,23 @@
 <script>
-
   export let tabs = [];
-  export let tabsContent = [];
-  console.log(tabsContent);
 
   let activeTab = 0;
+  let activeTabContent;
 
-  function switchTab(index) {
+  $: {
+    if(tabs.length) {
+      switchTab(0)
+    }
+  }
+
+
+
+  async function switchTab(index) {
     activeTab = index;
+    const response = await fetch(`https://api.github.com/repos/roll-over/${tabs[index].name}/contributors`)
+    const contributors = await response.json()
+    activeTabContent = [...contributors];
+    activeTabContent = activeTabContent
   }
 
 </script>
@@ -37,9 +47,9 @@
 </div>
 
 <div class="tab-content">
-  {#if tabs[activeTab]}
-    {#each tabsContent[activeTab] as content}
-      <p>{content.login}</p>
-    {/each}
+  {#if tabs[activeTab] && activeTabContent}
+      {#each activeTabContent as content}
+        <p>{content.login}</p>
+      {/each}
   {/if}
 </div>

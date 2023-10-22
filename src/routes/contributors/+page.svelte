@@ -2,7 +2,6 @@
   import { onMount } from "svelte";
   import Tabs from '$lib/components/Tabs.svelte';
   let reposList = [];
-  let contributorsTabsContent = []
   
   onMount(async () => {
     const response = await fetch('https://api.github.com/orgs/roll-over/repos')
@@ -11,18 +10,7 @@
 
     reposList = [...actualRepos]
     reposList = reposList
-
-    await (() => {
-      reposList.forEach(async tab => {
-        const response = await fetch(`https://api.github.com/repos/roll-over/${tab.name}/contributors`)
-        const contributors = await response.json()
-        contributorsTabsContent.push(contributors);
-        contributorsTabsContent = contributorsTabsContent
-        console.log(contributorsTabsContent);
-    })
-    })()
   })
-  
 
 </script>
 
@@ -34,5 +22,5 @@
     Люди, вносящие вклад.
   </p>
   <p>Всем спасибо!</p>
-  <Tabs tabs={reposList} tabsContent={contributorsTabsContent}/>
+      <Tabs tabs={reposList}/>
 </div>
