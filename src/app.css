@@ -22,15 +22,14 @@ h2 {
     font-weight: 700;
 }
 
-p {
-    font-size: 1rem;
+p,
+ul,
+a {
+    font-size: 1.25rem;
     font-weight: 400;
 }
 
-ul {
-    font-size: 1rem;
-    font-weight: 400;
-}
+
 
 a {
     color: blueviolet;

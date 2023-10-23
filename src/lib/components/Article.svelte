@@ -6,9 +6,11 @@
 </script>
 
 {#if article.type === "md"}
-  <OnePost source={article.source} />
+  <article>
+    <OnePost source={article.source} />
+  </article>
 {:else if article.type === "youtube"}
-  <div class="flex flex-col gap-10">
+  <article class="flex flex-col gap-10">
     <iframe
       height="315"
       src={article.url}
@@ -20,5 +22,5 @@
     <div class="overflow-hidden">
       <OnePost source={article.description} />
     </div>
-  </div>
+  </article>
 {/if}

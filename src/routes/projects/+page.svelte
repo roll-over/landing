@@ -1,4 +1,6 @@
 <script>
+  import Link from "$lib/components/Link.svelte";
+
   const Status = {
     comingSoon: "coming-soon",
     releasedFirstVersion: "releasedFirstVersion",
@@ -57,7 +59,7 @@
 <ul class="flex flex-wrap gap-x-5 gap-y-10 max-w-2xl justify-center">
   {#each projects as project}
     <li
-      class="w-80 h-60 flex flex-col justify-between bg-slate-800 p-1 rounded-2xl"
+      class="w-80 min-h-60 flex flex-col justify-between bg-slate-800 p-1 rounded-2xl"
     >
       <div class="flex flex-col">
         <h3 class="text-2xl font-bold bg-slate-700 py-2 px-4 rounded-xl">
@@ -88,12 +90,7 @@
           <p class="p-2">{project.description}</p>
         {/if}
       </div>
-      <a
-        href={project.href}
-        class="bg-blue-800 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-xl text-center"
-      >
-        Перейти
-      </a>
+      <Link href={project.href}>Перейти</Link>
     </li>
   {/each}
 </ul>

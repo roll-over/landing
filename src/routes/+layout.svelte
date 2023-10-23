@@ -3,7 +3,7 @@
   import Logo from "$lib/assets/logo.png";
   import Header from "$lib/assets/roll-over.png";
   import { page } from "$app/stores";
-
+  import Link from "$lib/components/Link.svelte";
   let w;
   let visible = false;
 
@@ -11,6 +11,10 @@
     {
       title: "Проекты",
       href: "/projects",
+    },
+    {
+      title: "Анонсы",
+      href: "/anounces",
     },
     {
       title: "Контакты",
@@ -33,6 +37,9 @@
     },
     vacancies: {
       title: "Вакансии",
+    },
+    anounces: {
+      title: "Анонсы",
     },
     "red-flags": {
       title: "red-flags",
@@ -103,11 +110,7 @@
           >
             {#each links as link}
               <li>
-                <a
-                  href={link.href}
-                  class="text-teal-400 hover:text-teal-600 border-2 border-cyan-900 hover:border-cyan-800 hover:underline underline-offset-1 rounded-2xl p-2"
-                  >{link.title}</a
-                >
+                <Link href={link.href}>{link.title}</Link>
               </li>
             {/each}
           </ul>
