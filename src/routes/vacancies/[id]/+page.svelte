@@ -5,6 +5,14 @@
   const vacancy = vacancies.find((vacancy) => vacancy.id === id);
 </script>
 
+<svelte:head>
+  <title>Вакансия {vacancy?.title} в roll-over</title>
+  <meta
+    name="description"
+    content="Открытая вакансия {vacancy?.title} в roll-over с описанием: {vacancy?.description}"
+  />
+</svelte:head>
+
 <div class="flex flex-col gap-5 p-10 sm:pl-0 max-w-2xl justify-left">
   {#if vacancy}
     <h2>Вакансия: {vacancy?.title}</h2>

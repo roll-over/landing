@@ -1,3 +1,7 @@
+<svelte:head>
+  <title>roll-over</title>
+  <meta name="description" content="Группа открытых проектов: от сервиса поиска работы до открытого микрофона" />
+</svelte:head>
 <div class="flex flex-col max-w-xl p-10 sm:p-2 gap-20">
   <section>
     <h2>roll-over</h2>

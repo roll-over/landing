@@ -10,6 +10,14 @@
   const link = articles.redFlags.employee.cv.link;
 </script>
 
+<svelte:head>
+  <title>{a?.title}</title>
+  <meta
+    name="description"
+    content="Статья: {a?.title}. {a?.source.slice(0, 100)}"
+  />
+</svelte:head>
+
 <div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
   <h2>Статья</h2>
   <div class="flex flex-col gap-15">

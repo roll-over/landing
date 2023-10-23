@@ -9,11 +9,14 @@ const redFlags = {
       articles: [
         {
           id: "kakie_vyrazheniya_ne_stoit_ispolzovat_v_rezyume",
+          title: "Какие выражения не стоит использовать в резюме",
           source: kakie_vyrazheniya_ne_stoit_ispolzovat_v_rezyume,
           type: "md",
         },
         {
           id: "pochemu_moye_rezyume_ne_parsitsya_sekrety_uspekhnoy_integratsii_v_crm",
+          title:
+            "Почему моё резюме не парсится: Секреты успешного попадания в CRMПочему моё резюме не парсится: Секреты успешного попадания в CRM",
           source: first,
           type: "md",
         },
@@ -29,12 +32,14 @@ export const articles = {
     articles: [
       {
         id: "management_in_the_post_covid_era_Brainstorm_its_open_mic",
+        title: "Менеджмент в пост-ковидную эпоху",
         type: "youtube",
         description: management_in_the_post_covid_era_Brainstorm_its_open_mic,
         url: "https://www.youtube.com/embed/cnFianUi_Wg?si=gMq1GAHJNw4LIExV",
       },
       {
         id: "pochemu_senyory_ne_stanovyatsya_lidami",
+        title: "Почему синьоры не становятся лидами",
         type: "youtube",
         description: pochemu_senyory_ne_stanovyatsya_lidami,
         url: "https://www.youtube.com/embed/ZXVDxZnYdtI?si=Fte1MO6dcqH2HZis",

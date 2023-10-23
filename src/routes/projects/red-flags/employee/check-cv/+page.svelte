@@ -44,6 +44,15 @@
   ];
 </script>
 
+<svelte:head>
+  <title>Проверка резюме</title>
+  <meta
+    name="description"
+    content="Проверка резюме — это сервис, где вы можете проверить своё резюме на
+    наличие ошибок."
+  />
+</svelte:head>
+
 <div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
   <h2>Проверка резюме</h2>
   <p>Твой консультант при составлении резюме</p>

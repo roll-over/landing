@@ -63,9 +63,6 @@
     },
   };
 
-  $: title =
-    stepsWithLinksAndTitles[steps[steps.length - 1]]?.title || "roll-over";
-
   const getUrl = (steps, step) => {
     const index = steps.indexOf(step);
     return "/" + steps.slice(0, index + 1).join("/");
@@ -78,10 +75,6 @@
     return title;
   };
 </script>
-
-<svelte:head>
-  <title>{title}</title>
-</svelte:head>
 
 <div class="flex flex-col h-screen overflow-hidden">
   <nav class="p-2 flex flex-col justify-between max-h-40" bind:clientWidth={w}>

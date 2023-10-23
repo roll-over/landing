@@ -2,6 +2,14 @@
   import { vacancies } from "$lib/vacancies.js";
 </script>
 
+<svelte:head>
+  <title>Вакансии в roll-over</title>
+  <meta
+    name="description"
+    content="Открытые позиции для работы в roll-over: дизайнеры, разработчики и маркетологи"
+  />
+</svelte:head>
+
 <div class="flex flex-col gap-10 p-10 sm:pl-0 max-w-2xl justify-left">
   <h2>Вакансии</h2>
   <p>
