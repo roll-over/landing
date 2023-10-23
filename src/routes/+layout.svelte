@@ -17,6 +17,10 @@
       href: "/anounces",
     },
     {
+      title: "Статьи",
+      href: "/posts",
+    },
+    {
       title: "Контакты",
       href: "/contacts",
     },

@@ -42,3 +42,17 @@ export const articles = {
     ],
   },
 };
+
+export const articlesStacksList = [
+  {
+    title: "Подготовка резюме (red-flags)",
+    description: "Популярные ошибки, советы и фреймворки для подготовки резюме",
+    link: articles.redFlags.employee.cv.link,
+  },
+  {
+    title: "Записи митапов (its-open-mic)",
+    description:
+      "Записи митапов, которые мы проводили: дополнительные материалы, полезные ссылки и записи",
+    link: articles.itsOpenMic.link,
+  },
+];

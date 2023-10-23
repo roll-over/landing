@@ -8,7 +8,7 @@
 
 <a
   {href}
-  class="text-teal-400 hover:text-teal-600 border-2 border-cyan-900 hover:border-cyan-800 hover:underline underline-offset-1 rounded-2xl p-2"
+  class="text-stone-400 hover:text-stone-500 border-2 border-stone-700 hover:border-stone-600 rounded-2xl p-2 flex justify-center"
 >
   <slot />
 </a>
