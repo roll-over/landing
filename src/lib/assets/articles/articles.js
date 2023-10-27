@@ -2,6 +2,8 @@ import first from "./red-flags/employee/check-cv/pochemu_moye_rezyume_ne_parsits
 import management_in_the_post_covid_era_Brainstorm_its_open_mic from "./its-open-mic/management_in_the_post_covid_era_Brainstorm_its_open_mic.md?raw";
 import pochemu_senyory_ne_stanovyatsya_lidami from "./its-open-mic/pochemu_senyory_ne_stanovyatsya_lidami.md?raw";
 import kakie_vyrazheniya_ne_stoit_ispolzovat_v_rezyume from "./red-flags/employee/check-cv/kakie_vyrazheniya_ne_stoit_ispolzovat_v_rezyume.md?raw";
+import kak_aitishniku_sdelat_svoyu_rok_gruppu from "./its-open-mic/kak_aitishniku_sdelat_svoyu_rok_gruppu.md?raw";
+
 const redFlags = {
   employee: {
     cv: {
@@ -30,6 +32,13 @@ export const articles = {
   itsOpenMic: {
     link: "/projects/its-open-mic/past-events/",
     articles: [
+      {
+        id: "kak_aitishniku_sdelat_svoyu_rok_gruppu",
+        title: "Как айтишнику сделать свою рок группу",
+        type: "youtube",
+        description: kak_aitishniku_sdelat_svoyu_rok_gruppu,
+        url: "https://www.youtube.com/embed/aRWiMOzuysA?si=K-M4CfoXI9Bh3g3A",
+      },
       {
         id: "management_in_the_post_covid_era_Brainstorm_its_open_mic",
         title: "Менеджмент в пост-ковидную эпоху",
