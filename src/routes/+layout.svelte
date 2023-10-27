@@ -28,6 +28,10 @@
       title: "Вакансии",
       href: "/vacancies",
     },
+    {
+      title: "Донаты",
+      href: "/donations",
+    },
   ];
 
   $: path = $page.url.pathname;
