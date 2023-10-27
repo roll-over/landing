@@ -3,7 +3,7 @@
   import Logo from "$lib/assets/logo.png";
   import Header from "$lib/assets/roll-over.png";
   import { page } from "$app/stores";
-  import Link from "$lib/components/Link.svelte";
+  import NavLink from "$lib/components/NavLink.svelte";
   let w;
   let visible = false;
 
@@ -90,7 +90,7 @@
       <p class="text-slate-400">Группа открытых проектов</p>
     </a>
 
-    <div class="flex flex-col sm:flex-row gap-5 p-3 text-xl h-fit rounded-2xl">
+    <div class="flex flex-col sm:flex-row gap-5 p-3 text-xl h-fit rounded-xl">
       {#if w < 640}
         <button
           class="text-teal-400"
@@ -103,12 +103,12 @@
       {/if}
       {#if w > 640 || visible}
         <ul
-          class="flex flex-col sm:flex-row gap-3 bg-gray-950 z-10"
+          class="flex flex-col sm:flex-row gap-1 bg-black rounded-xl z-10"
           on:click={() => (visible = false)}
         >
           {#each links as link}
             <li>
-              <Link href={link.href}>{link.title}</Link>
+              <NavLink href={link.href}>{link.title}</NavLink>
             </li>
           {/each}
         </ul>
