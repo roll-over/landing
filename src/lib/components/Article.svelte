@@ -13,7 +13,7 @@
   <article class="flex flex-col gap-10">
     <iframe
       height="315"
-      src={article.url}
+      src={article.url + "&autoplay=1&loop=1"}
       title="YouTube video player"
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
