@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-  <title>IT's open mic</title>
+  <title>Проект: IT's open mic</title>
   <meta
     name="description"
     content="Открытая онлайн-платформа для проведения выступлений об или около IT."
@@ -14,7 +14,7 @@
 </svelte:head>
 
 <div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
-  <h2>IT’s-open-mic</h2>
+  <h2>Проект: IT’s-open-mic</h2>
   <p>Открытая онлайн-платформа для проведения выступлений об или около IT.</p>
   <section>
     <h2>Миссия</h2>

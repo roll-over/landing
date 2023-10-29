@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-  <title>hide-hire</title>
+  <title>Проект: hide-hire</title>
   <meta
     name="description"
     content="Проект для анонимного поиска работы - там, где до первого созвона и/или
@@ -17,7 +17,7 @@
 </svelte:head>
 
 <div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
-  <h2>hide-hire</h2>
+  <h2>Проект: hide-hire</h2>
   <p>Сервис поиска работы и кандидатов</p>
   <section>
     <h2>Что такое hide-hire</h2>

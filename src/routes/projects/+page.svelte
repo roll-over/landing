@@ -19,6 +19,12 @@
       status: Status.comingSoon,
     },
     {
+      href: '/projects/simple-psychologist',
+      title: 'simple-psychologist',
+      description: 'Бот для психологической помощи',
+      status: Status.releasedFirstVersion,
+    },
+    {
       href: "/projects/its-open-mic",
       title: "IT’s-open-mic",
       description:
