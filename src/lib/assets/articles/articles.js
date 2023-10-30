@@ -3,12 +3,18 @@ import management_in_the_post_covid_era_Brainstorm_its_open_mic from "./its-open
 import pochemu_senyory_ne_stanovyatsya_lidami from "./its-open-mic/pochemu_senyory_ne_stanovyatsya_lidami.md?raw";
 import kakie_vyrazheniya_ne_stoit_ispolzovat_v_rezyume from "./red-flags/employee/check-cv/kakie_vyrazheniya_ne_stoit_ispolzovat_v_rezyume.md?raw";
 import kak_aitishniku_sdelat_svoyu_rok_gruppu from "./its-open-mic/kak_aitishniku_sdelat_svoyu_rok_gruppu.md?raw";
-
+import kak_gramotno_ukazyvat_uroven_vladenia_yazykami_v_rezume from "./red-flags/employee/check-cv/kak_gramotno_ukazyvat_uroven_vladenia_yazykami_v_rezume.md?raw";
 const redFlags = {
   employee: {
     cv: {
       link: "/projects/red-flags/employee/check-cv/posts/",
       articles: [
+        {
+          id: "kak_gramotno_ukazyvat_uroven_vladenia_yazykami_v_rezume",
+          title: "Как грамотно указывать уровень владения языками в резюме",
+          type: "md",
+          source: kak_gramotno_ukazyvat_uroven_vladenia_yazykami_v_rezume,
+        },
         {
           id: "kakie_vyrazheniya_ne_stoit_ispolzovat_v_rezyume",
           title: "Какие выражения не стоит использовать в резюме",
