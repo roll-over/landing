@@ -1,6 +1,11 @@
 <script>
   const donations = [
     {
+      type: "service",
+      title: "Patreon:",
+      link: "https://www.patreon.com/roll_over",
+    },
+    {
       type: "crypto",
       title: "Etherium:",
       wallet: "0x8128E4b440Eac6fae9aB2E70655d7F9fBe54d857",
@@ -42,7 +47,7 @@
 <div class="flex flex-col flex-wrap gap-5 w-full max-w-lg gap-10 p-10">
   <h2 class="">Донаты</h2>
   {#each donations as contact}
-    <div class="flex justify-between flex-wrap">
+    <div class="flex justify-between flex-wrap flex-col">
       <h3>{contact.title}</h3>
       {#if contact.type === "crypto"}
         <p>{contact.wallet}</p>
@@ -50,11 +55,13 @@
         <a href={contact.link}
           >Вы можете забустить сервер, что повысит качество видео</a
         >
+      {:else if contact.type === "service"}
+        <a href={contact.link}>{contact.link}</a>
       {/if}
     </div>
   {/each}
   <p>
-    Если хотите поддержать по другому, пожалуйста, наришите нам <a
+    Если хотите поддержать по другому, пожалуйста, наришите нам: <a
       href="mailto:roll.over.projects@gmail.com">roll.over.projects@gmail.com</a
     >
   </p>
