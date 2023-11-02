@@ -34,15 +34,15 @@
   }
 
   .active {
-    background-color: #007bff;
+    background-color: rgb(13 148 136);
     color: white;
   }
 </style>
 
-<div class="tabs">
+<div class="flex flex-wrap gap-3 tabs ">
   {#each tabs as tab, index (tab.id)}
     <button
-      class="tab {index === activeTab ? 'active' : ''}"
+      class="tab {index === activeTab ? 'active' : ''} text-teal-400 hover:text-teal-600 border-2 border-cyan-900 hover:border-cyan-800 hover:underline underline-offset-1 rounded-2xl p-2"
       on:click={() => switchTab(index)}
     >
       {tab.name}      
