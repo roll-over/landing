@@ -54,9 +54,9 @@
   {#if tabs[activeTab] && activeTabContent}
   <ul class="flex justify-center flex-wrap sm:flex-row gap-3">
     {#each activeTabContent as content}
-    <li class="w-60 flex flex-col justify-between bg-slate-800 p-1 rounded-2xl">
+    <li class="w-60 flex flex-col justify-between bg-slate-800  p-1 rounded-2xl">
       <a class="flex flex-col" href={content.html_url}>
-        <h3 class="flex flex-col space-around h-36 text-2xl font-bold bg-slate-700 text-slate-500 py-2 px-4 rounded-xl">
+        <h3 class="flex flex-col space-around h-36 text-2xl font-bold bg-slate-700 hover:bg-slate-600 text-slate-500 py-2 px-4 rounded-xl">
           {content.login}
           <img src={content.avatar_url} alt={`${content.login}'s avatar'`} class='w-14 mt-auto rounded-full' />
         </h3>
