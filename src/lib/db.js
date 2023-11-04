@@ -1,8 +1,9 @@
 import { MongoClient } from "mongodb";
 import { ME_CONFIG_MONGODB_URL } from "$env/static/private";
 
-const getClient = async () => {
-  const client = new MongoClient(ME_CONFIG_MONGODB_URL);
+const client = new MongoClient(ME_CONFIG_MONGODB_URL);
+
+export const startMongo = async () => {
   for (let i = 0; i < 10; i++) {
     try {
       await client.connect();
@@ -15,4 +16,4 @@ const getClient = async () => {
   return client;
 };
 
-export default getClient();
+export default client.db("landing");
