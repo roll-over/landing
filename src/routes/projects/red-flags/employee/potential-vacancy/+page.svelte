@@ -102,7 +102,7 @@
     <h2>Сравнение</h2>
     <ul class="grid gap-5">
       <li class="grid grid-cols-5 gap-5">
-        <h3 />
+        <p />
         {#each cards as card}
           <h3>{card.title}</h3>
         {/each}

@@ -4,6 +4,7 @@
   import Header from "$lib/assets/roll-over.png";
   import { page } from "$app/stores";
   import NavLink from "$lib/components/NavLink.svelte";
+
   let w;
   let visible = false;
 
@@ -102,16 +103,30 @@
         </button>
       {/if}
       {#if w > 640 || visible}
-        <ul
-          class="flex flex-col sm:flex-row gap-1 bg-black rounded-xl z-10"
-          on:click={() => (visible = false)}
-        >
-          {#each links as link}
+        <button on:click={() => (visible = false)}>
+          <ul class="flex flex-col sm:flex-row gap-1 bg-black rounded-xl z-10">
+            {#each links as link}
+              <li>
+                <NavLink href={link.href}>{link.title}</NavLink>
+              </li>
+            {/each}
             <li>
-              <NavLink href={link.href}>{link.title}</NavLink>
+              {#if $page.data.session}
+                <NavLink href="/auth/signout">
+                  {#if $page.data.session.user?.image}
+                    <img
+                      src={$page.data.session.user.image}
+                      class="rounded-2xl w-8"
+                      alt="avatar"
+                    />
+                  {/if}
+                </NavLink>
+              {:else}
+                <NavLink href="/auth/signin">Войти</NavLink>
+              {/if}
             </li>
-          {/each}
-        </ul>
+          </ul>
+        </button>
       {/if}
     </div>
   </div>
@@ -124,9 +139,6 @@
     {/each}
   </div>
 </nav>
-<main
-  class="flex flex-col items-center overflow-auto"
-  on:click={(e) => (visible = false)}
->
+<main class="flex flex-col items-center overflow-auto">
   <slot />
 </main>

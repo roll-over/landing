@@ -1,7 +1,5 @@
 <script>
-  export let raw = "";
   export let ordered = false;
-  export let attrs = {};
 </script>
 
 {#if ordered}

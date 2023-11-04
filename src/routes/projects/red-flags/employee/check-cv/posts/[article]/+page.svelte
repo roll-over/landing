@@ -2,9 +2,12 @@
   import { articles } from "$lib/assets/articles/articles.js";
   import { page } from "$app/stores";
   import Article from "$lib/components/Article.svelte";
+
+  export let data;
+
   const article = $page.params.article;
 
-  const a = articles.redFlags.employee.cv.articles.find(
+  const a = [...data.entities, ...articles.redFlags.employee.cv.articles].find(
     (_article) => _article.id === article
   );
   const link = articles.redFlags.employee.cv.link;

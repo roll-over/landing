@@ -1,7 +1,6 @@
 <script>
-  export { href, title };
+  export { href };
   let href = "";
-  let title = "";
 </script>
 
 <a

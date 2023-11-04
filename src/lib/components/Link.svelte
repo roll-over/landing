@@ -1,9 +1,8 @@
 <script>
   import OnePost from "./markdown/OnePost.svelte";
 
-  export { href, title };
+  export { href };
   let href = "";
-  let title = "";
 </script>
 
 <a

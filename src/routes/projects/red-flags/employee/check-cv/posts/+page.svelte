@@ -1,8 +1,9 @@
 <script>
   import { articles } from "$lib/assets/articles/articles.js";
   import ArticlePreview from "$lib/components/ArticlePreview.svelte";
+  export let data;
 
-  const a = articles.redFlags.employee.cv.articles;
+  const a = [...data.entities, ...articles.redFlags.employee.cv.articles];
   const link = articles.redFlags.employee.cv.link;
 </script>
 

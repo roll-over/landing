@@ -1,10 +1,23 @@
 version: "3.7"
 
 services:
+  landing_mongo:
+    image: mongo
+    container_name: landing_mongo
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - "./data:/data/db"
   landing_roll_over:
     build: .
     container_name: landing_roll_over
     working_dir: /frontend
     command: node build
+    restart: unless-stopped
     ports:
-      - "3011:3000"
+      - "127.0.0.1:3011:3000"
+    env_file:
+      - .env
+    depends_on:
+      - landing_mongo
