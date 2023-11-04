@@ -16,7 +16,7 @@ services:
     command: node build
     restart: unless-stopped
     ports:
-      - "127.0.0.1:3011:3000"
+      - "3011:3000"
     env_file:
       - .env
     depends_on:
