@@ -14,6 +14,5 @@ const getClient = async () => {
   }
   return client;
 };
-const client = new MongoClient(ME_CONFIG_MONGODB_URL);
 
-export default getClient();
+export default await getClient();

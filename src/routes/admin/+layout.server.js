@@ -1,14 +1,20 @@
 import { redirect } from "@sveltejs/kit";
+import db from "$lib/db";
 
 const adminEmails = ["roll.over.projects@gmail.com"];
 
 const isAdmin = async (user) => {
-  const admins = await fetch("/api/admins", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((res) => res.json());
+  const admins = await db
+    .collection("admins")
+    .find(
+      {},
+      {
+        projection: {
+          _id: 0,
+        },
+      }
+    )
+    .toArray();
   return [adminEmails, ...admins.map((admin) => admin.email)].includes(
     user?.email
   );
