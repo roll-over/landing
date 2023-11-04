@@ -15,6 +15,7 @@ const isAdmin = async (user) => {
       }
     )
     .toArray();
+  console.log(admins, user?.email);
   return [adminEmails, ...admins.map((admin) => admin.email)].includes(
     user?.email
   );
