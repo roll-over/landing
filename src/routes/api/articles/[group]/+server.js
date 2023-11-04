@@ -1,5 +1,6 @@
 import db from "$lib/db";
 import { collections } from "$lib/collections";
+import { useAdminGuard } from "$lib/guards/admin";
 
 export async function GET(event) {
   const collection = event.params.group;
@@ -27,7 +28,13 @@ export async function GET(event) {
     },
   });
 }
+
 export async function POST(event) {
+  const result = await useAdminGuard(event);
+  if (result) {
+    return result;
+  }
+
   const collection = event.params.group;
 
   const allCollections = Object.keys(collections);
@@ -53,6 +60,11 @@ export async function POST(event) {
 }
 
 export async function DELETE(event) {
+  const result = await useAdminGuard(event);
+  if (result) {
+    return result;
+  }
+
   const collection = event.params.group;
 
   const allCollections = Object.keys(collections);

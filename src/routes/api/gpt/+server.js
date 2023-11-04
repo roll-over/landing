@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import { OPENAI_API_KEY } from "$env/static/private";
+import { useAdminGuard } from "$lib/guards/admin";
 
 const openai = new OpenAI({
   apiKey: OPENAI_API_KEY,
@@ -38,6 +39,11 @@ const prompts = {
 };
 
 export async function POST(event) {
+  const result = await useAdminGuard(event);
+  if (result) {
+    return result;
+  }
+
   const artice = await event.request.json();
 
   const prompt = prompts[artice.group]?.[artice.type];

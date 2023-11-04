@@ -1,6 +1,12 @@
 import db from "$lib/db";
+import { useAdminGuard } from "$lib/guards/admin";
 
 export async function GET(event) {
+  const result = await useAdminGuard(event);
+  if (result) {
+    return result;
+  }
+
   const admins = await db
     .collection("admins")
     .find(
@@ -20,6 +26,11 @@ export async function GET(event) {
   });
 }
 export async function POST(event) {
+  const result = await useAdminGuard(event);
+  if (result) {
+    return result;
+  }
+
   const admin = await event.request.json();
 
   await db.collection("admins").insertOne(admin);
@@ -32,6 +43,10 @@ export async function POST(event) {
 }
 
 export async function DELETE(event) {
+  const result = await useAdminGuard(event);
+  if (result) {
+    return result;
+  }
   const admin = await event.request.json();
 
   await db.collection("admins").deleteOne({
