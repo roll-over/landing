@@ -15,4 +15,4 @@ const getClient = async () => {
   return client;
 };
 
-export default await getClient();
+export default getClient();
