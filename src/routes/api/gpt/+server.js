@@ -1,9 +1,8 @@
-import db from "$lib/db";
-import { collections } from "$lib/collections";
 import OpenAI from "openai";
+import { OPENAI_API_KEY } from "$env/static/private";
 
 const openai = new OpenAI({
-  apiKey: "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", // defaults to process.env["OPENAI_API_KEY"]
+  apiKey: OPENAI_API_KEY,
 });
 const system = `
 Представь, что ты копирайтер, который помогает писать статьи для социальных сетей и сайта.
