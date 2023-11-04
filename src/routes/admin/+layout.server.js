@@ -15,10 +15,9 @@ const isAdmin = async (user) => {
       }
     )
     .toArray();
-  console.log(admins, user?.email);
-  return [adminEmails, ...admins.map((admin) => admin.email)].includes(
-    user?.email
-  );
+  const allAdmins = [adminEmails, ...admins.map((admin) => admin.email)];
+  console.log(allAdmins, user?.email, allAdmins.includes(user?.email));
+  return allAdmins.includes(user?.email);
 };
 
 export const load = async (event) => {
