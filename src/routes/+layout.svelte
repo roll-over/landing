@@ -1,5 +1,5 @@
 <script>
-  import "../app.css";
+  import "../styles/app.css";
   import Logo from "$lib/assets/logo.png";
   import Header from "$lib/assets/roll-over.png";
   import { page } from "$app/stores";
