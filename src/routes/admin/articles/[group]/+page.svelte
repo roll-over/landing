@@ -133,15 +133,6 @@
   };
 </script>
 
-<style>
-  input,
-  textarea,
-  select {
-    background-color: rgb(65, 65, 65);
-    padding: 10px;
-  }
-</style>
-
 <h1>Admin panel</h1>
 <ul class="w-full md:w-1/2 flex flex-col gap-10">
   {#each data.entities || [] as entitiy}
@@ -283,3 +274,12 @@
     <button class="buttonPrimary" on:click={() => addArticle()}> Add new </button>
   </div>
 </ul>
+
+<style>
+  input,
+  textarea,
+  select {
+    background-color: rgb(65, 65, 65);
+    padding: 10px;
+  }
+</style>

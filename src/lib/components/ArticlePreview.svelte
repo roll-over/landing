@@ -6,26 +6,6 @@
   let link = "";
 </script>
 
-<style>
-  .article {
-    position: relative;
-  }
-  /* The content */
-  .frosted::before {
-    background-color: black;
-    z-index: 2;
-    background-size: cover;
-  }
-  .frosted {
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-    height: 60px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 255));
-    background-size: cover;
-  }
-</style>
-
 <section class="border-2 border-gray-800 p-2 sm:p-5 rounded-2xl">
   {#if article.type === "md"}
     <div class="max-h-56 sm:h-36 overflow-hidden article">
@@ -59,3 +39,23 @@
     </div>
   {/if}
 </section>
+
+<style>
+  .article {
+    position: relative;
+  }
+  /* The content */
+  .frosted::before {
+    background-color: black;
+    z-index: 2;
+    background-size: cover;
+  }
+  .frosted {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 60px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 255));
+    background-size: cover;
+  }
+</style>
