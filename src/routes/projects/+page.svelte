@@ -1,4 +1,6 @@
 <script>
+  import Link from "$lib/components/Link.svelte";
+
   const Status = {
     comingSoon: "coming-soon",
     releasedFirstVersion: "releasedFirstVersion",
@@ -17,7 +19,13 @@
       status: Status.comingSoon,
     },
     {
-      href: "https://www.notion.so/IT-s-open-mic-coming-soon-67bdf02f766741d4ade58754e5a72a7b?pvs=21",
+      href: '/projects/simple-psychologist',
+      title: 'simple-psychologist',
+      description: 'Бот для психологической помощи',
+      status: Status.releasedFirstVersion,
+    },
+    {
+      href: "/projects/its-open-mic",
       title: "IT’s-open-mic",
       description:
         "Открытая онлайн-платформа для проведения выступлений об или около IT.",
@@ -38,6 +46,16 @@
   ];
 </script>
 
+<svelte:head>
+  <title>Проекты в roll-over</title>
+  <meta
+    name="description"
+    content="Открытые проекты в roll-over: {projects
+      .map((project) => project.title)
+      .join(', ')}}"
+  />
+</svelte:head>
+
 <div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
   <h2>Проекты</h2>
   <p>
@@ -57,7 +75,7 @@
 <ul class="flex flex-wrap gap-x-5 gap-y-10 max-w-2xl justify-center">
   {#each projects as project}
     <li
-      class="w-80 h-60 flex flex-col justify-between bg-slate-800 p-1 rounded-2xl"
+      class="w-80 min-h-60 flex flex-col justify-between bg-slate-800 p-1 rounded-2xl"
     >
       <div class="flex flex-col">
         <h3 class="text-2xl font-bold bg-slate-700 py-2 px-4 rounded-xl">
@@ -88,12 +106,7 @@
           <p class="p-2">{project.description}</p>
         {/if}
       </div>
-      <a
-        href={project.href}
-        class="bg-blue-800 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-xl text-center"
-      >
-        Перейти
-      </a>
+      <Link href={project.href}>Перейти</Link>
     </li>
   {/each}
 </ul>

@@ -46,6 +46,15 @@
   ];
 </script>
 
+<svelte:head>
+  <title>Проверка потенциальной вакансии</title>
+  <meta
+    name="description"
+    content="Проверка потенциальной вакансии - это сервис, который позволяет вам
+    проверить потенциальную вакансию на наличие красных флагов."
+  />
+</svelte:head>
+
 <div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
   <h2>Проверка потенциальной вакансии</h2>
   <p>Твой консультант при поиске вакансии</p>
@@ -93,7 +102,7 @@
     <h2>Сравнение</h2>
     <ul class="grid gap-5">
       <li class="grid grid-cols-5 gap-5">
-        <h3 />
+        <p />
         {#each cards as card}
           <h3>{card.title}</h3>
         {/each}

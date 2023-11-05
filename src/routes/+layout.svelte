@@ -3,6 +3,7 @@
   import Logo from "$lib/assets/logo.png";
   import Header from "$lib/assets/roll-over.png";
   import { page } from "$app/stores";
+  import NavLink from "$lib/components/NavLink.svelte";
 
   let w;
   let visible = false;
@@ -13,6 +14,14 @@
       href: "/projects",
     },
     {
+      title: "Анонсы",
+      href: "/anounces",
+    },
+    {
+      title: "Статьи",
+      href: "/posts",
+    },
+    {
       title: "Контакты",
       href: "/contacts",
     },
@@ -24,23 +33,25 @@
       title: "Контрибьюторы",
       href: "/contributors"
     },
+    {  title: "Донаты",
+      href: "/donations",
+    },
   ];
 
-  console.log($page.url.pathname);
   $: path = $page.url.pathname;
   $: steps = path.split("/").filter((step) => step !== "");
   const stepsWithLinksAndTitles = {
     projects: {
       title: "Проекты",
-      href: "/projects",
     },
     contacts: {
       title: "Контакты",
-      href: "/contacts",
     },
     vacancies: {
       title: "Вакансии",
-      href: "/vacancies",
+    },
+    anounces: {
+      title: "Анонсы",
     },
     contributors: {
       title: "Контрибьюторы",
@@ -48,77 +59,93 @@
     },
     "red-flags": {
       title: "red-flags",
-      href: "/projects/red-flags",
     },
+    employee: {
+      title: "Работникам",
+    },
+    "check-cv": {
+      title: "Проверка резюме",
+    },
+
     "potential-vacancy": {
       title: "Проверка потенциальной вакансии",
-      href: "/projects/red-flags/potential-vacancy",
+    },
+    posts: {
+      title: "Статьи",
     },
   };
 
-  $: title =
-    stepsWithLinksAndTitles[steps[steps.length - 1]]?.title || "roll-over";
+  const getUrl = (steps, step) => {
+    const index = steps.indexOf(step);
+    return "/" + steps.slice(0, index + 1).join("/");
+  };
+
+  const getTitle = (title) => {
+    if (title.length > 10) {
+      return title.slice(0, 10) + "...";
+    }
+    return title;
+  };
 </script>
 
-<svelte:head>
-  <title>{title}</title>
-</svelte:head>
+<nav class="p-2 flex flex-col justify-between max-h-40" bind:clientWidth={w}>
+  <div class="p-2 flex justify-between max-h-20">
+    <a href="/" class="flex flex-col">
+      <div class="flex">
+        <img src={Logo} alt="logo" class="h-10" />
+        <img src={Header} alt="roll-over" class="h-10" />
+      </div>
+      <p class="text-slate-400">Группа открытых проектов</p>
+    </a>
 
-<div class="flex flex-col h-screen overflow-hidden">
-  <nav class="p-2 flex flex-col justify-between max-h-40" bind:clientWidth={w}>
-    <div class="p-2 flex justify-between max-h-20">
-      <a href="/" class="flex flex-col">
-        <div class="flex">
-          <img src={Logo} alt="logo" class="h-10" />
-          <img src={Header} alt="roll-over" class="h-10" />
-        </div>
-        <p class="text-slate-400">Группа открытых проектов</p>
-      </a>
-
-      <div
-        class="flex flex-col sm:flex-row gap-5 p-3 text-xl h-fit rounded-2xl"
-      >
-        {#if w < 640}
-          <button
-            class="text-teal-400"
-            on:click={() => {
-              visible = !visible;
-            }}
-          >
-            Меню
-          </button>
-        {/if}
-        {#if w > 640 || visible}
-          <ul
-            class="flex flex-col sm:flex-row gap-3 bg-gray-950 z-10"
-            on:click={() => (visible = false)}
-          >
+    <div class="flex flex-col sm:flex-row gap-5 p-3 text-xl h-fit rounded-xl">
+      {#if w < 640}
+        <button
+          class="text-teal-400"
+          on:click={() => {
+            visible = !visible;
+          }}
+        >
+          Меню
+        </button>
+      {/if}
+      {#if w > 640 || visible}
+        <button on:click={() => (visible = false)}>
+          <ul class="flex flex-col sm:flex-row gap-1 bg-black rounded-xl z-10">
             {#each links as link}
               <li>
-                <a
-                  href={link.href}
-                  class="text-teal-400 hover:text-teal-600 border-2 border-cyan-900 hover:border-cyan-800 hover:underline underline-offset-1 rounded-2xl p-2"
-                  >{link.title}</a
-                >
+                <NavLink href={link.href}>{link.title}</NavLink>
               </li>
             {/each}
+            <li>
+              {#if $page.data.session}
+                <NavLink href="/auth/signout">
+                  {#if $page.data.session.user?.image}
+                    <img
+                      src={$page.data.session.user.image}
+                      class="rounded-2xl w-8"
+                      alt="avatar"
+                    />
+                  {/if}
+                </NavLink>
+              {:else}
+                <NavLink href="/auth/signin">Войти</NavLink>
+              {/if}
+            </li>
           </ul>
-        {/if}
-      </div>
+        </button>
+      {/if}
     </div>
-    <div class="pl-5">
-      {#each steps as step, i}
-        <a href={stepsWithLinksAndTitles[step]?.href || path}
-          >{stepsWithLinksAndTitles[step]?.title || step}</a
-        >
-        {#if step !== steps[steps.length - 1]} {" > "} {/if}
-      {/each}
-    </div>
-  </nav>
-  <main
-    class="flex flex-col items-center overflow-auto"
-    on:click={(e) => (visible = false)}
-  >
-    <slot />
-  </main>
-</div>
+  </div>
+  <div class="pl-5">
+    {#each steps as step, i}
+      <a href={getUrl(steps, step)}
+        >{getTitle(stepsWithLinksAndTitles[step]?.title || step)}</a
+      >
+      {#if step !== steps[steps.length - 1]} {" > "} {/if}
+    {/each}
+  </div>
+</nav>
+<main class="flex flex-col items-center overflow-auto">
+  <slot />
+</main>

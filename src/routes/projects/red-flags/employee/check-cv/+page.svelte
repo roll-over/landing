@@ -44,6 +44,15 @@
   ];
 </script>
 
+<svelte:head>
+  <title>Проверка резюме</title>
+  <meta
+    name="description"
+    content="Проверка резюме — это сервис, где вы можете проверить своё резюме на
+    наличие ошибок."
+  />
+</svelte:head>
+
 <div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
   <h2>Проверка резюме</h2>
   <p>Твой консультант при составлении резюме</p>
@@ -65,8 +74,20 @@
     </p>
   </section>
   <section>
+    <h2>Как подготовиться самостоятельно?</h2>
+    <p>
+      Если вы хотите подготовиться самостоятельно, то мы рекомендуем вам
+      ознакомиться с нашими статьями:
+    </p>
+    <a
+      href="/projects/red-flags/employee/check-cv/posts"
+      class="text-teal-400 hover:text-teal-400 border-2 border-cyan-900 hover:border-cyan-800 hover:underline underline-offset-1 rounded-2xl p-2"
+      >Читать статьи</a
+    >
+  </section>
+  <section>
     <h2>Как это работает?</h2>
-    <ul  class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="list-disc pl-10 grid grid-col gap-2">
       <li>
         Вы заполняете <a href="https://forms.gle/ZKc6UYADyizm8LULA">форму</a> с резюме
         и контактной информацией.
@@ -107,7 +128,7 @@
     <h2>Сравнение</h2>
     <ul class="grid gap-5">
       <li class="grid grid-cols-5 gap-5">
-        <h3 />
+        <p />
         {#each cards as card}
           <h3>{card.title}</h3>
         {/each}

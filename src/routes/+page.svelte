@@ -1,9 +1,18 @@
+<svelte:head>
+  <title>roll-over - группа открытых проектов</title>
+  <meta
+    name="description"
+    content="Группа открытых проектов: от сервиса поиска работы до открытого микрофона. Мы объединяем наши навыки и творческий потенциал, чтобы
+  достигать результатов."
+  />
+</svelte:head>
 <div class="flex flex-col max-w-xl p-10 sm:p-2 gap-20">
+  <h1>roll-over</h1>
   <section>
-    <h2>roll-over</h2>
+    <h2>Что такое roll-over?</h2>
     <p>
-      Это группа энтузиастов, которая собралась вместе, чтобы воплощать свои
-      крутые идеи в проекты.
+      roll-over - то группа энтузиастов, которая собралась вместе, чтобы
+      воплощать свои крутые идеи в проекты.
     </p>
     <p>
       Мы объединяем наши разнообразные навыки и творческий потенциал, чтобы
@@ -24,10 +33,19 @@
       <li>Сделать процесс обучения новой профессии простым</li>
     </ul>
   </section>
-</div>
 
-<style lang="postcss">
-  :global(html) {
-    background-color: theme(colors.gray.100);
-  }
-</style>
+  <section>
+    <h2>Смотрите так же:</h2>
+    <ul class="list-disc pl-10 grid grid-col gap-2">
+      <li>
+        <a href="/projects"> Наши проекты </a>
+      </li>
+      <li>
+        <a href="/vacancies"> Вакансии </a>
+      </li>
+      <li>
+        <a href="/contacts"> Контакты </a>
+      </li>
+    </ul>
+  </section>
+</div>

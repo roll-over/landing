@@ -1,0 +1,35 @@
+version: "3.7"
+
+services:
+  landing_roll_over_dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: landing_roll_over_dev
+    command: pnpm run dev --host
+
+    working_dir: /frontend
+    volumes:
+      - ./.svelte-kit/:/frontend/.svelte-kit/
+      - ./patches/:/frontend/patches/
+      - ./scripts/:/frontend/scripts/
+      - ./src/:/frontend/src/
+      - ./static/:/frontend/static/
+      - ./package.json:/frontend/package.json
+      - ./pnpm-lock.yaml:/frontend/pnpm-lock.yaml
+      - ./postcss.config.js:/frontend/postcss.config.js
+      - ./svelte.config.js:/frontend/svelte.config.js
+      - ./tailwind.config.ts:/frontend/tailwind.config.ts
+      - ./vite.config.ts:/frontend/vite.config.ts
+    ports:
+      - "5173:5173"
+    env_file:
+      - .env
+  landing_mongo_dev:
+    image: mongo
+    container_name: landing_mongo_dev
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - "./data:/data/db"      
