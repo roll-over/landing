@@ -52,9 +52,7 @@
       {#if contact.type === "crypto"}
         <p>{contact.wallet}</p>
       {:else if contact.type === "boost"}
-        <a href={contact.link}
-          >Вы можете забустить сервер, что повысит качество видео</a
-        >
+        <a href={contact.link}>Вы можете забустить сервер, что повысит качество видео</a>
       {:else if contact.type === "service"}
         <a href={contact.link}>{contact.link}</a>
       {/if}

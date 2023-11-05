@@ -11,7 +11,7 @@ export const isAdmin = async (user) => {
         projection: {
           _id: 0,
         },
-      }
+      },
     )
     .toArray();
   const allAdmins = [...adminEmails, ...admins.map((admin) => admin.email)];

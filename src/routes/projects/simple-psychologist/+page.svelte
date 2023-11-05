@@ -1,7 +1,7 @@
 <script>
   import { vacancies } from "$lib/vacancies.js";
   const hideHireVacancies = vacancies.filter(
-    (vacancy) => vacancy.company === "simple-psychologist"
+    (vacancy) => vacancy.company === "simple-psychologist",
   );
 </script>
 
@@ -16,12 +16,12 @@
   <section>
     <h2>Что такое simple-psychologist</h2>
     <p>
-      Проект simple-psychologist - это сервис, который помогает людям найти
-      эмоциональную поддержку в самые тёмные моменты их жизни.
+      Проект simple-psychologist - это сервис, который помогает людям найти эмоциональную поддержку
+      в самые тёмные моменты их жизни.
     </p>
     <p>
-      Бот эмоциональной поддержки не заменит психолога, но он может помочь
-      поддержать себя в трудную минуту.
+      Бот эмоциональной поддержки не заменит психолога, но он может помочь поддержать себя в трудную
+      минуту.
     </p>
   </section>
   <section>
@@ -33,17 +33,13 @@
   </section>
   <section>
     <h2>Попробовать</h2>
-    <a href="https://t.me/simple_psychologist_bot"
-      >https://t.me/simple_psychologist_bot</a
-    >
+    <a href="https://t.me/simple_psychologist_bot">https://t.me/simple_psychologist_bot</a>
   </section>
   <section>
     <h2>Связаться</h2>
     <ul class="list-disc pl-10 grid grid-col gap-2">
       <li>
-        <a href="mailto:roll.over.projects@gmail.com"
-          >roll.over.projects@gmail.com
-        </a>
+        <a href="mailto:roll.over.projects@gmail.com">roll.over.projects@gmail.com </a>
       </li>
     </ul>
   </section>

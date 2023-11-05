@@ -32,4 +32,4 @@ services:
     env_file:
       - .env
     volumes:
-      - "./data:/data/db"      
+      - "./data:/data/db"

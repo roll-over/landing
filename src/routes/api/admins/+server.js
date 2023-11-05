@@ -15,7 +15,7 @@ export async function GET(event) {
         projection: {
           _id: 0,
         },
-      }
+      },
     )
     .toArray();
   return new Response(JSON.stringify(admins), {

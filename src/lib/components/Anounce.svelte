@@ -4,9 +4,7 @@
   let anounce = {};
 </script>
 
-<article
-  class="min-h-60 flex flex-col justify-between bg-slate-800 p-3 rounded-2xl"
->
+<article class="min-h-60 flex flex-col justify-between bg-slate-800 p-3 rounded-2xl">
   <h3 class="text-2xl font-bold bg-slate-700 py-2 px-4 rounded-xl">
     {anounce.title}
   </h3>

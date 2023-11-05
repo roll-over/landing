@@ -42,6 +42,13 @@
   };
 </script>
 
+<style>
+  input {
+    background-color: rgb(65, 65, 65);
+    padding: 10px;
+  }
+</style>
+
 <h1>Admins</h1>
 <ul class="w-full md:w-1/2 flex flex-col gap-10">
   {#each data.entities || [] as entitiy}
@@ -49,9 +56,7 @@
       <p>
         {entitiy.email}
       </p>
-      <button class="buttonPrimary" on:click={() => deleteAdmin(entitiy.email)}>
-        Delete
-      </button>
+      <button class="buttonPrimary" on:click={() => deleteAdmin(entitiy.email)}> Delete </button>
     </li>
   {/each}
 
@@ -60,10 +65,3 @@
     <button class="buttonPrimary" on:click={() => addAdmin()}> Add new </button>
   </div>
 </ul>
-
-<style>
-  input {
-    background-color: rgb(65, 65, 65);
-    padding: 10px;
-  }
-</style>

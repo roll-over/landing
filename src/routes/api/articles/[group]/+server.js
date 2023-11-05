@@ -17,7 +17,7 @@ export async function GET(event) {
         projection: {
           _id: 0,
         },
-      }
+      },
     )
     .toArray();
 
@@ -100,7 +100,7 @@ export async function PUT(event) {
     },
     {
       $set: artice.article,
-    }
+    },
   );
   return new Response(JSON.stringify(artice), {
     status: 200,

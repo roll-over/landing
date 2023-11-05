@@ -8,9 +8,7 @@ export const load = async (event) => {
   if (!allCollections.includes(collection)) {
     throw new Error(`Not found: ${collection} in ${allCollections}`);
   }
-  const entities = await event
-    .fetch("/api/articles/" + collection)
-    .then((res) => res.json());
+  const entities = await event.fetch("/api/articles/" + collection).then((res) => res.json());
 
   return {
     entities: entities,
