@@ -17,9 +17,9 @@ services:
       - ./static/:/frontend/static/
       - ./package.json:/frontend/package.json
       - ./pnpm-lock.yaml:/frontend/pnpm-lock.yaml
-      - ./postcss.config.js:/frontend/postcss.config.js
+      - ./postcss.config.cjs:/frontend/postcss.config.cjs
       - ./svelte.config.js:/frontend/svelte.config.js
-      - ./tailwind.config.ts:/frontend/tailwind.config.ts
+      - ./tailwind.config.cjs:/frontend/tailwind.config.cjs
       - ./vite.config.ts:/frontend/vite.config.ts
     ports:
       - "5173:5173"
@@ -32,4 +32,4 @@ services:
     env_file:
       - .env
     volumes:
-      - "./data:/data/db"      
+      - "./data:/data/db"

@@ -1,5 +1,5 @@
 <script>
-  import "../app.css";
+  import "../styles/app.css";
   import Logo from "$lib/assets/logo.png";
   import Header from "$lib/assets/roll-over.png";
   import { page } from "$app/stores";
@@ -114,11 +114,7 @@
               {#if $page.data.session}
                 <NavLink href="/auth/signout">
                   {#if $page.data.session.user?.image}
-                    <img
-                      src={$page.data.session.user.image}
-                      class="rounded-2xl w-8"
-                      alt="avatar"
-                    />
+                    <img src={$page.data.session.user.image} class="rounded-2xl w-8" alt="avatar" />
                   {/if}
                 </NavLink>
               {:else}
@@ -132,10 +128,10 @@
   </div>
   <div class="pl-5">
     {#each steps as step, i}
-      <a href={getUrl(steps, step)}
-        >{getTitle(stepsWithLinksAndTitles[step]?.title || step)}</a
-      >
-      {#if step !== steps[steps.length - 1]} {" > "} {/if}
+      <a href={getUrl(steps, step)}>{getTitle(stepsWithLinksAndTitles[step]?.title || step)}</a>
+      {#if step !== steps[steps.length - 1]}
+        {" > "}
+      {/if}
     {/each}
   </div>
 </nav>

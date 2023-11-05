@@ -223,18 +223,11 @@
         </div>
         <div class="flex flex-col gap-3">
           <p>id:</p>
-          <input
-            type="text"
-            bind:value={inEditing.id}
-            disabled={inEditing.status !== "new"}
-          />
+          <input type="text" bind:value={inEditing.id} disabled={inEditing.status !== "new"} />
         </div>
         <div class="flex flex-col gap-3">
           <p>Тип:</p>
-          <select
-            bind:value={inEditing.type}
-            disabled={inEditing.status !== "new"}
-          >
+          <select bind:value={inEditing.type} disabled={inEditing.status !== "new"}>
             <option value="md">Markdown</option>
             <option value="youtube">Youtube</option>
           </select>
@@ -276,13 +269,9 @@
 
   <div class="border-2 rounded-xl flex flex-col gap-8 p-10">
     <select bind:value={newArticlePlace}>
-      <option value="articles-redFlags-employee-cv"
-        >articles-redFlags-employee-cv</option
-      >
+      <option value="articles-redFlags-employee-cv">articles-redFlags-employee-cv</option>
     </select>
-    <button class="buttonPrimary" on:click={() => addArticle()}>
-      Add new
-    </button>
+    <button class="buttonPrimary" on:click={() => addArticle()}> Add new </button>
   </div>
 </ul>
 

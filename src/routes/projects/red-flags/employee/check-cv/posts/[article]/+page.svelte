@@ -8,17 +8,14 @@
   const article = $page.params.article;
 
   const a = [...data.entities, ...articles.redFlags.employee.cv.articles].find(
-    (_article) => _article.id === article
+    (_article) => _article.id === article,
   );
   const link = articles.redFlags.employee.cv.link;
 </script>
 
 <svelte:head>
   <title>{a?.title}</title>
-  <meta
-    name="description"
-    content="Статья: {a?.title}. {a?.source.slice(0, 100)}"
-  />
+  <meta name="description" content="Статья: {a?.title}. {a?.source.slice(0, 100)}" />
 </svelte:head>
 
 <div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">

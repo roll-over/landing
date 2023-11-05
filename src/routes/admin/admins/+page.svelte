@@ -49,9 +49,7 @@
       <p>
         {entitiy.email}
       </p>
-      <button class="buttonPrimary" on:click={() => deleteAdmin(entitiy.email)}>
-        Delete
-      </button>
+      <button class="buttonPrimary" on:click={() => deleteAdmin(entitiy.email)}> Delete </button>
     </li>
   {/each}
 

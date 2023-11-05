@@ -2,9 +2,7 @@
   import { articles } from "$lib/assets/articles/articles";
   import { vacancies } from "$lib/vacancies.js";
 
-  const redFlagsVacancies = vacancies.filter(
-    (vacancy) => vacancy.company === "red-flags"
-  );
+  const redFlagsVacancies = vacancies.filter((vacancy) => vacancy.company === "red-flags");
   const source = articles.redFlags.employee.cv[0];
 </script>
 
@@ -27,27 +25,22 @@
   <section>
     <h2>Что такое red-flags?</h2>
     <p>
-      red-flags - это комплекс сервисов, где вы можете проверить своё резюме на
-      наличие ошибок или потенциальную вакансию.
+      red-flags - это комплекс сервисов, где вы можете проверить своё резюме на наличие ошибок или
+      потенциальную вакансию.
     </p>
     <p>
-      Мы понимаем, что поиск работы - это сложный процесс, включающий в себя
-      множество факторов, и поэтому стараемся помочь вам пройти этот процесс
-      легче.
+      Мы понимаем, что поиск работы - это сложный процесс, включающий в себя множество факторов, и
+      поэтому стараемся помочь вам пройти этот процесс легче.
     </p>
   </section>
   <section>
     <h2>Самостоятельная подготовка:</h2>
     <ul class="list-disc pl-10 grid grid-col gap-2">
       <li>
-        <a href="https://t.me/red_flags_project"
-          >https://t.me/red_flags_project</a
-        >
+        <a href="https://t.me/red_flags_project">https://t.me/red_flags_project</a>
       </li>
       <li>
-        <a href="/projects/red-flags/employee/check-cv/posts"
-          >Статьи по проверке резюме</a
-        >
+        <a href="/projects/red-flags/employee/check-cv/posts">Статьи по проверке резюме</a>
       </li>
     </ul>
   </section>
@@ -58,26 +51,23 @@
         <a href="/projects/red-flags/employee/check-cv"> Проверка резюме </a>
       </li>
       <li>
-        <a href="/projects/red-flags/employee/potential-vacancy"
-          >Проверка потенциальной вакансии</a
-        >
+        <a href="/projects/red-flags/employee/potential-vacancy">Проверка потенциальной вакансии</a>
       </li>
     </ul>
   </section>
   <section>
     <h2>Предостережение</h2>
     <p>
-      Мы не гарантируем быстрое и беспроблемное трудоустройство, но стараемся
-      минимизировать количество ошибок и проблем, с которыми вы можете
-      столкнуться.
+      Мы не гарантируем быстрое и беспроблемное трудоустройство, но стараемся минимизировать
+      количество ошибок и проблем, с которыми вы можете столкнуться.
     </p>
   </section>
   <section>
     <h2>А что делать, если что-то идет не так?</h2>
 
     <p>
-      Вы можете написать нам на почту <a
-        href="mailto:red.flags.service@gmail.com">red.flags.service@gmail.com</a
+      Вы можете написать нам на почту <a href="mailto:red.flags.service@gmail.com"
+        >red.flags.service@gmail.com</a
       >
       (Да, мы ее читаем и стараемся ответить как можно скорее)
     </p>
@@ -86,9 +76,7 @@
     <h2>Связаться</h2>
     <ul class="list-disc pl-10 grid grid-col gap-2">
       <li>
-        <a href="mailto:red.flags.service@gmail.com"
-          >red.flags.service@gmail.com
-        </a>
+        <a href="mailto:red.flags.service@gmail.com">red.flags.service@gmail.com </a>
       </li>
     </ul>
   </section>

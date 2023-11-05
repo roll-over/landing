@@ -4,9 +4,7 @@
   import Article from "$lib/components/Article.svelte";
   const article = $page.params.article;
 
-  const a = articles.itsOpenMic.articles.find(
-    (_article) => _article.id === article
-  );
+  const a = articles.itsOpenMic.articles.find((_article) => _article.id === article);
   const link = articles.redFlags.employee.cv.link;
 </script>
 
