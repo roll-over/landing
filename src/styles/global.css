@@ -31,6 +31,10 @@ a {
   font-weight: 400;
 }
 
+p {
+  text-align: justify;
+}
+
 a {
   color: rgb(168, 162, 158);
 }
