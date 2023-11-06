@@ -1,5 +1,10 @@
 <script>
   import Link from "$lib/components/Link.svelte";
+  import HikkithonLogo from "$lib/assets/logos/hikkithon.png";
+  import OpenMic from "$lib/assets/logos/its-open-mic.jpg";
+  import RedFlags from "$lib/assets/logos/red-flags.jpg";
+  import HideHire from "$lib/assets/logos/hide-hire.png";
+  import SimplePsychologist from "$lib/assets/logos/simple-psychologist.png";
 
   const Status = {
     comingSoon: "coming-soon",
@@ -7,28 +12,39 @@
   };
   const projects = [
     {
+      href: "/projects/hikkithon",
+      title: "HikkiThon",
+      description: "Свободный онлайн хакатон",
+      status: Status.comingSoon,
+      logo: HikkithonLogo,
+    },
+    {
       href: "/projects/red-flags",
       title: "red-flags",
       status: Status.releasedFirstVersion,
       description: "Твой консультант при поиске работы",
+      logo: RedFlags,
     },
     {
       href: "/projects/hide-hire",
       title: "hide-hire",
       description: "Сервис поиска работы и кандидатов",
       status: Status.comingSoon,
+      logo: HideHire,
     },
     {
       href: "/projects/simple-psychologist",
       title: "simple-psychologist",
       description: "Бот для психологической помощи",
       status: Status.releasedFirstVersion,
+      logo: SimplePsychologist,
     },
     {
       href: "/projects/its-open-mic",
       title: "IT’s-open-mic",
       description: "Открытая онлайн-платформа для проведения выступлений об или около IT.",
       status: Status.releasedFirstVersion,
+      logo: OpenMic,
     },
     {
       href: "https://www.notion.so/HRBRO-43bdc175552446aca06d254a867b11b9?pvs=21",
@@ -71,9 +87,16 @@
   {#each projects as project}
     <li class="w-80 min-h-60 flex flex-col justify-between bg-slate-800 p-1 rounded-2xl">
       <div class="flex flex-col">
-        <h3 class="text-2xl font-bold bg-slate-700 py-2 px-4 rounded-xl">
-          {project.title}
-        </h3>
+        <div
+          class="flex justify-between items-center text-2xl font-bold bg-slate-700 py-2 px-4 rounded-xl"
+        >
+          <h3>
+            {project.title}
+          </h3>
+          {#if project.logo}
+            <img src={project.logo} alt="logo" class="max-h-14 max-w-14" />
+          {/if}
+        </div>
         {#if project.status}
           {#if project.status === Status.comingSoon}
             <p class="text-slate-500 font-bold bg-slate-800 flex justify-end p-2">Уже скоро</p>
