@@ -12,7 +12,7 @@
 
 <div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
   <h2>Проект: simple-psychologist</h2>
-  <p>Сервис поиска работы и кандидатов</p>
+  <p>Сервис быстрой психологической помощи</p>
   <section>
     <h2>Что такое simple-psychologist</h2>
     <p>

@@ -13,6 +13,6 @@
 
   <a
     class="text-teal-400 hover:text-teal-600 border-2 border-cyan-900 hover:border-cyan-800 hover:underline underline-offset-1 rounded-xl p-2"
-    href={projectsLinks[anounce.project]}>Перейти к проекту к проекту</a
+    href={projectsLinks[anounce.project]}>Перейти к проекту</a
   >
 </article>
