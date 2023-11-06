@@ -21,3 +21,15 @@ services:
       - .env
     depends_on:
       - landing_mongo
+  landing_roll_over_1:
+    build: .
+    container_name: landing_roll_over_1
+    working_dir: /frontend
+    command: node build
+    restart: unless-stopped
+    ports:
+      - "3012:3000"
+    env_file:
+      - .env
+    depends_on:
+      - landing_mongo
