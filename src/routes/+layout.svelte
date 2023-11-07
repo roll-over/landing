@@ -1,9 +1,11 @@
-<script>
+<script lang="ts">
   import "../styles/app.css";
   import Logo from "$lib/assets/logo.png";
   import Header from "$lib/assets/roll-over.png";
   import { page } from "$app/stores";
   import NavLink from "$lib/components/NavLink.svelte";
+
+  export let data: any;
 
   let w;
   let visible = false;
@@ -34,6 +36,13 @@
       href: "/donations",
     },
   ];
+
+  if (data.isAdmin) {
+    links.push({
+      title: "Админка",
+      href: "/admin",
+    });
+  }
 
   $: path = $page.url.pathname;
   $: steps = path.split("/").filter((step) => step !== "");
