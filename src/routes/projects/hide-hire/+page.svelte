@@ -1,4 +1,5 @@
 <script>
+  import Link from "$lib/components/Link.svelte";
   import { vacancies } from "$lib/vacancies.js";
   const hideHireVacancies = vacancies.filter((vacancy) => vacancy.company === "hide-hire");
 </script>
@@ -33,6 +34,11 @@
       <li>Борьба с дискриминацией</li>
     </ul>
   </section>
+  <section>
+    <h2>Статьи</h2>
+    <Link href="/projects/hide-hire/posts">Все тонкости найма</Link>
+  </section>
+
   <section>
     <h2>Связаться</h2>
     <ul class="list-disc pl-10 grid grid-col gap-2">

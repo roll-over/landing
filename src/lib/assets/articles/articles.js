@@ -75,4 +75,9 @@ export const articlesStacksList = [
       "Записи митапов, которые мы проводили: дополнительные материалы, полезные ссылки и записи",
     link: articles.itsOpenMic.link,
   },
+  {
+    title: "Все тонкости найма и поиска работы (hide-hire)",
+    description: "Популярные ошибки, советы и тайны при поиске работы",
+    link: "/projects/hide-hire/posts/",
+  },
 ];

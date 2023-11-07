@@ -1,15 +1,19 @@
 <script>
   import { page } from "$app/stores";
+  import { collections } from "$lib/collections";
 
   export let data;
 
   $: inEditing = {};
   $: oldId = "";
-  $: newArticlePlace = "articles-redFlags-employee-cv";
   $: prompt = "";
 
+  if (!collections[$page.params.group]) {
+    throw new Error(`Collection ${$page.params.group} not found`);
+  }
+
   const addArticle = async () => {
-    const res = await fetch("/api/articles/" + newArticlePlace, {
+    const res = await fetch("/api/articles/" + $page.params.group, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -131,6 +135,10 @@
       inEditing.source = data;
     }
   };
+
+  const genNewId = async () => {
+    inEditing.id = inEditing.title.toLowerCase().replace(/ /g, "_");
+  };
 </script>
 
 <h1>Admin panel</h1>
@@ -206,6 +214,7 @@
             <div class="flex flex-row justify-center gap-16">
               <button on:click={() => genHeader()}>Новый заголовок</button>
               <button on:click={() => genArticle()}>Новая статья</button>
+              <button on:click={() => genNewId()}>Новый id</button>
             </div>
           </div>
         {/if}
@@ -268,9 +277,6 @@
   {/each}
 
   <div class="border-2 rounded-xl flex flex-col gap-8 p-10">
-    <select bind:value={newArticlePlace}>
-      <option value="articles-redFlags-employee-cv">articles-redFlags-employee-cv</option>
-    </select>
     <button class="buttonPrimary" on:click={() => addArticle()}> Add new </button>
   </div>
 </ul>
