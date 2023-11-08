@@ -32,7 +32,10 @@
       href: "/vacancies",
     },
     {
-      title: "Донаты",
+      title: "Контрибьюторы",
+      href: "/contributors"
+    },
+    {  title: "Донаты",
       href: "/donations",
     },
   ];
@@ -58,6 +61,10 @@
     },
     anounces: {
       title: "Анонсы",
+    },
+    contributors: {
+      title: "Контрибьюторы",
+      href: "/contributors"
     },
     "red-flags": {
       title: "red-flags",
