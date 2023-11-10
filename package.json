@@ -39,6 +39,7 @@
     "@auth/sveltekit": "^0.3.11",
     "auth": "^0.0.9",
     "google": "link:@auth/core/providers/google",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.2.0",
     "openai": "^4.14.2",
     "svelte-markdown": "^0.4.0"
