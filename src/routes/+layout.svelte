@@ -114,11 +114,7 @@
           <img src={CloseIcon} alt="logo" class="h-8" />
         </div>
 
-        <ul
-          class="flex flex-col lg:flex-row gap-1"
-          use:clickOutside
-          on:click_outside={() => (visible = false)}
-        >
+        <ul class="flex flex-col gap-1" use:clickOutside on:click_outside={() => (visible = false)}>
           {#each links as link}
             <li>
               <button on:click={() => (visible = false)}>
