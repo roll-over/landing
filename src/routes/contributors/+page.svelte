@@ -14,6 +14,16 @@
 
 </script>
 
+
+<svelte:head>
+  <title>Контрибьюторы</title>
+  <meta
+    name="description"
+    content="Контрибьюторы в проекты roll-over, гильдия открытых проектов"
+  />
+</svelte:head>
+
+
 <div class="flex flex-col gap-10 p-10 sm:pl-0 max-w-2xl justify-left">
   <h2>
     Контрибьюторы
