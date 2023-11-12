@@ -99,15 +99,13 @@
 
 <nav class="p-2 flex flex-col justify-between max-h-40" bind:clientWidth={w}>
   <div class="p-2 flex justify-between max-h-20">
-    <a href="/" class="flex flex-col">
-      <div class="flex">
+    <a href="/" class="flex flex-row">
         <img src={Logo} alt="logo" class="h-10" />
-        <img src={Header} alt="roll-over" class="h-10" />
-      </div>
-      <p class="text-slate-400">Группа открытых проектов</p>
+        <img src={Header} alt="roll-over"  class="h-10 hidden xl:block" />
     </a>
 
-    <div class="flex flex-col sm:flex-row gap-5 p-3 text-xl h-fit rounded-xl">
+    <div class="flex flex-col lg:flex-row gap-5 p-3 text-xl h-fit rounded-xl">
+
       {#if w < 640}
         <button
           class="text-teal-400"
@@ -120,7 +118,7 @@
       {/if}
       {#if w > 640 || visible}
         <button on:click={() => (visible = false)}>
-          <ul class="flex flex-col sm:flex-row gap-1 bg-black rounded-xl z-10">
+          <ul class="flex flex-col lg:flex-row gap-1 bg-black rounded-xl z-10">
             {#each links as link}
               <li>
                 <NavLink href={link.href}>{link.title}</NavLink>
