@@ -1,5 +1,11 @@
+const supportServer = "https://roll-over.org";
+
+const supportIcon = document.createElement("img");
+supportIcon.src = `${supportServer}/support.svg`;
+supportIcon.style.width = "30px";
+supportIcon.style.height = "20px";
+
 const widgetButton = document.createElement("button");
-widgetButton.innerText = localisation.widgetButton;
 widgetButton.style.position = "fixed";
 widgetButton.style.bottom = "10px";
 widgetButton.style.right = "10px";
@@ -7,6 +13,8 @@ widgetButton.style.zIndex = "9999";
 widgetButton.style.padding = "10px";
 widgetButton.style.borderRadius = "15px";
 widgetButton.style.backgroundColor = "#3ca3cb";
+
+widgetButton.appendChild(supportIcon);
 
 const widget = document.createElement("div");
 widget.style.position = "fixed";
@@ -18,10 +26,11 @@ widget.style.borderRadius = "15px";
 widget.style.backgroundColor = "#2b89c8";
 widget.style.color = "white";
 widget.style.display = "none";
-widget.style.width = "320px";
+widget.style.maxWidth = "420px";
+widget.style.minWidth = "320px";
 widget.style.height = "400px";
 
-const widgetTitle = document.createElement("h2");
+const widgetTitle = document.createElement("h3");
 widgetTitle.innerText = localisation.title + ": " + project;
 
 const widgetClose = document.createElement("button");
@@ -55,7 +64,7 @@ widgetFooter.style.left = "0px";
 widgetFooter.style.display = "flex";
 widgetFooter.style.padding = "5px";
 widgetFooter.style.gap = "5px";
-widgetFooter.style.maxWidth = "100%";
+widgetFooter.style.width = "100%";
 widgetFooter.style.height = "50px";
 
 const newMessage = document.createElement("input");
@@ -64,12 +73,22 @@ newMessage.style.padding = "10px";
 newMessage.style.borderRadius = "15px";
 newMessage.style.backgroundColor = "white";
 newMessage.style.color = "black";
+newMessage.style.maxWidth = "100%";
+newMessage.style.flexGrow = "1";
 
 const sendMessageButton = document.createElement("button");
-sendMessageButton.innerText = localisation.sendMessageButton;
+sendMessageButton.style.width = "40px";
+sendMessageButton.style.display = "flex";
+sendMessageButton.style.justifyContent = "center";
+sendMessageButton.style.alignItems = "center";
 sendMessageButton.style.borderRadius = "15px";
-sendMessageButton.style.backgroundColor = "#3ca3cb";
-sendMessageButton.style.color = "white";
+
+const sendIcon = document.createElement("img");
+sendIcon.src = `${supportServer}/send.svg`;
+sendIcon.style.width = "30px";
+sendIcon.style.height = "20px";
+
+sendMessageButton.appendChild(sendIcon);
 
 const getMessageBlock = (message) => {
   const messageElement = document.createElement("div");
@@ -87,7 +106,7 @@ const sendMessage = async () => {
     return;
   }
 
-  await fetch(`/embed/messages?project=${project}`, {
+  await fetch(`${supportServer}/embed/messages?project=${project}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -108,9 +127,9 @@ const sendMessage = async () => {
 
 const loadMessages = async () => {
   widgetContent.innerHTML = "";
-  const messages = await fetch(`/embed/messages?lang=${lang}&project=${project}`).then((res) =>
-    res.json(),
-  );
+  const messages = await fetch(
+    `${supportServer}/embed/messages?lang=${lang}&project=${project}`,
+  ).then((res) => res.json());
 
   for (const message of messages) {
     let messageElement;
