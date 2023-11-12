@@ -158,8 +158,9 @@ const loadMessages = async () => {
     messageElement.appendChild(subInfoElement);
 
     widgetContent.appendChild(messageElement);
-    widgetContent.scrollTo(0, widgetContent.scrollHeight);
   }
+
+  widgetContent.scrollTop = widgetContent.scrollHeight;
 };
 
 widgetClose.addEventListener("click", () => {
@@ -170,6 +171,7 @@ widgetClose.addEventListener("click", () => {
 widgetButton.addEventListener("click", () => {
   widget.style.display = "block";
   widgetButton.style.display = "none";
+  widgetContent.scrollTop = widgetContent.scrollHeight;
 });
 
 sendMessageButton.addEventListener("click", sendMessage);

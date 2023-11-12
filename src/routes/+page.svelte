@@ -6,7 +6,7 @@
   достигать результатов."
   />
 </svelte:head>
-<div class="flex flex-col max-w-xl p-10 sm:p-2 gap-20">
+<div class="flex flex-col max-w-xl p-5 sm:p-2 gap-20">
   <h1>roll-over</h1>
   <section>
     <h2>Что такое roll-over?</h2>

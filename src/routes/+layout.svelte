@@ -33,11 +33,9 @@
     },
     {
       title: "Контрибьюторы",
-      href: "/contributors"
+      href: "/contributors",
     },
-    {  title: "Донаты",
-      href: "/donations",
-    },
+    { title: "Донаты", href: "/donations" },
   ];
 
   if (data.isAdmin) {
@@ -64,7 +62,7 @@
     },
     contributors: {
       title: "Контрибьюторы",
-      href: "/contributors"
+      href: "/contributors",
     },
     "red-flags": {
       title: "red-flags",
@@ -100,12 +98,11 @@
 <nav class="p-2 flex flex-col justify-between max-h-40" bind:clientWidth={w}>
   <div class="p-2 flex justify-between max-h-20">
     <a href="/" class="flex flex-row">
-        <img src={Logo} alt="logo" class="h-10" />
-        <img src={Header} alt="roll-over"  class="h-10 hidden xl:block" />
+      <img src={Logo} alt="logo" class="h-10" />
+      <img src={Header} alt="roll-over" class="h-10 hidden xl:block" />
     </a>
 
     <div class="flex flex-col lg:flex-row gap-5 p-3 text-xl h-fit rounded-xl">
-
       {#if w < 640}
         <button
           class="text-teal-400"
@@ -117,26 +114,26 @@
         </button>
       {/if}
       {#if w > 640 || visible}
-        <button on:click={() => (visible = false)}>
-          <ul class="flex flex-col lg:flex-row gap-1 bg-black rounded-xl z-10">
-            {#each links as link}
-              <li>
-                <NavLink href={link.href}>{link.title}</NavLink>
-              </li>
-            {/each}
+        <ul class="flex flex-col lg:flex-row gap-1 bg-black rounded-xl z-10">
+          {#each links as link}
             <li>
-              {#if $page.data.session}
-                <NavLink href="/auth/signout">
-                  {#if $page.data.session.user?.image}
-                    <img src={$page.data.session.user.image} class="rounded-2xl w-8" alt="avatar" />
-                  {/if}
-                </NavLink>
-              {:else}
-                <NavLink href="/auth/signin">Войти</NavLink>
-              {/if}
+              <button on:click={() => (visible = false)}>
+                <NavLink href={link.href} on:click={() => (visible = false)}>{link.title}</NavLink>
+              </button>
             </li>
-          </ul>
-        </button>
+          {/each}
+          <li>
+            {#if $page.data.session}
+              <NavLink href="/auth/signout">
+                {#if $page.data.session.user?.image}
+                  <img src={$page.data.session.user.image} class="rounded-2xl w-8" alt="avatar" />
+                {/if}
+              </NavLink>
+            {:else}
+              <NavLink href="/auth/signin">Войти</NavLink>
+            {/if}
+          </li>
+        </ul>
       {/if}
     </div>
   </div>

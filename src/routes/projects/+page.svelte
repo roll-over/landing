@@ -11,7 +11,7 @@
   />
 </svelte:head>
 
-<div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
+<div class="flex flex-col gap-10 p-5 sm:pl-3 w-full max-w-2xl justify-left">
   <h2>Проекты</h2>
   <p>
     Мы всегда стремимся к инновациям и постоянно исследуем новые идеи и подходы. Мы не боимся

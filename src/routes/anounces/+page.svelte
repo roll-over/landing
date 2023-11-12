@@ -14,7 +14,7 @@
   />
 </svelte:head>
 
-<div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
+<div class="flex flex-col gap-10 p-5 sm:pl-3 w-full max-w-2xl justify-left">
   {#each anounces as anounce}
     <Anounce {anounce} />
   {/each}
