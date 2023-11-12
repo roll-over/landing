@@ -4,6 +4,9 @@
   import Header from "$lib/assets/roll-over.png";
   import { page } from "$app/stores";
   import NavLink from "$lib/components/NavLink.svelte";
+  import BurgerIcon from "$lib/assets/burger.svg";
+  import CloseIcon from "$lib/assets/close.svg";
+  import { clickOutside } from "$lib/clickOutside";
 
   export let data: any;
 
@@ -102,19 +105,20 @@
       <img src={Header} alt="roll-over" class="h-10 hidden xl:block" />
     </a>
 
-    <div class="flex flex-col lg:flex-row gap-5 p-3 text-xl h-fit rounded-xl">
-      {#if w < 640}
-        <button
-          class="text-teal-400"
-          on:click={() => {
-            visible = !visible;
-          }}
+    {#if visible}
+      <div
+        class=" border-2 border-teal-400 bg-black fixed top-6 right-6 rounded-b-xl rounded-tl-xl z-10"
+      >
+        <div class="flex justify-between p-2">
+          <p>Меню</p>
+          <img src={CloseIcon} alt="logo" class="h-8" />
+        </div>
+
+        <ul
+          class="flex flex-col lg:flex-row gap-1"
+          use:clickOutside
+          on:click_outside={() => (visible = false)}
         >
-          Меню
-        </button>
-      {/if}
-      {#if w > 640 || visible}
-        <ul class="flex flex-col lg:flex-row gap-1 bg-black rounded-xl z-10">
           {#each links as link}
             <li>
               <button on:click={() => (visible = false)}>
@@ -134,8 +138,17 @@
             {/if}
           </li>
         </ul>
-      {/if}
-    </div>
+      </div>
+    {:else}
+      <button
+        class="text-teal-400"
+        on:click={() => {
+          visible = !visible;
+        }}
+      >
+        <img src={BurgerIcon} alt="logo" class="h-6" />
+      </button>
+    {/if}
   </div>
   <div class="pl-5">
     {#each steps as step, i}
