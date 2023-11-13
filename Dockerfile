@@ -5,5 +5,5 @@ WORKDIR /frontend
 
 RUN corepack enable    
 RUN pnpm install
-RUN pnpm run build
 ARG DEV_MODE=false
+RUN pnpm run build
