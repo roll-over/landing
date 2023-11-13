@@ -21,6 +21,8 @@ services:
       - .env
     depends_on:
       - landing_mongo
+    environment:
+      - DEV_MODE=false
   landing_roll_over_1:
     build: .
     container_name: landing_roll_over_1
@@ -33,3 +35,5 @@ services:
       - .env
     depends_on:
       - landing_mongo
+    environment:
+      - DEV_MODE=false
