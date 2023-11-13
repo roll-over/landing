@@ -14,8 +14,5 @@
 </svelte:head>
 
 <div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
-  <h2>Статья</h2>
-  <section class="border-2 border-gray-800 p-2 sm:p-10 rounded-lg">
-    <Article article={a} />
-  </section>
+  <Article article={a} />
 </div>

@@ -1,5 +1,4 @@
 <script>
-  import { articles } from "$lib/assets/articles/articles.js";
   import { page } from "$app/stores";
   import Article from "$lib/components/Article.svelte";
 
