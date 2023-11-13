@@ -1,4 +1,5 @@
 import Widget from "./widget.js?raw";
+import { DEV_MODE } from "$env/static/private";
 
 const localisation = {
   ru: {
@@ -21,6 +22,7 @@ export async function GET(event) {
   const WidgetFulled = `
 let project = "${project}";
 let lang = "${lang}";
+let supportServer = "${DEV_MODE ? "http://localhost:5173" : "https://roll-over.org"}";
 
 let localisation = ${JSON.stringify(localisation[lang])};
 

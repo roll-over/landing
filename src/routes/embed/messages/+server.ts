@@ -11,8 +11,8 @@ export async function GET(event) {
   const lang = event.url.searchParams.get("lang") || "en";
   const project = event.url.searchParams.get("project");
 
-  const userCookie = event.cookies.get("supportChat");
-  const userId = userCookie ? jwt.verify(userCookie, "secret") : "";
+  const userCookie = event.url.searchParams.get("token");
+  const userId = userCookie && userCookie !== "null" ? jwt.verify(userCookie, "secret") : "";
   if (!userId || !project) {
     return new Response(JSON.stringify(defaultMessages[lang]), {
       headers: { "content-type": "application/json" },
@@ -42,13 +42,12 @@ export async function POST(event) {
   if (!project) {
     return new Response("No project", { status: 400 });
   }
-
-  const userCookie =
-    event.cookies.get("supportChat") || jwt.sign(Math.random().toString(36).substring(7), "secret");
-  const userId = jwt.verify(userCookie, "secret");
   const body = await event.request.json();
 
   const message = body.message;
+  const userCookie = message.token || jwt.sign(Math.random().toString(36).substring(7), "secret");
+
+  const userId = jwt.verify(userCookie, "secret");
 
   if (!message) {
     return new Response("No message", { status: 400 });
@@ -71,10 +70,15 @@ export async function POST(event) {
     date: new Date(),
   });
 
-  return new Response("ok", {
-    headers: {
-      "content-type": "application/json",
-      "Set-Cookie": `supportChat=${userCookie}; Secure; Max-Age=604800`,
+  return new Response(
+    JSON.stringify({
+      userChatToken: userCookie,
+    }),
+    {
+      headers: {
+        "content-type": "application/json",
+        "Set-Cookie": `supportChat=${userCookie}; Secure; Max-Age=604800; Secure;`,
+      },
     },
-  });
+  );
 }

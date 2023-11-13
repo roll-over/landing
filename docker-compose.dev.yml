@@ -25,6 +25,8 @@ services:
       - "5173:5173"
     env_file:
       - .env
+    environment:
+      - DEV_MODE=true
   landing_mongo_dev:
     image: mongo
     container_name: landing_mongo_dev

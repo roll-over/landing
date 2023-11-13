@@ -1,5 +1,3 @@
-const supportServer = "https://roll-over.org";
-
 const supportIcon = document.createElement("img");
 supportIcon.src = `${supportServer}/support.svg`;
 supportIcon.style.width = "30px";
@@ -106,7 +104,9 @@ const sendMessage = async () => {
     return;
   }
 
-  await fetch(`${supportServer}/embed/messages?project=${project}`, {
+  const userChatToken = localStorage.getItem("userChatToken");
+
+  const token = await fetch(`${supportServer}/embed/messages?project=${project}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -116,9 +116,16 @@ const sendMessage = async () => {
         type: "text",
         text: newMessage.value,
         lang: lang,
+        token: userChatToken,
       },
     }),
-  });
+  })
+    .then((res) => res.json())
+    .then((res) => res.userChatToken);
+
+  if (!userChatToken) {
+    localStorage.setItem("userChatToken", token);
+  }
 
   await loadMessages();
 
@@ -128,7 +135,10 @@ const sendMessage = async () => {
 const loadMessages = async () => {
   widgetContent.innerHTML = "";
   const messages = await fetch(
-    `${supportServer}/embed/messages?lang=${lang}&project=${project}`,
+    `${supportServer}/embed/messages?lang=${lang}&project=${project}&token=${
+      localStorage.getItem("userChatToken") || "null"
+    }
+      `,
   ).then((res) => res.json());
 
   for (const message of messages) {
