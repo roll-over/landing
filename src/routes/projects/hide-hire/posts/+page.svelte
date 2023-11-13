@@ -4,7 +4,7 @@
   export let data;
 
   const a = [...data.entities];
-  const link = articles.redFlags.employee.cv.link;
+  const link = articles.hideHire.link;
 </script>
 
 <svelte:head>

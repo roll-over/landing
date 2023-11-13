@@ -6,6 +6,9 @@
 </script>
 
 {#if article.type === "md"}
+  <h2>
+    {article.title}
+  </h2>
   <article>
     <OnePost source={article.source} />
   </article>

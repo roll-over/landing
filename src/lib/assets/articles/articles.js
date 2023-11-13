@@ -61,6 +61,10 @@ export const articles = {
       },
     ],
   },
+  hideHire: {
+    link: "/projects/hide-hire/posts/",
+    articles: [],
+  }
 };
 
 export const articlesStacksList = [
