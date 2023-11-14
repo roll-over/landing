@@ -2,6 +2,7 @@ const supportIcon = document.createElement("img");
 supportIcon.src = `${supportServer}/support.svg`;
 supportIcon.style.width = "30px";
 supportIcon.style.height = "20px";
+supportIcon.alt = "support";
 
 const widgetButton = document.createElement("button");
 widgetButton.style.position = "fixed";
@@ -83,6 +84,7 @@ sendMessageButton.style.borderRadius = "15px";
 
 const sendIcon = document.createElement("img");
 sendIcon.src = `${supportServer}/send.svg`;
+sendIcon.alt = "send";
 sendIcon.style.width = "30px";
 sendIcon.style.height = "20px";
 
