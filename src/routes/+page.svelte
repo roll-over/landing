@@ -1,3 +1,9 @@
+<script>
+  import Link from "$lib/components/Link.svelte";
+  import Mission from "$lib/components/blocks/Mission.svelte";
+  import WhatIsProject from "$lib/components/blocks/WhatIsProject.svelte";
+</script>
+
 <svelte:head>
   <title>roll-over - группа открытых проектов</title>
   <meta
@@ -8,8 +14,7 @@
 </svelte:head>
 <div class="flex flex-col max-w-xl p-5 sm:p-2 gap-20">
   <h1>roll-over</h1>
-  <section>
-    <h2>Что такое roll-over?</h2>
+  <WhatIsProject title="roll-over">
     <p>
       roll-over - это группа энтузиастов, которая собралась вместе, чтобы воплощать свои крутые идеи
       в проекты.
@@ -22,28 +27,19 @@
       Каждый из нас вносит свой вклад в процесс создания, принося свежие идеи и экспертные знания в
       своей области.
     </p>
-  </section>
+  </WhatIsProject>
+
+  <Mission>Сделать запуск проектов максимально легким и безболезненным</Mission>
+
   <section>
-    <h2>Миссия</h2>
+    <h2>Наши цели</h2>
     <ul class="list-disc pl-10">
       <li>Сделать развитие команды и в команде прозрачным и максимально простым</li>
-      <li>Сделать запуск проектов максимально легким и безболезненным</li>
       <li>Сделать процесс обучения новой профессии простым</li>
     </ul>
   </section>
 
-  <section>
-    <h2>Смотрите так же:</h2>
-    <ul class="list-disc pl-10 grid grid-col gap-2">
-      <li>
-        <a href="/projects"> Наши проекты </a>
-      </li>
-      <li>
-        <a href="/vacancies"> Вакансии </a>
-      </li>
-      <li>
-        <a href="/contacts"> Контакты </a>
-      </li>
-    </ul>
-  </section>
+  <aside>
+    <Link href="/projects">Наши проекты</Link>
+  </aside>
 </div>

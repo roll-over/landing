@@ -1,10 +1,7 @@
 <script>
-  import ProjectTitle from "$lib/components/ProjectTitle.svelte";
-  import WhatIsProject from "$lib/components/WhatIsProject.svelte";
+  import WhatIsProject from "$lib/components/blocks/WhatIsProject.svelte";
   import Link from "$lib/components/Link.svelte";
   import ProjectTemplate from "$lib/components/ProjectTemplate.svelte";
-  import { vacancies } from "$lib/vacancies.js";
-  import { projects, Status } from "$lib/projects";
 </script>
 
 <ProjectTemplate title="HikkiThon">
