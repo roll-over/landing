@@ -18,11 +18,10 @@ export async function GET(event) {
     return new Response("No project", { status: 400 });
   }
   const lang = event.url.searchParams.get("lang");
-console.log(DEV_MODE);
   const WidgetFulled = `
 let project = "${project}";
 let lang = "${lang}";
-let supportServer = "${DEV_MODE ? "http://localhost:5173" : "https://roll-over.org"}";
+let supportServer = "${DEV_MODE === "true" ? "http://localhost:5173" : "https://roll-over.org"}";
 
 let localisation = ${JSON.stringify(localisation[lang])};
 
