@@ -18,7 +18,7 @@ export async function GET(event) {
     return new Response("No project", { status: 400 });
   }
   const lang = event.url.searchParams.get("lang");
-
+console.log(DEV_MODE);
   const WidgetFulled = `
 let project = "${project}";
 let lang = "${lang}";
