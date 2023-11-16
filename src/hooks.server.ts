@@ -10,6 +10,16 @@ const svelteHandle = SvelteKitAuth({
 });
 
 export const handle: Handle = async ({ resolve, event }) => {
+  if (event.url.pathname === "//") {
+    console.log(event.url);
+    return new Response(null, {
+      headers: {
+        Location: event.url.origin + "/",
+      },
+      status: 301,
+    });
+  }
+
   if (event.url.pathname.startsWith("/embed")) {
     if (event.request.method === "OPTIONS") {
       return new Response(null, {
