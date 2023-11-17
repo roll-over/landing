@@ -9,7 +9,6 @@ export const startMongo = async () => {
       await client.connect();
       break;
     } catch (e) {
-      console.log(e);
       await new Promise((resolve) => setTimeout(resolve, 1000));
     }
   }

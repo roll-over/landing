@@ -27,18 +27,9 @@
       href: "/posts",
     },
     {
-      title: "Контакты",
-      href: "/contacts",
+      title: "О нас",
+      href: "/about",
     },
-    {
-      title: "Вакансии",
-      href: "/vacancies",
-    },
-    {
-      title: "Контрибьюторы",
-      href: "/contributors",
-    },
-    { title: "Донаты", href: "/donations" },
   ];
 
   if (data.isAdmin) {
@@ -155,6 +146,6 @@
     {/each}
   </div>
 </nav>
-<main class="flex flex-col items-center overflow-auto">
+<main class="flex overflow-auto">
   <slot />
 </main>

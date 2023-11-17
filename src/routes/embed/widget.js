@@ -224,4 +224,4 @@ widget.appendChild(widgetFooter);
 
 document.body.appendChild(widgetButton);
 document.body.appendChild(widget);
-console.log("widget loaded");
+console.log("Support chat widget loaded");

@@ -23,23 +23,10 @@
   ];
 </script>
 
-<svelte:head>
-  <title>Контакты</title>
-  <meta
-    name="description"
-    content="Контакты: {contacts
-      .slice(0, 5)
-      .map((contact) => contact?.title)
-      .join(', ')}}"
-  />
-</svelte:head>
-
-<div class="flex flex-col flex-wrap gap-5 w-full max-w-lg gap-10 p-10">
-  <h2 class="">Контакты</h2>
-  {#each contacts as contact}
-    <div class="flex justify-between flex-wrap">
-      <h3>{contact.title}</h3>
-      <a href={contact.href}>{contact.description}</a>
-    </div>
-  {/each}
-</div>
+<h2 class="">Контакты</h2>
+{#each contacts as contact}
+  <div class="flex justify-between flex-wrap w-full flex-col sm:flex-row">
+    <h3>{contact.title}</h3>
+    <a href={contact.href}>{contact.description}</a>
+  </div>
+{/each}

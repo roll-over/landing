@@ -1,5 +1,6 @@
 <script>
   import { page } from "$app/stores";
+  import CenteredPage from "$lib/components/blocks/CenteredPage.svelte";
 
   export let data;
 
@@ -42,22 +43,23 @@
   };
 </script>
 
-<h1>Admins</h1>
-<ul class="w-full md:w-1/2 flex flex-col gap-10">
-  {#each data.entities || [] as entitiy}
-    <li class="flex flex-row gap-8 p-10 rounded-xl border-2 justify-between">
-      <p>
-        {entitiy.email}
-      </p>
-      <button class="buttonPrimary" on:click={() => deleteAdmin(entitiy.email)}> Delete </button>
-    </li>
-  {/each}
+<CenteredPage title="Admins">
+  <ul class="w-full flex flex-col gap-10">
+    {#each data.entities || [] as entitiy}
+      <li class="flex flex-row gap-8 p-3 rounded-xl border-2 justify-between">
+        <p>
+          {entitiy.email}
+        </p>
+        <button class="buttonPrimary" on:click={() => deleteAdmin(entitiy.email)}> Delete </button>
+      </li>
+    {/each}
 
-  <div class="border-2 rounded-xl flex flex-col gap-8 p-10">
-    <input type="text" placeholder="Email" bind:value={email} />
-    <button class="buttonPrimary" on:click={() => addAdmin()}> Add new </button>
-  </div>
-</ul>
+    <div class="border-2 rounded-xl flex flex-col gap-8 p-10">
+      <input type="text" placeholder="Email" bind:value={email} />
+      <button class="buttonPrimary" on:click={() => addAdmin()}> Add new </button>
+    </div>
+  </ul>
+</CenteredPage>
 
 <style>
   input {

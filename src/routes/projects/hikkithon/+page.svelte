@@ -1,4 +1,5 @@
 <script>
+  import Mission from "$lib/components/blocks/Mission.svelte";
   import WhatIsProject from "$lib/components/blocks/WhatIsProject.svelte";
   import Link from "$lib/components/Link.svelte";
   import ProjectTemplate from "$lib/components/ProjectTemplate.svelte";
@@ -22,12 +23,12 @@
       гордиться.
     </p>
   </section>
+  <Mission>Сделать кооперацию повседневным инструментом</Mission>
   <section>
-    <h2>Миссия</h2>
+    <h2>Наши цели</h2>
     <ul class="list-disc pl-10 grid grid-col gap-2">
       <li>Популяризация свободного исходного кода</li>
       <li>Создание открытой площадки безопасных и регулярных соревнований в создании продуктов</li>
-      <li>Сделать кооперацию повседневным инструментом</li>
     </ul>
   </section>
   <section>
