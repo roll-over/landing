@@ -6,11 +6,18 @@
 </script>
 
 {#if article.type === "md"}
-  <h1>
-    {article.title}
-  </h1>
-  <article>
+  <article itemscope itemtype="https://schema.org/Article">
+    <h1 itemprop="headline">
+      {article.title}
+    </h1>
     <OnePost source={article.source} />
+    <div class="text-right">
+      by <span itemprop="author" itemscope itemtype="https://schema.org/Organization">
+        <a itemprop="url" href="https://roll-over.org/">
+          <span itemprop="name">roll-over</span>
+        </a>
+      </span>
+    </div>
   </article>
 {:else if article.type === "youtube"}
   <article class="flex flex-col gap-10">
