@@ -1,5 +1,4 @@
 <script>
-  import Logo from "$lib/assets/logo.webp";
   export let tabs = [];
 
   let activeTab = 0;
