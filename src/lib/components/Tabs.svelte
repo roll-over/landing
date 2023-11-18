@@ -77,7 +77,7 @@
     </ul>
   {:else}
     <p>Загрузка:</p>
-    <img src={Logo} alt="loader" class="h-10 w-14 loader" />
+    <img src="/logo.webp" alt="loader" class="h-10 w-14 loader" />
   {/if}
 </div>
 
