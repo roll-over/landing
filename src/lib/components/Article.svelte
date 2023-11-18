@@ -20,7 +20,13 @@
     </div>
   </article>
 {:else if article.type === "youtube"}
-  <article class="flex flex-col gap-10">
+  <article
+    class="flex flex-col gap-10"
+    itemscope
+    itemprop="VideoObject"
+    itemtype="https://schema.org/VideoObject"
+  >
+    <h1 itemprop="name">{article.title}</h1>
     <iframe
       height="315"
       src={article.url + "&autoplay=1&loop=1"}
@@ -29,7 +35,7 @@
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen
     />
-    <div class="overflow-hidden">
+    <div class="overflow-hidden" itemprop="description">
       <OnePost source={article.description} />
     </div>
   </article>

@@ -19,6 +19,8 @@
     >
   {:else if article.type === "youtube"}
     <div class="flex flex-col gap-10">
+      <h2 itemprop="name">{article.title}</h2>
+
       <iframe
         height="315"
         src={article.url}
