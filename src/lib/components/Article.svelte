@@ -1,8 +1,15 @@
-<script>
+<script lang="ts">
+  import type { Article } from "$lib/assets/articles/articles";
+  import Link from "./Link.svelte";
+  import NavLink from "./NavLink.svelte";
   import OnePost from "./markdown/OnePost.svelte";
 
-  export { article };
-  let article = {};
+  export { article, seeAlso };
+  let article: Article;
+  let seeAlso: {
+    title: string;
+    url: string;
+  }[] = [];
 </script>
 
 {#if article.type === "md"}
@@ -39,4 +46,15 @@
       <OnePost source={article.description} />
     </div>
   </article>
+{/if}
+
+{#if seeAlso.length}
+  <h2>Смотрите также:</h2>
+  <ol class="flex flex-col items-start">
+    {#each seeAlso as s}
+      <li>
+        <NavLink href={s.url}>{s.title}</NavLink>
+      </li>
+    {/each}
+  </ol>
 {/if}

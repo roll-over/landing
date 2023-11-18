@@ -4,6 +4,22 @@ import pochemu_senyory_ne_stanovyatsya_lidami from "./its-open-mic/pochemu_senyo
 import kakie_vyrazheniya_ne_stoit_ispolzovat_v_rezyume from "./red-flags/employee/check-cv/kakie_vyrazheniya_ne_stoit_ispolzovat_v_rezyume.md?raw";
 import kak_aitishniku_sdelat_svoyu_rok_gruppu from "./its-open-mic/kak_aitishniku_sdelat_svoyu_rok_gruppu.md?raw";
 import kak_gramotno_ukazyvat_uroven_vladenia_yazykami_v_rezume from "./red-flags/employee/check-cv/kak_gramotno_ukazyvat_uroven_vladenia_yazykami_v_rezume.md?raw";
+
+export type Article =
+  | {
+      id: string;
+      title: string;
+      type: "md";
+      source: string;
+    }
+  | {
+      id: string;
+      title: string;
+      type: "youtube";
+      description: string;
+      url: string;
+    };
+
 const redFlags = {
   employee: {
     cv: {
@@ -64,8 +80,8 @@ export const articles = {
   hideHire: {
     link: "/projects/hide-hire/posts/",
     articles: [],
-  }
-};
+  },
+} as const;
 
 export const articlesStacksList = [
   {

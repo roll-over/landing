@@ -1,5 +1,5 @@
 <script>
-  import { articlesStacksList } from "$lib/assets/articles/articles.js";
+  import { articlesStacksList } from "$lib/assets/articles/articles";
   import Link from "$lib/components/Link.svelte";
 </script>
 

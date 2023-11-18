@@ -1,5 +1,5 @@
 <script>
-  import { articles } from "$lib/assets/articles/articles.js";
+  import { articles } from "$lib/assets/articles/articles";
   import ArticlePreview from "$lib/components/ArticlePreview.svelte";
 
   const a = articles.itsOpenMic.articles;
