@@ -137,14 +137,19 @@
       </button>
     {/if}
   </div>
-  <div class="pl-5">
+  <ol class="pl-5 flex items-end" itemscope itemtype="https://schema.org/BreadcrumbList">
     {#each steps as step, i}
-      <a href={getUrl(steps, step)}>{getTitle(stepsWithLinksAndTitles[step]?.title || step)}</a>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href={getUrl(steps, step)}
+          ><span itemprop="name">{getTitle(stepsWithLinksAndTitles[step]?.title || step)}</span></a
+        >
+        <meta itemprop="position" content={i.toString()} />
+      </li>
       {#if step !== steps[steps.length - 1]}
         {" > "}
       {/if}
     {/each}
-  </div>
+  </ol>
 </nav>
 <main class="flex overflow-auto">
   <slot />
