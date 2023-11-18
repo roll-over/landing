@@ -1,6 +1,5 @@
 <script lang="ts">
   import "../styles/app.css";
-  import Logo from "$lib/assets/logo.webp";
   import Header from "$lib/assets/roll-over.webp";
   import { page } from "$app/stores";
   import NavLink from "$lib/components/NavLink.svelte";
@@ -92,7 +91,7 @@
 <nav class="p-2 flex flex-col justify-between max-h-40" bind:clientWidth={w}>
   <div class="p-2 flex justify-between max-h-20">
     <a href="/" class="flex flex-row">
-      <img src={Logo} alt="logo" class="h-10 w-14" />
+      <img src='/logo.webp' alt="logo" class="h-10 w-14" />
       <img src={Header} alt="roll-over" class="h-10 hidden xl:block" />
     </a>
 
