@@ -77,6 +77,10 @@ export const articles = {
       },
     ],
   },
+  itsOpenMicPosts: {
+    link: "/projects/its-open-mic/posts/",
+    articles: [],
+  },
   hideHire: {
     link: "/projects/hide-hire/posts/",
     articles: [],

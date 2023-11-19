@@ -43,6 +43,7 @@
   <section>
     <h2>Кто может выступить?</h2>
     <p>Кто угодно, даже если кажется, что рассказать не о чем, мы поможем подобрать тему.</p>
+    <p>Подготовка к выступлениям и митапам: <a href="/projects/its-open-mic/posts">Статьи</a></p>
   </section>
   <section>
     <h2>Где нас искать?</h2>
@@ -64,6 +65,7 @@
           href="https://forms.gle/9Uzs1PVKzFT52JeT9">https://forms.gle/9Uzs1PVKzFT52JeT9</a
         >
       </li>
+
       {#each itsOpenMicVacancies as vacancies}
         <li>
           <a href={"/vacancies/" + vacancies.id}>Вакансия: {vacancies.title}</a>

@@ -1,6 +1,6 @@
 <script>
   import { page } from "$app/stores";
-  import { collections } from "$lib/collections";
+  import { collections } from "$lib/collections.js";
 
   export let data;
 
