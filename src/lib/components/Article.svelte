@@ -25,6 +25,13 @@
         </a>
       </span>
     </div>
+    {#if article.publishDate}
+      <p class="text-right text-teal-700">
+        <time itemprop="uploadDate" datetime={article.publishDate}
+          >{new Date(article.publishDate).toLocaleString()}</time
+        >
+      </p>
+    {/if}
   </article>
 {:else if article.type === "youtube"}
   <article

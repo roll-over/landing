@@ -11,6 +11,7 @@ export type Article =
       title: string;
       type: "md";
       source: string;
+      publishDate?: string;
     }
   | {
       id: string;

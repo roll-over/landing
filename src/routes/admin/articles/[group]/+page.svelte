@@ -1,6 +1,6 @@
 <script>
   import { page } from "$app/stores";
-  import { collections } from "$lib/collections.js";
+  import { collections } from "$lib/collections";
 
   export let data;
 
@@ -63,6 +63,7 @@
         id: id,
         article: {
           status: "published",
+          publishDate: new Date(),
         },
       }),
     });
