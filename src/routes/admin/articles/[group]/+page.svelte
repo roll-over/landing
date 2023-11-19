@@ -137,8 +137,60 @@
     }
   };
 
+  function convertToTranslit(str) {
+    const translitMap = {
+      а: "a",
+      б: "b",
+      в: "v",
+      г: "g",
+      д: "d",
+      е: "e",
+      ж: "zh",
+      з: "z",
+      и: "i",
+      й: "y",
+      к: "k",
+      л: "l",
+      м: "m",
+      н: "n",
+      о: "o",
+      п: "p",
+      р: "r",
+      с: "s",
+      т: "t",
+      у: "u",
+      ф: "f",
+      х: "h",
+      ц: "ts",
+      ч: "ch",
+      ш: "sh",
+      щ: "sch",
+      ъ: "",
+      ы: "y",
+      ь: "",
+      э: "e",
+      ю: "yu",
+      я: "ya",
+    };
+
+    str = str.replace(/[^a-zа-яё\s]/gi, "");
+
+    str = str.toLowerCase();
+
+    str = str.replace(/ /g, "_");
+
+    for (let i = 0; i < str.length; i++) {
+      const char = str[i];
+
+      if (translitMap[char]) {
+        str = str.replace(char, translitMap[char]);
+      }
+    }
+
+    return str;
+  }
   const genNewId = async () => {
-    inEditing.id = inEditing.title.toLowerCase().replace(/ /g, "_");
+    inEditing.id = convertToTranslit(inEditing.title);
   };
 </script>
 
