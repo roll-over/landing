@@ -37,3 +37,8 @@ services:
       - landing_mongo
     environment:
       - DEV_MODE=false
+  preview_generator:
+    build: ./apps/preview-generator
+    container_name: preview_generator
+    command: uvicorn main:app --host 0.0.0.0
+    working_dir: /backend/src      
