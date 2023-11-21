@@ -10,11 +10,14 @@ export async function POST(event) {
   const params = await event.request.json();
 
   return new Response(
-    await fetch(`http://${DEV_MODE ? "preview_generator_dev" : "preview_generator"}:8000`, {
-      method: "POST",
-      body: JSON.stringify(params),
-      headers: { "Content-Type": "application/json" },
-    }).then(async (res) => {
+    await fetch(
+      `http://${DEV_MODE === "true" ? "preview_generator_dev" : "preview_generator"}:8000`,
+      {
+        method: "POST",
+        body: JSON.stringify(params),
+        headers: { "Content-Type": "application/json" },
+      },
+    ).then(async (res) => {
       return res.arrayBuffer();
     }),
     {
