@@ -47,7 +47,7 @@ services:
     env_file:
       - .env
     depends_on:
-      - landing_mongo_dev
+      - landing_mongo
     restart: unless-stopped
     ports:
       - "127.0.0.1:8088:8081"    
