@@ -14,6 +14,6 @@ if __name__ == '__main__':
     # root_url = sys.argv[1]
     root_url = 'https://roll-over.org/'
     crawler(
-        root_url, out_file='src/static/sitemap.xml', exclude_urls=[".pdf", ".jpg", ".zip"],
+        root_url, out_file='static/sitemap.xml', exclude_urls=[".pdf", ".jpg", ".zip"],
         http_request_options={"ssl": True}, parser=Parser
     )
