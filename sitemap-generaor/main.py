@@ -11,7 +11,6 @@ if __name__ == '__main__':
         el = windows_events.ProactorEventLoop()
         events.set_event_loop(el)
 
-    # root_url = sys.argv[1]
     root_url = 'https://roll-over.org/'
     crawler(
         root_url, out_file='static/sitemap.xml', exclude_urls=[".pdf", ".jpg", ".zip"],

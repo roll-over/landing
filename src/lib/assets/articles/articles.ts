@@ -90,11 +90,6 @@ export const articles = {
 
 export const articlesStacksList = [
   {
-    title: "Подготовка резюме (red-flags)",
-    description: "Популярные ошибки, советы и фреймворки для подготовки резюме",
-    link: articles.redFlags.employee.cv.link,
-  },
-  {
     title: "Записи митапов (its-open-mic)",
     description:
       "Записи митапов, которые мы проводили: дополнительные материалы, полезные ссылки и записи",
@@ -104,5 +99,15 @@ export const articlesStacksList = [
     title: "Все тонкости найма и поиска работы (hide-hire)",
     description: "Популярные ошибки, советы и тайны при поиске работы",
     link: "/projects/hide-hire/posts/",
+  },
+  {
+    title: "Статьи про публичные выступления (its-open-mic)",
+    description: "Популярные ошибки, советы и тайны публичных выступлений",
+    link: "/projects/its-open-mic/posts/",
+  },
+  {
+    title: "Подготовка резюме (red-flags)",
+    description: "Популярные ошибки, советы и фреймворки для подготовки резюме",
+    link: articles.redFlags.employee.cv.link,
   },
 ];

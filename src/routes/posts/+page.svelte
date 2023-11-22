@@ -18,7 +18,7 @@
   <h2>Все сборники статей:</h2>
   <ul class="flex flex-row flex-wrap gap-10">
     {#each articlesStacksList as stack}
-      <li class="flex flex-col w-96 gap-2 border-2 border-stone-900 rounded-xl p-5">
+      <li class="flex flex-col w-96 gap-2 border-2 border-stone-900 rounded-xl p-5 justify-between">
         <h2>{stack.title}</h2>
         <p>{stack.description}</p>
         <Link href={stack.link}>Перейти к списку</Link>
