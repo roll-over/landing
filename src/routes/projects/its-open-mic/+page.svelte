@@ -24,13 +24,16 @@
     </ul>
   </section>
   <section>
-    <h2>События</h2>
+    <h2>Дополнительные сслыки</h2>
     <ul class="list-disc pl-10 grid grid-col gap-2">
       <li>
         <a href="/projects/its-open-mic/anounces">Анонсы</a>
       </li>
       <li>
         <a href="/projects/its-open-mic/past-events">Прошедшие события</a>
+      </li>
+      <li>
+        <a href="/projects/its-open-mic/posts">Статьи</a>
       </li>
     </ul>
   </section>
