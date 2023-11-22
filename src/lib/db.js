@@ -1,7 +1,10 @@
 import { MongoClient } from "mongodb";
 import { ME_CONFIG_MONGODB_URL } from "$env/static/private";
 
-const client = new MongoClient(ME_CONFIG_MONGODB_URL);
+const client = new MongoClient(
+  ME_CONFIG_MONGODB_URL,
+  { useUnifiedTopology: true}
+);
 
 export const startMongo = async () => {
   for (let i = 0; i < 10; i++) {
