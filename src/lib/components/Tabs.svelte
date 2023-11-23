@@ -67,7 +67,7 @@
             </h3>
 
             <p class="text-slate-500 font-bold bg-slate-800 flex justify-end p-2">
-              Контрибьюторы: {content.contributions}
+              Участие: {content.contributions}
             </p>
           </a>
           <div></div>
