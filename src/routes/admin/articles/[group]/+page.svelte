@@ -178,15 +178,20 @@
 
     str = str.toLowerCase();
 
-    str = str.replace(/ /g, "_");
+    const copyStr = str;
 
-    for (let i = 0; i < str.length; i++) {
-      const char = str[i];
+    for (let i = 0; i < copyStr.length; i++) {
+      const char = copyStr[i];
 
       if (translitMap[char]) {
         str = str.replace(char, translitMap[char]);
+      } else if (char === "ь" || char === "ъ") {
+        str = str.replace(char, "");
       }
     }
+    str = str.replace(/ /g, "_");
+
+    str += "_" + Math.random().toString(36).substr(2, 9);
 
     return str;
   }
