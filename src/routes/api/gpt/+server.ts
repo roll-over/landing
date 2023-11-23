@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import { OPENAI_API_KEY } from "$env/static/private";
 import { useAdminGuard } from "$lib/guards/admin";
+import type { PromptByGroupAndType } from "$lib/types/gpt";
 
 const openai = new OpenAI({
   apiKey: OPENAI_API_KEY,
@@ -70,7 +71,7 @@ const semanticCore = {
     "современная конференция",
     "онлайн конференция",
   ],
-};
+} as const;
 
 const prompts = {
   "articles-redFlags-employee-cv": {
@@ -88,6 +89,19 @@ const prompts = {
     }
     `,
     article: system,
+    faq: `
+    Представь, что ты копирайтер, который помогает писать статьи для социальных сетей и сайта.
+    
+    Тебе нужно текст превратить в вопросы, ответы и описания (Описания должны быть больше краткого ответа), чтобы люди могли быстро найти ответы на свои вопросы.
+
+    Выдавай результат в виде json, это массив объектов:
+    {
+        question
+        answer
+        description
+    }
+    
+    `,
   },
   "hide-hire": {
     header: `
@@ -124,6 +138,21 @@ const prompts = {
     Тебе нужно все переносы строк как '\n'
 
     Как можно чаще используй выражения: ${semanticCore["hide-hire"].join(", ")}
+    `,
+    faq: `
+    Представь, что ты копирайтер, который помогает писать статьи для социальных сетей и сайта.
+    
+    Тебе нужно текст превратить в вопросы, ответы и описания (Описания должны быть больше краткого ответа), чтобы люди могли быстро найти ответы на свои вопросы.
+
+    Как можно чаще используй выражения: ${semanticCore["hide-hire"].join(", ")}
+
+    Выдавай результат в виде json, это массив объектов:
+    {
+        question
+        answer
+        description
+    }
+    
     `,
   },
   "its-open-mic": {
@@ -162,8 +191,23 @@ const prompts = {
 
     Как можно чаще используй выражения: ${semanticCore["its-open-mic"].join(", ")}
     `,
+    faq: `
+    Представь, что ты копирайтер, который помогает писать статьи для социальных сетей и сайта.
+    
+    Тебе нужно текст превратить в вопросы, ответы и описания (Описания должны быть больше краткого ответа), чтобы люди могли быстро найти ответы на свои вопросы.
+
+    Как можно чаще используй выражения: ${semanticCore["its-open-mic"].join(", ")}
+
+    Выдавай результат в виде json, это массив объектов:
+    {
+        question
+        answer
+        description
+    }
+    
+    `,
   },
-};
+} as const;
 
 export async function POST(event) {
   const result = await useAdminGuard(event);
@@ -171,7 +215,7 @@ export async function POST(event) {
     return result;
   }
 
-  const artice = await event.request.json();
+  const artice = (await event.request.json()) as PromptByGroupAndType;
 
   const prompt = prompts[artice.group]?.[artice.type];
   if (!prompt) {

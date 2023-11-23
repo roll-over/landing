@@ -2,6 +2,7 @@
   import { page } from "$app/stores";
   import { collections } from "$lib/collections";
   import type { Article } from "$lib/assets/articles/articles";
+  import type { PromptByGroupAndType } from "$lib/types/gpt.js";
 
   export let data;
 
@@ -107,7 +108,7 @@
         prompt: prompt,
         group: $page.params.group,
         type: "header",
-      }),
+      } as PromptByGroupAndType),
     });
     const data = await res.json();
     if (data.error) {
@@ -128,13 +129,36 @@
         prompt: `${prompt}, ${inEditing.title}`,
         group: $page.params.group,
         type: "article",
-      }),
+      } as PromptByGroupAndType),
     });
     const data = await res.text();
     if (data.error) {
       alert(data.error);
     } else {
       inEditing.source = data;
+    }
+  };
+
+  const genFAQ = async () => {
+    const res = await fetch("/api/gpt", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prompt: `${prompt}, ${inEditing.title}, ${
+          inEditing.type === "md" ? inEditing.source : inEditing.description
+        }`,
+        group: $page.params.group,
+        type: "faq",
+      } as PromptByGroupAndType),
+    });
+    const data = await res.text();
+    if (data.error) {
+      alert(data.error);
+    } else {
+      console.log(data);
+      inEditing.faq = JSON.parse(data);
     }
   };
 
@@ -206,7 +230,7 @@
   <div class="border-2 rounded-xl flex flex-col gap-8 p-10">
     <button class="buttonPrimary" on:click={() => addArticle()}> Add new </button>
   </div>
-  <ul class="w-full md:w-1/2 flex flex-col gap-10">
+  <ul class="w-full md:w-9/12 flex flex-col gap-10">
     {#each data.entities || [] as entitiy}
       {#if inEditing && entitiy.id === inEditing.id}
         <li class="flex flex-col gap-8 p-10 rounded-xl border-2">
@@ -217,6 +241,7 @@
                 <button on:click={() => genHeader()}>Новый заголовок</button>
                 <button on:click={() => genArticle()}>Новая статья</button>
                 <button on:click={() => genNewId()}>Новый id</button>
+                <button on:click={() => genFAQ()}>Новый FAQ</button>
               </div>
             </div>
           {/if}
@@ -248,6 +273,23 @@
             <div class="flex flex-col gap-3">
               <p>Статья:</p>
               <textarea bind:value={inEditing.source} class="h-96" />
+            </div>
+
+            <div class="flex flex-col gap-10">
+              {#each inEditing.faq as faq, i}
+                <div class="flex flex-col pd-10">
+                  <button
+                    class="text-stone-400 hover:text-stone-500 border-2 border-stone-700 hover:border-stone-600 rounded-2xl p-2 flex justify-center"
+                    on:click={() => {
+                      inEditing.faq.splice(i, 1);
+                      inEditing.faq = [...inEditing.faq];
+                    }}>Delete</button
+                  >
+                  Q: <textarea bind:value={faq.question} />
+                  A: <textarea bind:value={faq.answer} />
+                  D: <textarea bind:value={faq.description} />
+                </div>
+              {/each}
             </div>
           {:else if inEditing.type === "youtube"}
             <div class="flex flex-col gap-3">

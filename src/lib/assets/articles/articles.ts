@@ -12,6 +12,11 @@ export type Article =
       type: "md";
       source: string;
       publishDate?: string;
+      faq?: {
+        question: string;
+        answer: string;
+        description?: string;
+      }[];
     }
   | {
       id: string;
