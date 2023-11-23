@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { Article } from "$lib/assets/articles/articles";
-  import Link from "./Link.svelte";
   import NavLink from "./NavLink.svelte";
   import OnePost from "./markdown/OnePost.svelte";
 

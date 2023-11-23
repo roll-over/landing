@@ -11,5 +11,8 @@
     <li>
       <NavLink href="/admin/articles">Статьи</NavLink>
     </li>
+    <li>
+      <NavLink href="/admin/support">Поддержка</NavLink>
+    </li>
   </ul>
 </CenteredPage>
