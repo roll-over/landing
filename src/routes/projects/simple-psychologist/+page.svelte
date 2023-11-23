@@ -51,6 +51,9 @@
           >https://github.com/roll-over/tg-bot-psychologist</a
         >
       </li>
+      <li>
+        <a href="/projects/simple-psychologist/posts">Читать статьи</a>
+      </li>
       {#each hideHireVacancies as vacancies}
         <li>
           <a href={"/vacancies/" + vacancies.id}>Вакансия: {vacancies.title}</a>

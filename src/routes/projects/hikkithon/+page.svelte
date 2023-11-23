@@ -38,6 +38,10 @@
         <p>Место проведения:</p>
         <Link href="https://discord.gg/KdC4u4WqQZ">Сервер дискорд</Link>
       </li>
+      <li>
+        <h3>Читать про онлайн хакатоны и подготовку к хакатонам</h3>
+        <Link href="/projects/hikkithon/posts/">Статьи</Link>
+      </li>
     </ul>
   </section>
   <section>

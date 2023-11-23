@@ -83,6 +83,14 @@ export const articles = {
       },
     ],
   },
+  hikkithon: {
+    link: "/projects/hikkithon/posts/",
+    articles: [],
+  },
+  simplePsychologist: {
+    link: "/projects/simple-psychologist/posts/",
+    articles: [],
+  },
   itsOpenMicPosts: {
     link: "/projects/its-open-mic/posts/",
     articles: [],
@@ -114,5 +122,15 @@ export const articlesStacksList = [
     title: "Подготовка резюме (red-flags)",
     description: "Популярные ошибки, советы и фреймворки для подготовки резюме",
     link: articles.redFlags.employee.cv.link,
+  },
+  {
+    title: "Hikkithon",
+    description: "Материалы про онлайн хакатон Hikkithon и подготовку к нему",
+    link: "/projects/hikkithon/posts/",
+  },
+  {
+    title: "simple-psychologist",
+    description: "Психологические статьи по само поддержке",
+    link: "/projects/simple-psychologist/posts/",
   },
 ];
