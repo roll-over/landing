@@ -276,7 +276,7 @@
             </div>
 
             <div class="flex flex-col gap-10">
-              {#each inEditing.faq as faq, i}
+              {#each inEditing?.faq || [] as faq, i}
                 <div class="flex flex-col pd-10">
                   <button
                     class="text-stone-400 hover:text-stone-500 border-2 border-stone-700 hover:border-stone-600 rounded-2xl p-2 flex justify-center"

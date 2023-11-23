@@ -54,18 +54,21 @@
   </article>
 {/if}
 
-<div>
-  <h2>FAQ:</h2>
-  <ol class="flex flex-col gap-20">
-    {#each article.faq as faq}
-      <li class="flex flex-col gap-3 py-3">
-        <h3 class="text-xl">Q: {faq.question}</h3>
-        <p>A: {faq.answer}</p>
-        <p>D: {faq.description}</p>
-      </li>
-    {/each}
-  </ol>
-</div>
+{#if article?.faq}
+  <div>
+    <h2>FAQ:</h2>
+    <ol class="flex flex-col gap-20">
+      {#each article?.faq || [] as faq}
+        <li class="flex flex-col gap-3 py-3">
+          <h3 class="text-xl">Q: {faq.question}</h3>
+          <p>A: {faq.answer}</p>
+          <p>D: {faq.description}</p>
+        </li>
+      {/each}
+    </ol>
+  </div>
+{/if}
+
 {#if seeAlso.length}
   <h2>Смотрите также:</h2>
   <ol class="flex flex-col items-start">
