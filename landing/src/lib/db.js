@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
-import { ME_CONFIG_MONGODB_URL } from "$env/static/private";
+import { env } from "$env/dynamic/private";
 
-const client = new MongoClient(ME_CONFIG_MONGODB_URL);
+const client = new MongoClient(env.ME_CONFIG_MONGODB_URL);
 
 let db = null;
 

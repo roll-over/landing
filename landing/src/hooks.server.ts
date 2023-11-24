@@ -1,12 +1,12 @@
 import { SvelteKitAuth } from "@auth/sveltekit";
 import Google from "@auth/core/providers/google";
-import { GOOGLE_ID, GOOGLE_SECRET } from "$env/static/private";
+import { env } from "$env/dynamic/private";
 import { startMongo } from "$lib/db";
 import type { Handle } from "@sveltejs/kit";
 
 const svelteHandle = SvelteKitAuth({
   trustHost: true,
-  providers: [Google({ clientId: GOOGLE_ID, clientSecret: GOOGLE_SECRET })],
+  providers: [Google({ clientId: env.GOOGLE_ID, clientSecret: env.GOOGLE_SECRET })],
 });
 
 export const handle: Handle = async ({ resolve, event }) => {

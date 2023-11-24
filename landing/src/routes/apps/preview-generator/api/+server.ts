@@ -1,5 +1,5 @@
 import { useAdminGuard } from "$lib/guards/admin";
-import { DEV_MODE } from "$env/static/private";
+import { env } from "$env/dynamic/private";
 
 export async function POST(event) {
   const result = await useAdminGuard(event);
@@ -11,7 +11,7 @@ export async function POST(event) {
 
   return new Response(
     await fetch(
-      `http://${DEV_MODE === "true" ? "preview_generator_dev" : "preview_generator"}:8000`,
+      `http://${env.DEV_MODE === "true" ? "preview_generator_dev" : "preview_generator"}:8000`,
       {
         method: "POST",
         body: JSON.stringify(params),
