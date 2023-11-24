@@ -6,4 +6,5 @@ WORKDIR /frontend
 RUN corepack enable    
 RUN pnpm install
 ARG DEV_MODE=false
+ARG ME_CONFIG_MONGODB_URL=mongodb://mongo:27017
 RUN pnpm run build
