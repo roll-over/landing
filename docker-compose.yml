@@ -10,7 +10,7 @@ services:
     volumes:
       - "./data:/data/db"
   landing_roll_over:
-    build: .
+    build: ./landing
     container_name: landing_roll_over
     working_dir: /frontend
     command: node build
@@ -24,7 +24,7 @@ services:
     environment:
       - DEV_MODE=false
   landing_roll_over_1:
-    build: .
+    build: ./landing
     container_name: landing_roll_over_1
     working_dir: /frontend
     command: node build

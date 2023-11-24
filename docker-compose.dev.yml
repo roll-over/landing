@@ -3,24 +3,24 @@ version: "3.7"
 services:
   landing_roll_over_dev:
     build:
-      context: .
+      context: ./landing
       dockerfile: Dockerfile.dev
     container_name: landing_roll_over_dev
     command: pnpm run dev --host
 
     working_dir: /frontend
     volumes:
-      - ./.svelte-kit/:/frontend/.svelte-kit/
-      - ./patches/:/frontend/patches/
-      - ./scripts/:/frontend/scripts/
-      - ./src/:/frontend/src/
-      - ./static/:/frontend/static/
-      - ./package.json:/frontend/package.json
-      - ./pnpm-lock.yaml:/frontend/pnpm-lock.yaml
-      - ./postcss.config.cjs:/frontend/postcss.config.cjs
-      - ./svelte.config.js:/frontend/svelte.config.js
-      - ./tailwind.config.cjs:/frontend/tailwind.config.cjs
-      - ./vite.config.ts:/frontend/vite.config.ts
+      - ./landing/.svelte-kit/:/frontend/.svelte-kit/
+      - ./landing/patches/:/frontend/patches/
+      - ./landing/scripts/:/frontend/scripts/
+      - ./landing/src/:/frontend/src/
+      - ./landing/static/:/frontend/static/
+      - ./landing/package.json:/frontend/package.json
+      - ./landing/pnpm-lock.yaml:/frontend/pnpm-lock.yaml
+      - ./landing/postcss.config.cjs:/frontend/postcss.config.cjs
+      - ./landing/svelte.config.js:/frontend/svelte.config.js
+      - ./landing/tailwind.config.cjs:/frontend/tailwind.config.cjs
+      - ./landing/vite.config.ts:/frontend/vite.config.ts
     ports:
       - "5173:5173"
     env_file:
