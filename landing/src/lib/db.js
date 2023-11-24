@@ -18,6 +18,7 @@ export const startMongo = async () => {
       db = client.db("landing");
       break;
     } catch (e) {
+      console.error(e);
       await new Promise((resolve) => setTimeout(resolve, 1000));
     }
   }
