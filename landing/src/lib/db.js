@@ -1,13 +1,7 @@
 import { MongoClient } from "mongodb";
 import { ME_CONFIG_MONGODB_URL } from "$env/static/private";
 
-const client = new MongoClient(
-  ME_CONFIG_MONGODB_URL,
-  { useUnifiedTopology: true },
-  { useNewUrlParser: true },
-  { connectTimeoutMS: 30000 },
-  { keepAlive: 1 },
-);
+const client = new MongoClient(ME_CONFIG_MONGODB_URL);
 
 let db = null;
 
