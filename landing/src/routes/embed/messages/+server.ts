@@ -19,7 +19,7 @@ export async function GET(event) {
     });
   }
 
-  const messages = await db
+  const messages = await db()
     .collection("supportChat")
     .find(
       { projectId: project, userId: userId },
@@ -53,7 +53,7 @@ export async function POST(event) {
     return new Response("No message", { status: 400 });
   }
 
-  await db.collection("supportChat").insertOne({
+  await db().collection("supportChat").insertOne({
     projectId: project,
     userId: userId,
     ...message,
@@ -61,7 +61,7 @@ export async function POST(event) {
     author: "user",
   });
 
-  await db.collection("supportChat").insertOne({
+  await db().collection("supportChat").insertOne({
     projectId: project,
     userId: userId,
     type: "text",

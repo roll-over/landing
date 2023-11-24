@@ -1,7 +1,7 @@
 import db from "$lib/db";
 
 export const load = async (event) => {
-  const messages = await db
+  const messages = await db()
     .collection("supportChat")
     .find({}, { projection: { _id: 0 }, sort: { date: 1 } })
     .toArray();

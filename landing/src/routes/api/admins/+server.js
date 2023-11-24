@@ -7,7 +7,7 @@ export async function GET(event) {
     return result;
   }
 
-  const admins = await db
+  const admins = await db()
     .collection("admins")
     .find(
       {},
@@ -33,7 +33,7 @@ export async function POST(event) {
 
   const admin = await event.request.json();
 
-  await db.collection("admins").insertOne(admin);
+  await db().collection("admins").insertOne(admin);
   return new Response(JSON.stringify(admin), {
     status: 200,
     headers: {
@@ -49,7 +49,7 @@ export async function DELETE(event) {
   }
   const admin = await event.request.json();
 
-  await db.collection("admins").deleteOne({
+  await db().collection("admins").deleteOne({
     email: admin.email,
   });
   return new Response(JSON.stringify(admin), {

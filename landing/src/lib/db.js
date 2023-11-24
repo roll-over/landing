@@ -9,10 +9,13 @@ const client = new MongoClient(
   { keepAlive: 1 },
 );
 
+let db = null;
+
 export const startMongo = async () => {
   for (let i = 0; i < 10; i++) {
     try {
       await client.connect();
+      db = client.db("landing");
       break;
     } catch (e) {
       await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -21,4 +24,4 @@ export const startMongo = async () => {
   return client;
 };
 
-export default client.db("landing");
+export default () => db;

@@ -9,7 +9,7 @@ export async function GET(event) {
   if (!allCollections.includes(collection)) {
     return new Response("Not found", { status: 404 });
   }
-  const enities = await db
+  const enities = await db()
     .collection(collection)
     .find(
       {},
@@ -43,14 +43,14 @@ export async function POST(event) {
   }
 
   const artice = await event.request.json();
-  const isExist = await db.collection(collection).findOne({
+  const isExist = await db().collection(collection).findOne({
     id: artice.id,
   });
   if (isExist) {
     return new Response("Already exist", { status: 400 });
   }
 
-  await db.collection(collection).insertOne(artice);
+  await db().collection(collection).insertOne(artice);
   return new Response(JSON.stringify(artice), {
     status: 200,
     headers: {
@@ -74,7 +74,7 @@ export async function DELETE(event) {
 
   const artice = await event.request.json();
 
-  await db.collection(collection).deleteOne({
+  await db().collection(collection).deleteOne({
     id: artice.id,
   });
   return new Response(JSON.stringify(artice), {
@@ -94,7 +94,7 @@ export async function PUT(event) {
 
   const artice = await event.request.json();
 
-  await db.collection(collection).updateOne(
+  await db().collection(collection).updateOne(
     {
       id: artice.id,
     },
