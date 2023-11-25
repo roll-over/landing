@@ -26,7 +26,37 @@ services:
     env_file:
       - .env
     environment:
+      - DEV_MODE=true\
+    depends_on:
+      - landing_mongo_dev
+  denta_dev:
+    build:
+      context: ./denta
+      dockerfile: Dockerfile.dev
+    container_name: denta_dev
+    command: pnpm run dev --host
+
+    working_dir: /frontend
+    volumes:
+      - ./denta/.svelte-kit/:/frontend/.svelte-kit/
+      - ./denta/patches/:/frontend/patches/
+      - ./denta/scripts/:/frontend/scripts/
+      - ./denta/src/:/frontend/src/
+      - ./denta/static/:/frontend/static/
+      - ./denta/package.json:/frontend/package.json
+      - ./denta/pnpm-lock.yaml:/frontend/pnpm-lock.yaml
+      - ./denta/postcss.config.cjs:/frontend/postcss.config.cjs
+      - ./denta/svelte.config.js:/frontend/svelte.config.js
+      - ./denta/tailwind.config.cjs:/frontend/tailwind.config.cjs
+      - ./denta/vite.config.ts:/frontend/vite.config.ts
+    ports:
+      - "5174:5173"
+    env_file:
+      - .env
+    environment:
       - DEV_MODE=true
+    depends_on:
+      - landing_mongo_dev
   landing_mongo_dev:
     image: mongo
     container_name: landing_mongo_dev

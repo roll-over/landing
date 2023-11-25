@@ -25,6 +25,7 @@ jobs:
           ssh-keyscan -H ${{ vars.DEV_SSH_HOST }} > ~/.ssh/known_hosts
       - name: connect and pull
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && git stash && git checkout ${{ vars.DEV_BRANCH }} && git pull"
+     
       - name: stop containers -- 0 pack
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose down landing_roll_over"
       - name: build and run containers -- 0 pack
@@ -33,7 +34,17 @@ jobs:
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose down landing_roll_over_1"
       - name: build and run containers -- 1 pack
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build landing_roll_over_1"
-      - name: stop containers -- 1 pack
+      
+      - name: stop containers -- preview_generator
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose down preview_generator"
-      - name: build and run containers -- 1 pack
+      - name: build and run containers -- preview_generator
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build preview_generator"
+
+      - name: stop containers -- denta -- 0 pack
+        run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose down denta_roll_over"
+      - name: build and run containers -- denta -- 0 pack
+        run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build denta_roll_over"
+      - name: stop containers -- denta -- 1 pack
+        run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose down denta_roll_over_1"
+      - name: build and run containers -- denta -- 1 pack
+        run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build denta_roll_over_1"
