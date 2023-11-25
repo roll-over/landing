@@ -14,6 +14,14 @@
 
   const links = [
     {
+      title: "Клиники",
+      href: "/ru",
+    },
+    {
+      title: "О нас",
+      href: "/ru/about",
+    },
+    {
       title: "CRM",
       href: "/ru/crm",
     },
@@ -75,46 +83,26 @@
       <h1 class="text-2xl">denta</h1>
     </a>
 
-    {#if visible}
-      <div
-        class=" border-2 border-teal-500 bg-white fixed top-6 right-6 rounded-b-xl rounded-tl-xl z-10"
-      >
-        <div class="flex justify-between p-2">
-          <p>Меню</p>
-          <img src={CloseIcon} alt="logo" class="h-8 w-10" />
-        </div>
-
-        <ul class="flex flex-col gap-1" use:clickOutside on:click_outside={() => (visible = false)}>
-          {#each links as link}
-            <li>
-              <button on:click={() => (visible = false)}>
-                <NavLink href={link.href} on:click={() => (visible = false)}>{link.title}</NavLink>
-              </button>
-            </li>
-          {/each}
-          <li>
-            {#if $page.data.session}
-              <NavLink href="/auth/signout">
-                {#if $page.data.session.user?.image}
-                  <img src={$page.data.session.user.image} class="rounded-2xl w-8" alt="avatar" />
-                {/if}
-              </NavLink>
-            {:else}
-              <NavLink href="/auth/signin">Войти</NavLink>
+    <ul class="flex flex-row gap-1">
+      {#each links as link}
+        <li>
+          <button on:click={() => (visible = false)}>
+            <NavLink href={link.href} on:click={() => (visible = false)}>{link.title}</NavLink>
+          </button>
+        </li>
+      {/each}
+      <li>
+        {#if $page.data.session}
+          <NavLink href="/auth/signout">
+            {#if $page.data.session.user?.image}
+              <img src={$page.data.session.user.image} class="rounded-2xl w-8" alt="avatar" />
             {/if}
-          </li>
-        </ul>
-      </div>
-    {:else}
-      <button
-        class="text-teal-400"
-        on:click={() => {
-          visible = !visible;
-        }}
-      >
-        <img src={BurgerIcon} alt="logo" class="h-6" />
-      </button>
-    {/if}
+          </NavLink>
+        {:else}
+          <NavLink href="/auth/signin">Войти</NavLink>
+        {/if}
+      </li>
+    </ul>
   </div>
   <ol class="pl-5 flex items-end" itemscope itemtype="https://schema.org/BreadcrumbList">
     {#each steps.slice(1) as step, i}
