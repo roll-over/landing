@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "gen:sitemap": "python3 ../sitemap-generator/main.py"
+  }
+}

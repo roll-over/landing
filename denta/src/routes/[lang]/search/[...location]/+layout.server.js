@@ -17,6 +17,7 @@ export const load = async (event) => {
 
   const countries = [
     ...new Set(cabinets.map((cabinet) => cabinet.address.country).filter(Boolean)),
+    'Kyrgyzstan',
   ];
 
   const [country, city] = event.params.location.split("/");
@@ -35,6 +36,7 @@ export const load = async (event) => {
         .map((cabinet) => cabinet.address.city)
         .filter(Boolean),
     ),
+    'Bishkek'
   ];
 
   if (!city || !cities.includes(city)) {
