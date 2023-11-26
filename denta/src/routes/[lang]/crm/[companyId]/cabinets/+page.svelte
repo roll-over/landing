@@ -175,6 +175,7 @@
             name: cabinet.name,
             contacts: cabinet.contacts || [],
             id: cabinet.id,
+            address: cabinet.address,
           }),
         });
         const _data = await res.json();

@@ -1,3 +1,5 @@
+export type Language = "ru";
+
 export type Contact = {
   type:
     | "email"
@@ -18,7 +20,7 @@ export type Company = {
   owner: string;
   name: string;
   createdAt: string;
-  contacts?: Contact[];
+  contacts: Contact[];
   workingHours: {
     startAt: string;
     endAt: string;

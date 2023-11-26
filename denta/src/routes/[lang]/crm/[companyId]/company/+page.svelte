@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
   import { page } from "$app/stores";
   import Section from "$lib/components/Section.svelte";
   import type { Company } from "$lib/types/crm";
@@ -127,8 +128,8 @@
           workingHours: data.company.workingHours,
         }),
       });
-      const _data = await res.json();
-      console.log(_data);
+
+      window.location.reload();
     }}
     class="bg-teal-500 p-2 rounded-xl"
   >
@@ -145,8 +146,8 @@
         },
         body: JSON.stringify({ company: { name } }),
       });
-      const data = await res.json();
-      console.log(data);
+
+      goto(`/ru/crm/`);
     }}
   >
     Удалить компанию

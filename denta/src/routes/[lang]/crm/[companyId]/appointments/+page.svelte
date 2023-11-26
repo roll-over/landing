@@ -28,7 +28,8 @@
     : 0;
   $: endShiftHours = Math.floor(endShift);
 
-  console.log(data.company.workingHours.startAt);
+  $: appointmentInEditId = "";
+  $: appointmentInEdit = data.appointments.find((a) => a.id === appointmentInEditId);
 </script>
 
 <div class="flex flex-col items-start p-10">
@@ -41,53 +42,56 @@
         },
         body: JSON.stringify({ name: "", contacts: [] }),
       });
-      const _data = await res.json();
-      console.log(_data);
+
+      window.location.reload();
     }}
   >
     Добавить встречу
   </button>
-  {#each data.appointments as appointment}
+  {#if appointmentInEdit}
     <Section>
       <h3>Клиент</h3>
       <select
-        bind:value={appointment.clientId}
+        bind:value={appointmentInEdit.clientId}
         on:change={(e) => {
-          appointment.clientId = e.target.value;
+          appointmentInEdit.clientId = e.target.value;
         }}
       >
         {#each data.clients as client}
           <option value={client.id}>{client.name}</option>
         {/each}
       </select>
+      <a href="/ru/crm/{companyId}/clients">Добавить клиента</a>
     </Section>
 
     <Section>
       <h3>Доктор</h3>
       <select
-        bind:value={appointment.doctorId}
+        bind:value={appointmentInEdit.doctorId}
         on:change={(e) => {
-          appointment.doctorId = e.target.value;
+          appointmentInEdit.doctorId = e.target.value;
         }}
       >
         {#each data.employees as doctor}
           <option value={doctor.id}>{doctor.name}</option>
         {/each}
       </select>
+      <a href="/ru/crm/{companyId}/employees">Добавить доктора</a>
     </Section>
 
     <Section>
       <h3>Кабинет</h3>
       <select
-        bind:value={appointment.cabinetId}
+        bind:value={appointmentInEdit.cabinetId}
         on:change={(e) => {
-          appointment.cabinetId = e.target.value;
+          appointmentInEdit.cabinetId = e.target.value;
         }}
       >
         {#each data.cabinets as cabinet}
           <option value={cabinet.id}>{cabinet.name}</option>
         {/each}
       </select>
+      <a href="/ru/crm/{companyId}/cabinets">Добавить кабинет</a>
     </Section>
 
     <Section>
@@ -96,9 +100,9 @@
         <h4>Начало:</h4>
         <input
           type="datetime-local"
-          bind:value={appointment.startAt}
+          bind:value={appointmentInEdit.startAt}
           on:input={(e) => {
-            appointment.startAt = e.target.value;
+            appointmentInEdit.startAt = e.target.value;
           }}
         />
       </div>
@@ -109,19 +113,19 @@
         {durationSession % 60} м.
         <button
           on:click={() => {
-            const date = moment(appointment.endAt);
-            date.add(step / 2, "m");
-            durationSession += step / 2;
-            appointment.endAt = date.format("YYYY-MM-DDTHH:mm:ss");
-          }}>+{step / 2}</button
+            const date = moment(appointmentInEdit.endAt);
+            date.add(step, "m");
+            durationSession += step;
+            appointmentInEdit.endAt = date.format("YYYY-MM-DDTHH:mm:ss");
+          }}>+{step}</button
         >
         <button
           on:click={() => {
-            const date = moment(appointment.endAt);
-            date.add(-step / 2, "m");
-            durationSession -= step / 2;
-            appointment.endAt = date.format("YYYY-MM-DDTHH:mm:ss");
-          }}>-{step / 2}</button
+            const date = moment(appointmentInEdit.endAt);
+            date.add(-step, "m");
+            durationSession -= step;
+            appointmentInEdit.endAt = date.format("YYYY-MM-DDTHH:mm:ss");
+          }}>-{step}</button
         >
       </div>
 
@@ -129,9 +133,9 @@
         <h4>Конец:</h4>
         <input
           type="datetime-local"
-          bind:value={appointment.endAt}
+          bind:value={appointmentInEdit.endAt}
           on:input={(e) => {
-            appointment.endAt = e.target.value;
+            appointmentInEdit.endAt = e.target.value;
           }}
         />
       </div>
@@ -163,21 +167,21 @@
               {moment().get('hours') > i + (k * step) / 60 && 0 === j
                       ? 'bg-red-300 text-white'
                       : ''}  
-              {moment(appointment.startAt).get('hours') * 60 +
-                      moment(appointment.startAt).get('minutes') ===
+              {moment(appointmentInEdit.startAt).get('hours') * 60 +
+                      moment(appointmentInEdit.startAt).get('minutes') ===
                       i * 60 + k * step &&
-                    moment(appointment.startAt).get('D') === moment().get('D') + j + 1
+                    moment(appointmentInEdit.startAt).get('D') === moment().get('D') + j + 1
                       ? 'bg-green-300 text-white'
                       : ''}  
 
-                    {moment(appointment.startAt).get('hours') * 60 +
-                      moment(appointment.startAt).get('minutes') <
+                    {moment(appointmentInEdit.startAt).get('hours') * 60 +
+                      moment(appointmentInEdit.startAt).get('minutes') <
                       i * 60 + k * step &&
-                    moment(appointment.startAt).get('D') === moment().get('D') + j + 1 &&
-                    moment(appointment.endAt).get('hours') * 60 +
-                      moment(appointment.endAt).get('minutes') >
+                    moment(appointmentInEdit.startAt).get('D') === moment().get('D') + j + 1 &&
+                    moment(appointmentInEdit.endAt).get('hours') * 60 +
+                      moment(appointmentInEdit.endAt).get('minutes') >
                       i * 60 + k * step &&
-                    moment(appointment.endAt).get('D') === moment().get('D') + j + 1
+                    moment(appointmentInEdit.endAt).get('D') === moment().get('D') + j + 1
                       ? 'bg-green-300 text-white'
                       : ''}
               
@@ -190,10 +194,10 @@
                       date.set("minutes", k * step);
                       date.set("seconds", 0);
                       console.log(moment(date.format("YYYY-MM-DDTHH:mm:ss")).toISOString());
-                      appointment.startAt = date.format("YYYY-MM-DDTHH:mm:ss");
+                      appointmentInEdit.startAt = date.format("YYYY-MM-DDTHH:mm:ss");
 
                       date.add(durationSession, "m");
-                      appointment.endAt = date.format("YYYY-MM-DDTHH:mm:ss");
+                      appointmentInEdit.endAt = date.format("YYYY-MM-DDTHH:mm:ss");
                     }}
                   >
                   </button>
@@ -204,7 +208,6 @@
         {/each}
       </div>
     </Section>
-
     <button
       on:click={async () => {
         const res = await fetch(`/ru/crm/${companyId}/appointments/api/`, {
@@ -213,15 +216,72 @@
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            id: appointment.id,
+            id: appointmentInEdit.id,
+            clientId: appointmentInEdit.clientId,
+            doctorId: appointmentInEdit.doctorId,
+            cabinetId: appointmentInEdit.cabinetId,
+            startAt: appointmentInEdit.startAt,
+            endAt: appointmentInEdit.endAt,
           }),
         });
-        const _data = await res.json();
-        console.log(_data);
+        window.location.reload();
       }}
       class="bg-teal-500 p-2 rounded-xl"
     >
       Сохранить изменения
     </button>
-  {/each}
+  {:else}
+    <div>
+      <div class="hidden lg:grid grid-cols-6 gap-5 appointments-table">
+        <p>Клиент</p>
+        <p>Доктор</p>
+        <p>Кабинет</p>
+        <p>Время</p>
+        <p>Дата</p>
+        <p>Редактировать</p>
+      </div>
+      <div class="flex flex-row flex-wrap gap-16 w-full justify-start">
+        {#each data.appointments as appointment}
+          <div class="grid grid-cols-1 lg:grid-cols-6 p-5 gap-5 appointments-table border-2 border-grey-700 min-w-[30%] lg:w-full">
+            <p class={appointment.clientId ? "" : "bg-red-200"}>
+              {appointment.clientId
+                ? data.clients.find((c) => c.id === appointment.clientId)?.name
+                : "NaN"}
+            </p>
+            <p class={appointment.doctorId ? "" : "bg-red-200"}>
+              {appointment.doctorId
+                ? data.employees.find((e) => e.id === appointment.doctorId)?.name
+                : "NaN"}
+            </p>
+            <p class={appointment.cabinetId ? "" : "bg-red-200"}>
+              {appointment.cabinetId
+                ? data.cabinets.find((c) => c.id === appointment.cabinetId)?.name
+                : "NaN"}
+            </p>
+            <p class={appointment.startAt ? "" : "bg-red-200"}>
+              {appointment.startAt ? moment(appointment.startAt).format("HH:mm") : "NaN"}
+              -
+              {appointment.endAt ? moment(appointment.endAt).format("HH:mm ") : "NaN"}
+            </p>
+            <p>
+              {moment(appointment.startAt || appointment.endAt).format("DD.MM")}
+            </p>
+            <button
+              on:click={() => {
+                appointmentInEditId = appointment.id;
+              }}
+            >
+              Редактировать
+            </button>
+          </div>
+        {/each}
+      </div>
+    </div>
+  {/if}
 </div>
+
+<style>
+  .appointments-table > * {
+    padding: 10px;
+  }
+</style>

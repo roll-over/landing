@@ -17,8 +17,8 @@
         },
         body: JSON.stringify({ name: "", contacts: [] }),
       });
-      const _data = await res.json();
-      console.log(_data);
+
+      window.location.reload();
     }}
   >
     Добавить клиента
@@ -99,8 +99,8 @@
             id: client.id,
           }),
         });
-        const _data = await res.json();
-        console.log(_data);
+
+        window.location.reload();
       }}
       class="bg-teal-500 p-2 rounded-xl"
     >

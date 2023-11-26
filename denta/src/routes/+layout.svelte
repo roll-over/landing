@@ -1,16 +1,11 @@
 <script lang="ts">
   import "../styles/app.css";
-  import Header from "$lib/assets/roll-over.webp";
   import { page } from "$app/stores";
   import NavLink from "$lib/components/NavLink.svelte";
-  import BurgerIcon from "$lib/assets/burger.svg";
-  import CloseIcon from "$lib/assets/close.svg";
-  import { clickOutside } from "$lib/clickOutside";
 
   export let data: any;
 
   let w;
-  let visible = false;
 
   const links = [
     {
@@ -86,9 +81,7 @@
     <ul class="flex flex-row gap-1">
       {#each links as link}
         <li>
-          <button on:click={() => (visible = false)}>
-            <NavLink href={link.href} on:click={() => (visible = false)}>{link.title}</NavLink>
-          </button>
+          <NavLink href={link.href}>{link.title}</NavLink>
         </li>
       {/each}
       <li>

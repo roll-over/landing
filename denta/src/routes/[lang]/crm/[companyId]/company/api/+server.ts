@@ -1,4 +1,5 @@
 import db from "$lib/db";
+import type { Company } from "$lib/types/crm";
 import { uuid } from "uuidv4";
 
 export async function POST(event) {
@@ -12,7 +13,9 @@ export async function POST(event) {
       id: uuid(),
       owner: session.user.email,
       createdAt: new Date().toISOString(),
-    });
+      workingHours: {},
+      contacts: [],
+    } as Company);
   return new Response(JSON.stringify(company), {
     status: 200,
     headers: {

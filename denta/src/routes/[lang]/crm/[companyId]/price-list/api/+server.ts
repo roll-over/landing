@@ -74,3 +74,29 @@ export async function PUT(event) {
     },
   });
 }
+
+export async function DELETE(event) {
+  const priceListItem = await event.request.json();
+  const session = await event.locals.getSession();
+  const companyId = event.params.companyId;
+  const userCompanies = await db()
+    .collection("companies")
+    .find({ owner: session.user.email })
+    .toArray();
+
+  const isExist = userCompanies.find((company) => company.id === companyId);
+  if (!isExist) {
+    return new Response("Not found", { status: 404 });
+  }
+
+  await db().collection("price-list").deleteOne({
+    companyId: companyId,
+    id: priceListItem.id,
+  });
+  return new Response(JSON.stringify(priceListItem), {
+    status: 200,
+    headers: {
+      "content-type": "application/json",
+    },
+  });
+}
