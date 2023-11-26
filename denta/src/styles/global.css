@@ -11,6 +11,10 @@ body {
   min-height: 100vh;
 }
 
+.default-bg {
+  background-color: rgb(235, 235, 235);
+}
+
 
 
 body {

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from "$app/stores";
+  import CenteredPage from "$lib/components/CenteredPage.svelte";
 
   import Section from "$lib/components/Section.svelte";
   import type { Client } from "$lib/types/crm";
@@ -7,8 +8,9 @@
   $: companyId = $page.params.companyId;
 </script>
 
-<div class="flex flex-col items-start p-10">
-  <button
+<CenteredPage>
+
+<button
     on:click={async () => {
       const res = await fetch(`/ru/crm/${companyId}/clients/api/`, {
         method: "POST",
@@ -107,4 +109,4 @@
       Сохранить изменения
     </button>
   {/each}
-</div>
+</CenteredPage>
