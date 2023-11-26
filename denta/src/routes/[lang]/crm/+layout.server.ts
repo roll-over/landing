@@ -11,13 +11,8 @@ export const load = async (event) => {
         owner: session.user.email,
       },
       { projection: { _id: 0 } },
-    ).toArray();
-
-  if (!companies) {
-    throw redirect(301, "/ru/crm/create-company");
-  }
-
-  console.log(companies);
+    )
+    .toArray();
 
   return {
     companies: companies,
