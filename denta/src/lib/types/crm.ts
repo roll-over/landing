@@ -1,5 +1,15 @@
 export type Language = "ru";
 
+export type City = {
+  value: string;
+  label: string;
+};
+
+export type Country = {
+  value: string;
+  label: string;
+};
+
 export type Contact = {
   type:
     | "email"
@@ -15,6 +25,19 @@ export type Contact = {
   value: string;
 };
 
+export type Address = {
+  country: string;
+  city: string;
+  street: string;
+  house: string;
+  links: Link[];
+};
+
+export type ShortAddress = {
+  country: Address["country"];
+  city: Address["city"];
+};
+
 export type Company = {
   id: string;
   owner: string;
@@ -26,6 +49,7 @@ export type Company = {
     endAt: string;
     step: number;
   };
+  mainAddress: Address;
 };
 
 export type Client = {
@@ -47,14 +71,6 @@ export type Doctor = {
 export type Link = {
   type: "google" | "yandex" | "2gis";
   value: string;
-};
-
-export type Address = {
-  country: string;
-  city: string;
-  street: string;
-  house: string;
-  links: Link[];
 };
 
 export type Cabinet = {

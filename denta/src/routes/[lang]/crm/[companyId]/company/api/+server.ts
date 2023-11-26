@@ -1,10 +1,39 @@
 import db from "$lib/db";
+import { makeTranscribationFromRuToEn } from "$lib/transcribation";
 import type { Company } from "$lib/types/crm";
 import { uuid } from "uuidv4";
 
 export async function POST(event) {
   const company = await event.request.json();
   const session = await event.locals.getSession();
+  console.log(company);
+
+  const country = await db().collection("countries").findOne({
+    id: company.mainAddress.country,
+  });
+
+  const countryId = country?.id || makeTranscribationFromRuToEn(company.mainAddress.country);
+  if (!country) {
+    await db()
+      .collection("countries")
+      .insertOne({
+        id: countryId,
+        [event.params.lang]: company.mainAddress.country,
+      });
+  }
+
+  const city = await db().collection("cities").findOne({
+    id: company.mainAddress.city,
+  });
+  if (!city) {
+    await db()
+      .collection("cities")
+      .insertOne({
+        id: makeTranscribationFromRuToEn(company.mainAddress.city),
+        [event.params.lang]: company.mainAddress.city,
+        countryId: countryId,
+      });
+  }
 
   await db()
     .collection("companies")

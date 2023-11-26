@@ -4,6 +4,10 @@
 
   import Section from "$lib/components/Section.svelte";
   import type { Appointment, Cabinet, Client, Company, Doctor } from "$lib/types/crm";
+  import AddButton from "$lib/components/AddButton.svelte";
+  import SaveButton from "$lib/components/SaveButton.svelte";
+  import EditButton from "$lib/components/EditButton.svelte";
+  import SupportLink from "$lib/components/SupportLink.svelte";
   export let data: {
     appointments: Appointment[];
     clients: Client[];
@@ -33,7 +37,7 @@
 </script>
 
 <div class="flex flex-col items-start p-10">
-  <button
+  <AddButton
     on:click={async () => {
       const res = await fetch(`/ru/crm/${companyId}/appointments/api/`, {
         method: "POST",
@@ -47,7 +51,7 @@
     }}
   >
     Добавить встречу
-  </button>
+  </AddButton>
   {#if appointmentInEdit}
     <Section>
       <h3>Клиент</h3>
@@ -61,7 +65,7 @@
           <option value={client.id}>{client.name}</option>
         {/each}
       </select>
-      <a href="/ru/crm/{companyId}/clients">Добавить клиента</a>
+      <SupportLink href="/ru/crm/{companyId}/clients">Добавить клиента</SupportLink>
     </Section>
 
     <Section>
@@ -76,7 +80,7 @@
           <option value={doctor.id}>{doctor.name}</option>
         {/each}
       </select>
-      <a href="/ru/crm/{companyId}/employees">Добавить доктора</a>
+      <SupportLink href="/ru/crm/{companyId}/employees">Добавить доктора</SupportLink>
     </Section>
 
     <Section>
@@ -91,7 +95,7 @@
           <option value={cabinet.id}>{cabinet.name}</option>
         {/each}
       </select>
-      <a href="/ru/crm/{companyId}/cabinets">Добавить кабинет</a>
+      <SupportLink href="/ru/crm/{companyId}/cabinets">Добавить кабинет</SupportLink>
     </Section>
 
     <Section>
@@ -208,7 +212,7 @@
         {/each}
       </div>
     </Section>
-    <button
+    <SaveButton
       on:click={async () => {
         const res = await fetch(`/ru/crm/${companyId}/appointments/api/`, {
           method: "PUT",
@@ -226,10 +230,9 @@
         });
         window.location.reload();
       }}
-      class="bg-teal-500 p-2 rounded-xl"
     >
       Сохранить изменения
-    </button>
+    </SaveButton>
   {:else}
     <div>
       <div class="hidden lg:grid grid-cols-6 gap-5 appointments-table">
@@ -242,7 +245,9 @@
       </div>
       <div class="flex flex-row flex-wrap gap-16 w-full justify-start">
         {#each data.appointments as appointment}
-          <div class="grid grid-cols-1 lg:grid-cols-6 p-5 gap-5 appointments-table border-2 border-grey-700 min-w-[30%] lg:w-full">
+          <div
+            class="grid grid-cols-1 lg:grid-cols-6 p-5 gap-5 appointments-table border-2 border-grey-700 min-w-[30%] lg:w-full"
+          >
             <p class={appointment.clientId ? "" : "bg-red-200"}>
               {appointment.clientId
                 ? data.clients.find((c) => c.id === appointment.clientId)?.name
@@ -266,13 +271,13 @@
             <p>
               {moment(appointment.startAt || appointment.endAt).format("DD.MM")}
             </p>
-            <button
+            <EditButton
               on:click={() => {
                 appointmentInEditId = appointment.id;
               }}
             >
               Редактировать
-            </button>
+            </EditButton>
           </div>
         {/each}
       </div>

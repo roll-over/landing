@@ -1,6 +1,10 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
+  import AddButton from "$lib/components/AddButton.svelte";
+  import CenteredPage from "$lib/components/CenteredPage.svelte";
+  import DeleteButton from "$lib/components/DeleteButton.svelte";
+  import SaveButton from "$lib/components/SaveButton.svelte";
   import Section from "$lib/components/Section.svelte";
   import type { Company } from "$lib/types/crm";
   export let data: { company: Company };
@@ -8,7 +12,7 @@
   const companyId = $page.params.companyId;
 </script>
 
-<div class="flex flex-col items-start p-10">
+<CenteredPage>
   <Section>
     <h3>Название</h3>
     <input
@@ -73,13 +77,13 @@
         {/each}
       </ul>
     {/if}
-    <button
+    <AddButton
       on:click={() => {
         data.company.contacts = [...(data.company.contacts || []), { type: "phone", value: "" }];
       }}
     >
       Добавить контакт
-    </button>
+    </AddButton>
   </Section>
 
   <Section>
@@ -115,7 +119,7 @@
     </select>
   </Section>
 
-  <button
+  <SaveButton
     on:click={async () => {
       const res = await fetch(`/ru/crm/${companyId}/company/api/`, {
         method: "PUT",
@@ -131,13 +135,11 @@
 
       window.location.reload();
     }}
-    class="bg-teal-500 p-2 rounded-xl"
   >
     Сохранить изменения
-  </button>
+  </SaveButton>
   <br />
-  <button
-    class="bg-red-500 p-2 rounded-xl"
+  <DeleteButton
     on:click={async () => {
       const res = await fetch(`/ru/crm/${companyId}/company/api/`, {
         method: "DELETE",
@@ -151,5 +153,5 @@
     }}
   >
     Удалить компанию
-  </button>
-</div>
+  </DeleteButton>
+</CenteredPage>

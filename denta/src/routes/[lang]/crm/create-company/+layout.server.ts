@@ -1,17 +1,6 @@
 import db from "$lib/db";
 
 export const load = async (event) => {
-  const cabinets =
-    (await db()
-      .collection("cabinets")
-      .find(
-        {
-          companyId: event.params.companyId,
-        },
-        { projection: { _id: 0 } },
-      )
-      .toArray()) || [];
-
   const countries = (
     await db()
       .collection("countries")
@@ -32,7 +21,8 @@ export const load = async (event) => {
   }));
 
   return {
-    cabinets,
-    countries,
+    countries: countries,
+
+    lang: event.params.lang,
   };
 };

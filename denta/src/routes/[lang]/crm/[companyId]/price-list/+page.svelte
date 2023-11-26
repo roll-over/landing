@@ -1,5 +1,8 @@
 <script lang="ts">
   import { page } from "$app/stores";
+  import AddButton from "$lib/components/AddButton.svelte";
+  import DeleteButton from "$lib/components/DeleteButton.svelte";
+  import SaveButton from "$lib/components/SaveButton.svelte";
   import Section from "$lib/components/Section.svelte";
 
   import type { PriceListItem, Service } from "$lib/types/crm";
@@ -11,13 +14,13 @@
 </script>
 
 <div class="flex flex-col items-start p-10">
-  <button
+  <AddButton
     on:click={async () => {
       addingNewService = true;
     }}
   >
     Добавить услугу
-  </button>
+  </AddButton>
 
   {#if addingNewService}
     <input
@@ -43,7 +46,7 @@
       }}
     />
 
-    <button
+    <AddButton
       on:click={async () => {
         const res = await fetch(`/ru/crm/${companyId}/price-list/api/`, {
           method: "POST",
@@ -60,11 +63,11 @@
       }}
     >
       Добавить
-    </button>
+    </AddButton>
   {:else}
     <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
       {#each data.priceList as service}
-        <p>
+        <p class="flex flex-col items-center justify-center">
           {service.name}
         </p>
         <input
@@ -75,7 +78,7 @@
           }}
         />
 
-        <button
+        <SaveButton
           on:click={async () => {
             const res = await fetch(`/ru/crm/${companyId}/price-list/api/`, {
               method: "PUT",
@@ -90,11 +93,10 @@
 
             window.location.reload();
           }}
-          class="bg-teal-500 p-2 rounded-xl"
         >
           Сохранить изменения
-        </button>
-        <button
+        </SaveButton>
+        <DeleteButton
           on:click={async () => {
             const res = await fetch(`/ru/crm/${companyId}/price-list/api/`, {
               method: "DELETE",
@@ -110,7 +112,7 @@
           }}
         >
           Удалить
-        </button>
+        </DeleteButton>
       {/each}
     </div>
   {/if}
