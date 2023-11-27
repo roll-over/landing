@@ -2,10 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url><loc>https://denta.roll-over.org/</loc></url>
 <url><loc>https://denta.roll-over.org/auth/signin</loc></url>
-<url><loc>https://denta.roll-over.org/ru/search/Kyrgyzstan/Bishkek</loc></url>
-<url><loc>https://denta.roll-over.org/ru/about</loc></url>
+<url><loc>https://denta.roll-over.org/ru/search/kazahstan/abaj</loc></url>
 <url><loc>https://denta.roll-over.org/ru/crm</loc></url>
-<url><loc>https://denta.roll-over.org/ru/search</loc></url>
-<url><loc>https://denta.roll-over.org/ru/search/Kyrgyzstan</loc></url>
+<url><loc>https://denta.roll-over.org/ru/search/kyrgyzstan</loc></url>
+<url><loc>https://denta.roll-over.org/ru/about</loc></url>
+<url><loc>https://denta.roll-over.org/ru/search/kazahstan</loc></url>
 <url><loc>https://denta.roll-over.org/ru</loc></url>
+<url><loc>https://denta.roll-over.org/ru/search/kyrgyzstan/osh</loc></url>
+<url><loc>https://denta.roll-over.org/ru/search/kyrgyzstan/bishkek</loc></url>
+<url><loc>https://denta.roll-over.org/ru/crm/create-company</loc></url>
+<url><loc>https://denta.roll-over.org/ru/search</loc></url>
 </urlset>
