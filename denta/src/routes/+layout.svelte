@@ -3,7 +3,7 @@
   import { page } from "$app/stores";
   import NavLink from "$lib/components/NavLink.svelte";
 
-  export let data: any;
+  export let data: { countries: any[]; cities: any[] };
 
   let w;
 
@@ -24,39 +24,72 @@
 
   $: path = $page.url.pathname;
   $: steps = path.split("/").filter((step) => step !== "");
+
   const stepsWithLinksAndTitles = {
-    projects: {
-      title: "Проекты",
+    search: {
+      title: "Поиск",
     },
     contacts: {
       title: "Контакты",
     },
-    vacancies: {
-      title: "Вакансии",
-    },
-    anounces: {
-      title: "Анонсы",
-    },
-    contributors: {
-      title: "Контрибьюторы",
-      href: "/contributors",
-    },
-    "red-flags": {
-      title: "red-flags",
-    },
-    employee: {
-      title: "Работникам",
-    },
-    "check-cv": {
-      title: "Проверка резюме",
-    },
-
-    "potential-vacancy": {
-      title: "Проверка потенциальной вакансии",
-    },
     posts: {
       title: "Статьи",
     },
+    about: {
+      title: "О нас",
+    },
+    company: {
+      title: "Компания",
+    },
+    appointments: {
+      title: "Записи",
+    },
+    clients: {
+      title: "Пациенты",
+    },
+    cabinets: {
+      title: "Кабинеты",
+    },
+    employees: {
+      title: "Доктора",
+    },
+    "price-list": {
+      title: "Прайс лист",
+    },
+    wallet: {
+      title: "Кошелек",
+    },
+    subscription: {
+      title: "Подписка",
+    },
+    transactions: {
+      title: "Транзакции",
+    },
+    "top-up": {
+      title: "Пополнить",
+    },
+    signin: {
+      title: "Войти",
+    },
+    signup: {
+      title: "Зарегистрироваться",
+    },
+    "create-company": {
+      title: "Создать компанию",
+    },
+    ...data.countries.reduce((acc, country) => {
+      acc[country.id] = {
+        title: country[$page.params.lang],
+      };
+      return acc;
+    }, {}),
+
+    ...data.cities.reduce((acc, city) => {
+      acc[city.id] = {
+        title: city[$page.params.lang],
+      };
+      return acc;
+    }, {}),
   };
 
   const getUrl = (steps, step) => {

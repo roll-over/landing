@@ -5,6 +5,11 @@
   export let data: { company: Company; companies: Company[] };
 </script>
 
+<svelte:head>
+  <title>CRM-система для стоматологий</title>
+  <meta name="description" content="CRM-система для стоматологий" />
+</svelte:head>
+
 <CenteredPage>
   <h2>CRM-система для стоматологий</h2>
   <Section>

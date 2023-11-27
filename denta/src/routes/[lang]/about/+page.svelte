@@ -2,6 +2,11 @@
   import CenteredPage from "$lib/components/CenteredPage.svelte";
 </script>
 
+<svelte:head>
+  <title>О нас</title>
+  <meta name="description" content="О команде разработки CRM-системы для стоматологов" />
+</svelte:head>
+
 <CenteredPage>
   <h2>О нас</h2>
   <p>

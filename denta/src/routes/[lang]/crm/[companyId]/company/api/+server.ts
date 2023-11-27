@@ -16,10 +16,20 @@ export async function POST(event) {
   if (!country) {
     await db()
       .collection("countries")
-      .insertOne({
-        id: countryId,
-        [event.params.lang]: company.mainAddress.country,
-      });
+      .updateOne(
+        {
+          id: countryId,
+        },
+        {
+          $set: {
+            id: countryId,
+            [event.params.lang]: company.mainAddress.country,
+          },
+        },
+        {
+          upsert: true,
+        },
+      );
   }
 
   const city = await db().collection("cities").findOne({

@@ -19,9 +19,17 @@
   $: pickingCity = false;
 </script>
 
+<svelte:head>
+  <title>Поиск стоматологий в {data.city.label}, {data.country.label}</title>
+  <meta
+    name="description"
+    content={`Поиск стоматологий в ${data.city.label}, ${data.country.label}`}
+  />
+</svelte:head>
+
 <CenteredPage>
   <div class="flex flex-col">
-    <h2>Поиск стоматологий в {data.country.label}</h2>
+    <h2>Поиск стоматологий в {data.city.label}, {data.country.label}</h2>
 
     <div class="flex flex-row gap-3">
       <button on:click={() => (pickingCountry = !pickingCountry)}>
