@@ -12,7 +12,7 @@ if __name__ == "__main__":
         parser=Parser,
     )
     crawler(
-        "https://denta.roll-over.org/",
+        "https://denta-crm.com/",
         out_file="denta/static/sitemap.xml",
         exclude_urls=[".pdf", ".jpg", ".zip"],
         http_request_options={"ssl": True},
