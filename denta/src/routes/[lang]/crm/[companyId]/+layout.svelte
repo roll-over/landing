@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import { clickOutside } from "$lib/clickOutside";
+  import NavList from "$lib/components/NavList.svelte";
   import type { Company } from "$lib/types/crm";
 
   export let data: {
@@ -9,28 +10,48 @@
 
   const links = [
     {
-      title: "Компания",
-      href: `/ru/crm/${data.company.id}/company`,
-    },
-    {
-      title: "Клиенты",
-      href: `/ru/crm/${data.company.id}/clients`,
-    },
-    {
       title: "Записи",
       href: `/ru/crm/${data.company.id}/appointments`,
     },
     {
-      title: "Прайс лист",
-      href: `/ru/crm/${data.company.id}/price-list`,
+      title: "Пациенты",
+      href: `/ru/crm/${data.company.id}/clients`,
     },
     {
-      title: "Доктора",
-      href: `/ru/crm/${data.company.id}/employees`,
+      title: "Компания",
+      href: `/ru/crm/${data.company.id}/company`,
+      children: [
+        {
+          title: "Кабинеты",
+          href: `/ru/crm/${data.company.id}/cabinets`,
+        },
+        {
+          title: "Доктора",
+          href: `/ru/crm/${data.company.id}/employees`,
+        },
+        {
+          title: "Прайс лист",
+          href: `/ru/crm/${data.company.id}/price-list`,
+        },
+      ],
     },
     {
-      title: "Кабинеты",
-      href: `/ru/crm/${data.company.id}/cabinets`,
+      title: "Кошелек",
+      href: `/ru/crm/${data.company.id}/wallet`,
+      children: [
+        {
+          title: "Подписка",
+          href: `/ru/crm/${data.company.id}/subscription`,
+        },
+        {
+          title: "Транзакции",
+          href: `/ru/crm/${data.company.id}/transactions`,
+        },
+        {
+          title: "Пополнить",
+          href: `/ru/crm/${data.company.id}/top-up`,
+        }
+      ],
     },
   ];
 
@@ -44,18 +65,9 @@
     on:click_outside={() => (menuVisible = false)}
   >
     <button on:click={() => (menuVisible = !menuVisible)} class="flex flex-col"> Меню </button>
-    <ol class="w-full {menuVisible ? 'absolute' : 'hidden'}  md:block default-bg">
-      {#each links as link}
-        <li class="w-full">
-          <a
-            on:click={() => (menuVisible = false)}
-            href={link.href}
-            class="{link.href === $page.url.pathname ? 'bg-gray-300  ' : ''} p-1 w-full"
-            >{link.title}
-          </a>
-        </li>
-      {/each}
-    </ol>
+    <div class="w-full {menuVisible ? 'absolute' : 'hidden'}  md:block default-bg">
+      <NavList items={links} pathname={$page.url.pathname} on:click={() => (menuVisible = false)} />
+    </div>
   </nav>
   <slot />
 </div>
