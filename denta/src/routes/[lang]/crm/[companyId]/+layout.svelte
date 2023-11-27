@@ -50,7 +50,7 @@
         {
           title: "Пополнить",
           href: `/ru/crm/${data.company.id}/top-up`,
-        }
+        },
       ],
     },
   ];
@@ -65,7 +65,11 @@
     on:click_outside={() => (menuVisible = false)}
   >
     <button on:click={() => (menuVisible = !menuVisible)} class="flex flex-col"> Меню </button>
-    <div class="w-full {menuVisible ? 'absolute' : 'hidden'}  md:block default-bg">
+    <div
+      class="{menuVisible
+        ? 'absolute'
+        : 'hidden'}  md:block default-bg border-2 rounded-xl border-gray-400 md:border-none"
+    >
       <NavList items={links} pathname={$page.url.pathname} on:click={() => (menuVisible = false)} />
     </div>
   </nav>
