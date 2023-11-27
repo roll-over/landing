@@ -34,18 +34,18 @@ export async function POST(event) {
         countryId: countryId,
       });
   }
-
+  const companyId = uuid();
   await db()
     .collection("companies")
     .insertOne({
       ...company,
-      id: uuid(),
+      id: companyId,
       owner: session.user.email,
       createdAt: new Date().toISOString(),
       workingHours: {},
       contacts: [],
     } as Company);
-  return new Response(JSON.stringify(company), {
+  return new Response(JSON.stringify({ id: companyId }), {
     status: 200,
     headers: {
       "content-type": "application/json",

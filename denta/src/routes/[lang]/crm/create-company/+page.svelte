@@ -94,7 +94,16 @@
           "Content-Type": "application/json",
         },
         body: JSON.stringify(company),
-      });
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((c) => {
+          window.location.href = `/${$page.params.lang}/crm/${c.id}/company/`;
+        }).catch((e) => {
+          console.log(e);
+          window.location.href = `/${$page.params.lang}/crm/`;
+        });
     }}
   >
     Создать
