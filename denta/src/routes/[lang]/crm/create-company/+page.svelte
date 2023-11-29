@@ -13,11 +13,10 @@
   $: country = null as Country | null;
   $: city = null;
   $: cities = [] as City[];
-  $: console.log(cities);
 </script>
 
 <CenteredPage>
-  <h2>Создать команию</h2>
+  <h1>Создать команию</h1>
   <input
     type="text"
     placeholder="Название"
@@ -27,7 +26,7 @@
     }}
   />
   <Section>
-    <h2>Расположение головного офиса или клиники (если одна)</h2>
+    <h1>Расположение головного офиса или клиники (если одна)</h1>
     <p>На следующем шаге вы сможете добавить филиалы и кабинеты.</p>
     <input
       type="text"

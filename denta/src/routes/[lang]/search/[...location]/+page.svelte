@@ -29,7 +29,7 @@
 
 <div class="p-2 md:p-10 flex flex-col gap-16">
   <div class="flex flex-col w-full items-center">
-    <h2>Поиск стоматологий в {data.city.label}, {data.country.label}</h2>
+    <h1>Поиск стоматологий в {data.city.label}, {data.country.label}</h1>
 
     <div class="flex flex-row gap-3">
       <button on:click={() => (pickingCountry = !pickingCountry)}>

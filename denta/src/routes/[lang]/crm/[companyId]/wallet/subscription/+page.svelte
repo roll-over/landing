@@ -8,7 +8,7 @@
 </script>
 
 <div class="flex flex-col items-start p-10 w-full">
-  <h2>Подписка</h2>
+  <h1>Подписка</h1>
 
   <div class="flex flex-col md:flex-row gap-10 w-full">
     <div class="flex flex-col gap-5 w-full">

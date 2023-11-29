@@ -26,7 +26,7 @@
 
 <CenteredPage>
   <div class="flex flex-col">
-    <h2>Стоматология в {data.city.label}, {data.country.label}</h2>
+    <h1>Стоматология в {data.city.label}, {data.country.label}</h1>
   </div>
 
   <div class="flex flex-col gap-2">
@@ -40,7 +40,7 @@
   </div>
   <br />
   <ul class="flex flex-col gap-5">
-    <h2>Смотрите так-же:</h2>
+    <h1>Смотрите так-же:</h1>
     {#each data.anotherCompanies as cabinet}
       <li>
         <a
