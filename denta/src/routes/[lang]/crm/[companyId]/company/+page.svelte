@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { goto } from "$app/navigation";
   import { page } from "$app/stores";
+  import { clickOutside } from "$lib/clickOutside";
   import AddButton from "$lib/components/AddButton.svelte";
   import DeleteButton from "$lib/components/DeleteButton.svelte";
   import SaveButton from "$lib/components/SaveButton.svelte";
@@ -9,11 +9,19 @@
   import type { Company } from "$lib/types/crm";
   import { getToastStore } from "@skeletonlabs/skeleton";
 
-  export let data: { company: Company };
+  export let data: {
+    company: Company;
+    countries: any[];
+    cities: any[];
+    country: {
+      value: string;
+      label: string;
+    };
+    city: { value: string; label: string };
+  };
 
   const companyId = $page.params.companyId;
   const toastStore = getToastStore();
-  $: cities = [] as { value: string; label: string }[];
 </script>
 
 <div class="flex flex-col items-center w-full">
@@ -114,8 +122,9 @@
               )
                 .then((res) => res.json())
                 .then((_data) => {
-                  cities = _data;
+                  data.cities = _data;
                 });
+              data.company.mainAddress.city = "";
               data.company.changed = true;
             }}
           />
@@ -136,7 +145,7 @@
           />
 
           <datalist id="cities">
-            {#each cities as city}
+            {#each data.cities as city}
               <option value={city.label}>{city.label}</option>
             {/each}
           </datalist>
@@ -251,6 +260,19 @@
   <SaveButton
     on:click={async () => {
       toastStore.trigger({ message: "Сохранение...", hideDismiss: true });
+
+      const country =
+        data.countries.find((c) => {
+          console.log(c, data.company.mainAddress.country);
+          return c.label === data.company.mainAddress.country;
+        })?.value || data.country.label;
+
+      const city =
+        data.cities.find((c) => {
+          console.log(c, data.company.mainAddress.city);
+          return c.label === data.company.mainAddress.city;
+        })?.value || data.city.label;
+
       const res = await fetch(`/ru/crm/${companyId}/company/api/`, {
         method: "PUT",
         headers: {
@@ -260,6 +282,13 @@
           name: data.company.name,
           contacts: data.company.contacts || [],
           workingHours: data.company.workingHours,
+          mainAddress: {
+            country,
+            city,
+            street: data.company.mainAddress.street,
+            house: data.company.mainAddress.house,
+            links: data.company.mainAddress.links || [],
+          },
         }),
       })
         .then((res) => {
@@ -277,8 +306,7 @@
             hideDismiss: true,
             background: "variant-filled-error",
           });
-        })
-        .finally(() => {});
+        });
     }}
   >
     Сохранить изменения
