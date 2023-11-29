@@ -1,7 +1,7 @@
 <script lang="ts">
   import { clickOutside } from "$lib/clickOutside";
-  import CenteredPage from "$lib/components/CenteredPage.svelte";
   import NavLink from "$lib/components/NavLink.svelte";
+  import SupportLink from "$lib/components/SupportLink.svelte";
   import type { Cabinet, Language } from "$lib/types/crm";
 
   export let data: {
@@ -27,8 +27,8 @@
   />
 </svelte:head>
 
-<CenteredPage>
-  <div class="flex flex-col">
+<div class="p-2 md:p-10 flex flex-col gap-16">
+  <div class="flex flex-col w-full items-center">
     <h2>Поиск стоматологий в {data.city.label}, {data.country.label}</h2>
 
     <div class="flex flex-row gap-3">
@@ -70,4 +70,15 @@
       </button>
     </div>
   </div>
-</CenteredPage>
+
+  <ul class="flex flex-row flex-wrap gap-10 justify-between">
+    {#each data.infoCompanies as cabinet}
+      <li class="flex flex-col justify-between gap-2 w-96 border-2 p-2 rounded-xl">
+        <h3>{cabinet.title}</h3>
+        <p>Адрес: {cabinet.address}</p>
+        <p>Телефон: <a href={`tel:${cabinet.phone}`} >{cabinet.phone}</a></p>
+        <SupportLink href={`/${data.lang}/company/${cabinet._id}/`}>Подробнее</SupportLink>
+      </li>
+    {/each}
+  </ul>
+</div>

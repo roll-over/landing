@@ -68,12 +68,30 @@ export const load = async (event) => {
     throw redirect(302, `/${event.params.lang}/search/${pickedCountry.value}/${cities[0].value}`);
   }
 
-  return {
-    cabinets,
-    countries,
-    country: pickedCountry,
-    cities,
-    city: pickedCity,
-    lang: event.params.lang,
-  };
+  const infoCompanies = await db()
+    .collection("info-companies")
+    .find(
+      {
+        country: pickedCountry.value,
+        city: pickedCity.value,
+      },
+      {
+        projection: {},
+      },
+    )
+    .toArray();
+
+
+  if (infoCompanies) {
+    return {
+      type: "info-companies",
+      cabinets,
+      countries,
+      country: pickedCountry,
+      cities,
+      city: pickedCity,
+      lang: event.params.lang,
+      infoCompanies,
+    };
+  }
 };
