@@ -2,7 +2,11 @@
   import "../styles/app.css";
   import { page } from "$app/stores";
   import NavLink from "$lib/components/NavLink.svelte";
+  import { Toast, initializeStores } from "@skeletonlabs/skeleton";
+  import Icon from "svelte-icons-pack";
+  import BsWallet2 from "svelte-icons-pack/bs/BsWallet2";
 
+  initializeStores();
   export let data: { countries: any[]; cities: any[] };
 
   let w;
@@ -23,7 +27,8 @@
     ...($page.params.companyId
       ? [
           {
-            title: "Кошелек",
+            type: "icon",
+            title: BsWallet2,
             href: `/ru/crm/${$page.params.companyId}/wallet`,
           },
         ]
@@ -114,7 +119,9 @@
 </script>
 
 <nav class="p-2 flex flex-col justify-between" bind:clientWidth={w}>
-  <div class="p-2 flex flex-col md:flex-row justify-between ">
+  <Toast position={"tr"} />
+
+  <div class="p-2 flex flex-col md:flex-row justify-between">
     <a href="/" class="flex flex-row">
       <span class="text-2xl">denta</span>
     </a>
@@ -122,7 +129,13 @@
     <ul class="flex flex-row flex-wrap gap-1">
       {#each links as link}
         <li>
-          <NavLink href={link.href}>{link.title}</NavLink>
+          <NavLink href={link.href}>
+            {#if link.type === "icon"}
+              <Icon src={link.title} size="25" />
+            {:else}
+              {link.title}
+            {/if}
+          </NavLink>
         </li>
       {/each}
       <li>

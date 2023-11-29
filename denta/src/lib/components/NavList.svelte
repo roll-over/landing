@@ -23,11 +23,11 @@
 
 <ol class="w-full md:block default-bg pl-3">
   {#each items || [] as link}
-    <li class="w-full p-1">
-      - <a
+    <li class="w-full p-1 ">
+      <a
         on:click={(e) => dispatch("click", e)}
         href={link.href}
-        class="{link.href === pathname ? 'bg-gray-300  ' : ''} p-1 w-full"
+        class="{link.href === pathname ? 'variant-filled-secondary' : ''} p-1 w-full btn"
         >{link.title}
       </a>
       {#if link.children}

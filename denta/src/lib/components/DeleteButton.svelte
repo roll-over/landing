@@ -10,7 +10,7 @@
   on:click={(e) => {
     dispatch("click", e);
   }}
-  class="btn variant-filled-warning"
+  class="btn variant-filled-warning w-14 h-14"
 >
   <Icon src={AiOutlineDelete} />
 </button>

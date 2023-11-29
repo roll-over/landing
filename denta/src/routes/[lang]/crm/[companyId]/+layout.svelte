@@ -20,20 +20,18 @@
     {
       title: "Компания",
       href: `/ru/crm/${data.company.id}/company`,
-      children: [
-        {
-          title: "Кабинеты",
-          href: `/ru/crm/${data.company.id}/cabinets`,
-        },
-        {
-          title: "Доктора",
-          href: `/ru/crm/${data.company.id}/employees`,
-        },
-        {
-          title: "Прайс лист",
-          href: `/ru/crm/${data.company.id}/price-list`,
-        },
-      ],
+    },
+    {
+      title: "Филиалы",
+      href: `/ru/crm/${data.company.id}/cabinets`,
+    },
+    {
+      title: "Доктора",
+      href: `/ru/crm/${data.company.id}/employees`,
+    },
+    {
+      title: "Прайс лист",
+      href: `/ru/crm/${data.company.id}/price-list`,
     },
   ];
 
@@ -46,7 +44,7 @@
     use:clickOutside
     on:click_outside={() => (menuVisible = false)}
   >
-    <button on:click={() => (menuVisible = !menuVisible)} class="flex flex-col"> Меню </button>
+    <button on:click={() => (menuVisible = !menuVisible)} class="btn md:hidden"> Меню </button>
     <div
       class="{menuVisible
         ? 'absolute'
@@ -55,5 +53,7 @@
       <NavList items={links} pathname={$page.url.pathname} on:click={() => (menuVisible = false)} />
     </div>
   </nav>
+
   <slot />
+  <aside class="w-full md:max-w-[20%]"></aside>
 </div>

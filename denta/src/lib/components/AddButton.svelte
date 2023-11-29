@@ -12,7 +12,7 @@
   on:click={(e) => {
     dispatch("click", e);
   }}
-  class="btn variant-filled-primary"
+  class="btn variant-filled-primary w-14 h-14"
 >
   <Icon {src} />
 </button>
