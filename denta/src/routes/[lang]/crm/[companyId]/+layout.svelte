@@ -41,15 +41,15 @@
       children: [
         {
           title: "Подписка",
-          href: `/ru/crm/${data.company.id}/subscription`,
+          href: `/ru/crm/${data.company.id}/wallet/subscription`,
         },
         {
           title: "Транзакции",
-          href: `/ru/crm/${data.company.id}/transactions`,
+          href: `/ru/crm/${data.company.id}/wallet/transactions`,
         },
         {
           title: "Пополнить",
-          href: `/ru/crm/${data.company.id}/top-up`,
+          href: `/ru/crm/${data.company.id}/wallet/top-up`,
         },
       ],
     },

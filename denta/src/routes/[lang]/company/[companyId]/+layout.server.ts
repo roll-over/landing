@@ -60,7 +60,7 @@ export const load = async (event) => {
   return {
     infoCompany,
     country: { label: country[event.params.lang], value: country.id },
-    city,
+    city: { label: city[event.params.lang], value: city.id },
     anotherCompanies,
   };
 };

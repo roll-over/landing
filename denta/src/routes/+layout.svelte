@@ -7,7 +7,7 @@
 
   let w;
 
-  const links = [
+  $: links = [
     {
       title: "Клиники",
       href: "/ru",
@@ -20,6 +20,14 @@
       title: "CRM",
       href: "/ru/crm",
     },
+    ...($page.params.companyId
+      ? [
+          {
+            title: "Кошелек",
+            href: `/ru/crm/${$page.params.companyId}/wallet`,
+          },
+        ]
+      : []),
   ];
 
   $: path = $page.url.pathname;
