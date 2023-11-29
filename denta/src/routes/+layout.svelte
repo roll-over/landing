@@ -113,13 +113,13 @@
   };
 </script>
 
-<nav class="p-2 flex flex-col justify-between max-h-40" bind:clientWidth={w}>
-  <div class="p-2 flex justify-between max-h-20">
+<nav class="p-2 flex flex-col justify-between" bind:clientWidth={w}>
+  <div class="p-2 flex flex-col md:flex-row justify-between ">
     <a href="/" class="flex flex-row">
       <span class="text-2xl">denta</span>
     </a>
 
-    <ul class="flex flex-row gap-1">
+    <ul class="flex flex-row flex-wrap gap-1">
       {#each links as link}
         <li>
           <NavLink href={link.href}>{link.title}</NavLink>
@@ -138,7 +138,7 @@
       </li>
     </ul>
   </div>
-  <ol class="pl-5 breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+  <ol class="pl-5 breadcrumb flex-wrap" itemscope itemtype="https://schema.org/BreadcrumbList">
     {#each steps.slice(1) as step, i}
       <li class="crumb" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
         <a class="anchor" itemprop="item" href={getUrl(steps, step)}
