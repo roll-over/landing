@@ -3,11 +3,14 @@
   import CenteredPage from "$lib/components/CenteredPage.svelte";
   import Section from "$lib/components/Section.svelte";
   import type { Cabinet, City, Country, Language } from "$lib/types/crm";
+  import { getToastStore } from "@skeletonlabs/skeleton";
 
   export let data: {
     countries: Country[];
     lang: Language;
   };
+
+  const toastStore = getToastStore();
 
   $: name = null;
   $: country = null as Country | null;
@@ -75,6 +78,21 @@
 
   <button
     on:click={() => {
+      if (!name) {
+        toastStore.trigger({ message: "Заполните Название", background: "variant-filled-error" });
+        return;
+      }
+
+      if (!country) {
+        toastStore.trigger({ message: "Заполните Страну", background: "variant-filled-error" });
+        return;
+      }
+
+      if (!city) {
+        toastStore.trigger({ message: "Заполните Город", background: "variant-filled-error" });
+        return;
+      }
+
       const company = {
         name,
         mainAddress: {
@@ -95,10 +113,12 @@
         })
         .then((c) => {
           window.location.href = `/${$page.params.lang}/crm/${c.id}/company/`;
-        }).catch((e) => {
+        })
+        .catch((e) => {
           window.location.href = `/${$page.params.lang}/crm/`;
         });
     }}
+    class="btn variant-filled-primary"
   >
     Создать
   </button>

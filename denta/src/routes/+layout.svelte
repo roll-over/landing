@@ -5,6 +5,7 @@
   import { Toast, initializeStores } from "@skeletonlabs/skeleton";
   import Icon from "svelte-icons-pack";
   import BsWallet2 from "svelte-icons-pack/bs/BsWallet2";
+  import BsSearch from "svelte-icons-pack/bs/BsSearch";
 
   initializeStores();
   export let data: { countries: any[]; cities: any[] };
@@ -13,7 +14,8 @@
 
   $: links = [
     {
-      title: "Клиники",
+      type: "icon",
+      title: BsSearch,
       href: "/ru",
     },
     {

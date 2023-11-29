@@ -16,7 +16,7 @@ export const load = async (event) => {
         .toArray()
     : [];
 
-  return {
-    companies: companies,
-  };
+  if (companies.length >= 1) {
+    throw redirect(301, `/ru/crm/${companies[0].id}/`);
+  }
 };

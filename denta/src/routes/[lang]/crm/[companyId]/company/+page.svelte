@@ -14,7 +14,6 @@
   const companyId = $page.params.companyId;
   const toastStore = getToastStore();
   $: cities = [] as { value: string; label: string }[];
-
 </script>
 
 <div class="flex flex-col items-center w-full">
@@ -287,7 +286,7 @@
   <br />
   <DeleteButton
     on:click={async () => {
-      const res = await fetch(`/ru/crm/${companyId}/company/api/`, {
+      const res = await fetch(`/${$page.params.lang}/crm/${companyId}/company/api/`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -295,7 +294,7 @@
         body: JSON.stringify({ company: { name } }),
       });
 
-      goto(`/ru/crm/`);
+      window.location.href = `/${$page.params.lang}/crm/`;
     }}
   >
     Удалить компанию
