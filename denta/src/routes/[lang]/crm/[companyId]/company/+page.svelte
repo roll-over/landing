@@ -81,9 +81,7 @@
       on:click={() => {
         data.company.contacts = [...(data.company.contacts || []), { type: "phone", value: "" }];
       }}
-    >
-      Добавить контакт
-    </AddButton>
+    />
   </Section>
 
   <Section>

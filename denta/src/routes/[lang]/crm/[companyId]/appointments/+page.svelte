@@ -49,9 +49,7 @@
 
       window.location.reload();
     }}
-  >
-    Добавить встречу
-  </AddButton>
+  />
   {#if appointmentInEdit}
     <Section>
       <h3>Клиент</h3>

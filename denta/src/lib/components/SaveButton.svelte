@@ -1,5 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
+  import FiSave from "svelte-icons-pack/fi/FiSave";
+  import Icon from "svelte-icons-pack/Icon.svelte";
 
   const dispatch = createEventDispatcher();
 </script>
@@ -8,7 +10,7 @@
   on:click={(e) => {
     dispatch("click", e);
   }}
-  class="flex flex-col bg-green-500 rounded-2xl p-5 gap-5 text-white items-center"
+  class="btn variant-filled-secondary "
 >
-  <slot />
+  <Icon src={FiSave} />
 </button>

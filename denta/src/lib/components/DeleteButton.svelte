@@ -1,5 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
+  import Icon from "svelte-icons-pack";
+  import AiOutlineDelete from "svelte-icons-pack/ai/AiOutlineDelete";
 
   const dispatch = createEventDispatcher();
 </script>
@@ -8,7 +10,7 @@
   on:click={(e) => {
     dispatch("click", e);
   }}
-  class="flex flex-col bg-red-400 rounded-2xl p-5 gap-5 text-white items-center"
+  class="btn variant-filled-warning"
 >
-  <slot />
+  <Icon src={AiOutlineDelete} />
 </button>

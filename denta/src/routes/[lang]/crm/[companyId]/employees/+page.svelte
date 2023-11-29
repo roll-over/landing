@@ -22,9 +22,7 @@
         });
         window.location.reload();
       }}
-    >
-      Добавить доктора
-    </AddButton>
+    />
   </div>
   <div class="flex flex-row flex-wrap gap-10">
     {#each data.employees as employee}
@@ -89,10 +87,8 @@
               employee.contacts = [...(employee.contacts || []), { type: "phone", value: "" }];
               employee.changed = true;
             }}
-          >
-            Добавить контакт
-          </AddButton></Section
-        >
+          />
+        </Section>
         {#if employee.changed}
           <SaveButton
             on:click={async () => {

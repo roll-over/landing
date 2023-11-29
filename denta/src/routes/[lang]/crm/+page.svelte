@@ -28,9 +28,7 @@
         {/each}
       </ol>
     {/if}
-    <a href="/ru/crm/create-company" class="w-full bg-green-400 p-2 rounded-2xl text-center">
-      Создать компанию!
-    </a>
+    <a href="/ru/crm/create-company" class="btn variant-filled-primary"> Создать компанию! </a>
   </Section>
 
   <Section>
@@ -40,9 +38,6 @@
       стоматологией без головной боли в ведении отчетности.
     </p>
     <p>А ещё, мы займемся продвижением вашей стоматологии в поиске.</p>
-    <a href="/ru/crm/create-company" class="w-full bg-green-400 p-10 rounded-2xl text-center">
-      Создать компанию!
-    </a>
   </Section>
 
   <Section>
@@ -55,6 +50,7 @@
       После этого вы получите свой личный сайт, который будет отображаться в поиске и привлекать
       клиентов.
     </p>
+    <a href="/ru/crm/create-company" class="btn variant-filled-primary"> Создать компанию! </a>
   </Section>
 
   <Section>
@@ -73,14 +69,18 @@
         Мы помогаем вам продвигать вашу стоматологию в поиске, и вы можете заказать у нас услуги
         консультаций по продвижению или вообще отдать нам это дело.
       </li>
-      <li>
+      <li class="contents">
         Весь <a href="https://github.com/roll-over/landing"> код нашей системы открыт</a>, и вы
         можете убедиться в том, что она действительно безопасна и мы опираемся на поддержку
         сообщества, что снижает стоимость разработки.
       </li>
     </ul>
-    <a href="/ru/crm/create-company" class="w-full bg-green-400 p-2 rounded-2xl text-center">
-      Создать компанию!
-    </a>
+    <a href="/ru/crm/create-company" class="btn variant-filled-primary"> Создать компанию! </a>
   </Section>
 </CenteredPage>
+
+<style>
+  .contents {
+    display: contents;
+  }
+</style>

@@ -2,33 +2,35 @@ import { isAdmin } from "$lib/backend/is-admin";
 import db from "$lib/db";
 
 export const load = async (event) => {
-  const countries = await db()
-    .collection("countries")
-    .find(
-      {},
-      {
-        projection: {
-          _id: 0,
-          id: 1,
-          [event.params.lang]: 1,
+  const countries =
+    (await db()
+      ?.collection("countries")
+      .find(
+        {},
+        {
+          projection: {
+            _id: 0,
+            id: 1,
+            [event.params.lang]: 1,
+          },
         },
-      },
-    )
-    .toArray();
+      )
+      .toArray()) || [];
 
-  const cities = await db()
-    .collection("cities")
-    .find(
-      {},
-      {
-        projection: {
-          _id: 0,
-          id: 1,
-          [event.params.lang]: 1,
+  const cities =
+    (await db()
+      ?.collection("cities")
+      .find(
+        {},
+        {
+          projection: {
+            _id: 0,
+            id: 1,
+            [event.params.lang]: 1,
+          },
         },
-      },
-    )
-    .toArray();
+      )
+      .toArray()) || [];
 
   try {
     return {

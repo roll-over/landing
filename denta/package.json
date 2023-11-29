@@ -38,12 +38,15 @@
   "dependencies": {
     "@auth/core": "^0.18.0",
     "@auth/sveltekit": "^0.3.11",
+    "@skeletonlabs/skeleton": "^2.5.1",
+    "@skeletonlabs/tw-plugin": "^0.2.4",
     "auth": "^0.0.9",
     "google": "link:@auth/core/providers/google",
     "jsonwebtoken": "^9.0.2",
     "moment": "^2.29.4",
     "mongodb": "^6.2.0",
     "openai": "^4.14.2",
+    "svelte-icons-pack": "^2.1.0",
     "svelte-markdown": "^0.4.0",
     "uuidv4": "^6.2.13"
   }

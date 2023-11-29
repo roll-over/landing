@@ -3,8 +3,7 @@
   import AddButton from "$lib/components/AddButton.svelte";
   import DeleteButton from "$lib/components/DeleteButton.svelte";
   import SaveButton from "$lib/components/SaveButton.svelte";
-  import Section from "$lib/components/Section.svelte";
-
+  import RiSystemMenuAddLine from "svelte-icons-pack/ri/RiSystemMenuAddLine";
   import type { PriceListItem, Service } from "$lib/types/crm";
   export let data: { priceList: PriceListItem[]; services: Service[] };
   $: companyId = $page.params.companyId;
@@ -18,9 +17,8 @@
     on:click={async () => {
       addingNewService = true;
     }}
-  >
-    Добавить услугу
-  </AddButton>
+    src={RiSystemMenuAddLine}
+  />
 
   {#if addingNewService}
     <input
@@ -46,7 +44,7 @@
       }}
     />
 
-    <AddButton
+    <SaveButton
       on:click={async () => {
         const res = await fetch(`/ru/crm/${companyId}/price-list/api/`, {
           method: "POST",
@@ -61,9 +59,7 @@
 
         window.location.reload();
       }}
-    >
-      Добавить
-    </AddButton>
+    />
   {:else}
     <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
       {#each data.priceList as service}

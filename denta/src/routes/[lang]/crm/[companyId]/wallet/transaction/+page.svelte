@@ -18,9 +18,7 @@
     on:click={async () => {
       addingNewService = true;
     }}
-  >
-    Добавить услугу
-  </AddButton>
+  />
 
   {#if addingNewService}
     <input
@@ -61,9 +59,7 @@
 
         window.location.reload();
       }}
-    >
-      Добавить
-    </AddButton>
+    />
   {:else}
     <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
       {#each data.priceList as service}

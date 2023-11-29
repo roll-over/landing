@@ -24,9 +24,7 @@
 
         window.location.reload();
       }}
-    >
-      Добавить клиента
-    </AddButton>
+    />
   </div>
 
   <div class="flex gap-10 flex-wrap">
@@ -93,9 +91,7 @@
               client.contacts = [...(client.contacts || []), { type: "phone", value: "" }];
               client.changed = true;
             }}
-          >
-            Добавить контакт
-          </AddButton>
+          />
         </Section>
         {#if client.changed}
           <SaveButton

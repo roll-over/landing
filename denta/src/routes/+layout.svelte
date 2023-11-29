@@ -116,7 +116,7 @@
 <nav class="p-2 flex flex-col justify-between max-h-40" bind:clientWidth={w}>
   <div class="p-2 flex justify-between max-h-20">
     <a href="/" class="flex flex-row">
-      <h1 class="text-2xl">denta</h1>
+      <span class="text-2xl">denta</span>
     </a>
 
     <ul class="flex flex-row gap-1">
@@ -138,16 +138,16 @@
       </li>
     </ul>
   </div>
-  <ol class="pl-5 flex items-end" itemscope itemtype="https://schema.org/BreadcrumbList">
+  <ol class="pl-5 breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
     {#each steps.slice(1) as step, i}
-      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <a itemprop="item" href={getUrl(steps, step)}
+      <li class="crumb" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a class="anchor" itemprop="item" href={getUrl(steps, step)}
           ><span itemprop="name">{getTitle(stepsWithLinksAndTitles[step]?.title || step)}</span></a
         >
         <meta itemprop="position" content={i.toString()} />
       </li>
       {#if step !== steps[steps.length - 1]}
-        {" > "}
+        <li class="crumb-separator" aria-hidden>&rsaquo;</li>
       {/if}
     {/each}
   </ol>

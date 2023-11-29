@@ -35,24 +35,6 @@
         },
       ],
     },
-    {
-      title: "Кошелек",
-      href: `/ru/crm/${data.company.id}/wallet`,
-      children: [
-        {
-          title: "Подписка",
-          href: `/ru/crm/${data.company.id}/wallet/subscription`,
-        },
-        {
-          title: "Транзакции",
-          href: `/ru/crm/${data.company.id}/wallet/transactions`,
-        },
-        {
-          title: "Пополнить",
-          href: `/ru/crm/${data.company.id}/wallet/top-up`,
-        },
-      ],
-    },
   ];
 
   $: menuVisible = false;

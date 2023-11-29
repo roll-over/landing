@@ -25,9 +25,7 @@
       });
       window.location.reload();
     }}
-  >
-    Добавить кабинет
-  </AddButton>
+/>
   <div class="flex flex-row flex-wrap gap-10">
     {#each data.cabinets as cabinet}
       <div class="flex flex-col border-2 rounded-xl border-gray-400 p-5">
@@ -90,9 +88,7 @@
             on:click={() => {
               cabinet.contacts = [...(cabinet.contacts || []), { type: "phone", value: "" }];
             }}
-          >
-            Добавить контакт
-          </AddButton>
+          />
         </Section>
 
         <Section>
@@ -208,9 +204,7 @@
                 ];
                 cabinet.changed = true;
               }}
-            >
-              Добавить ссылку на карту
-            </AddButton>
+       />
           </div>
         </Section>
         {#if cabinet.changed}
