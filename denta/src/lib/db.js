@@ -6,7 +6,7 @@ const client = new MongoClient(env.ME_CONFIG_MONGODB_URL);
 let db = null;
 
 export const startMongo = async () => {
-  console.log("Starting mongo");
+  console.info("Starting mongo");
   for (let i = 0; i < 10; i++) {
     try {
       await client.connect();

@@ -13,8 +13,6 @@ export const load = async (event) => {
     )
     .toArray();
 
-  console.log(clients);
-
   return {
     clients,
   };

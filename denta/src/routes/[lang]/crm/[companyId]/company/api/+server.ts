@@ -6,7 +6,6 @@ import { uuid } from "uuidv4";
 export async function POST(event) {
   const company = await event.request.json();
   const session = await event.locals.getSession();
-  console.log(company);
 
   const country = await db().collection("countries").findOne({
     id: company.mainAddress.country,
@@ -66,7 +65,6 @@ export async function POST(event) {
 export async function PUT(event) {
   const company = await event.request.json();
   const session = await event.locals.getSession();
-  console.log(company);
 
   const companyId = event.params.companyId;
   const userCompanies = await db()

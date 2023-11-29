@@ -1,9 +1,7 @@
 import db from "$lib/db";
-import { uuid } from "uuidv4";
 
 export async function POST(event) {
   const subscribtions = await event.request.json();
-  console.log(subscribtions);
 
   const session = await event.locals.getSession();
 

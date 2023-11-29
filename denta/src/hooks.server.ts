@@ -28,8 +28,6 @@ export const handle: Handle = async ({ resolve, event }) => {
     });
   }
 
-  console.log(event.url.pathname);
-
   if (event.url.pathname.startsWith("/embed")) {
     if (event.request.method === "OPTIONS") {
       return new Response(null, {
@@ -52,7 +50,7 @@ export const handle: Handle = async ({ resolve, event }) => {
 
 startMongo()
   .then(() => {
-    console.log("Mongo started");
+    console.info("Mongo started");
   })
   .catch((e) => {
     console.error(e);

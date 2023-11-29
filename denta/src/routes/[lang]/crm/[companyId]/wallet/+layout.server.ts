@@ -19,8 +19,6 @@ export const load = async (event) => {
     .find({}, { projection: { _id: 0 } })
     .toArray()) as Service[];
 
-  console.log(priceList, services);
-
   return {
     priceList: priceList.map((item) => {
       return {

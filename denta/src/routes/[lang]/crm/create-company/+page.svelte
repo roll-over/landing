@@ -37,7 +37,6 @@
         country = e.target.value;
       }}
       on:change={async () => {
-        console.log(country);
         await fetch(
           `/${$page.params.lang}/location/${
             data.countries.find((c) => c.label === country)?.value
@@ -45,7 +44,6 @@
         )
           .then((res) => res.json())
           .then((_data) => {
-            console.log(_data);
             cities = _data;
 
             return _data;
@@ -77,8 +75,6 @@
 
   <button
     on:click={() => {
-      console.log(cities);
-
       const company = {
         name,
         mainAddress: {
@@ -100,7 +96,6 @@
         .then((c) => {
           window.location.href = `/${$page.params.lang}/crm/${c.id}/company/`;
         }).catch((e) => {
-          console.log(e);
           window.location.href = `/${$page.params.lang}/crm/`;
         });
     }}

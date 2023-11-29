@@ -53,8 +53,6 @@ export const load = async (event) => {
       { projection: { _id: 0 } },
     );
 
-  console.log(25, appointments, clients);
-
   return {
     appointments,
     clients,

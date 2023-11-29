@@ -18,8 +18,6 @@ export const load = async (event) => {
     throw redirect(301, "/ru/crm/");
   }
 
-  console.log(company);
-
   return {
     company: company,
   };

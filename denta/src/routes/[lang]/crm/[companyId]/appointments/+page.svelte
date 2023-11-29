@@ -195,7 +195,6 @@
 
                       date.set("minutes", k * step);
                       date.set("seconds", 0);
-                      console.log(moment(date.format("YYYY-MM-DDTHH:mm:ss")).toISOString());
                       appointmentInEdit.startAt = date.format("YYYY-MM-DDTHH:mm:ss");
 
                       date.add(durationSession, "m");
