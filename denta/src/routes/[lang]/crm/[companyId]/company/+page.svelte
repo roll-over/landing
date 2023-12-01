@@ -25,7 +25,7 @@
 </script>
 
 <div class="flex flex-col items-center w-full">
-  <div class="flex flex-row flex-wrap md:gap-10 md:p-10 justify-between">
+  <div class="flex flex-row flex-wrap gap-y-10 md:gap-x-5 md:p-10 justify-between">
     <div>
       <Section>
         <h3>Название</h3>
@@ -263,15 +263,13 @@
 
       const country =
         data.countries.find((c) => {
-          console.log(c, data.company.mainAddress.country);
           return c.label === data.company.mainAddress.country;
-        })?.value || data.country.label;
+        })?.value || data.company.mainAddress.country;
 
       const city =
         data.cities.find((c) => {
-          console.log(c, data.company.mainAddress.city);
           return c.label === data.company.mainAddress.city;
-        })?.value || data.city.label;
+        })?.value || data.company.mainAddress.city;
 
       const res = await fetch(`/ru/crm/${companyId}/company/api/`, {
         method: "PUT",

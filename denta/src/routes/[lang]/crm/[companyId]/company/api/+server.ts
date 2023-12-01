@@ -1,5 +1,5 @@
 import db from "$lib/db";
-import { makeTranscribationFromRuToEn } from "$lib/transcribation";
+import { upsertCity, upsertCountry } from "$lib/db/location";
 import type { Company } from "$lib/types/crm";
 import { uuid } from "uuidv4";
 
@@ -7,42 +7,8 @@ export async function POST(event) {
   const company = await event.request.json();
   const session = await event.locals.getSession();
 
-  const country = await db().collection("countries").findOne({
-    id: company.mainAddress.country,
-  });
-
-  const countryId = country?.id || makeTranscribationFromRuToEn(company.mainAddress.country);
-  if (!country) {
-    await db()
-      .collection("countries")
-      .updateOne(
-        {
-          id: countryId,
-        },
-        {
-          $set: {
-            id: countryId,
-            [event.params.lang]: company.mainAddress.country,
-          },
-        },
-        {
-          upsert: true,
-        },
-      );
-  }
-
-  const city = await db().collection("cities").findOne({
-    id: company.mainAddress.city,
-  });
-  if (!city) {
-    await db()
-      .collection("cities")
-      .insertOne({
-        id: makeTranscribationFromRuToEn(company.mainAddress.city),
-        [event.params.lang]: company.mainAddress.city,
-        countryId: countryId,
-      });
-  }
+  const countryId = await upsertCountry(company.mainAddress.country, event.params.lang);
+  const cityId = await upsertCity(company.mainAddress.city, countryId, event.params.lang);
   const companyId = uuid();
   await db()
     .collection("companies")
@@ -53,6 +19,10 @@ export async function POST(event) {
       createdAt: new Date().toISOString(),
       workingHours: {},
       contacts: [],
+      mainAddress: {
+        country: countryId,
+        city: cityId,
+      },
     } as Company);
   return new Response(JSON.stringify({ id: companyId }), {
     status: 200,
@@ -76,16 +46,26 @@ export async function PUT(event) {
   if (!isExist) {
     return new Response("Not found", { status: 404 });
   }
+  const countryId = await upsertCountry(company.mainAddress.country, event.params.lang);
+  const cityId = await upsertCity(company.mainAddress.city, countryId, event.params.lang);
 
-  await db().collection("companies").updateOne(
-    {
-      owner: session.user.email,
-      id: companyId,
-    },
-    {
-      $set: company,
-    },
-  );
+  await db()
+    .collection("companies")
+    .updateOne(
+      {
+        owner: session.user.email,
+        id: companyId,
+      },
+      {
+        $set: {
+          ...company,
+          mainAddress: {
+            country: countryId,
+            city: cityId,
+          },
+        },
+      },
+    );
   return new Response(JSON.stringify(company), {
     status: 200,
     headers: {

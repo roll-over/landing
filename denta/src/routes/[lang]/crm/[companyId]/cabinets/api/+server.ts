@@ -1,5 +1,5 @@
 import db from "$lib/db";
-import { makeTranscribationFromRuToEn } from "$lib/transcribation";
+import { upsertCity, upsertCountry } from "$lib/db/location";
 import { uuid } from "uuidv4";
 
 export async function POST(event) {
@@ -47,42 +47,27 @@ export async function PUT(event) {
     return new Response("Not found", { status: 404 });
   }
 
-  const country = await db().collection("countries").findOne({
-    id: cabinet.address.country,
-  });
+  const countryId = await upsertCountry(cabinet.address.country, event.params.lang);
+  const cityId = await upsertCity(cabinet.address.city, countryId, event.params.lang);
 
-  const countryId = country?.id || makeTranscribationFromRuToEn(cabinet.address.country);
-  if (!country) {
-    await db()
-      .collection("countries")
-      .insertOne({
-        id: countryId,
-        [event.params.lang]: cabinet.address.country,
-      });
-  }
-
-  const city = await db().collection("cities").findOne({
-    id: cabinet.address.city,
-  });
-  if (!city) {
-    await db()
-      .collection("cities")
-      .insertOne({
-        id: makeTranscribationFromRuToEn(cabinet.address.city),
-        [event.params.lang]: cabinet.address.city,
-        countryId: countryId,
-      });
-  }
-
-  await db().collection("cabinets").updateOne(
-    {
-      companyId: companyId,
-      id: cabinet.id,
-    },
-    {
-      $set: cabinet,
-    },
-  );
+  await db()
+    .collection("cabinets")
+    .updateOne(
+      {
+        companyId: companyId,
+        id: cabinet.id,
+      },
+      {
+        $set: {
+          ...cabinet,
+          address: {
+            ...cabinet.address,
+            country: countryId,
+            city: cityId,
+          },
+        },
+      },
+    );
   return new Response(JSON.stringify(cabinet), {
     status: 200,
     headers: {

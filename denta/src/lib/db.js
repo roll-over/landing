@@ -11,6 +11,8 @@ export const startMongo = async () => {
     try {
       await client.connect();
       db = client.db("denta");
+      console.info("Mongo started");
+
       break;
     } catch (e) {
       console.error(e);

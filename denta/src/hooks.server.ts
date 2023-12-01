@@ -50,7 +50,6 @@ export const handle: Handle = async ({ resolve, event }) => {
 
 startMongo()
   .then(() => {
-    console.info("Mongo started");
   })
   .catch((e) => {
     console.error(e);
