@@ -26,7 +26,7 @@
   </div>
   <div class="flex flex-row flex-wrap gap-10">
     {#each data.employees as employee}
-      <div class="flex flex-col border-2 rounded-xl border-gray-400 p-5">
+      <div class="flex flex-col border-2 rounded-xl border-gray-300 p-5 w-full md:max-w-sm">
         <Section>
           <h3>Имя</h3>
 
