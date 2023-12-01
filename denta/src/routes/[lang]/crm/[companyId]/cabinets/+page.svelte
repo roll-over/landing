@@ -27,7 +27,7 @@
   };
 </script>
 
-<div class="flex flex-col gap-10">
+<div class="flex flex-col gap-10 md:p-10">
   <AddButton
     on:click={async () => {
       const res = await fetch(`/ru/crm/${companyId}/cabinets/api/`, {
@@ -45,7 +45,7 @@
   {/if}
 
   {#if editing}
-    <div class="flex flex-col border-2 rounded-xl border-gray-400 p-5">
+    <div class="flex flex-col border-2 rounded-xl md:border-gray-300 md:p-5">
       <Section>
         <h3>Название</h3>
 
@@ -241,7 +241,7 @@
   {:else}
     <div class="flex flex-row flex-wrap gap-10">
       {#each data.cabinets as cabinet}
-        <div class="flex flex-col border-2 rounded-xl border-gray-400 p-5">
+        <div class="flex flex-col border-2 rounded-xl border-gray-300 p-5">
           <h3>{cabinet.name}</h3>
           <p>Контакты:</p>
           <ul>
