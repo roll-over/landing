@@ -22,6 +22,55 @@
 
   const companyId = $page.params.companyId;
   const toastStore = getToastStore();
+
+  const save = async () => {
+    toastStore.trigger({ message: "Сохранение...", hideDismiss: true });
+
+    const country =
+      data.countries.find((c) => {
+        return c.label === data.company.mainAddress.country;
+      })?.value || data.company.mainAddress.country;
+
+    const city =
+      data.cities.find((c) => {
+        return c.label === data.company.mainAddress.city;
+      })?.value || data.company.mainAddress.city;
+
+    const res = await fetch(`/ru/crm/${companyId}/company/api/`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: data.company.name,
+        contacts: data.company.contacts || [],
+        workingHours: data.company.workingHours,
+        mainAddress: {
+          country,
+          city,
+          street: data.company.mainAddress.street,
+          house: data.company.mainAddress.house,
+          links: data.company.mainAddress.links || [],
+        },
+      }),
+    })
+      .then((res) => {
+        toastStore.clear();
+        toastStore.trigger({
+          message: "Сохранено",
+          hideDismiss: true,
+          background: "variant-filled-success",
+        });
+      })
+      .catch((e) => {
+        toastStore.clear();
+        toastStore.trigger({
+          message: "Ошибка сохранения",
+          hideDismiss: true,
+          background: "variant-filled-error",
+        });
+      });
+  };
 </script>
 
 <div class="flex flex-col items-center w-full">
@@ -49,9 +98,6 @@
           {new Date(data.company.createdAt).toLocaleString()}
         </p>
       </Section>
-    </div>
-
-    <div>
       <Section>
         <h3>Контакты</h3>
 
@@ -102,6 +148,8 @@
           }}
         />
       </Section>
+    </div>
+    <div>
       <Section>
         <h3>Адрес</h3>
         <div class="flex flex-col gap-3">
@@ -256,73 +304,26 @@
       </select>
     </Section>
   </div>
-
-  <SaveButton
-    on:click={async () => {
-      toastStore.trigger({ message: "Сохранение...", hideDismiss: true });
-
-      const country =
-        data.countries.find((c) => {
-          return c.label === data.company.mainAddress.country;
-        })?.value || data.company.mainAddress.country;
-
-      const city =
-        data.cities.find((c) => {
-          return c.label === data.company.mainAddress.city;
-        })?.value || data.company.mainAddress.city;
-
-      const res = await fetch(`/ru/crm/${companyId}/company/api/`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: data.company.name,
-          contacts: data.company.contacts || [],
-          workingHours: data.company.workingHours,
-          mainAddress: {
-            country,
-            city,
-            street: data.company.mainAddress.street,
-            house: data.company.mainAddress.house,
-            links: data.company.mainAddress.links || [],
+  <div class="flex w-full justify-right gap-20">
+    <SaveButton
+      on:click={async () => {
+        await save();
+      }}
+    ></SaveButton>
+    <DeleteButton
+      on:click={async () => {
+        const res = await fetch(`/${$page.params.lang}/crm/${companyId}/company/api/`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
           },
-        }),
-      })
-        .then((res) => {
-          toastStore.clear();
-          toastStore.trigger({
-            message: "Сохранено",
-            hideDismiss: true,
-            background: "variant-filled-success",
-          });
-        })
-        .catch((e) => {
-          toastStore.clear();
-          toastStore.trigger({
-            message: "Ошибка сохранения",
-            hideDismiss: true,
-            background: "variant-filled-error",
-          });
+          body: JSON.stringify({ company: { name } }),
         });
-    }}
-  >
-    Сохранить изменения
-  </SaveButton>
-  <br />
-  <DeleteButton
-    on:click={async () => {
-      const res = await fetch(`/${$page.params.lang}/crm/${companyId}/company/api/`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ company: { name } }),
-      });
 
-      window.location.href = `/${$page.params.lang}/crm/`;
-    }}
-  >
-    Удалить компанию
-  </DeleteButton>
+        window.location.href = `/${$page.params.lang}/crm/`;
+      }}
+    >
+      Удалить компанию
+    </DeleteButton>
+  </div>
 </div>
