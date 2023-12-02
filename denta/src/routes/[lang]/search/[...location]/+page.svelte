@@ -13,6 +13,12 @@
     country: { value: string; label: string };
     city: { value: string; label: string };
     lang: Language;
+    infoCompanies: {
+      _id: string;
+      title: string;
+      address: string;
+      phone: string;
+    }[];
   };
 
   $: pickingCountry = false;
@@ -70,6 +76,13 @@
       </button>
     </div>
   </div>
+
+  {#if !data.infoCompanies.length}
+    <div>
+      <h2>К сожалению, в этом городе мы не нашли стоматологий</h2>
+      <p>Попробуйте выбрать другой город</p>
+    </div>
+  {/if}
 
   <ul class="flex flex-row flex-wrap gap-10 justify-between">
     {#each data.infoCompanies as cabinet}
