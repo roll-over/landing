@@ -120,51 +120,93 @@
   };
 </script>
 
-<nav class="p-2 flex flex-col justify-between" bind:clientWidth={w}>
-  <Toast position={"tr"} />
+<header class="p-2 flex flex-col justify-between" bind:clientWidth={w}>
+  <nav>
+    <Toast position={"tr"} />
 
-  <div class="p-2 flex flex-col md:flex-row justify-between">
-    <a href="/" class="flex flex-row">
-      <span class="text-2xl">denta</span>
-    </a>
+    <div class="p-2 flex flex-col md:flex-row justify-between">
+      <a href="/" class="flex flex-row">
+        <span class="text-2xl">denta</span>
+      </a>
 
-    <ul class="flex flex-row flex-wrap gap-1">
-      {#each links as link}
+      <ul class="flex flex-row flex-wrap gap-1">
+        {#each links as link}
+          <li>
+            <NavLink href={link.href}>
+              {#if link.type === "icon"}
+                <Icon src={link.title} size="25" />
+              {:else}
+                {link.title}
+              {/if}
+            </NavLink>
+          </li>
+        {/each}
         <li>
-          <NavLink href={link.href}>
-            {#if link.type === "icon"}
-              <Icon src={link.title} size="25" />
-            {:else}
-              {link.title}
-            {/if}
-          </NavLink>
+          {#if $page.data.session}
+            <NavLink href="/auth/signout">
+              {#if $page.data.session.user?.image}
+                <img src={$page.data.session.user.image} class="rounded-2xl w-8" alt="avatar" />
+              {/if}
+            </NavLink>
+          {:else}
+            <NavLink href="/auth/signin">Войти</NavLink>
+          {/if}
         </li>
-      {/each}
-      <li>
-        {#if $page.data.session}
-          <NavLink href="/auth/signout">
-            {#if $page.data.session.user?.image}
-              <img src={$page.data.session.user.image} class="rounded-2xl w-8" alt="avatar" />
-            {/if}
-          </NavLink>
-        {:else}
-          <NavLink href="/auth/signin">Войти</NavLink>
-        {/if}
-      </li>
-    </ul>
-  </div>
-  <ol class="pl-5 breadcrumb flex-wrap" itemscope itemtype="https://schema.org/BreadcrumbList">
-    {#each steps.slice(1) as step, i}
-      <li class="crumb" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <a class="anchor" itemprop="item" href={getUrl(steps, step)}
-          ><span itemprop="name">{getTitle(stepsWithLinksAndTitles[step]?.title || step)}</span></a
+      </ul>
+    </div>
+    <ol class="pl-5 breadcrumb flex-wrap" itemscope itemtype="https://schema.org/BreadcrumbList">
+      {#each steps.slice(1) as step, i}
+        <li
+          class="crumb"
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
         >
-        <meta itemprop="position" content={i.toString()} />
-      </li>
-      {#if step !== steps[steps.length - 1]}
-        <li class="crumb-separator" aria-hidden>&rsaquo;</li>
-      {/if}
-    {/each}
-  </ol>
-</nav>
-<slot />
+          <a class="anchor" itemprop="item" href={getUrl(steps, step)}
+            ><span itemprop="name">{getTitle(stepsWithLinksAndTitles[step]?.title || step)}</span
+            ></a
+          >
+          <meta itemprop="position" content={i.toString()} />
+        </li>
+        {#if step !== steps[steps.length - 1]}
+          <li class="crumb-separator" aria-hidden>&rsaquo;</li>
+        {/if}
+      {/each}
+    </ol>
+  </nav>
+</header>
+<main>
+  <slot />
+</main>
+<footer>
+  <div>
+    <div class="flex flex-col md:flex-row justify-between p-2 text-xs text-slate-500">
+      <div class="flex flex-col gap-2">
+        <span class="text-2xl">denta-crm</span>
+        <span>© 2024 denta-crm</span>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <a href="https://github.com/roll-over/landing" class="text-slate-500">Source code</a>
+        <a href="https://roll-over.org/" class="text-slate-500">roll-over</a>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <a href="/documents/cookie-policy" class="text-slate-500">Cookie Policy</a>
+        <a href="/documents/privacy-policy" class="text-slate-500">Privacy Policy</a>
+        <a href="/documents/terms-of-service" class="text-slate-500">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  main {
+    min-height: calc(100vh - 100px);
+    padding-bottom: 50px;
+  }
+  footer {
+    height: 100px;
+    background-color: #f5f5f5;
+  }
+</style>
