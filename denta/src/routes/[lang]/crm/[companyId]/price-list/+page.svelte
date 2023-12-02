@@ -11,7 +11,7 @@
   $: companyId = $page.params.companyId;
   $: addingNewService = false;
   $: newServiceName = "";
-  $: newServicePrice = 0;
+  $: newServicePrice = null;
   $: newServiceCurrency = data.company?.currency || "";
 </script>
 
@@ -24,34 +24,39 @@
   />
 
   {#if addingNewService}
-    <input
-      type="text"
-      bind:value={newServiceName}
-      list="services"
-      on:input={(e) => {
-        newServiceName = e.target.value;
-      }}
-    />
-    <datalist id="services">
-      {#each data.services as service}
-        <option value={service.name} />
-      {/each}
-      <option value="new service" />
-    </datalist>
-
-    <input
-      type="number"
-      bind:value={newServicePrice}
-      on:input={(e) => {
-        newServicePrice = e.target.value;
-      }}
-    />
-    <select bind:value={newServiceCurrency}>
-      <option value="">Не выбрано</option>
-      {#each availableCurrencies as currency}
-        <option value={currency}>{currency}</option>
-      {/each}
-    </select>
+    <div class="flex flex-col gap-3">
+      <input
+        type="text"
+        placeholder="Название услуги"
+        bind:value={newServiceName}
+        list="services"
+        on:input={(e) => {
+          newServiceName = e.target.value;
+        }}
+      />
+      <datalist id="services">
+        {#each data.services as service}
+          <option value={service.name} />
+        {/each}
+        <option value="new service" />
+      </datalist>
+      <div class="flex w-full flex-wrap gap-2">
+        <input
+          type="number"
+          placeholder="Цена"
+          bind:value={newServicePrice}
+          on:input={(e) => {
+            newServicePrice = e.target.value;
+          }}
+        />
+        <select bind:value={newServiceCurrency}>
+          <option value="">Не выбрано</option>
+          {#each availableCurrencies as currency}
+            <option value={currency}>{currency}</option>
+          {/each}
+        </select>
+      </div>
+    </div>
 
     <SaveButton
       on:click={async () => {
