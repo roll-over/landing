@@ -36,7 +36,7 @@
   $: appointmentInEdit = data.appointments.find((a) => a.id === appointmentInEditId);
 </script>
 
-<div class="flex flex-col items-start p-10">
+<div class="flex flex-col items-start p-2 md:p-10 w-full">
   <AddButton
     on:click={async () => {
       const res = await fetch(`/ru/crm/${companyId}/appointments/api/`, {
@@ -232,15 +232,15 @@
     </SaveButton>
   {:else}
     <div>
-      <div class="hidden lg:grid grid-cols-6 gap-5 appointments-table">
+      <div class="hidden lg:grid grid-cols-6 gap-2 appointments-table">
         <p>Клиент</p>
         <p>Доктор</p>
         <p>Кабинет</p>
         <p>Время</p>
         <p>Дата</p>
-        <p>Редактировать</p>
+        <p></p>
       </div>
-      <div class="flex flex-row flex-wrap gap-16 w-full justify-start">
+      <div class="flex flex-row flex-wrap gap-2 w-full justify-start">
         {#each data.appointments as appointment}
           <div
             class="grid grid-cols-1 lg:grid-cols-6 p-5 gap-5 appointments-table border-2 border-grey-700 min-w-[30%] lg:w-full"
@@ -260,7 +260,7 @@
                 ? data.cabinets.find((c) => c.id === appointment.cabinetId)?.name
                 : "NaN"}
             </p>
-            <p class={appointment.startAt ? "" : "bg-red-200"}>
+            <p class={appointment.startAt && appointment.endAt ? "" : "bg-red-200"}>
               {appointment.startAt ? moment(appointment.startAt).format("HH:mm") : "NaN"}
               -
               {appointment.endAt ? moment(appointment.endAt).format("HH:mm ") : "NaN"}
@@ -268,13 +268,13 @@
             <p>
               {moment(appointment.startAt || appointment.endAt).format("DD.MM")}
             </p>
-            <EditButton
-              on:click={() => {
-                appointmentInEditId = appointment.id;
-              }}
-            >
-              Редактировать
-            </EditButton>
+            <div>
+              <EditButton
+                on:click={() => {
+                  appointmentInEditId = appointment.id;
+                }}
+              ></EditButton>
+            </div>
           </div>
         {/each}
       </div>
