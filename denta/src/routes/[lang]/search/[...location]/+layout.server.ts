@@ -2,7 +2,9 @@ import db from "$lib/db";
 import { redirect } from "@sveltejs/kit";
 
 export const load = async (event) => {
-  const cabinets = await (await db())
+  const cabinets = await (
+    await db()
+  )
     .collection("cabinets")
     .find(
       {},
@@ -16,7 +18,9 @@ export const load = async (event) => {
     .toArray();
 
   const countries = (
-    await (await db())
+    await (
+      await db()
+    )
       .collection("countries")
       .find(
         {},
@@ -26,6 +30,9 @@ export const load = async (event) => {
             id: 1,
             [event.params.lang]: 1,
           },
+          sort: {
+            priority: -1,
+          },
         },
       )
       .toArray()
@@ -33,6 +40,9 @@ export const load = async (event) => {
     value: country.id,
     label: country[event.params.lang] || country.id,
   }));
+
+  console.log(countries);
+
   const [country, city] = event.params.location.split("/");
 
   const pickedCountry = countries.find((c) => c.value === country);
@@ -42,7 +52,9 @@ export const load = async (event) => {
   }
 
   const cities = (
-    await (await db())
+    await (
+      await db()
+    )
       .collection("cities")
       .find(
         {
@@ -53,6 +65,9 @@ export const load = async (event) => {
             _id: 0,
             id: 1,
             [event.params.lang]: 1,
+          },
+          sort: {
+            priority: -1,
           },
         },
       )
@@ -68,7 +83,9 @@ export const load = async (event) => {
     throw redirect(302, `/${event.params.lang}/search/${pickedCountry.value}/${cities[0].value}`);
   }
 
-  const infoCompanies = await (await db())
+  const infoCompanies = await (
+    await db()
+  )
     .collection("info-companies")
     .find(
       {
@@ -80,7 +97,6 @@ export const load = async (event) => {
       },
     )
     .toArray();
-
 
   if (infoCompanies) {
     return {
