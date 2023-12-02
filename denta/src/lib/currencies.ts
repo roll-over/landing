@@ -61,6 +61,6 @@ const currencies = {
   KGZ: "&#8384;",
 } as const;
 
-const availableCurrencies = ["KGZ", "USD", "RUB"];
+const availableCurrencies = ["KGZ", "USD", "RUB"] as const;
 
 export { currencies, availableCurrencies };

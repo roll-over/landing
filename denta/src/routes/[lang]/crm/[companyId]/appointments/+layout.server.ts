@@ -1,9 +1,12 @@
 import db from "$lib/db";
+import type { PriceListItem, Service } from "$lib/types/crm";
 
 export const load = async (event) => {
   const session = await event.locals.getSession();
 
-  const appointments = await (await db())
+  const appointments = await (
+    await db()
+  )
     .collection("appointments")
     .find(
       {
@@ -13,7 +16,9 @@ export const load = async (event) => {
     )
     .toArray();
 
-  const clients = await (await db())
+  const clients = await (
+    await db()
+  )
     .collection("clients")
     .find(
       {
@@ -23,7 +28,9 @@ export const load = async (event) => {
     )
     .toArray();
 
-  const employees = await (await db())
+  const employees = await (
+    await db()
+  )
     .collection("employees")
     .find(
       {
@@ -33,7 +40,9 @@ export const load = async (event) => {
     )
     .toArray();
 
-  const cabinets = await (await db())
+  const cabinets = await (
+    await db()
+  )
     .collection("cabinets")
     .find(
       {
@@ -43,21 +52,40 @@ export const load = async (event) => {
     )
     .toArray();
 
-  const company = await (await db())
-    .collection("companies")
-    .findOne(
+  const company = await (await db()).collection("companies").findOne(
+    {
+      owner: session.user.email,
+      id: event.params.companyId,
+    },
+    { projection: { _id: 0 } },
+  );
+
+  const priceList = (await (
+    await db()
+  )
+    .collection("price-list")
+    .find(
       {
-        owner: session.user.email,
-        id: event.params.companyId,
+        companyId: event.params.companyId,
       },
       { projection: { _id: 0 } },
-    );
+    )
+    .toArray()) as PriceListItem[];
+
+  const services = (await (
+    await db()
+  )
+    .collection("services")
+    .find({}, { projection: { _id: 0 } })
+    .toArray()) as Service[];
 
   return {
     appointments,
     clients,
     employees,
     cabinets,
-    company
+    company,
+    priceList,
+    services
   };
 };

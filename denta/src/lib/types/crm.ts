@@ -1,3 +1,5 @@
+import type { availableCurrencies } from "$lib/currencies";
+
 export type Language = "ru";
 
 export type City = {
@@ -93,6 +95,7 @@ export type PriceListItem = {
   companyId: Company["id"];
   serviceId: Service["id"];
   price: number;
+  currency: (typeof availableCurrencies)[number];
 };
 
 export type Appointment = {

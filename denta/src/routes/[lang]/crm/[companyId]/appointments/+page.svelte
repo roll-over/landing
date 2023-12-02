@@ -3,17 +3,28 @@
   import moment from "moment";
 
   import Section from "$lib/components/Section.svelte";
-  import type { Appointment, Cabinet, Client, Company, Doctor } from "$lib/types/crm";
+  import type {
+    Appointment,
+    Cabinet,
+    Client,
+    Company,
+    Doctor,
+    PriceListItem,
+    Service,
+  } from "$lib/types/crm";
   import AddButton from "$lib/components/AddButton.svelte";
   import SaveButton from "$lib/components/SaveButton.svelte";
   import EditButton from "$lib/components/EditButton.svelte";
   import SupportLink from "$lib/components/SupportLink.svelte";
+  import AutocompliteMultiple from "$lib/components/AutocompliteMultiple.svelte";
   export let data: {
     appointments: Appointment[];
     clients: Client[];
     employees: Doctor[];
     cabinets: Cabinet[];
     company: Company;
+    priceList: PriceListItem[];
+    services: Service[];
   };
   $: companyId = $page.params.companyId;
   $: durationSession = 60;
@@ -34,6 +45,16 @@
 
   $: appointmentInEditId = "";
   $: appointmentInEdit = data.appointments.find((a) => a.id === appointmentInEditId);
+  $: console.log(appointmentInEdit);
+  $: console.log(
+    appointmentInEdit?.servicesIds
+      ?.map((item) => data.services.find((p) => p.id === item))
+      .filter((i) => !!i)
+      .map((item) => ({
+        value: item.id,
+        label: item.name,
+      })) || [],
+  );
 </script>
 
 <div class="flex flex-col items-start p-2 md:p-10 w-full">
@@ -209,6 +230,48 @@
         {/each}
       </div>
     </Section>
+
+    <Section>
+      <h3>Услуги</h3>
+      <AutocompliteMultiple
+        datalist={data.priceList.map((item) => ({
+          value: item.id,
+          label: data.services.find((s) => s.id === item.serviceId)?.name || "NaN",
+        }))}
+        values={appointmentInEdit.servicesIds
+
+          ?.map((item) => {
+            const priceItem = data.priceList.find((p) => p.id === item);
+            if (!priceItem) {
+              throw new Error("priceItem not found");
+            }
+
+            return data.priceList.find((p) => p.id === item);
+          })
+          .map((item) => {
+            console.log(item);
+            const value = data.priceList.find((p) => p.id === item.id)?.id;
+            if (!value) {
+              throw new Error("value not found");
+            }
+            const label = data.services.find((p) => p.id === item.serviceId)?.name;
+            if (!label) {
+              throw new Error("label not found");
+            }
+            return {
+              value,
+              label,
+            };
+          }) || []}
+        id="services"
+        on:change={(e) => {
+          appointmentInEdit.servicesIds = e.detail.map((item) => item.value) || [];
+        }}
+      />
+      <SupportLink href="/ru/crm/{companyId}/price-list"
+        >Добавить услугу которой нет в списке</SupportLink
+      >
+    </Section>
     <SaveButton
       on:click={async () => {
         const res = await fetch(`/ru/crm/${companyId}/appointments/api/`, {
@@ -223,6 +286,7 @@
             cabinetId: appointmentInEdit.cabinetId,
             startAt: appointmentInEdit.startAt,
             endAt: appointmentInEdit.endAt,
+            servicesIds: appointmentInEdit?.servicesIds || [],
           }),
         });
         window.location.reload();
@@ -232,18 +296,19 @@
     </SaveButton>
   {:else}
     <div>
-      <div class="hidden lg:grid grid-cols-6 gap-2 appointments-table">
+      <div class="hidden lg:grid grid-cols-7 gap-2 appointments-table">
         <p>Клиент</p>
         <p>Доктор</p>
         <p>Кабинет</p>
         <p>Время</p>
         <p>Дата</p>
+        <p>Услуги</p>
         <p></p>
       </div>
       <div class="flex flex-row flex-wrap gap-2 w-full justify-start">
         {#each data.appointments as appointment}
           <div
-            class="grid grid-cols-1 lg:grid-cols-6 p-5 gap-5 appointments-table border-2 border-grey-700 min-w-[30%] lg:w-full"
+            class="grid grid-cols-1 lg:grid-cols-7 p-5 gap-5 appointments-table border-2 border-grey-700 min-w-[30%] lg:w-full"
           >
             <p class={appointment.clientId ? "" : "bg-red-200"}>
               {appointment.clientId
@@ -267,6 +332,11 @@
             </p>
             <p>
               {moment(appointment.startAt || appointment.endAt).format("DD.MM")}
+            </p>
+            <p class={appointment.servicesIds?.length ? "" : "bg-red-200"}>
+              {appointment.servicesIds
+                ?.map((item) => data.services.find(s=> s.id === data.priceList.find(p=> p.id === item)?.serviceId)?.name)
+                .join(", ")}
             </p>
             <div>
               <EditButton
