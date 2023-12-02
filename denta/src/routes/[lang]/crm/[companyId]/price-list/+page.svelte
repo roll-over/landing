@@ -5,11 +5,14 @@
   import SaveButton from "$lib/components/SaveButton.svelte";
   import RiSystemMenuAddLine from "svelte-icons-pack/ri/RiSystemMenuAddLine";
   import type { PriceListItem, Service } from "$lib/types/crm";
-  export let data: { priceList: PriceListItem[]; services: Service[] };
+  import { availableCurrencies } from "$lib/currencies";
+
+  export let data: { priceList: PriceListItem[]; services: Service[]; company: any };
   $: companyId = $page.params.companyId;
   $: addingNewService = false;
   $: newServiceName = "";
   $: newServicePrice = 0;
+  $: newServiceCurrency = data.company?.currency || "";
 </script>
 
 <div class="flex flex-col items-start p-10">
@@ -43,6 +46,12 @@
         newServicePrice = e.target.value;
       }}
     />
+    <select bind:value={newServiceCurrency}>
+      <option value="">Не выбрано</option>
+      {#each availableCurrencies as currency}
+        <option value={currency}>{currency}</option>
+      {/each}
+    </select>
 
     <SaveButton
       on:click={async () => {
@@ -54,6 +63,7 @@
           body: JSON.stringify({
             price: newServicePrice,
             name: newServiceName,
+            currency: newServiceCurrency,
           }),
         });
 
@@ -74,41 +84,51 @@
           }}
         />
 
-        <SaveButton
-          on:click={async () => {
-            const res = await fetch(`/ru/crm/${companyId}/price-list/api/`, {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                price: service.price,
-                id: service.id,
-              }),
-            });
-
-            window.location.reload();
+        <select
+          bind:value={service.currency}
+          on:change={(e) => {
+            service.currency = e.target.value;
           }}
         >
-          Сохранить изменения
-        </SaveButton>
-        <DeleteButton
-          on:click={async () => {
-            const res = await fetch(`/ru/crm/${companyId}/price-list/api/`, {
-              method: "DELETE",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                id: service.id,
-              }),
-            });
+          <option value="">Не выбрано</option>
+          {#each availableCurrencies as currency}
+            <option value={currency}>{currency}</option>
+          {/each}
+        </select>
+        <div>
+          <SaveButton
+            on:click={async () => {
+              const res = await fetch(`/ru/crm/${companyId}/price-list/api/`, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  price: service.price,
+                  id: service.id,
+                  currency: service.currency,
+                }),
+              });
 
-            window.location.reload();
-          }}
-        >
-          Удалить
-        </DeleteButton>
+              window.location.reload();
+            }}
+          ></SaveButton>
+          <DeleteButton
+            on:click={async () => {
+              const res = await fetch(`/ru/crm/${companyId}/price-list/api/`, {
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  id: service.id,
+                }),
+              });
+
+              window.location.reload();
+            }}
+          ></DeleteButton>
+        </div>
       {/each}
     </div>
   {/if}

@@ -6,6 +6,7 @@
   import SaveButton from "$lib/components/SaveButton.svelte";
   import Section from "$lib/components/Section.svelte";
   import SupportLink from "$lib/components/SupportLink.svelte";
+  import { availableCurrencies } from "$lib/currencies";
   import type { Company } from "$lib/types/crm";
   import { getToastStore } from "@skeletonlabs/skeleton";
 
@@ -45,6 +46,7 @@
         name: data.company.name,
         contacts: data.company.contacts || [],
         workingHours: data.company.workingHours,
+        currency: data.company.currency,
         mainAddress: {
           country,
           city,
@@ -301,6 +303,22 @@
         <option value="15">15</option>
         <option value="30">30</option>
         <option value="60">60</option>
+      </select>
+    </Section>
+
+    <Section>
+      <h3>Основная валюта</h3>
+
+      <select
+        bind:value={data.company.currency}
+        on:change={(e) => {
+          data.company.currency = e.target.value;
+        }}
+      >
+        <option value="">Не выбрано</option>
+        {#each availableCurrencies as currency}
+          <option value={currency}>{currency}</option>
+        {/each}
       </select>
     </Section>
   </div>

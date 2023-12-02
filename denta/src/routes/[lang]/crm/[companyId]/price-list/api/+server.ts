@@ -35,6 +35,7 @@ export async function POST(event) {
     companyId: companyId,
     price: priceListItem.price,
     serviceId: serviceId,
+    currency: priceListItem.currency,
   });
   return new Response(JSON.stringify(priceListItem), {
     status: 200,
