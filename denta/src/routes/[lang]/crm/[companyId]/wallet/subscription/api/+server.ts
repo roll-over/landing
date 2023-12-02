@@ -7,7 +7,7 @@ export async function POST(event) {
 
   const companyId = event.params.companyId;
 
-  const userCompanies = await db()
+  const userCompanies = await (await db())
     .collection("companies")
     .find({ owner: session.user.email })
     .toArray();
@@ -17,7 +17,7 @@ export async function POST(event) {
     return new Response("Not found", { status: 404 });
   }
   subscribtions.forEach(async (subscribtion) => {
-    await db()
+    await (await db())
       .collection("subscription")
       .updateOne(
         {

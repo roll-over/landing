@@ -10,7 +10,7 @@ export async function POST(event) {
   const countryId = await upsertCountry(company.mainAddress.country, event.params.lang);
   const cityId = await upsertCity(company.mainAddress.city, countryId, event.params.lang);
   const companyId = uuid();
-  await db()
+  await (await db())
     .collection("companies")
     .insertOne({
       ...company,
@@ -37,7 +37,7 @@ export async function PUT(event) {
   const session = await event.locals.getSession();
 
   const companyId = event.params.companyId;
-  const userCompanies = await db()
+  const userCompanies = await (await db())
     .collection("companies")
     .find({ owner: session.user.email })
     .toArray();
@@ -49,7 +49,7 @@ export async function PUT(event) {
   const countryId = await upsertCountry(company.mainAddress.country, event.params.lang);
   const cityId = await upsertCity(company.mainAddress.city, countryId, event.params.lang);
 
-  await db()
+  await (await db())
     .collection("companies")
     .updateOne(
       {
@@ -77,7 +77,7 @@ export async function PUT(event) {
 export async function DELETE(event) {
   const session = await event.locals.getSession();
   const companyId = event.params.companyId;
-  const userCompanies = await db()
+  const userCompanies = await (await db())
     .collection("companies")
     .find({ owner: session.user.email })
     .toArray();
@@ -87,7 +87,7 @@ export async function DELETE(event) {
     return new Response("Not found", { status: 404 });
   }
 
-  await db().collection("companies").deleteOne({
+  await (await db()).collection("companies").deleteOne({
     owner: session.user.email,
     id: companyId,
   });

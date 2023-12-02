@@ -3,7 +3,7 @@ import db from "$lib/db";
 export const load = async (event) => {
   const session = await event.locals.getSession();
 
-  const appointments = await db()
+  const appointments = await (await db())
     .collection("appointments")
     .find(
       {
@@ -13,7 +13,7 @@ export const load = async (event) => {
     )
     .toArray();
 
-  const clients = await db()
+  const clients = await (await db())
     .collection("clients")
     .find(
       {
@@ -23,7 +23,7 @@ export const load = async (event) => {
     )
     .toArray();
 
-  const employees = await db()
+  const employees = await (await db())
     .collection("employees")
     .find(
       {
@@ -33,7 +33,7 @@ export const load = async (event) => {
     )
     .toArray();
 
-  const cabinets = await db()
+  const cabinets = await (await db())
     .collection("cabinets")
     .find(
       {
@@ -43,7 +43,7 @@ export const load = async (event) => {
     )
     .toArray();
 
-  const company = await db()
+  const company = await (await db())
     .collection("companies")
     .findOne(
       {

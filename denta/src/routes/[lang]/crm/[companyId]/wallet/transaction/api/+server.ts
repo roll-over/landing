@@ -6,7 +6,7 @@ export async function POST(event) {
   const session = await event.locals.getSession();
   const companyId = event.params.companyId;
 
-  const userCompanies = await db()
+  const userCompanies = await (await db())
     .collection("companies")
     .find({ owner: session.user.email })
     .toArray();
@@ -16,21 +16,21 @@ export async function POST(event) {
     return new Response("Not found", { status: 404 });
   }
 
-  const service = await db().collection("services").findOne({
+  const service = await (await db()).collection("services").findOne({
     name: priceListItem.name,
   });
 
   const serviceId = service?.id || uuid();
 
   if (!service?.id) {
-    await db().collection("services").insertOne({
+    await (await db()).collection("services").insertOne({
       name: priceListItem.name,
       id: serviceId,
       description: "",
     });
   }
 
-  await db().collection("price-list").insertOne({
+  await (await db()).collection("price-list").insertOne({
     id: uuid(),
     companyId: companyId,
     price: priceListItem.price,
@@ -48,7 +48,7 @@ export async function PUT(event) {
   const priceListItem = await event.request.json();
   const session = await event.locals.getSession();
   const companyId = event.params.companyId;
-  const userCompanies = await db()
+  const userCompanies = await (await db())
     .collection("companies")
     .find({ owner: session.user.email })
     .toArray();
@@ -58,7 +58,7 @@ export async function PUT(event) {
     return new Response("Not found", { status: 404 });
   }
 
-  await db().collection("price-list").updateOne(
+  await (await db()).collection("price-list").updateOne(
     {
       companyId: companyId,
       id: priceListItem.id,
@@ -79,7 +79,7 @@ export async function DELETE(event) {
   const priceListItem = await event.request.json();
   const session = await event.locals.getSession();
   const companyId = event.params.companyId;
-  const userCompanies = await db()
+  const userCompanies = await (await db())
     .collection("companies")
     .find({ owner: session.user.email })
     .toArray();
@@ -89,7 +89,7 @@ export async function DELETE(event) {
     return new Response("Not found", { status: 404 });
   }
 
-  await db().collection("price-list").deleteOne({
+  await (await db()).collection("price-list").deleteOne({
     companyId: companyId,
     id: priceListItem.id,
   });

@@ -4,7 +4,7 @@ import type { Company } from "$lib/types/crm";
 export const load = async (event) => {
   const session = await event.locals.getSession();
   const countries = (
-    await db()
+    await (await db())
       .collection("countries")
       .find(
         {},
@@ -22,7 +22,7 @@ export const load = async (event) => {
     label: country[event.params.lang] || country.id,
   }));
 
-  const company = (await db()
+  const company = (await (await db())
     .collection("companies")
     .findOne(
       {
@@ -35,7 +35,7 @@ export const load = async (event) => {
   const pickedCountry = countries.find((c) => c.value === company.mainAddress.country) || {};
 
   const cities = (
-    await db()
+    await (await db())
       .collection("cities")
       .find(
         {

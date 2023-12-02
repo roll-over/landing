@@ -7,7 +7,7 @@ export async function POST(event) {
   const session = await event.locals.getSession();
   const companyId = event.params.companyId;
 
-  const userCompanies = await db()
+  const userCompanies = await (await db())
     .collection("companies")
     .find({ owner: session.user.email })
     .toArray();
@@ -17,7 +17,7 @@ export async function POST(event) {
     return new Response("Not found", { status: 404 });
   }
 
-  await db().collection("cabinets").insertOne({
+  await (await db()).collection("cabinets").insertOne({
     name: "New Cabinet",
     contacts: [],
     id: uuid(),
@@ -37,7 +37,7 @@ export async function PUT(event) {
   const cabinet = await event.request.json();
   const session = await event.locals.getSession();
   const companyId = event.params.companyId;
-  const userCompanies = await db()
+  const userCompanies = await (await db())
     .collection("companies")
     .find({ owner: session.user.email })
     .toArray();
@@ -50,7 +50,7 @@ export async function PUT(event) {
   const countryId = await upsertCountry(cabinet.address.country, event.params.lang);
   const cityId = await upsertCity(cabinet.address.city, countryId, event.params.lang);
 
-  await db()
+  await (await db())
     .collection("cabinets")
     .updateOne(
       {

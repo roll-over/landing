@@ -3,7 +3,7 @@ import db from "$lib/db";
 const adminEmails = ["roll.over.projects@gmail.com"];
 
 export const isAdmin = async (user) => {
-  const admins = await db()
+  const admins = await (await db())
     .collection("admins")
     .find(
       {},

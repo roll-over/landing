@@ -2,7 +2,7 @@ import db from "$lib/db";
 
 export const load = async (event) => {
   const cabinets =
-    (await db()
+    (await (await db())
       .collection("cabinets")
       .find(
         {
@@ -13,7 +13,7 @@ export const load = async (event) => {
       .toArray()) || [];
 
   const countries = (
-    await db()
+    await (await db())
       .collection("countries")
       .find(
         {},
@@ -32,7 +32,7 @@ export const load = async (event) => {
   }));
 
   const cities = (
-    await db()
+    await (await db())
       .collection("cities")
       .find(
         {},

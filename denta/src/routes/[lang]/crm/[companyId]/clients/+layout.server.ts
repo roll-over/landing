@@ -3,7 +3,7 @@ import db from "$lib/db";
 export const load = async (event) => {
   const session = await event.locals.getSession();
 
-  const clients = await db()
+  const clients = await (await db())
     .collection("clients")
     .find(
       {

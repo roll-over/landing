@@ -4,7 +4,7 @@ import { redirect } from "@sveltejs/kit";
 export const load = async (event) => {
   const session = await event.locals.getSession();
 
-  const company = await db()
+  const company = await (await db())
     .collection("companies")
     .findOne(
       {

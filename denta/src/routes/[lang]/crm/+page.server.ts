@@ -5,7 +5,7 @@ export const load = async (event) => {
   const session = await event.locals.getSession();
 
   const companies = session
-    ? await db()
+    ? await (await db())
         .collection("companies")
         .find(
           {

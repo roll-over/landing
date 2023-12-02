@@ -9,7 +9,7 @@ export const load = async (event) => {
   }
 
   const countries = (
-    await db()
+    await (await db())
       .collection("countries")
       .find(
         {},

@@ -1,7 +1,7 @@
 import db from "$lib/db";
 
 export const load = async (event) => {
-  const employees = await db()
+  const employees = await (await db())
     .collection("employees")
     .find(
       {

@@ -2,12 +2,12 @@ import db from "$lib/db";
 import { makeTranscribationFromRuToEn } from "$lib/transcribation";
 
 export const upsertCountry = async (_countryId, lang) => {
-  const country = await db().collection("countries").findOne({
+  const country = await (await db()).collection("countries").findOne({
     id: _countryId,
   });
   const countryId = country?.id || makeTranscribationFromRuToEn(_countryId);
   if (!country) {
-    await db()
+    await (await db())
       .collection("countries")
       .updateOne(
         {
@@ -28,13 +28,13 @@ export const upsertCountry = async (_countryId, lang) => {
 };
 
 export const upsertCity = async (_cityId, countryId, lang) => {
-  const city = await db().collection("cities").findOne({
+  const city = await (await db()).collection("cities").findOne({
     id: _cityId,
   });
   const cityId = city?.id || makeTranscribationFromRuToEn(_cityId);
 
   if (!city) {
-    await db()
+    await (await db())
       .collection("cities")
       .updateOne(
         {

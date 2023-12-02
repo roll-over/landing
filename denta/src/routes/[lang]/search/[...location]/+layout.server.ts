@@ -2,7 +2,7 @@ import db from "$lib/db";
 import { redirect } from "@sveltejs/kit";
 
 export const load = async (event) => {
-  const cabinets = await db()
+  const cabinets = await (await db())
     .collection("cabinets")
     .find(
       {},
@@ -16,7 +16,7 @@ export const load = async (event) => {
     .toArray();
 
   const countries = (
-    await db()
+    await (await db())
       .collection("countries")
       .find(
         {},
@@ -42,7 +42,7 @@ export const load = async (event) => {
   }
 
   const cities = (
-    await db()
+    await (await db())
       .collection("cities")
       .find(
         {
@@ -68,7 +68,7 @@ export const load = async (event) => {
     throw redirect(302, `/${event.params.lang}/search/${pickedCountry.value}/${cities[0].value}`);
   }
 
-  const infoCompanies = await db()
+  const infoCompanies = await (await db())
     .collection("info-companies")
     .find(
       {

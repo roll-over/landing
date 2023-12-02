@@ -1,7 +1,7 @@
 import db from "$lib/db";
 
 export const load = async (event) => {
-  const infoCompany = await db()
+  const infoCompany = await (await db())
     .collection("info-companies")
     .findOne(
       {
@@ -14,7 +14,7 @@ export const load = async (event) => {
       },
     );
 
-  const country = await db()
+  const country = await (await db())
     .collection("countries")
     .findOne(
       {
@@ -27,7 +27,7 @@ export const load = async (event) => {
       },
     );
 
-  const city = await db()
+  const city = await (await db())
     .collection("cities")
     .findOne(
       {
@@ -40,7 +40,7 @@ export const load = async (event) => {
       },
     );
 
-  const anotherCompanies = await db()
+  const anotherCompanies = await (await db())
     .collection("info-companies")
     .find(
       {

@@ -3,14 +3,35 @@ import { env } from "$env/dynamic/private";
 
 const client = new MongoClient(env.ME_CONFIG_MONGODB_URL);
 
-let db = null;
+class DB {
+  constructor() {
+    this.db = null;
+  }
+
+  async connect() {
+    if (this.db) {
+      return this.db;
+    }
+    await client.connect();
+    this.db = client.db("denta");
+    return this.db;
+  }
+
+  async get() {
+    if (!this.db) {
+      await this.connect();
+    }
+    return this.db;
+  }
+}
+
+const db = new DB();
 
 export const startMongo = async () => {
   console.info("Starting mongo");
   for (let i = 0; i < 10; i++) {
     try {
-      await client.connect();
-      db = client.db("denta");
+      await db.connect();
       console.info("Mongo started");
 
       break;
@@ -22,4 +43,4 @@ export const startMongo = async () => {
   return client;
 };
 
-export default () => db;
+export default async () => await db.get();

@@ -13,7 +13,7 @@ export async function POST(event) {
   const infoCompanies = await event.request.json();
 
   infoCompanies.forEach(async (infoCompany) => {
-    await db()
+    await (await db())
       .collection("info-companies")
       .updateOne(
         {

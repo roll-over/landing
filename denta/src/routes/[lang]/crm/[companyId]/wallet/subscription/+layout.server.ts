@@ -22,7 +22,7 @@ export const load = async (event) => {
 
   const companyId = event.params.companyId;
 
-  const subscribtions = await db()
+  const subscribtions = await (await db())
     .collection("subscription")
     .find(
       {
