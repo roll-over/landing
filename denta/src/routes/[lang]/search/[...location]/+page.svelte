@@ -35,7 +35,7 @@
       <button on:click={() => (pickingCountry = !pickingCountry)}>
         {data.country.label},
         <ol
-          class="flex flex-col border-2 border-gray-400 rounded-2xl p-2 gap-2 text-grey-800 {pickingCountry
+          class="flex flex-col border-2 border-gray-400 rounded-2xl p-2 gap-2 text-grey-800 default-bg {pickingCountry
             ? 'absolute'
             : 'hidden'}"
           use:clickOutside
@@ -53,7 +53,7 @@
       <button on:click={() => (pickingCity = !pickingCity)}>
         {data.city.label}
         <ol
-          class=" flex flex-col border-2 border-gray-400 rounded-2xl p-2 gap-2 text-grey-800 {pickingCity
+          class=" flex flex-col border-2 border-gray-400 rounded-2xl p-2 gap-2 text-grey-800 default-bg {pickingCity
             ? 'absolute'
             : 'hidden'}"
           use:clickOutside
@@ -76,7 +76,7 @@
       <li class="flex flex-col justify-between gap-2 w-96 border-2 p-2 rounded-xl">
         <h3>{cabinet.title}</h3>
         <p>Адрес: {cabinet.address}</p>
-        <p>Телефон: <a href={`tel:${cabinet.phone}`} >{cabinet.phone}</a></p>
+        <p>Телефон: <a href={`tel:${cabinet.phone}`}>{cabinet.phone}</a></p>
         <SupportLink href={`/${data.lang}/company/${cabinet._id}/`}>Подробнее</SupportLink>
       </li>
     {/each}

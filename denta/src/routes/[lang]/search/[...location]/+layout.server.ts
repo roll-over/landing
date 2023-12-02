@@ -41,8 +41,6 @@ export const load = async (event) => {
     label: country[event.params.lang] || country.id,
   }));
 
-  console.log(countries);
-
   const [country, city] = event.params.location.split("/");
 
   const pickedCountry = countries.find((c) => c.value === country);
