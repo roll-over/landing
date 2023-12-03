@@ -120,12 +120,12 @@
   <nav>
     <Toast position={"tr"} />
 
-    <div class="p-2 flex flex-col md:flex-row justify-between">
+    <div class="p-2 flex flex-col md:flex-row justify-between items-center">
       <a href="/" class="flex flex-row">
         <span class="text-2xl">denta</span>
       </a>
 
-      <ul class="flex flex-row flex-wrap gap-1">
+      <ol class="flex flex-row flex-wrap gap-1 items-center">
         {#each links as link}
           <li>
             <NavLink href={link.href}>
@@ -148,7 +148,7 @@
             <NavLink href="/auth/signin">Войти</NavLink>
           {/if}
         </li>
-      </ul>
+      </ol>
     </div>
     <ol class="pl-5 breadcrumb flex-wrap" itemscope itemtype="https://schema.org/BreadcrumbList">
       {#each steps.slice(1) as step, i}
