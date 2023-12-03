@@ -3,7 +3,7 @@ import OpenMic from "$lib/assets/logos/its-open-mic.jpg";
 import RedFlags from "$lib/assets/logos/red-flags.jpg";
 import HideHire from "$lib/assets/logos/hide-hire.png";
 import SimplePsychologist from "$lib/assets/logos/simple-psychologist.png";
-import DentaCRM from "$lib/assets/logos/denta-crm.png";
+import DentaCRM from "$lib/assets/logos/denta-crm.webp";
 
 export const Status = {
   comingSoon: "coming-soon",
