@@ -19,10 +19,6 @@
       href: "/ru",
     },
     {
-      title: "О нас",
-      href: "/ru/about",
-    },
-    {
       title: "CRM",
       href: "/ru/crm",
     },
@@ -189,6 +185,7 @@
       <div class="flex flex-col gap-2">
         <a href="https://github.com/roll-over/landing" class="text-slate-500">Source code</a>
         <a href="https://roll-over.org/" class="text-slate-500">roll-over</a>
+        <a href={`/${$page.params.lang}/about`} class="text-slate-500">About</a>
       </div>
 
       <div class="flex flex-col gap-2">
