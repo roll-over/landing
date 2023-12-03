@@ -3,6 +3,7 @@ import OpenMic from "$lib/assets/logos/its-open-mic.jpg";
 import RedFlags from "$lib/assets/logos/red-flags.jpg";
 import HideHire from "$lib/assets/logos/hide-hire.png";
 import SimplePsychologist from "$lib/assets/logos/simple-psychologist.png";
+import DentaCRM from "$lib/assets/logos/denta-crm.png";
 
 export const Status = {
   comingSoon: "coming-soon",
@@ -20,8 +21,16 @@ export const projects = [
     href: "/projects/hikkithon",
     title: "HikkiThon",
     description: "Свободный онлайн хакатон",
-    status: Status.comingSoon,
+    status: Status.closed,
     logo: HikkithonLogo,
+    owner: Owners.rollOver,
+  },
+  {
+    href: "https://denta-crm.com/",
+    title: "denta-crm",
+    description: "CRM для стоматологических клиник",
+    status: Status.releasedFirstVersion,
+    logo: DentaCRM,
     owner: Owners.rollOver,
   },
   {
