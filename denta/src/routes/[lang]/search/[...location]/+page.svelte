@@ -48,7 +48,7 @@
           on:click_outside={() => (pickingCountry = false)}
         >
           {#each data.countries as country}
-            <li class="border-2 border-gray-400 rounded-xl">
+            <li>
               <NavLink href={`/${data.lang}/search/${country.value}`}>
                 {country.label}
               </NavLink>
