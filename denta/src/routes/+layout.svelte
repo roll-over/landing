@@ -204,6 +204,6 @@
   }
   footer {
     height: 100px;
-    background-color: #f5f5f5;
+    background-color: rgba(44, 135, 255, 0.123);
   }
 </style>

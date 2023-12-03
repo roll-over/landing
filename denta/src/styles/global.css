@@ -4,7 +4,6 @@ body {
   font-family: 'Montserrat';
   font-weight: 300;
   font-size: 16px;
-  background-color: rgb(235, 235, 235);
   color: rgb(0, 0, 0);
   padding: 0;
   margin: 0;
@@ -12,7 +11,7 @@ body {
 }
 
 .default-bg {
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(44, 137, 255);
 }
 
 
@@ -20,6 +19,9 @@ body {
 body {
   background-size: 100% auto;
   background-repeat: repeat-y;
+
+  background: rgb(44, 137, 255);
+  background: linear-gradient(135deg, rgba(55, 152, 255, 0.24) 0%, rgba(0, 4, 255, 0.267) 100%);
 }
 
 h1 {
@@ -48,7 +50,8 @@ a {
   color: rgb(24, 24, 24);
 }
 
-input, select {
+input,
+select {
   font-size: 1.25rem;
   font-weight: 400;
 
