@@ -89,6 +89,12 @@
         />
       </Section>
       <Section>
+        <h3>Публичная страница</h3>
+        <a href={`/${$page.params.lang}/c/${companyId}/`}>
+          {`/${$page.params.lang}/c/${companyId}/`}
+        </a></Section
+      >
+      <Section>
         <h3>Владелец</h3>
         <p>
           {data.company.owner}

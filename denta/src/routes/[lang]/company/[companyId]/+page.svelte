@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from "$app/stores";
+  import AnotherCompanies from "$lib/components/AnotherCompanies.svelte";
   import CenteredPage from "$lib/components/CenteredPage.svelte";
   import SupportLink from "$lib/components/SupportLink.svelte";
   import type { Cabinet, Language } from "$lib/types/crm";
@@ -39,18 +40,12 @@
     >
   </div>
   <br />
-  <ul class="flex flex-col gap-5">
-    <h1>Смотрите так-же:</h1>
-    {#each data.anotherCompanies as cabinet}
-      <li>
-        <a
-          href={`/${$page.params.lang}/company/${cabinet._id}/`}
-          class=" flex flex-col justify-between gap-2"
-        >
-          <h3>{cabinet.title}</h3>
-          <p>Адрес: {cabinet.address}</p></a
-        >
-      </li>
-    {/each}
-  </ul>
+  <AnotherCompanies
+    data={{
+      anotherCompanies: data.anotherCompanies,
+      anotherInfoCompanies: data.anotherInfoCompanies,
+      country: data.country,
+      city: data.city,
+    }}
+  />
 </CenteredPage>

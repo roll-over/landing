@@ -2,18 +2,20 @@ import db from "$lib/db";
 import { getAnotherCompanies } from "$lib/db/another-companies";
 
 export const load = async (event) => {
-  const infoCompany = await (await db()).collection("info-companies").findOne(
+  const company = await (await db()).collection("companies").findOne(
     {
-      _id: event.params.companyId,
+      id: event.params.companyId,
     },
     {
-      projection: {},
+      projection: {
+        _id: 0,
+      },
     },
   );
 
   const country = await (await db()).collection("countries").findOne(
     {
-      id: infoCompany.country,
+      id: company.mainAddress.country,
     },
     {
       projection: {
@@ -24,7 +26,7 @@ export const load = async (event) => {
 
   const city = await (await db()).collection("cities").findOne(
     {
-      id: infoCompany.city,
+      id: company.mainAddress.city,
     },
     {
       projection: {
@@ -34,13 +36,13 @@ export const load = async (event) => {
   );
 
   const { anotherCompanies, anotherInfoCompanies } = await getAnotherCompanies(
-    infoCompany.country,
-    infoCompany.city,
-    infoCompany._id,
+    company.mainAddress.country,
+    company.mainAddress.city,
+    company.id,
   );
 
   return {
-    infoCompany,
+    infoCompany: company,
     country: { label: country[event.params.lang], value: country.id },
     city: { label: city[event.params.lang], value: city.id },
     anotherCompanies,

@@ -62,6 +62,8 @@ export async function PUT(event) {
           mainAddress: {
             country: countryId,
             city: cityId,
+            street: company.mainAddress.street,
+            house: company.mainAddress.house,
           },
         },
       },
