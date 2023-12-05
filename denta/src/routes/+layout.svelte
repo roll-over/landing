@@ -45,6 +45,9 @@
     contacts: {
       title: "Контакты",
     },
+    c: {
+      title: "Компания",
+    },
     posts: {
       title: "Статьи",
     },
