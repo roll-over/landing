@@ -2,6 +2,7 @@
   import { page } from "$app/stores";
   import { clickOutside } from "$lib/clickOutside";
   import AddButton from "$lib/components/AddButton.svelte";
+  import AutocompliteMultiple from "$lib/components/AutocompliteMultiple.svelte";
   import DeleteButton from "$lib/components/DeleteButton.svelte";
   import SaveButton from "$lib/components/SaveButton.svelte";
   import Section from "$lib/components/Section.svelte";
@@ -18,6 +19,10 @@
       value: string;
       label: string;
     };
+    languages: {
+      value: string;
+      label: string;
+    }[];
     city: { value: string; label: string };
   };
 
@@ -54,6 +59,7 @@
           house: data.company.mainAddress.house,
           links: data.company.mainAddress.links || [],
         },
+        languagesIds: data.company.languagesIds,
       }),
     })
       .then((res) => {
@@ -278,6 +284,20 @@
         </div>
       </Section>
     </div>
+
+    <Section>
+      <h3>Языки приёма</h3>
+      <AutocompliteMultiple
+        datalist={data.languages}
+        values={(data.company.languagesIds || []).map((langId) => {
+          return data.languages.find((l) => l.value === langId);
+        })}
+        on:change={(e) => {
+          data.company.languagesIds = e.detail.map((lang) => lang.value);
+        }}
+        id='languages'
+      />
+    </Section>
 
     <Section>
       <h3>Рабочие часы</h3>

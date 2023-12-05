@@ -1,5 +1,6 @@
 import db from "$lib/db";
 import { getAnotherCompanies } from "$lib/db/another-companies";
+import { availableLanguages } from "$lib/languages";
 
 export const load = async (event) => {
   const company = await (await db()).collection("companies").findOne(
@@ -47,5 +48,6 @@ export const load = async (event) => {
     city: { label: city[event.params.lang], value: city.id },
     anotherCompanies,
     anotherInfoCompanies,
+    languages: availableLanguages,
   };
 };

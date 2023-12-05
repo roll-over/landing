@@ -204,11 +204,11 @@
 
 <style>
   main {
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 150px);
     padding-bottom: 50px;
   }
   footer {
-    height: 100px;
+    min-height: 150px;
     background-color: rgba(44, 135, 255, 0.123);
   }
 
