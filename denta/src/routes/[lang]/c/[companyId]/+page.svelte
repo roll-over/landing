@@ -29,42 +29,39 @@
   <div class="flex flex-col gap-14">
     <h1>{data.infoCompany.name}</h1>
 
-    <div class="flex flex-col gap-6">
-      <h2>Стоматология в {data.city.label}, {data.country.label}</h2>
-      <p>
-        Адрес: {[data.infoCompany.mainAddress.street, data.infoCompany.mainAddress.street]
-          .filter((x) => x)
-          .join(", ")}
-      </p>
+    <p>
+      Адрес: {[data.infoCompany.mainAddress.street, data.infoCompany.mainAddress.street]
+        .filter((x) => x)
+        .join(", ")}
+    </p>
 
-      {#if data.infoCompany.description}
-        <section>
-          <h4>Описание:</h4>
-          <p>{data.infoCompany.description}</p>
-        </section>
-      {/if}
+    {#if data.infoCompany.description}
+      <section>
+        <h4>Описание:</h4>
+        <p>{data.infoCompany.description}</p>
+      </section>
+    {/if}
 
-      {#if data.infoCompany.contacts?.length}
-        <section>
-          <h4>Контакты:</h4>
-          <ol class="pl-4">
-            {#each data.infoCompany.contacts as contact}
-              <li>
-                {#if contact.type === "phone"}
-                  <span>Телефон:</span>
-                  <a href={`tel:${contact.value}`}>{contact.value}</a>
-                {:else if contact.type === "email"}
-                  <span>Email:</span>
-                  <a href={`mailto:${contact.value}`}>{contact.value}</a>
-                {:else}
-                  <a href={contact.value}>{contact.value}</a>
-                {/if}
-              </li>
-            {/each}
-          </ol>
-        </section>
-      {/if}
-    </div>
+    {#if data.infoCompany.contacts?.length}
+      <section>
+        <h4>Контакты:</h4>
+        <ol class="pl-4">
+          {#each data.infoCompany.contacts as contact}
+            <li>
+              {#if contact.type === "phone"}
+                <span>Телефон:</span>
+                <a href={`tel:${contact.value}`}>{contact.value}</a>
+              {:else if contact.type === "email"}
+                <span>Email:</span>
+                <a href={`mailto:${contact.value}`}>{contact.value}</a>
+              {:else}
+                <a href={contact.value}>{contact.value}</a>
+              {/if}
+            </li>
+          {/each}
+        </ol>
+      </section>
+    {/if}
     <br />
     <AnotherCompanies
       data={{

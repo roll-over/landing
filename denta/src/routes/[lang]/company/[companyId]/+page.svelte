@@ -26,19 +26,13 @@
 </svelte:head>
 
 <CenteredPage>
-  <div class="flex flex-col">
-    <h1>Стоматология в {data.city.label}, {data.country.label}</h1>
-  </div>
+  <h1>{data.infoCompany.title}</h1>
+  <p>Адрес: {data.infoCompany.address}</p>
+  <p>Телефон: <a href={`tel:${data.infoCompany.phone}`}>{data.infoCompany.phone}</a></p>
 
-  <div class="flex flex-col gap-2">
-    <h3>{data.infoCompany.title}</h3>
-    <p>Адрес: {data.infoCompany.address}</p>
-    <p>Телефон: <a href={`tel:${data.infoCompany.phone}`}>{data.infoCompany.phone}</a></p>
-
-    <a href={data.infoCompany.href} target="_blank" rel="noopener noreferrer"
-      >Открыть на google карте</a
-    >
-  </div>
+  <a href={data.infoCompany.href} target="_blank" rel="noopener noreferrer"
+    >Открыть на google карте</a
+  >
   <br />
   <AnotherCompanies
     data={{
