@@ -87,7 +87,7 @@
   <ul class="flex flex-row flex-wrap gap-10 justify-between">
     {#each data.infoCompanies as cabinet}
       <li class="flex flex-col justify-between gap-2 w-96 border-2 p-2 rounded-xl">
-        <h3>{cabinet.title}</h3>
+        <h2>{cabinet.title}</h2>
         <p>Адрес: {cabinet.address}</p>
         <p>Телефон: <a href={`tel:${cabinet.phone}`}>{cabinet.phone}</a></p>
         <SupportLink href={`/${data.lang}/company/${cabinet._id}/`}>Подробнее</SupportLink>

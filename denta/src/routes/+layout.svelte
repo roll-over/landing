@@ -17,6 +17,7 @@
       type: "icon",
       title: BsSearch,
       href: "/ru",
+      ariaLabel: "Поиск",
     },
     {
       title: "CRM",
@@ -28,6 +29,7 @@
             type: "icon",
             title: BsWallet2,
             href: `/ru/crm/${$page.params.companyId}/wallet`,
+            ariaLabel: "Кошелек",
           },
         ]
       : []),
@@ -122,13 +124,13 @@
 
     <div class="p-2 flex flex-col md:flex-row justify-between items-center">
       <a href="/" class="flex flex-row">
-        <img src="/logo.webp" class="h-12 w-42 rounded-xl" alt="logo denta crm" />
+        <img src="/logo.webp" class="logo rounded-xl" alt="logo denta crm" />
       </a>
 
       <ol class="flex flex-row flex-wrap gap-1 items-center">
         {#each links as link}
           <li>
-            <NavLink href={link.href}>
+            <NavLink href={link.href} ariaLabel={link.ariaLabel}>
               {#if link.type === "icon"}
                 <Icon src={link.title} size="25" />
               {:else}
@@ -141,7 +143,7 @@
           {#if $page.data.session}
             <NavLink href="/auth/signout">
               {#if $page.data.session.user?.image}
-                <img src={$page.data.session.user.image} class="rounded-2xl w-8" alt="avatar" />
+                <img src={$page.data.session.user.image} class="rounded-2xl w-8 h-8" alt="avatar" />
               {/if}
             </NavLink>
           {:else}
@@ -183,15 +185,15 @@
       </div>
 
       <div class="flex flex-col gap-2">
-        <a href="https://github.com/roll-over/landing" class="text-slate-500">Source code</a>
-        <a href="https://roll-over.org/" class="text-slate-500">roll-over</a>
-        <a href={`/${$page.params.lang}/about`} class="text-slate-500">About</a>
+        <a href="https://github.com/roll-over/landing" class="text-slate-500 p-2">Source code</a>
+        <a href="https://roll-over.org/" class="text-slate-500 p-2">roll-over</a>
+        <a href={`/${$page.params.lang}/about`} class="text-slate-500 p-3">About</a>
       </div>
 
       <div class="flex flex-col gap-2">
-        <a href="/documents/cookie-policy" class="text-slate-500">Cookie Policy</a>
-        <a href="/documents/privacy-policy" class="text-slate-500">Privacy Policy</a>
-        <a href="/documents/terms-of-service" class="text-slate-500">Terms of Service</a>
+        <a href="/documents/cookie-policy" class="text-slate-500 p-3">Cookie Policy</a>
+        <a href="/documents/privacy-policy" class="text-slate-500 p-2">Privacy Policy</a>
+        <a href="/documents/terms-of-service" class="text-slate-500 p-2">Terms of Service</a>
       </div>
     </div>
   </div>
@@ -205,5 +207,10 @@
   footer {
     height: 100px;
     background-color: rgba(44, 135, 255, 0.123);
+  }
+
+  .logo {
+    height: 50px;
+    width: 220px;
   }
 </style>
