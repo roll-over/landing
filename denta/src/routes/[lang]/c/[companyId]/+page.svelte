@@ -80,7 +80,7 @@
                   <li class="truncate">
                     {#if contact.type === "phone"}
                       <span>Телефон:</span>
-                      <a href={`tel:${contact.value}`}>{contact.value}</a>
+                      <a href={`tel:${contact.value.replaceAll(" ", "")}`}>{contact.value}</a>
                     {:else if contact.type === "email"}
                       <span>Email:</span>
                       <a href={`mailto:${contact.value}`}>{contact.value}</a>

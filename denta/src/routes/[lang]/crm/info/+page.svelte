@@ -83,7 +83,7 @@
 
   <Section>
     <div class="flex gap-5 justify-center items-center flex-col-reverse md:flex-row">
-      <img src={Dantist3} class="w-96 h-80 rounded-xl" alt="Стоматолог за компьютером" />
+      <img src={Dantist3} class="w-96 h-80 rounded-xl" alt="Девушка стоматолог за ноутбуком улыбается" />
       <div class="flex flex-col md:p-10 gap-5 md:gap-10 justify-center text-block">
         <h2>Почему наша CRM для стоматологов бесплатна?</h2>
         <p>

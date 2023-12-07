@@ -34,7 +34,7 @@
     <footer class="card-footer">
       <address>
         <p>Адрес: {data.infoCompany.address}, {data.city.label}, {data.country.label}</p>
-        <p>Телефон: <a href={`tel:${data.infoCompany.phone}`}>{data.infoCompany.phone}</a></p>
+        <p>Телефон: <a href={`tel:${data.infoCompany.phone.replaceAll(" ", "")}`}>{data.infoCompany.phone}</a></p>
         <a href={data.infoCompany.href} target="_blank" rel="noopener noreferrer"
           >Открыть на google карте</a
         >
