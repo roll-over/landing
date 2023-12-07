@@ -127,7 +127,7 @@
 
     <div class="p-2 flex flex-col md:flex-row justify-between items-center">
       <a href="/" class="flex flex-row">
-        <img src="/logo.webp" class="logo rounded-xl" alt="logo denta crm" />
+        <img src="/logo.webp" class="logo rounded-xl" alt="logo denta-crm" />
       </a>
 
       <ol class="flex flex-row flex-wrap gap-1 items-center">
