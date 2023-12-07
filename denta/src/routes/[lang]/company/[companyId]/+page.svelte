@@ -26,27 +26,32 @@
 </svelte:head>
 
 <CenteredPage>
+  <h1>{data.infoCompany.title}</h1>
   <div class="card variant-glass-primary">
     <header class="card-header">
-      <h1>{data.infoCompany.title}</h1>
+      <h2>Информация о стоматологии</h2>
     </header>
     <div class="p-4"></div>
     <footer class="card-footer">
       <address>
         <p>Адрес: {data.infoCompany.address}, {data.city.label}, {data.country.label}</p>
-        <p>Телефон: <a href={`tel:${data.infoCompany.phone.replaceAll(" ", "")}`}>{data.infoCompany.phone}</a></p>
+        <p>
+          Телефон: <a href={`tel:${data.infoCompany.phone.replaceAll(" ", "")}`}
+            >{data.infoCompany.phone}</a
+          >
+        </p>
         <a href={data.infoCompany.href} target="_blank" rel="noopener noreferrer"
           >Открыть на google карте</a
         >
       </address>
     </footer>
   </div>
-    <AnotherCompanies
-      data={{
-        anotherCompanies: data.anotherCompanies,
-        anotherInfoCompanies: data.anotherInfoCompanies,
-        country: data.country,
-        city: data.city,
-      }}
-    />
+  <AnotherCompanies
+    data={{
+      anotherCompanies: data.anotherCompanies,
+      anotherInfoCompanies: data.anotherInfoCompanies,
+      country: data.country,
+      city: data.city,
+    }}
+  />
 </CenteredPage>
