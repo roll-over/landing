@@ -86,11 +86,17 @@
 
   <ul class="flex flex-row flex-wrap gap-10 justify-between">
     {#each data.infoCompanies as cabinet}
-      <li class="flex flex-col justify-between gap-2 w-96 border-2 p-2 rounded-xl">
-        <h2>{cabinet.title}</h2>
-        <p>Адрес: {cabinet.address}</p>
-        <p>Телефон: <a href={`tel:${cabinet.phone}`}>{cabinet.phone}</a></p>
-        <SupportLink href={`/${data.lang}/company/${cabinet._id}/`}>Подробнее</SupportLink>
+      <li class="card card-hover w-96 border-2 p-2 rounded-xl variant-glass-secondary flex flex-col justify-between ">
+        <header class="card-header">
+          <h2>{cabinet.title}</h2>
+        </header>
+        <section class="p-4">
+          <p>Адрес: {cabinet.address}</p>
+          <p>Телефон: <a href={`tel:${cabinet.phone}`}>{cabinet.phone}</a></p>
+        </section>
+        <footer class="card-footer">
+          <SupportLink href={`/${data.lang}/company/${cabinet._id}/`}>Подробнее</SupportLink>
+        </footer>
       </li>
     {/each}
   </ul>
