@@ -9,8 +9,12 @@
   $: companyId = $page.params.companyId;
 </script>
 
-<div class="flex flex-col flex-wrap gap-10">
-  <div>
+<div class="flex flex-col flex-wrap gap-10 md:p-10">
+  <Section>
+    <h2>Добавить доктора</h2>
+    <p>
+      Вы можете добавить доктора, чтобы в дальнейшем записывать клиентов на приёмы.
+    </p>
     <AddButton
       on:click={async () => {
         const res = await fetch(`/ru/crm/${companyId}/employees/api/`, {
@@ -23,11 +27,11 @@
         window.location.reload();
       }}
     />
-  </div>
+  </Section>
   <div class="flex flex-row flex-wrap gap-10">
     {#each data.employees as employee}
-      <div class="flex flex-col border-2 rounded-xl border-gray-300 p-5 w-full md:max-w-sm">
-        <Section>
+      <Section class="flex flex-col border-2 rounded-xl border-gray-300 p-5 w-full md:max-w-sm">
+        <section>
           <h3>Имя</h3>
 
           <input
@@ -38,9 +42,9 @@
               employee.changed = true;
             }}
           />
-        </Section>
+        </section>
 
-        <Section>
+        <section>
           <h3>Контакты</h3>
 
           {#if !employee?.contacts?.length}
@@ -88,7 +92,7 @@
               employee.changed = true;
             }}
           />
-        </Section>
+        </section>
         {#if employee.changed}
           <SaveButton
             on:click={async () => {
@@ -109,7 +113,7 @@
             Сохранить изменения
           </SaveButton>
         {/if}
-      </div>
+      </Section>
     {/each}
   </div>
 </div>

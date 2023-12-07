@@ -28,25 +28,35 @@
 </script>
 
 <div class="flex flex-col gap-10 md:p-10">
-  <AddButton
-    on:click={async () => {
-      const res = await fetch(`/ru/crm/${companyId}/cabinets/api/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name: "", contacts: [] }),
-      });
-      window.location.reload();
-    }}
-  />
-  {#if data.cabinets.length === 0}
-    <p>Нет филиалов</p>
-  {/if}
+  <Section>
+    <h2>Добавить филиал</h2>
+    <p>Вы можете добавить филиал, чтобы в дальнейшем записывать клиентов на приёмы.</p>
+
+    <p>
+      Если у вас есть только один филиал, то его все равно стоит добавить, чтобы клиенты могли
+      записываться на приёмы.
+    </p>
+
+    <AddButton
+      on:click={async () => {
+        const res = await fetch(`/ru/crm/${companyId}/cabinets/api/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name: "", contacts: [] }),
+        });
+        window.location.reload();
+      }}
+    />
+    {#if data.cabinets.length === 0}
+      <p>Нет филиалов</p>
+    {/if}
+  </Section>
 
   {#if editing}
-    <div class="flex flex-col border-2 rounded-xl md:border-gray-300 md:p-5">
-      <Section>
+    <Section class="flex flex-col border-2 rounded-xl md:border-gray-300 md:p-5">
+      <section>
         <h3>Название</h3>
 
         <input
@@ -57,9 +67,9 @@
             editing.changed = true;
           }}
         />
-      </Section>
+      </section>
 
-      <Section>
+      <section>
         <h3>Контакты</h3>
 
         {#if !editing?.contacts?.length}
@@ -106,9 +116,9 @@
             editing.contacts = [...(editing.contacts || []), { type: "phone", value: "" }];
           }}
         />
-      </Section>
+      </section>
 
-      <Section>
+      <section>
         <h3>Адрес</h3>
         <div class="flex flex-col gap-3">
           <Autocomplite
@@ -207,7 +217,7 @@
             }}
           />
         </div>
-      </Section>
+      </section>
       <div class="flex justify-between">
         <CancelButton
           on:click={async () => {
@@ -237,11 +247,11 @@
           </SaveButton>
         {/if}
       </div>
-    </div>
+    </Section>
   {:else}
     <div class="flex flex-row flex-wrap gap-10">
       {#each data.cabinets as cabinet}
-        <div class="flex flex-col border-2 rounded-xl border-gray-300 p-5">
+        <Section class="flex flex-col border-2 rounded-xl border-gray-300 p-5">
           <h3>{cabinet.name}</h3>
           <p>Контакты:</p>
           <ul>
@@ -287,7 +297,7 @@
               Редактировать
             </EditButton>
           </div>
-        </div>
+        </Section>
       {/each}
     </div>
   {/if}

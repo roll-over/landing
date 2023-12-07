@@ -10,8 +10,15 @@
   $: companyId = $page.params.companyId;
 </script>
 
-<div class="flex flex-col gap-10">
-  <div>
+<div class="flex flex-col gap-10 md:p-10">
+  <Section>
+    <h2>Добавить карточку клиента</h2>
+
+    <p>
+      Вы можете добавить карточку клиента, чтобы в дальнейшем записывать его на приёмы и вести
+      историю болезни.
+    </p>
+
     <AddButton
       on:click={async () => {
         const res = await fetch(`/ru/crm/${companyId}/clients/api/`, {
@@ -25,25 +32,22 @@
         window.location.reload();
       }}
     />
-  </div>
+  </Section>
 
   <div class="flex gap-10 flex-wrap">
     {#each data.clients as client}
-      <div class="flex flex-col border-2 rounded-xl border-gray-400 p-5">
-        <Section>
-          <h3>Имя</h3>
+      <Section>
+        <h3>Имя</h3>
 
-          <input
-            type="text"
-            bind:value={client.name}
-            on:input={(e) => {
-              client.name = e.target.value;
-              client.changed = true;
-            }}
-          />
-        </Section>
-
-        <Section>
+        <input
+          type="text"
+          bind:value={client.name}
+          on:input={(e) => {
+            client.name = e.target.value;
+            client.changed = true;
+          }}
+        />
+        <section class="p-4">
           <h3>Контакты</h3>
 
           {#if !client?.contacts?.length}
@@ -86,13 +90,14 @@
               {/each}
             </ul>
           {/if}
+
           <AddButton
             on:click={() => {
               client.contacts = [...(client.contacts || []), { type: "phone", value: "" }];
               client.changed = true;
             }}
           />
-        </Section>
+        </section>
         {#if client.changed}
           <SaveButton
             on:click={async () => {
@@ -114,7 +119,7 @@
             Сохранить изменения
           </SaveButton>
         {/if}
-      </div>
+      </Section>
     {/each}
   </div>
 </div>

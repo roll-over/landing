@@ -6,6 +6,8 @@
   import RiSystemMenuAddLine from "svelte-icons-pack/ri/RiSystemMenuAddLine";
   import type { PriceListItem, Service } from "$lib/types/crm";
   import { availableCurrencies } from "$lib/currencies";
+  import Section from "$lib/components/Section.svelte";
+  import CancelButton from "$lib/components/CancelButton.svelte";
 
   export let data: { priceList: PriceListItem[]; services: Service[]; company: any };
   $: companyId = $page.params.companyId;
@@ -15,16 +17,27 @@
   $: newServiceCurrency = data.company?.currency || "";
 </script>
 
-<div class="flex flex-col items-start p-10">
-  <AddButton
-    on:click={async () => {
-      addingNewService = true;
-    }}
-    src={RiSystemMenuAddLine}
-  />
+<div class="flex flex-col items-start gap-10 p-10">
+  <Section>
+    <h2>Все услуги которые предоставляет клиника</h2>
+
+    <p>
+      Вы можете добавить услуги, чтобы в дальнейшем записывать клиентов на приёмы и вести историю
+      болезни.
+    </p>
+
+    <p>Полный список услуг может помочь клиентам найти вас.</p>
+
+    <AddButton
+      on:click={async () => {
+        addingNewService = true;
+      }}
+      src={RiSystemMenuAddLine}
+    />
+  </Section>
 
   {#if addingNewService}
-    <div class="flex flex-col gap-3">
+    <Section class="flex flex-col gap-3">
       <input
         type="text"
         placeholder="Название услуги"
@@ -56,27 +69,35 @@
           {/each}
         </select>
       </div>
-    </div>
 
-    <SaveButton
-      on:click={async () => {
-        const res = await fetch(`/ru/crm/${companyId}/price-list/api/`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            price: newServicePrice,
-            name: newServiceName,
-            currency: newServiceCurrency,
-          }),
-        });
+      <section>
+        <CancelButton
+          on:click={() => {
+            addingNewService = false;
+          }}
+        />
 
-        window.location.reload();
-      }}
-    />
+        <SaveButton
+          on:click={async () => {
+            const res = await fetch(`/ru/crm/${companyId}/price-list/api/`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                price: newServicePrice,
+                name: newServiceName,
+                currency: newServiceCurrency,
+              }),
+            });
+
+            window.location.reload();
+          }}
+        />
+      </section>
+    </Section>
   {:else}
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
       {#each data.priceList as service}
         <p class="flex flex-col items-center justify-center">
           {service.name}

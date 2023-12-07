@@ -48,7 +48,7 @@
     <div
       class="{menuVisible
         ? 'absolute'
-        : 'hidden'}  md:block default-bg border-2 rounded-xl border-gray-400 md:border-none"
+        : 'hidden'}  md:block default-bg border-2 rounded-xl border-gray-400 md:border-none z-50"
     >
       <NavList items={links} pathname={$page.url.pathname} on:click={() => (menuVisible = false)} />
     </div>

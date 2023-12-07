@@ -83,207 +83,200 @@
 
 <div class="flex flex-col items-center w-full">
   <div class="flex flex-row flex-wrap gap-y-10 md:gap-x-5 md:p-10 justify-between">
-    <div>
-      <Section>
-        <h3>Название</h3>
+    <Section>
+      <h3>Название</h3>
+      <input
+        type="text"
+        bind:value={data.company.name}
+        on:input={(e) => {
+          data.company.name = e.target.value;
+        }}
+      />
+    </Section>
+    <Section>
+      <h3>Публичная страница</h3>
+      <a href={`/${$page.params.lang}/c/${companyId}/`}>
+        {`/${$page.params.lang}/c/${companyId}/`}
+      </a></Section
+    >
+    <Section>
+      <h3>Владелец</h3>
+      <p>
+        {data.company.owner}
+      </p>
+    </Section>
+    <Section>
+      <h3>Дата создания</h3>
+      <p>
+        {new Date(data.company.createdAt).toLocaleString()}
+      </p>
+    </Section>
+    <Section>
+      <h3>Контакты</h3>
+
+      {#if !data.company?.contacts?.length}
+        <p>Нет контактов</p>
+      {:else}
+        <ul>
+          {#each data.company.contacts || [] as contact}
+            <li>
+              <select
+                bind:value={contact.type}
+                on:change={(e) => {
+                  contact.type = e.target.value;
+                }}
+              >
+                <option value="phone">Телефон</option>
+                <option value="email">Email</option>
+                <option value="telegram">Telegram</option>
+                <option value="vk">VK</option>
+                <option value="instagram">Instagram</option>
+                <option value="facebook">Facebook</option>
+                <option value="linkedin">LinkedIn</option>
+                <option value="twitter">Twitter</option>
+                <option value="youtube">YouTube</option>
+                <option value="tiktok">TikTok</option>
+                <option value="whatsapp">WhatsApp</option>
+                <option value="viber">Viber</option>
+                <option value="wechat">WeChat</option>
+                <option value="skype">Skype</option>
+              </select>:
+              <input
+                type="text"
+                bind:value={contact.value}
+                on:input={(e) => {
+                  contact.value = e.target.value;
+                }}
+              />
+            </li>
+          {/each}
+        </ul>
+      {/if}
+      <AddButton
+        on:click={() => {
+          data.company.contacts = [...(data.company.contacts || []), { type: "phone", value: "" }];
+        }}
+      />
+    </Section>
+    <Section>
+      <h3>Адрес</h3>
+      <div class="flex flex-col gap-3">
         <input
           type="text"
-          bind:value={data.company.name}
+          list="countries"
+          placeholder="Страна"
+          bind:value={data.company.mainAddress.country}
           on:input={(e) => {
-            data.company.name = e.target.value;
+            data.company.mainAddress.country = e.target.value;
+            data.company.changed = true;
+          }}
+          on:change={async () => {
+            await fetch(
+              `/${$page.params.lang}/location/${
+                data.countries.find((c) => c.label === data.company.mainAddress.country)?.value
+              }/cities/`,
+            )
+              .then((res) => res.json())
+              .then((_data) => {
+                data.cities = _data;
+              });
+            data.company.mainAddress.city = "";
+            data.company.changed = true;
           }}
         />
-      </Section>
-      <Section>
-        <h3>Публичная страница</h3>
-        <a href={`/${$page.params.lang}/c/${companyId}/`}>
-          {`/${$page.params.lang}/c/${companyId}/`}
-        </a></Section
-      >
-      <Section>
-        <h3>Владелец</h3>
-        <p>
-          {data.company.owner}
-        </p>
-      </Section>
-      <Section>
-        <h3>Дата создания</h3>
-        <p>
-          {new Date(data.company.createdAt).toLocaleString()}
-        </p>
-      </Section>
-      <Section>
-        <h3>Контакты</h3>
+        <datalist id="countries">
+          {#each data.countries as country}
+            <option value={country.label}>{country.label}</option>
+          {/each}
+        </datalist>
+        <input
+          type="text"
+          list="cities"
+          placeholder="Город"
+          bind:value={data.company.mainAddress.city}
+          on:input={(e) => {
+            data.company.mainAddress.city = e.target.value;
+            data.company.changed = true;
+          }}
+        />
 
-        {#if !data.company?.contacts?.length}
-          <p>Нет контактов</p>
+        <datalist id="cities">
+          {#each data.cities as city}
+            <option value={city.label}>{city.label}</option>
+          {/each}
+        </datalist>
+
+        <input
+          type="text"
+          placeholder="Улица"
+          bind:value={data.company.mainAddress.street}
+          on:input={(e) => {
+            data.company.mainAddress.street = e.target.value;
+            data.company.changed = true;
+          }}
+        />
+        <input
+          type="text"
+          placeholder="Дом"
+          bind:value={data.company.mainAddress.house}
+          on:input={(e) => {
+            data.company.mainAddress.house = e.target.value;
+            data.company.changed = true;
+          }}
+        />
+      </div>
+      <div>
+        {#if !data.company.mainAddress.links?.length}
+          <p>Нет ссылок на карте</p>
         {:else}
           <ul>
-            {#each data.company.contacts || [] as contact}
-              <li>
+            {#each data.company.mainAddress.links || [] as link}
+              <li class="flex flex-wrap">
                 <select
-                  bind:value={contact.type}
+                  bind:value={link.type}
                   on:change={(e) => {
-                    contact.type = e.target.value;
+                    link.type = e.target.value;
+                    data.company.changed = true;
                   }}
                 >
-                  <option value="phone">Телефон</option>
-                  <option value="email">Email</option>
-                  <option value="telegram">Telegram</option>
-                  <option value="vk">VK</option>
-                  <option value="instagram">Instagram</option>
-                  <option value="facebook">Facebook</option>
-                  <option value="linkedin">LinkedIn</option>
-                  <option value="twitter">Twitter</option>
-                  <option value="youtube">YouTube</option>
-                  <option value="tiktok">TikTok</option>
-                  <option value="whatsapp">WhatsApp</option>
-                  <option value="viber">Viber</option>
-                  <option value="wechat">WeChat</option>
-                  <option value="skype">Skype</option>
+                  <option value="google">Google</option>
+                  <option value="yandex">Yandex</option>
+                  <option value="2gis">2gis</option>
                 </select>:
                 <input
                   type="text"
-                  bind:value={contact.value}
+                  bind:value={link.value}
                   on:input={(e) => {
-                    contact.value = e.target.value;
+                    link.value = e.target.value;
+                    data.company.changed = true;
                   }}
                 />
+                <SupportLink href={link.value}>Перейти</SupportLink>
+                <DeleteButton
+                  on:click={() => {
+                    data.company.mainAddress.links = data.company.mainAddress.links.filter(
+                      (l) => l !== link,
+                    );
+                    data.company.changed = true;
+                  }}
+                >
+                  Удалить
+                </DeleteButton>
               </li>
             {/each}
           </ul>
         {/if}
         <AddButton
           on:click={() => {
-            data.company.contacts = [
-              ...(data.company.contacts || []),
-              { type: "phone", value: "" },
+            data.company.mainAddress.links = [
+              ...(data.company.mainAddress.links || []),
+              { type: "google", value: "" },
             ];
+            data.company.changed = true;
           }}
         />
-      </Section>
-    </div>
-    <div>
-      <Section>
-        <h3>Адрес</h3>
-        <div class="flex flex-col gap-3">
-          <input
-            type="text"
-            list="countries"
-            placeholder="Страна"
-            bind:value={data.company.mainAddress.country}
-            on:input={(e) => {
-              data.company.mainAddress.country = e.target.value;
-              data.company.changed = true;
-            }}
-            on:change={async () => {
-              await fetch(
-                `/${$page.params.lang}/location/${
-                  data.countries.find((c) => c.label === data.company.mainAddress.country)?.value
-                }/cities/`,
-              )
-                .then((res) => res.json())
-                .then((_data) => {
-                  data.cities = _data;
-                });
-              data.company.mainAddress.city = "";
-              data.company.changed = true;
-            }}
-          />
-          <datalist id="countries">
-            {#each data.countries as country}
-              <option value={country.label}>{country.label}</option>
-            {/each}
-          </datalist>
-          <input
-            type="text"
-            list="cities"
-            placeholder="Город"
-            bind:value={data.company.mainAddress.city}
-            on:input={(e) => {
-              data.company.mainAddress.city = e.target.value;
-              data.company.changed = true;
-            }}
-          />
-
-          <datalist id="cities">
-            {#each data.cities as city}
-              <option value={city.label}>{city.label}</option>
-            {/each}
-          </datalist>
-
-          <input
-            type="text"
-            placeholder="Улица"
-            bind:value={data.company.mainAddress.street}
-            on:input={(e) => {
-              data.company.mainAddress.street = e.target.value;
-              data.company.changed = true;
-            }}
-          />
-          <input
-            type="text"
-            placeholder="Дом"
-            bind:value={data.company.mainAddress.house}
-            on:input={(e) => {
-              data.company.mainAddress.house = e.target.value;
-              data.company.changed = true;
-            }}
-          />
-        </div>
-        <div>
-          {#if !data.company.mainAddress.links?.length}
-            <p>Нет ссылок на карте</p>
-          {:else}
-            <ul>
-              {#each data.company.mainAddress.links || [] as link}
-                <li class="flex flex-wrap">
-                  <select
-                    bind:value={link.type}
-                    on:change={(e) => {
-                      link.type = e.target.value;
-                      data.company.changed = true;
-                    }}
-                  >
-                    <option value="google">Google</option>
-                    <option value="yandex">Yandex</option>
-                    <option value="2gis">2gis</option>
-                  </select>:
-                  <input
-                    type="text"
-                    bind:value={link.value}
-                    on:input={(e) => {
-                      link.value = e.target.value;
-                      data.company.changed = true;
-                    }}
-                  />
-                  <SupportLink href={link.value}>Перейти</SupportLink>
-                  <DeleteButton
-                    on:click={() => {
-                      data.company.mainAddress.links = data.company.mainAddress.links.filter(
-                        (l) => l !== link,
-                      );
-                      data.company.changed = true;
-                    }}
-                  >
-                    Удалить
-                  </DeleteButton>
-                </li>
-              {/each}
-            </ul>
-          {/if}
-          <AddButton
-            on:click={() => {
-              data.company.mainAddress.links = [
-                ...(data.company.mainAddress.links || []),
-                { type: "google", value: "" },
-              ];
-              data.company.changed = true;
-            }}
-          />
-        </div>
-      </Section>
-    </div>
+      </div>
+    </Section>
 
     <Section>
       <h3>Языки приёма</h3>
@@ -295,7 +288,7 @@
         on:change={(e) => {
           data.company.languagesIds = e.detail.map((lang) => lang.value);
         }}
-        id='languages'
+        id="languages"
       />
     </Section>
 
@@ -347,27 +340,31 @@
         {/each}
       </select>
     </Section>
+    <Section>
+      <h3>Удалить компанию</h3>
+      <p>Внимание! Это действие нельзя отменить!</p>
+      <DeleteButton
+        on:click={async () => {
+          const res = await fetch(`/${$page.params.lang}/crm/${companyId}/company/api/`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ company: { name } }),
+          });
+
+          window.location.href = `/${$page.params.lang}/crm/`;
+        }}
+      >
+        Удалить компанию
+      </DeleteButton>
+    </Section>
   </div>
-  <div class="flex w-full justify-right gap-20">
+  <div class="fixed top-4.5 right-1.5">
     <SaveButton
       on:click={async () => {
         await save();
       }}
     ></SaveButton>
-    <DeleteButton
-      on:click={async () => {
-        const res = await fetch(`/${$page.params.lang}/crm/${companyId}/company/api/`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ company: { name } }),
-        });
-
-        window.location.href = `/${$page.params.lang}/crm/`;
-      }}
-    >
-      Удалить компанию
-    </DeleteButton>
   </div>
 </div>
