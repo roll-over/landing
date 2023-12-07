@@ -92,10 +92,10 @@
         <header class="card-header">
           <h2>{cabinet.title}</h2>
         </header>
-        <section class="p-4">
+        <div class="p-4">
           <p>Адрес: {cabinet.address}</p>
           <p>Телефон: <a href={`tel:${cabinet.phone.replaceAll(" ", "")}`}>{cabinet.phone}</a></p>
-        </section>
+        </div>
         <footer class="card-footer">
           <SupportLink href={`/${data.lang}/company/${cabinet._id}/`}>Подробнее</SupportLink>
         </footer>
