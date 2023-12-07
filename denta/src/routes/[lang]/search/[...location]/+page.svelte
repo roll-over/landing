@@ -41,7 +41,7 @@
       <button on:click={() => (pickingCountry = !pickingCountry)}>
         {data.country.label},
         <ol
-          class="flex flex-col border-2 border-gray-400 rounded-2xl p-2 gap-2 text-grey-800 default-bg {pickingCountry
+          class="flex flex-col border-2 border-gray-400 z-50 rounded-2xl p-2 gap-2 text-grey-800 default-bg {pickingCountry
             ? 'absolute'
             : 'hidden'}"
           use:clickOutside
@@ -59,7 +59,7 @@
       <button on:click={() => (pickingCity = !pickingCity)}>
         {data.city.label}
         <ol
-          class=" flex flex-col border-2 border-gray-400 rounded-2xl p-2 gap-2 text-grey-800 default-bg {pickingCity
+          class=" flex flex-col border-2 border-gray-400 x-50 rounded-2xl p-2 gap-2 text-grey-800 default-bg {pickingCity
             ? 'absolute'
             : 'hidden'}"
           use:clickOutside
