@@ -37,43 +37,43 @@
   <div class="flex flex-col w-full items-center">
     <h1>Поиск стоматологий в {data.city.label}, {data.country.label}</h1>
 
-    <div class="flex flex-row gap-3">
+    <div class="flex flex-row gap-3 relative">
       <button on:click={() => (pickingCountry = !pickingCountry)}>
         {data.country.label},
-        <ol
-          class="flex flex-col border-2 border-gray-400 z-50 rounded-2xl p-2 gap-2 text-grey-800 default-bg {pickingCountry
-            ? 'absolute'
-            : 'hidden'}"
-          use:clickOutside
-          on:click_outside={() => (pickingCountry = false)}
-        >
-          {#each data.countries as country}
-            <li>
-              <NavLink href={`/${data.lang}/search/${country.value}`}>
-                {country.label}
-              </NavLink>
-            </li>
-          {/each}
-        </ol>
       </button>
+      <ol
+        class="flex flex-col border-2 border-gray-400 z-50 top-6 rounded-2xl p-2 gap-2 text-grey-800 default-bg {pickingCountry
+          ? 'absolute'
+          : 'hidden'}"
+        use:clickOutside
+        on:click_outside={() => (pickingCountry = false)}
+      >
+        {#each data.countries as country}
+          <li>
+            <NavLink href={`/${data.lang}/search/${country.value}`}>
+              {country.label}
+            </NavLink>
+          </li>
+        {/each}
+      </ol>
       <button on:click={() => (pickingCity = !pickingCity)}>
         {data.city.label}
-        <ol
-          class=" flex flex-col border-2 border-gray-400 x-50 rounded-2xl p-2 gap-2 text-grey-800 default-bg {pickingCity
-            ? 'absolute'
-            : 'hidden'}"
-          use:clickOutside
-          on:click_outside={() => (pickingCity = false)}
-        >
-          {#each data.cities as city}
-            <li>
-              <NavLink href={`/${data.lang}/search/${data.country.value}/${city.value}`}>
-                {city.label}
-              </NavLink>
-            </li>
-          {/each}
-        </ol>
       </button>
+      <ol
+        class=" flex flex-col border-2 border-gray-400 x-50 top-6 left-28 rounded-2xl p-2 gap-2 text-grey-800 default-bg {pickingCity
+          ? 'absolute'
+          : 'hidden'}"
+        use:clickOutside
+        on:click_outside={() => (pickingCity = false)}
+      >
+        {#each data.cities as city}
+          <li>
+            <NavLink href={`/${data.lang}/search/${data.country.value}/${city.value}`}>
+              {city.label}
+            </NavLink>
+          </li>
+        {/each}
+      </ol>
     </div>
   </div>
 
@@ -86,13 +86,15 @@
 
   <ul class="flex flex-row flex-wrap gap-10 justify-between">
     {#each data.infoCompanies as cabinet}
-      <li class="card card-hover w-96 border-2 p-2 rounded-xl variant-glass-secondary flex flex-col justify-between ">
+      <li
+        class="card card-hover w-96 border-2 p-2 rounded-xl variant-glass-secondary flex flex-col justify-between"
+      >
         <header class="card-header">
           <h2>{cabinet.title}</h2>
         </header>
         <section class="p-4">
           <p>Адрес: {cabinet.address}</p>
-          <p>Телефон: <a href={`tel:${cabinet.phone}`}>{cabinet.phone}</a></p>
+          <p>Телефон: <a href={`tel:${cabinet.phone.replaceAll(" ", "")}`}>{cabinet.phone}</a></p>
         </section>
         <footer class="card-footer">
           <SupportLink href={`/${data.lang}/company/${cabinet._id}/`}>Подробнее</SupportLink>
