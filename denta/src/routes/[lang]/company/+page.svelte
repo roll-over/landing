@@ -15,9 +15,9 @@
   </Section>
   <Section>
     <h2 class="card-header w-full">Как создать компанию?</h2>
-    <p class="p-4 w-full">Если у вас нет компании, то создайте её в</p>
+    <p class="p-4 w-full">Если у вас нет компании, то создайте её в соответствующем разделе</p>
     <footer class="card-footer w-full">
-      <SupportLink href="/ru/crm/create-company">соответствующем разделе</SupportLink>.
+      <SupportLink href="/ru/crm/create-company">Приступить к созданию компании!</SupportLink>.
     </footer>
   </Section>
 </CenteredPage>
