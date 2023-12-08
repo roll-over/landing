@@ -1,9 +1,8 @@
 <script lang="ts">
-  import { page } from "$app/stores";
   import AnotherCompanies from "$lib/components/AnotherCompanies.svelte";
   import CenteredPage from "$lib/components/CenteredPage.svelte";
-  import SupportLink from "$lib/components/SupportLink.svelte";
   import type { Cabinet, Language } from "$lib/types/crm";
+  import SvelteMarkdown from "svelte-markdown";
 
   export let data: {
     cabinets: {
@@ -14,6 +13,25 @@
     country: { value: string; label: string };
     city: { value: string; label: string };
     lang: Language;
+    infoCompany: {
+      title: string;
+      description: string;
+      address: string;
+      phone: string;
+      href: string;
+    };
+    anotherCompanies: {
+      _id: string;
+      title: string;
+      address: string;
+      phone: string;
+    }[];
+    anotherInfoCompanies: {
+      _id: string;
+      title: string;
+      address: string;
+      phone: string;
+    }[];
   };
 </script>
 
@@ -31,7 +49,14 @@
     <header class="card-header">
       <h2>Информация о стоматологии</h2>
     </header>
-    <div class="p-4"></div>
+    <div class="p-4">
+      {#if data.infoCompany.description}
+        <section>
+          <h3>Описание:</h3>
+          <SvelteMarkdown source={data.infoCompany.description} />
+        </section>
+      {/if}
+    </div>
     <footer class="card-footer">
       <address>
         <p>Адрес: {data.infoCompany.address}, {data.city.label}, {data.country.label}</p>
