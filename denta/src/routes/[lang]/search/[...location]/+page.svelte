@@ -60,7 +60,7 @@
         {data.city.label}
       </button>
       <ol
-        class=" flex flex-col border-2 border-gray-400 x-50 top-6 left-28 rounded-2xl p-2 gap-2 text-grey-800 default-bg {pickingCity
+        class=" flex flex-col border-2 border-gray-400 z-50 top-6 left-28 rounded-2xl p-2 gap-2 text-grey-800 default-bg {pickingCity
           ? 'absolute'
           : 'hidden'}"
         use:clickOutside
