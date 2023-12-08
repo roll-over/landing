@@ -56,7 +56,7 @@
       </div>
     </div>
   </Section>
-  <Divider y={true} />
+
   <Section>
     <div class="flex gap-5 justify-center items-center flex-col md:flex-row">
       <div class="flex flex-col md:p-10 gap-5 md:gap-10 justify-center text-block">
@@ -79,11 +79,13 @@
     </div>
   </Section>
 
-  <Divider y={true} />
-
   <Section>
     <div class="flex gap-5 justify-center items-center flex-col-reverse md:flex-row">
-      <img src={Dantist3} class="w-96 h-80 rounded-xl" alt="Девушка стоматолог за ноутбуком улыбается" />
+      <img
+        src={Dantist3}
+        class="w-96 h-80 rounded-xl"
+        alt="Девушка стоматолог за ноутбуком улыбается"
+      />
       <div class="flex flex-col md:p-10 gap-5 md:gap-10 justify-center text-block">
         <h2>Почему наша CRM для стоматологов бесплатна?</h2>
         <p>
@@ -114,9 +116,13 @@
           <li class="contents">
             <span>4.</span>
             <span>
-              Весь <a href="https://github.com/roll-over/landing" class="text-sm underline-offset-1"> код нашей системы открыт</a>, и
-              вы можете убедиться в том, что она действительно безопасна и мы опираемся на поддержку
-              сообщества, что снижает стоимость разработки.
+              Весь <a
+                href="https://github.com/roll-over/landing"
+                class="text-sm underline-offset-1"
+              >
+                код нашей системы открыт</a
+              >, и вы можете убедиться в том, что она действительно безопасна и мы опираемся на
+              поддержку сообщества, что снижает стоимость разработки.
             </span>
           </li>
         </ol>
