@@ -17,8 +17,8 @@ export const load = async (event) => {
     : [];
 
   if (companies.length >= 1) {
-    throw redirect(301, `/ru/crm/${companies[0].id}/`);
+    throw redirect(302, `/ru/crm/${companies[0].id}/`);
   } else {
-    throw redirect(301, `/ru/crm/info/`);
+    throw redirect(302, `/ru/crm/info/`);
   }
 };

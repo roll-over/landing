@@ -15,7 +15,7 @@ export const load = async (event) => {
     );
 
   if (!company) {
-    throw redirect(301, "/ru/crm/");
+    throw redirect(302, "/ru/crm/");
   }
 
   return {

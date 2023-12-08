@@ -24,7 +24,7 @@ export const handle: Handle = async ({ resolve, event }) => {
       headers: {
         Location: event.url.origin + "/ru",
       },
-      status: 301,
+      status: 302,
     });
   }
 
