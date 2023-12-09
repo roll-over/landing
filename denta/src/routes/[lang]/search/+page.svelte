@@ -3,7 +3,7 @@
   import Kyrgystan from "$lib/assets/countries/Kyrgyzstan.webp";
   import Kazakhstan from "$lib/assets/countries/Kazakhstan.webp";
   import Uzbekistan from "$lib/assets/countries/Uzbekistan.webp";
-
+  import Armenia from "$lib/assets/countries/Armenia.webp";
   export let data: {
     countries: {
       value: string;
@@ -15,6 +15,7 @@
     kyrgyzstan: Kyrgystan,
     kazahstan: Kazakhstan,
     uzbekistan: Uzbekistan,
+    armenia: Armenia,
   };
 </script>
 
