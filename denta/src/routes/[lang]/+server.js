@@ -6,8 +6,4 @@ export const GET = async (event) => {
   if (!langs.includes(lang)) {
     throw redirect(302, "/");
   }
-
-  if (event.url.pathname === `/${lang}/` || event.url.pathname === `/${lang}`) {
-    throw redirect(302, `/${lang}/search`);
-  }
 };
