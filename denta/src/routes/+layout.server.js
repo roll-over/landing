@@ -41,7 +41,7 @@ export const load = async (event) => {
       (await (
         await db()
       )
-        ?.collection("users")
+        ?.collection("companies")
         .find(
           {
             owner: (await event.locals.getSession())?.user?.email,
@@ -54,7 +54,7 @@ export const load = async (event) => {
           },
         )
         .toArray()) || [];
-
+console.log(usersCompanies)
     return {
       session: await event.locals.getSession(),
       isAdmin: await isAdmin((await event.locals.getSession())?.user),

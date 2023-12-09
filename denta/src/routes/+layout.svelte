@@ -21,7 +21,7 @@
     },
     {
       title: "CRM",
-      href: "/ru/crm",
+      href: data.usersCompanies?.length ? `/ru/crm/${data.usersCompanies[0]?.id}/company` : `/ru/crm/info`,
     },
     ...($page.params.companyId && data.usersCompanies?.includes($page.params.companyId)
       ? [
