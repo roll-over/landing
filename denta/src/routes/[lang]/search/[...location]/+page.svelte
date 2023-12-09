@@ -37,9 +37,11 @@
   <div class="flex flex-col w-full items-center">
     <h1>Поиск стоматологий в {data.city.label}, {data.country.label}</h1>
 
-    <div class="flex flex-row gap-3 relative">
-      <button on:click={() => (pickingCountry = !pickingCountry)}>
-        {data.country.label},
+    <nav class="flex flex-row flex-wrap gap-3 relative text-2xl p-3">
+      <span>Выберите страну и город:</span>
+
+      <button on:click={() => (pickingCountry = !pickingCountry)} class="btn variant-ghost">
+        {data.country.label}
       </button>
       <ol
         class="flex flex-col border-2 border-gray-400 z-50 top-6 rounded-2xl p-2 gap-2 text-grey-800 default-bg {pickingCountry
@@ -50,13 +52,16 @@
       >
         {#each data.countries as country}
           <li>
-            <NavLink href={`/${data.lang}/search/${country.value}`}>
+            <NavLink
+              href={`/${data.lang}/search/${country.value}`}
+              on:click={() => (pickingCountry = false)}
+            >
               {country.label}
             </NavLink>
           </li>
         {/each}
       </ol>
-      <button on:click={() => (pickingCity = !pickingCity)}>
+      <button on:click={() => (pickingCity = !pickingCity)} class="btn variant-ghost">
         {data.city.label}
       </button>
       <ol
@@ -68,13 +73,16 @@
       >
         {#each data.cities as city}
           <li>
-            <NavLink href={`/${data.lang}/search/${data.country.value}/${city.value}`}>
+            <NavLink
+              href={`/${data.lang}/search/${data.country.value}/${city.value}`}
+              on:click={() => (pickingCity = false)}
+            >
               {city.label}
             </NavLink>
           </li>
         {/each}
       </ol>
-    </div>
+    </nav>
   </div>
 
   {#if !data.infoCompanies.length}
@@ -97,7 +105,9 @@
           <p>Телефон: <a href={`tel:${cabinet.phone.replaceAll(" ", "")}`}>{cabinet.phone}</a></p>
         </div>
         <footer class="card-footer">
-          <SupportLink href={`/${data.lang}/company/${cabinet.publicId || cabinet._id}`}>Подробнее</SupportLink>
+          <SupportLink href={`/${data.lang}/company/${cabinet.publicId || cabinet._id}`}
+            >Подробнее</SupportLink
+          >
         </footer>
       </li>
     {/each}
