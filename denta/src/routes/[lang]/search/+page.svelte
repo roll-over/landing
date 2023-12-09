@@ -43,7 +43,8 @@
   .card {
     min-height: 100px;
     min-width: 200px;
-    width: 400px;
+    max-width: 400px;
+    width: 100%;
   }
 
   .label {
