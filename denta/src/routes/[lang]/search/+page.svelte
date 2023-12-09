@@ -15,7 +15,7 @@
     kyrgyzstan: Kyrgystan,
     kazahstan: Kazakhstan,
     uzbekistan: Uzbekistan,
-    armenia: Armenia,
+    armeniya: Armenia,
   };
 </script>
 
