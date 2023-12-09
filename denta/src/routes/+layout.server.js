@@ -54,8 +54,8 @@ export const load = async (event) => {
           },
         )
         .toArray()) || [];
-console.log(usersCompanies)
-    return {
+
+        return {
       session: await event.locals.getSession(),
       isAdmin: await isAdmin((await event.locals.getSession())?.user),
       countries,
