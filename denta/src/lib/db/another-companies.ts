@@ -1,6 +1,7 @@
 import db from "$lib/db";
 
 export const getAnotherCompanies = async (country, city, id) => {
+  const countInPage = 5
   const anotherCompanies = await (
     await db()
   )
@@ -17,7 +18,7 @@ export const getAnotherCompanies = async (country, city, id) => {
         projection: {
           _id: 0,
         },
-        limit: 10,
+        limit: countInPage,
       },
     )
     .toArray();
@@ -33,10 +34,13 @@ export const getAnotherCompanies = async (country, city, id) => {
         _id: {
           $ne: id,
         },
+        status: {
+          $ne: "inactive",
+        },
       },
       {
         projection: {},
-        limit: 10 - anotherCompanies.length,
+        limit: countInPage - anotherCompanies.length,
       },
     )
     .toArray();

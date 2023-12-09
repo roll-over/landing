@@ -89,6 +89,9 @@ export const load = async (event) => {
       {
         country: pickedCountry.value,
         city: pickedCity.value,
+        status: {
+          $ne: "inactive",
+        },
       },
       {
         projection: {},

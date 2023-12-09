@@ -1,15 +1,29 @@
 import db from "$lib/db";
 import { getAnotherCompanies } from "$lib/db/another-companies";
+import { error } from "@sveltejs/kit";
 
 export const load = async (event) => {
-  const infoCompany = await (await db()).collection("info-companies").findOne(
-    {
-      _id: event.params.companyId,
-    },
-    {
-      projection: {},
-    },
-  );
+  const infoCompany =
+    (await (await db()).collection("info-companies").findOne(
+      {
+        publicId: event.params.companyId,
+      },
+      {
+        projection: {},
+      },
+    )) ||
+    (await (await db()).collection("info-companies").findOne(
+      {
+        _id: event.params.companyId,
+      },
+      {
+        projection: {},
+      },
+    ));
+
+    if (infoCompany.status === "inactive") {
+      throw error(404, "Company not found" )
+    }
 
   const country = await (await db()).collection("countries").findOne(
     {
