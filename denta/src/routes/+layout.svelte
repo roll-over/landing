@@ -194,9 +194,15 @@
       </div>
 
       <div class="flex flex-col gap-2">
-        <a href="/documents/cookie-policy" class="text-slate-500 p-3">Cookie Policy</a>
-        <a href="/documents/privacy-policy" class="text-slate-500 p-2">Privacy Policy</a>
-        <a href="/documents/terms-of-service" class="text-slate-500 p-2">Terms of Service</a>
+        <a href={`/${$page.params.lang}/documents/cookie-policy`} class="text-slate-500 p-3"
+          >Cookie Policy</a
+        >
+        <a href={`/${$page.params.lang}/documents/privacy-policy`} class="text-slate-500 p-2"
+          >Privacy Policy</a
+        >
+        <a href={`/${$page.params.lang}/documents/terms-of-service`} class="text-slate-500 p-2"
+          >Terms of Service</a
+        >
       </div>
     </div>
   </div>
