@@ -1,4 +1,6 @@
 export const makeTranscribationFromRuToEn = (ru: string) => {
+  const filterNoLetters = (str) => str.replace(/[^a-zA-Zа-яА-ЯёЁ ]/g, "");
+
   const translit = {
     а: "a",
     б: "b",
@@ -34,9 +36,10 @@ export const makeTranscribationFromRuToEn = (ru: string) => {
     ю: "yu",
     я: "ya",
   };
-  return ru
+  return filterNoLetters(ru)
     .toLowerCase()
     .split("")
     .map((char) => translit[char] || char)
-    .join("");
+    .join("")
+    .replaceAll(" ", "-");
 };

@@ -21,7 +21,13 @@
     },
     {
       title: "CRM",
-      href: data.usersCompanies?.length ? `/ru/crm/${data.usersCompanies[0]?.id}/company` : `/ru/crm/info`,
+      href: data.usersCompanies?.length
+        ? `/ru/crm/${data.usersCompanies[0]?.id}/company`
+        : `/ru/crm/info`,
+    },
+    {
+      title: "Статьи",
+      href: "/ru/articles",
     },
     ...($page.params.companyId && data.usersCompanies?.includes($page.params.companyId)
       ? [

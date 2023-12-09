@@ -1,10 +1,12 @@
 <script>
+  import { makeTranscribationFromRuToEn } from "$lib/transcribation";
+
   export let text = "";
   export let depth = 2;
 </script>
 
 {#if depth === 2}
-  <h2 class="text-lg font-semibold">{text}</h2>
+  <h2 class="text-lg font-semibold" id={makeTranscribationFromRuToEn(text)}>{text}</h2>
 {:else if depth === 3}
   <h3 class="font-semibold">{text}</h3>
 {:else if depth === 4}
