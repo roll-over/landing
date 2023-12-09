@@ -3,7 +3,9 @@ import db from "$lib/db";
 
 export const load = async (event) => {
   const countries =
-    (await (await db())
+    (await (
+      await db()
+    )
       ?.collection("countries")
       .find(
         {},
@@ -18,7 +20,9 @@ export const load = async (event) => {
       .toArray()) || [];
 
   const cities =
-    (await (await db())
+    (await (
+      await db()
+    )
       ?.collection("cities")
       .find(
         {},
@@ -33,11 +37,30 @@ export const load = async (event) => {
       .toArray()) || [];
 
   try {
+    const usersCompanies =
+      (await (
+        await db()
+      )
+        ?.collection("users")
+        .find(
+          {
+            owner: (await event.locals.getSession())?.user?.email,
+          },
+          {
+            projection: {
+              _id: 0,
+              id: 1,
+            },
+          },
+        )
+        .toArray()) || [];
+
     return {
       session: await event.locals.getSession(),
       isAdmin: await isAdmin((await event.locals.getSession())?.user),
       countries,
       cities,
+      usersCompanies,
     };
   } catch (error) {
     console.error(error);

@@ -23,7 +23,7 @@
       title: "CRM",
       href: "/ru/crm",
     },
-    ...($page.params.companyId
+    ...($page.params.companyId && data.usersCompanies?.includes($page.params.companyId)
       ? [
           {
             type: "icon",
