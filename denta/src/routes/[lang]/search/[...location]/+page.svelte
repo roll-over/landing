@@ -97,7 +97,7 @@
           <p>Телефон: <a href={`tel:${cabinet.phone.replaceAll(" ", "")}`}>{cabinet.phone}</a></p>
         </div>
         <footer class="card-footer">
-          <SupportLink href={`/${data.lang}/company/${cabinet.publicId || cabinet._id}/`}>Подробнее</SupportLink>
+          <SupportLink href={`/${data.lang}/company/${cabinet.publicId || cabinet._id}`}>Подробнее</SupportLink>
         </footer>
       </li>
     {/each}
