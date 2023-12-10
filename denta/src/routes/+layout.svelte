@@ -16,7 +16,7 @@
     {
       type: "icon",
       title: BsSearch,
-      href: "/ru",
+      href: "/ru/search",
       ariaLabel: "Поиск",
     },
     {
