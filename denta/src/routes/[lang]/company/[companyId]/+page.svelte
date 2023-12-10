@@ -36,10 +36,12 @@
 </script>
 
 <svelte:head>
-  <title>Поиск стоматологий в {data.city.label}, {data.country.label}</title>
+  <title>{data.infoCompany.title} в {data.city.label}, {data.country.label}</title>
   <meta
     name="description"
-    content={`Поиск стоматологий в ${data.city.label}, ${data.country.label}`}
+    content={`Стоматология ${data.infoCompany.title} в ${data.city.label}, ${data.country.label}. ${
+      data.infoCompany.description?.slice(0, 100) || ""
+    }`}
   />
 </svelte:head>
 
