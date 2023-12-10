@@ -13,7 +13,7 @@ export const handle: Handle = async ({ resolve, event }) => {
   if (event.url.pathname === "//") {
     return new Response(null, {
       headers: {
-        Location: event.url.origin + "/ru",
+        Location: event.url.origin + "/",
       },
       status: 301,
     });
