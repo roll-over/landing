@@ -3,6 +3,14 @@
   import Section from "$lib/components/Section.svelte";
 </script>
 
+<svelte:head>
+  <title>denta-crm</title>
+  <meta name="description" content="Система управления стоматологической клиникой, создание сайта для стоматологии и поиск клиник." />
+
+  <meta property="og:title" content="denta-crm" />
+  <meta property="og:description" content="Система управления стоматологической клиникой" />
+</svelte:head>
+
 <CenteredPage>
   <h1>denta-crm</h1>
   <p>Система управления стоматологической клиникой</p>

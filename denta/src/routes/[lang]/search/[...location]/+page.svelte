@@ -29,7 +29,9 @@
   <title>Поиск стоматологий в {data.city.label}, {data.country.label}</title>
   <meta
     name="description"
-    content={`Поиск стоматологий в ${data.city.label}, ${data.country.label}`}
+    content={`Поиск стоматологий в ${data.city.label}, ${data.country.label}. ${data.infoCompanies
+      .map((cabinet) => cabinet.title)
+      .join(", ").slice(0, 100) || ""}`}
   />
 </svelte:head>
 
