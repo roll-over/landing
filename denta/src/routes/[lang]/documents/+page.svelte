@@ -5,11 +5,11 @@
 <nav>
   <ul>
     <li>
-      <a href={"/documents/cookie-policy"}>Cookie Policy</a>
+      <a href={"/ru/documents/cookie-policy"}>Cookie Policy</a>
     </li>
-    <li><a href={"/documents/privacy-policy"}>Privacy Policy</a></li>
+    <li><a href={"/ru/documents/privacy-policy"}>Privacy Policy</a></li>
     <li>
-      <a href={"/documents/terms-of-service"}>Terms of Service</a>
+      <a href={"/ru/documents/terms-of-service"}>Terms of Service</a>
     </li>
   </ul>
 </nav>
