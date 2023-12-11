@@ -60,7 +60,12 @@
 </svelte:head>
 
 <div class="flex flex-col p-4 gap-4">
-  <h1>Поиск по базе стоматологических клиник denta-crm</h1>
+  <h1>Поиск стоматологий в вашей стране по базе denta-crm</h1>
+  <p>
+    На данный момент в базе denta-crm есть информация о стоматологиях в следующих странах:
+    {data.countries.map((c) => c.label).join(", ")}
+  </p>
+  <p>Мы постоянно работаем над тем, чтобы наша база была максимально полной и актуальной.</p>
   <ul class="flex flex-row flex-wrap list gap-3 md:gap-10">
     {#each data.countries as country}
       <li>
