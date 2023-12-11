@@ -26,7 +26,7 @@ export const projects = [
     owner: Owners.rollOver,
   },
   {
-    href: "https://denta-crm.com/",
+    href: "https://denta-crm.com/?utm_source=roll-over.org",
     title: "denta-crm",
     description: "CRM для стоматологических клиник",
     status: Status.releasedFirstVersion,

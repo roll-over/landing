@@ -117,7 +117,7 @@
             <span>4.</span>
             <span>
               Весь <a
-                href="https://github.com/roll-over/landing"
+                href="https://github.com/roll-over/landing?utm_source=denta-crm.com"
                 class="text-sm underline-offset-1"
               >
                 код нашей системы открыт</a

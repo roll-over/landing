@@ -41,6 +41,6 @@
 
   <section>
     <h3>roll-over</h3>
-    <p>Сервис создан в гильдии открытых проектов <a href="https://roll-over.org/">roll-over</a></p>
+    <p>Сервис создан в гильдии открытых проектов <a href="https://roll-over.org/?utm_source=denta-crm.com">roll-over</a></p>
   </section>
 </CenteredPage>
