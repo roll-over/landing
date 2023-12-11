@@ -1,5 +1,3 @@
-import sys
-import logging
 from pysitemap import crawler
 from pysitemap.parsers.lxml_parser import Parser
 
