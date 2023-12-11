@@ -3,6 +3,7 @@
   import CenteredPage from "$lib/components/CenteredPage.svelte";
   import type { Cabinet, Language } from "$lib/types/crm";
   import SvelteMarkdown from "svelte-markdown";
+  import SvelteSeo from "svelte-seo";
 
   export let data: {
     cabinets: {
@@ -35,15 +36,27 @@
   };
 </script>
 
-<svelte:head>
-  <title>{data.infoCompany.title} в {data.city.label}, {data.country.label}</title>
-  <meta
-    name="description"
-    content={`Стоматология ${data.infoCompany.title} в ${data.city.label}, ${data.country.label}. ${
-      data.infoCompany.description?.slice(0, 100) || ""
-    }`}
-  />
-</svelte:head>
+<SvelteSeo
+  title={`${data.infoCompany.title} в ${data.city.label}, ${data.country.label}`}
+  description={`Стоматология ${data.infoCompany.title} в ${data.city.label}, ${
+    data.country.label
+  }. ${data.infoCompany.description?.slice(0, 100) || ""}`}
+  jsonLd={{
+    "@context": "https://schema.org",
+    "@type": "Dentist",
+    name: `${data.infoCompany.title}`,
+    description: `${data.infoCompany.description}`,
+    telephone: `${data.infoCompany.phone}`,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: `${data.city.label}`,
+      addressCountry: `${data.country.label}`,
+      streetAddress: `${data.infoCompany.address}`,
+    },
+    paymentAccepted: "Cash, Credit Card",
+    priceRange: "$$",
+  }}
+></SvelteSeo>
 
 <CenteredPage>
   <h1>{data.infoCompany.title}</h1>

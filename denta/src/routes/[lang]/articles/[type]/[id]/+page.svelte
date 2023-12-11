@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { page } from "$app/stores";
   import CenteredPage from "$lib/components/CenteredPage.svelte";
   import SvelteMarkdown from "svelte-markdown";
   import Heading from "$lib/components/markdown/Heading.svelte";
+  import SvelteSeo from "svelte-seo";
 
   export let data: {
     article: {
@@ -20,23 +20,19 @@
   };
 </script>
 
-<svelte:head>
-  <title>
-    {$page.params.type === "crm"
-      ? "Статьи про crm системы для стоматологий"
-      : $page.params.type === "services"
-      ? "Статьи про услуги в стоматологиях"
-      : "Статьи на denta-crm"}
-  </title>
-  <meta
-    name="description"
-    content={$page.params.type === "crm"
-      ? "Статьи про crm системы для стоматологий"
-      : $page.params.type === "services"
-      ? "Статьи про услуги в стоматологиях"
-      : "Статьи на denta-crm"}
-  />
-</svelte:head>
+<SvelteSeo
+  title={data.article.title}
+  description={data.article.description.slice(0, 150)}
+  jsonLd={{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: data.article.title,
+    name: data.article.title,
+    description: data.article.description,
+    datePublished: data.article.createdAt,
+    dateModified: data.article.updatedAt,
+  }}
+></SvelteSeo>
 
 <CenteredPage>
   <header class="card-header">

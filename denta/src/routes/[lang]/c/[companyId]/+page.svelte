@@ -1,6 +1,7 @@
 <script lang="ts">
   import AnotherCompanies from "$lib/components/AnotherCompanies.svelte";
   import type { Cabinet, Language } from "$lib/types/crm";
+  import SvelteSeo from "svelte-seo";
 
   export let data: {
     cabinets: {
@@ -27,15 +28,27 @@
   };
 </script>
 
-<svelte:head>
-  <title>{data.infoCompany.name} в {data.city.label}, {data.country.label}</title>
-  <meta
-    name="description"
-    content={`Стоматология ${data.infoCompany.name} в ${data.city.label}, ${
-      data.country.label
-    }. ${data.infoCompany.description?.slice(0, 100) || ""}`}
-  />
-</svelte:head>
+<SvelteSeo
+  title={`${data.infoCompany.name} в ${data.city.label}, ${data.country.label}`}
+  description={`Стоматология ${data.infoCompany.name} в ${data.city.label}, ${
+    data.country.label
+  }. ${data.infoCompany.description?.slice(0, 100) || ""}`}
+  jsonLd={{
+    "@context": "https://schema.org",
+    "@type": "Dentist",
+    name: `${data.infoCompany.name}`,
+    description: `${data.infoCompany.description}`,
+    telephone: `${data.infoCompany.contacts?.find((c) => c.type === "phone")?.value}`,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: `${data.city.label}`,
+      addressCountry: `${data.country.label}`,
+      streetAddress: `${data.infoCompany.mainAddress.street}, ${data.infoCompany.mainAddress.house}`,
+    },
+    paymentAccepted: "Cash, Credit Card",
+    priceRange: "$$",
+  }}
+></SvelteSeo>
 
 <div class="flex flex-col justify-center items-center p-2">
   <div class="page flex flex-col gap-14">
