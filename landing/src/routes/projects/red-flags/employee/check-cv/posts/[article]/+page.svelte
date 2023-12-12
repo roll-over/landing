@@ -2,6 +2,7 @@
   import { articles } from "$lib/assets/articles/articles";
   import { page } from "$app/stores";
   import Article from "$lib/components/Article.svelte";
+  import SvelteSeo from "svelte-seo";
 
   export let data;
 
@@ -10,10 +11,18 @@
   $: a = allArticles.find((_article) => _article.id === article);
 </script>
 
-<svelte:head>
-  <title>{a?.title}</title>
-  <meta name="description" content="Статья: {a?.title}. {a?.source.slice(0, 100)}" />
-</svelte:head>
+<SvelteSeo
+  title={a?.title}
+  description={`Статья: ${a?.title}. ${a?.source.slice(0, 100)}`}
+  canonical={`https://roll-over.org/projects/red-flags/employee/check-cv/posts/${article}`}
+  jsonLd={{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    name: a?.title,
+    description: `${a?.source.slice(0, 150)}`,
+    url: `https://roll-over.org/projects/red-flags/employee/check-cv/posts/${article}`,
+  }}
+></SvelteSeo>
 
 <div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
   <Article

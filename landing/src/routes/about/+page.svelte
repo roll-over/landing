@@ -17,6 +17,7 @@
 <SvelteSeo
   title="О нас"
   description="Мы — сообщество разработчиков, дизайнеров и просто хороших людей, которые делают интернет лучше."
+  canonical="https://roll-over.org/about"
   jsonLd={{
     "@context": "https://schema.org",
     "@type": "Organization",
