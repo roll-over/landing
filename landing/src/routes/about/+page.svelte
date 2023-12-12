@@ -7,7 +7,6 @@
   import Donations from "$lib/components/blocks/Donations.svelte";
   import ProjectCard from "$lib/components/blocks/ProjectCard.svelte";
   import { Owners, projects, Status } from "$lib/projects";
-  import Email from "@auth/core/providers/email";
   import SvelteSeo from "svelte-seo";
 
   const friendsProjects = projects.filter((project) => project.owner === Owners.friends);
