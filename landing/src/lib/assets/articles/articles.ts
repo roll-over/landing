@@ -29,7 +29,7 @@ export type Article =
 const redFlags = {
   employee: {
     cv: {
-      link: "/projects/red-flags/employee/check-cv/posts/",
+      link: "/projects/red-flags/employee/check-cv/posts",
       articles: [
         {
           id: "kak_gramotno_ukazyvat_uroven_vladenia_yazykami_v_rezume",
