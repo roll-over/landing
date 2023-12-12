@@ -7,10 +7,37 @@
   import Donations from "$lib/components/blocks/Donations.svelte";
   import ProjectCard from "$lib/components/blocks/ProjectCard.svelte";
   import { Owners, projects, Status } from "$lib/projects";
+  import Email from "@auth/core/providers/email";
+  import SvelteSeo from "svelte-seo";
 
   const friendsProjects = projects.filter((project) => project.owner === Owners.friends);
   const historyProjects = projects.filter((project) => project.status === Status.closed);
 </script>
+
+<SvelteSeo
+  title="О нас"
+  description="Мы — сообщество разработчиков, дизайнеров и просто хороших людей, которые делают интернет лучше."
+  jsonLd={{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Сообщество разработчиков",
+    description:
+      "Мы — сообщество разработчиков, дизайнеров и просто хороших людей, которые делают интернет лучше.",
+    url: "https://roll-over.org/",
+    sameAs: [
+      "https://twitter.com/roll_over_group",
+      "https://www.linkedin.com/company/roll-over-guild",
+      "https://t.me/roll_over_guild",
+    ],
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        email: "mailto:roll.over.projects@gmail.com",
+        contactType: "customer support",
+      },
+    ],
+  }}
+></SvelteSeo>
 
 <CenteredPage title="О нас">
   <section id="contacts" class="max-w-xl w-full">
