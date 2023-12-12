@@ -1,17 +1,16 @@
 <script>
   import { vacancies } from "$lib/vacancies.js";
+  import SvelteSeo from "svelte-seo";
 </script>
 
-<svelte:head>
-  <title>Вакансии в roll-over</title>
-  <meta
-    name="description"
-    content="Открытые позиции для работы в roll-over: дизайнеры, разработчики и маркетологи"
-  />
-</svelte:head>
+<SvelteSeo
+  title="Вакансии в roll-over"
+  description="Открытые позиции для работы в roll-over: дизайнеры, разработчики и маркетологи"
+  canonical="https://roll-over.org/vacancies"
+/>
 
 <div class="flex flex-col gap-10 p-10 sm:pl-0 max-w-2xl justify-left">
-  <h2>Вакансии</h2>
+  <h1>Вакансии в roll-over</h1>
   <p>
     Проекты пока не приносят деньги, но мы можем предложить опыт работы в команде и работу над open
     source проектами.

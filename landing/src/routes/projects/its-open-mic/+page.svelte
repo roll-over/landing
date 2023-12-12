@@ -1,15 +1,15 @@
 <script>
   import { vacancies } from "$lib/vacancies.js";
+  import SvelteSeo from "svelte-seo";
+
   const itsOpenMicVacancies = vacancies.filter((vacancy) => vacancy.company === "its-open-mic");
 </script>
 
-<svelte:head>
-  <title>Проект: IT's open mic</title>
-  <meta
-    name="description"
-    content="Открытая онлайн-платформа для проведения выступлений об или около IT."
-  />
-</svelte:head>
+<SvelteSeo
+  title="Проект: IT's open mic"
+  description="Открытая онлайн-платформа для проведения выступлений об или около IT."
+  canonical="https://roll-over.org/projects/its-open-mic"
+/>
 
 <div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
   <h2>Проект: IT’s-open-mic</h2>

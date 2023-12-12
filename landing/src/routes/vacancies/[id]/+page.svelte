@@ -1,21 +1,20 @@
 <script>
   import { vacancies } from "$lib/vacancies.js";
   import { page } from "$app/stores";
+  import SvelteSeo from "svelte-seo";
   const id = $page.params.id;
   const vacancy = vacancies.find((vacancy) => vacancy.id === id);
 </script>
 
-<svelte:head>
-  <title>Вакансия {vacancy?.title} в roll-over</title>
-  <meta
-    name="description"
-    content="Открытая вакансия {vacancy?.title} в roll-over с описанием: {vacancy?.description}"
-  />
-</svelte:head>
+<SvelteSeo
+  title="Вакансия {vacancy?.title} в roll-over"
+  description="Открытая вакансия {vacancy?.title} в roll-over с описанием: {vacancy?.description}"
+  canonical="https://roll-over.org/vacancies/{vacancy?.id}"
+/>
 
 <div class="flex flex-col gap-5 p-5 sm:pl-0 max-w-2xl justify-left">
   {#if vacancy}
-    <h2>Вакансия: {vacancy?.title}</h2>
+    <h1>Вакансия: {vacancy?.title}</h1>
     <p>
       {vacancy?.company}
     </p>
