@@ -61,7 +61,7 @@
               {content.login}
               <img
                 src={content.avatar_url}
-                alt={`${content.login}'s avatar'`}
+                alt={`Аватарка ${content.login}'`}
                 class="w-14 mt-auto rounded-full"
               />
             </h3>

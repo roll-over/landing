@@ -4,11 +4,10 @@
   import SvelteSeo from "svelte-seo";
 
   const redFlagsVacancies = vacancies.filter((vacancy) => vacancy.company === "red-flags");
-  const source = articles.redFlags.employee.cv[0];
 </script>
 
 <SvelteSeo
-  title="Проект: red-flags"
+  title="red-flags - твой консультант при поиске работы"
   description="red-flags - это комплекс сервисов, где вы можете проверить своё резюме на
     наличие ошибок или потенциальную вакансию на наличие красных флагов."
   canonical="https://roll-over.org/projects/red-flags"
