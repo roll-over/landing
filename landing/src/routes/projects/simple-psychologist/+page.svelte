@@ -6,8 +6,12 @@
 </script>
 
 <svelte:head>
-  <title>Проект: simple-psychologist</title>
-  <meta name="description" content="Проект ." />
+  <title>Бот психологической поддержки - simple-psychologist</title>
+  <meta
+    name="description"
+    content="Проект simple-psychologist - это сервис, который помогает людям найти эмоциональную поддержку
+  в самые тёмные моменты их жизни."
+  />
 </svelte:head>
 
 <div class="flex flex-col gap-10 p-5 sm:pl-3 w-full max-w-2xl justify-left">
