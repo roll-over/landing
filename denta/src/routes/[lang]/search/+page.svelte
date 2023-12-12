@@ -46,6 +46,13 @@
     },
     armeniya: { full: Armenia, 800: Armenia800, 480: Armenia480, 320: Armenia320 },
   };
+
+  const cities = {
+    kyrgyzstan: "bishkek",
+    kazahstan: "almaty",
+    uzbekistan: "tashkent",
+    armeniya: "erevan",
+  };
 </script>
 
 <svelte:head>
@@ -71,7 +78,8 @@
       <li>
         <a
           class="card card-hover p-4 variant-glass-primary relative min-h-2xl"
-          href={`/${$page.params.lang}/search/${country.value}`}
+          href={`/${$page.params.lang}/search/${country.value}` +
+            (cities[country.value] ? `/${cities[country.value]}` : "")}
         >
           {#if pictures[country.value]}
             {#if pictures[country.value].full}
