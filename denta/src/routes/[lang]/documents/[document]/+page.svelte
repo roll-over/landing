@@ -2,11 +2,21 @@
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
   import { documents } from "$lib/assets/documents";
+  import SvelteSeo from "svelte-seo";
 
   $: if (!documents.map((x) => x.id).includes($page.params.document)) {
     goto("/documents");
   }
 </script>
+
+<SvelteSeo
+  title={`${
+    documents.find((item) => item.id === $page.params.document)?.label
+  }: Нормативные документы`}
+  description={`${
+    documents.find((item) => item.id === $page.params.document)?.label
+  }: Нормативные документы`}
+/>
 
 <a href={"/documents"}>Back to documents</a>
 <h1>{documents.find((item) => item.id === $page.params.document)?.label}</h1>

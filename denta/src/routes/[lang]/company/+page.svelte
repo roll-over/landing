@@ -2,7 +2,13 @@
   import CenteredPage from "$lib/components/CenteredPage.svelte";
   import Section from "$lib/components/Section.svelte";
   import SupportLink from "$lib/components/SupportLink.svelte";
+  import SelveteSeo from "svelte-seo";
 </script>
+
+<SelveteSeo
+  title="Не выбрана компания для просмотра"
+  description="Не выбрана компания для просмотра"
+/>
 
 <CenteredPage>
   <h1>Не выбрана компания для просмотра</h1>

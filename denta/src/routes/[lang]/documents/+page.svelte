@@ -1,5 +1,8 @@
 <script lang="ts">
+  import SvelteSeo from "svelte-seo";
 </script>
+
+<SvelteSeo title="Нормативные документы" description="Нормативные документы" />
 
 <h1 class="pb-2 text-6xl text-gray-900">Documents</h1>
 <nav>
