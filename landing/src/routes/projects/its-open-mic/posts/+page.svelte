@@ -14,7 +14,8 @@
     content="Статьи про hide-hire. Все тонкости найма и поиска работы. Статьи: {a
       .slice(0, 5)
       .map((article) => article?.title)
-      .join(', ')}}"
+      .join(', ')
+      .slice(0, 100)}}"
   />
 </svelte:head>
 

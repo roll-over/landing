@@ -11,7 +11,8 @@
   description="Анонсы открытого микрофона: {a
     .slice(0, 5)
     .map((article) => article?.title)
-    .join(', ')}"
+    .join(', ')
+    .slice(0, 100)}"
   canonical="https://roll-over.org/projects/its-open-mic/anounces"
 />
 

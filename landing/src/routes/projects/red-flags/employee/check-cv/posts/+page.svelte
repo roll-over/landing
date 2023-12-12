@@ -13,7 +13,8 @@
   description="Статьи про проверку резюме. Проверь своё резюме на наличие ошибок. Статьи: {a
     .slice(0, 5)
     .map((article) => article?.title)
-    .join(', ')}}"
+    .join(', ')
+    .slice(0, 100)}}"
   canonical="https://roll-over.org/projects/red-flags/employee/check-cv/posts"
   jsonLd={{
     "@context": "https://schema.org",
@@ -22,7 +23,8 @@
     description: `Статьи про проверку резюме. Проверь своё резюме на наличие ошибок. Статьи: ${a
       .slice(0, 5)
       .map((article) => article?.title)
-      .join(", ")}}`,
+      .join(", ")
+      .slice(0, 100)}}`,
     url: "https://roll-over.org/projects/red-flags/employee/check-cv/posts",
   }}
 ></SvelteSeo>

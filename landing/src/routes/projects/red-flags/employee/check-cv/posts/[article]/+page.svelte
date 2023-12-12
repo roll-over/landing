@@ -13,7 +13,7 @@
 
 <SvelteSeo
   title={a?.title}
-  description={`Статья: ${a?.title}. ${a?.source.slice(0, 100)}`}
+  description={`Статья: ${a?.title}. ${a?.source.slice(0, 140)}`}
   canonical={`https://roll-over.org/projects/red-flags/employee/check-cv/posts/${article}`}
   jsonLd={{
     "@context": "https://schema.org",
