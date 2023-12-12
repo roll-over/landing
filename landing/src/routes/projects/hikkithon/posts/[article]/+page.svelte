@@ -23,7 +23,7 @@
       .map((_a) => {
         return {
           title: _a.title,
-          url: articles.hikkithon.link + _a.id,
+          url: articles.hikkithon.link + "/" + _a.id,
         };
       })}
   />

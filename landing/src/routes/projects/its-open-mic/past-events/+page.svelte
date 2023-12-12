@@ -23,6 +23,6 @@
       .join(", ")}
   </h1>
   {#each a as article}
-    <ArticlePreview {article} link={articles.itsOpenMic.link + article.id} />
+    <ArticlePreview {article} link={articles.itsOpenMic.link + "/" + article.id} />
   {/each}
 </div>

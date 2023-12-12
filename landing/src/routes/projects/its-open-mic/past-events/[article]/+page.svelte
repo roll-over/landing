@@ -2,6 +2,7 @@
   import { articles } from "$lib/assets/articles/articles";
   import { page } from "$app/stores";
   import Article from "$lib/components/Article.svelte";
+  import SvelteSeo from "svelte-seo";
 
   $: article = $page.params.article;
   $: allArticles = articles.itsOpenMic.articles;
@@ -9,10 +10,11 @@
   const link = articles.itsOpenMic.link;
 </script>
 
-<svelte:head>
-  <title>{a?.title}</title>
-  <meta name="description" content={a?.description.slice(0, 100)} />
-</svelte:head>
+<SvelteSeo
+  title={a?.title}
+  description="Статья: {a?.title}. {a?.source.slice(0, 100)}"
+  canonical={"https://roll-over.org/projects/its-open-mic/past-events/" + a?.id}
+/>
 
 <div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
   <Article
@@ -22,7 +24,7 @@
       .map((_a) => {
         return {
           title: _a.title,
-          url: link + _a.id,
+          url: link + "/" + _a.id,
         };
       })}
   />

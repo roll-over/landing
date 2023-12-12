@@ -3,7 +3,14 @@
   import WhatIsProject from "$lib/components/blocks/WhatIsProject.svelte";
   import Link from "$lib/components/Link.svelte";
   import ProjectTemplate from "$lib/components/ProjectTemplate.svelte";
+  import SvelteSeo from "svelte-seo";
 </script>
+
+<SvelteSeo
+  title="HikkiThon"
+  description="Свободный, ежемесячный онлайн хакатон, где участники создают проекты, которые помогут людям жить лучше."
+  canonical="https://roll-over.org/projects/hikkithon"
+/>
 
 <ProjectTemplate title="HikkiThon">
   <WhatIsProject title="HikkiThon">
@@ -40,7 +47,7 @@
       </li>
       <li>
         <h3>Читать про онлайн хакатоны и подготовку к хакатонам</h3>
-        <Link href="/projects/hikkithon/posts/">Статьи</Link>
+        <Link href="/projects/hikkithon/posts">Статьи</Link>
       </li>
     </ul>
   </section>

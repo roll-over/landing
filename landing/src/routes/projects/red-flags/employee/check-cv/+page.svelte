@@ -1,4 +1,5 @@
 <script>
+  import SvelteSeo from "svelte-seo";
   const cards = [
     {
       title: "Краткий обзор резюме",
@@ -51,6 +52,14 @@
     наличие ошибок."
   />
 </svelte:head>
+
+<SvelteSeo
+  title="Сервис проверки резюме"
+  description="Проверка резюме — это сервис, где вы можете проверить своё резюме на
+  наличие ошибок."
+  canonical="https://roll-over.org/projects/red-flags/employee/check-cv"
+/>
+
 
 <div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
   <h2>Проверка резюме</h2>

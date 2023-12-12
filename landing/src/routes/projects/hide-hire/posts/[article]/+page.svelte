@@ -23,7 +23,7 @@
       .map((_a) => {
         return {
           title: _a.title,
-          url: articles.hideHire.link + _a.id,
+          url: articles.hideHire.link + "/" + _a.id,
         };
       })}
   />

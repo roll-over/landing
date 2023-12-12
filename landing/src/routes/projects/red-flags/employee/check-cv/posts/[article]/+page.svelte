@@ -32,7 +32,7 @@
       .map((_a) => {
         return {
           title: _a.title,
-          url: articles.redFlags.employee.cv.link + _a.id,
+          url: articles.redFlags.employee.cv.link + "/" + _a.id,
         };
       })}
   />

@@ -31,7 +31,7 @@
   <h2>Статьи</h2>
   <div class="flex flex-col gap-10">
     {#each a as article}
-      <ArticlePreview {article} link={link + article.id} />
+      <ArticlePreview {article} link={link + "/" + article.id} />
     {/each}
   </div>
 </div>

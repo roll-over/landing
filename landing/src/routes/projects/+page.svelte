@@ -2,25 +2,22 @@
   import Divider from "$lib/components/Divider.svelte";
   import ProjectCard from "$lib/components/blocks/ProjectCard.svelte";
   import { Owners, projects, Status } from "$lib/projects";
+  import SvelteSeo from "svelte-seo";
 
   const oursOpenProjects = projects.filter(
     (project) => project.status !== Status.closed && project.owner === Owners.rollOver,
   );
-  const friendsProjects = projects.filter((project) => project.owner === Owners.friends);
-  const historyProjects = projects.filter((project) => project.status === Status.closed);
 </script>
 
-<svelte:head>
-  <title>Проекты в roll-over</title>
-  <meta
-    name="description"
-    content="Открытые проекты в roll-over: {projects.map((project) => project.title).join(', ')}}"
-  />
-</svelte:head>
+<SvelteSeo
+  title="Проекты в roll-over"
+  description="Открытые проекты в roll-over: {projects.map((project) => project.title).join(', ')}}"
+  canonical="https://roll-over.org/projects"
+/>
 
 <div class="flex flex-wrap gap-10 justify-evenly p-5 sm:pl-3">
   <div class="flex flex-col gap-10 w-full max-w-xl justify-left">
-    <h1>Проекты</h1>
+    <h1>Открытые проекты roll-over</h1>
 
     <Divider></Divider>
 

@@ -1,19 +1,18 @@
 <script>
   import Link from "$lib/components/Link.svelte";
   import { vacancies } from "$lib/vacancies.js";
+  import SvelteSeo from "svelte-seo";
+
   const hideHireVacancies = vacancies.filter((vacancy) => vacancy.company === "hide-hire");
 </script>
 
-<svelte:head>
-  <title>Проект: hide-hire</title>
-  <meta
-    name="description"
-    content="Проект для анонимного поиска работы - там, где до первого созвона и/или
-    внутри переписки, кандидат и работодатель не будут знать друг о друге
-    ничего, кроме того, что указано в cv и базовых вопросов про опыт, стек,
-    грейд, зарплатной вилке и другой недеанонимизирующей информации."
-  />
-</svelte:head>
+<SvelteSeo
+  title="Проект: hide-hire"
+  description="Проект для анонимного поиска работы - там, где до первого созвона и/или
+  внутри переписки, кандидат и работодатель не будут знать друг о друге
+  ничего."
+  canonical="https://roll-over.org/projects/hide-hire"
+/>
 
 <div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
   <h2>Проект: hide-hire</h2>

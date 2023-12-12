@@ -58,7 +58,7 @@ const redFlags = {
 export const articles = {
   redFlags,
   itsOpenMic: {
-    link: "/projects/its-open-mic/past-events/",
+    link: "/projects/its-open-mic/past-events",
     articles: [
       {
         id: "kak_aitishniku_sdelat_svoyu_rok_gruppu",
@@ -84,19 +84,19 @@ export const articles = {
     ],
   },
   hikkithon: {
-    link: "/projects/hikkithon/posts/",
+    link: "/projects/hikkithon/posts",
     articles: [],
   },
   simplePsychologist: {
-    link: "/projects/simple-psychologist/posts/",
+    link: "/projects/simple-psychologist/posts",
     articles: [],
   },
   itsOpenMicPosts: {
-    link: "/projects/its-open-mic/posts/",
+    link: "/projects/its-open-mic/posts",
     articles: [],
   },
   hideHire: {
-    link: "/projects/hide-hire/posts/",
+    link: "/projects/hide-hire/posts",
     articles: [],
   },
 } as const;
@@ -111,12 +111,12 @@ export const articlesStacksList = [
   {
     title: "Все тонкости найма и поиска работы (hide-hire)",
     description: "Популярные ошибки, советы и тайны при поиске работы",
-    link: "/projects/hide-hire/posts/",
+    link: "/projects/hide-hire/posts",
   },
   {
     title: "Статьи про публичные выступления (its-open-mic)",
     description: "Популярные ошибки, советы и тайны публичных выступлений",
-    link: "/projects/its-open-mic/posts/",
+    link: "/projects/its-open-mic/posts",
   },
   {
     title: "Подготовка резюме (red-flags)",
@@ -126,11 +126,11 @@ export const articlesStacksList = [
   {
     title: "Hikkithon",
     description: "Материалы про онлайн хакатон Hikkithon и подготовку к нему",
-    link: "/projects/hikkithon/posts/",
+    link: "/projects/hikkithon/posts",
   },
   {
     title: "simple-psychologist",
     description: "Психологические статьи по само поддержке",
-    link: "/projects/simple-psychologist/posts/",
+    link: "/projects/simple-psychologist/posts",
   },
 ];
