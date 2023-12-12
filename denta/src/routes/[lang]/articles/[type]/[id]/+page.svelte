@@ -21,7 +21,7 @@
 </script>
 
 <SvelteSeo
-  title={data.article.title}
+  title={data.article.title.slice(0, 70)}
   description={data.article.description.slice(0, 150)}
   jsonLd={{
     "@context": "https://schema.org",
