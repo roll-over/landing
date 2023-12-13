@@ -194,20 +194,26 @@
       </div>
 
       <div class="flex flex-col gap-2">
-        <a href="https://github.com/roll-over/landing?utm_source=denta-crm.com" class="text-slate-500 p-2">Source code</a>
-        <a href="https://roll-over.org/?utm_source=denta-crm.com" class="text-slate-500 p-2">roll-over</a>
-        <a href={`/${$page.params.lang}/about`} class="text-slate-500 p-3">About</a>
+        <a
+          href="https://github.com/roll-over/landing?utm_source=denta-crm.com"
+          class="text-slate-500 md:p-1 p-3">Source code</a
+        >
+        <a href="https://roll-over.org/?utm_source=denta-crm.com" class="text-slate-500 md:p-1 p-3"
+          >roll-over</a
+        >
+        <a href={`/${$page.params.lang}/about`} class="text-slate-500 md:p-1 p-3">About</a>
       </div>
 
       <div class="flex flex-col gap-2">
-        <a href={`/${$page.params.lang}/documents/cookie-policy`} class="text-slate-500 p-3"
+        <a href={`/${$page.params.lang}/documents/cookie-policy`} class="text-slate-500 md:p-1 p-3"
           >Cookie Policy</a
         >
-        <a href={`/${$page.params.lang}/documents/privacy-policy`} class="text-slate-500 p-2"
+        <a href={`/${$page.params.lang}/documents/privacy-policy`} class="text-slate-500 md:p-1 p-3"
           >Privacy Policy</a
         >
-        <a href={`/${$page.params.lang}/documents/terms-of-service`} class="text-slate-500 p-2"
-          >Terms of Service</a
+        <a
+          href={`/${$page.params.lang}/documents/terms-of-service`}
+          class="text-slate-500 md:p-1 p-3">Terms of Service</a
         >
       </div>
     </div>
