@@ -3,8 +3,14 @@ import { getAnotherCompanies } from "$lib/db/another-companies";
 import { error } from "@sveltejs/kit";
 
 export const load = async (event) => {
+  const _db = await db();
+
+  if (!_db) {
+    throw error(500, "DB not found");
+  }
+
   const infoCompany =
-    (await (await db()).collection("info-companies").findOne(
+    (await _db.collection("info-companies").findOne(
       {
         publicId: event.params.companyId,
       },
@@ -12,7 +18,7 @@ export const load = async (event) => {
         projection: {},
       },
     )) ||
-    (await (await db()).collection("info-companies").findOne(
+    (await _db.collection("info-companies").findOne(
       {
         _id: event.params.companyId,
       },
@@ -21,11 +27,15 @@ export const load = async (event) => {
       },
     ));
 
-    if (infoCompany.status === "inactive") {
-      throw error(404, "Company not found" )
-    }
+  if (!infoCompany) {
+    throw error(404, "Company not found");
+  }
 
-  const country = await (await db()).collection("countries").findOne(
+  if (infoCompany.status === "inactive") {
+    throw error(404, "Company not found");
+  }
+
+  const country = await _db.collection("countries").findOne(
     {
       id: infoCompany.country,
     },
@@ -36,7 +46,11 @@ export const load = async (event) => {
     },
   );
 
-  const city = await (await db()).collection("cities").findOne(
+  if (!country) {
+    throw error(404, "Country not found");
+  }
+
+  const city = await _db.collection("cities").findOne(
     {
       id: infoCompany.city,
     },
@@ -47,11 +61,44 @@ export const load = async (event) => {
     },
   );
 
+  if (!city) {
+    throw error(404, "City not found");
+  }
+
   const { anotherCompanies, anotherInfoCompanies } = await getAnotherCompanies(
     infoCompany.country,
     infoCompany.city,
     infoCompany._id,
   );
+
+  const reviews = await _db
+    .collection("reviews")
+    .find(
+      {
+        rootId: `company-${infoCompany._id}`,
+      },
+      {
+        projection: {
+          _id: 0,
+        },
+      },
+    )
+    .toArray();
+
+  const rating =
+    Math.round((reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length) * 10) /
+    10;
+
+  const session = await event.locals.getSession();
+  const userReview = session
+    ? reviews.find((review) => review.email === session.user?.email && !review.entityId)?.reviewId
+    : "";
+
+  const allUserReviews = session
+    ? reviews
+        .filter((review) => review.email === session.user?.email)
+        .map((review) => review.reviewId)
+    : [];
 
   return {
     infoCompany,
@@ -59,5 +106,9 @@ export const load = async (event) => {
     city: { label: city[event.params.lang], value: city.id },
     anotherCompanies,
     anotherInfoCompanies,
+    reviews: reviews,
+    rating: rating,
+    userReview: userReview,
+    allUserReviews: allUserReviews,
   };
 };

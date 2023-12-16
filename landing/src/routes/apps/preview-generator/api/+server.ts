@@ -8,7 +8,6 @@ export async function POST(event) {
   }
 
   const params = await event.request.json();
-  console.log(params);
   return new Response(
     await fetch(
       `http://${env.DEV_MODE === "true" ? "preview_generator_dev" : "preview_generator"}:8000`,

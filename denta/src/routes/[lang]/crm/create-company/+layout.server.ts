@@ -1,15 +1,10 @@
 import db from "$lib/db";
-import { redirect } from "@sveltejs/kit";
 
 export const load = async (event) => {
-  const session = await event.locals.getSession();
-
-  if(!session) {
-    throw redirect(302, "/auth/signin");
-  }
-
   const countries = (
-    await (await db())
+    await (
+      await db()
+    )
       .collection("countries")
       .find(
         {},
@@ -29,7 +24,6 @@ export const load = async (event) => {
 
   return {
     countries: countries,
-
     lang: event.params.lang,
   };
 };

@@ -6,6 +6,8 @@
   import Icon from "svelte-icons-pack";
   import BsWallet2 from "svelte-icons-pack/bs/BsWallet2";
   import BsSearch from "svelte-icons-pack/bs/BsSearch";
+  import Auth from "$lib/components/Auth.svelte";
+  import Logout from "$lib/components/Logout.svelte";
 
   initializeStores();
   export let data: { countries: any[]; cities: any[] };
@@ -150,13 +152,13 @@
         {/each}
         <li>
           {#if $page.data.session}
-            <NavLink href="/auth/signout">
+            <Logout>
               {#if $page.data.session.user?.image}
                 <img src={$page.data.session.user.image} class="rounded-2xl w-8 h-8" alt="avatar" />
               {/if}
-            </NavLink>
+            </Logout>
           {:else}
-            <NavLink href="/auth/signin">Войти</NavLink>
+            <Auth>Войти</Auth>
           {/if}
         </li>
       </ol>

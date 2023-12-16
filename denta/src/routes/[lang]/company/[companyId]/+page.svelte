@@ -1,6 +1,8 @@
 <script lang="ts">
+  import { page } from "$app/stores";
   import AnotherCompanies from "$lib/components/AnotherCompanies.svelte";
   import CenteredPage from "$lib/components/CenteredPage.svelte";
+  import ReviewsBlock from "$lib/components/ReviewsBlock.svelte";
   import type { Cabinet, Language } from "$lib/types/crm";
   import SvelteMarkdown from "svelte-markdown";
   import SvelteSeo from "svelte-seo";
@@ -33,6 +35,23 @@
       address: string;
       phone: string;
     }[];
+    reviews: {
+      reviewId: string;
+      name: string;
+      avatar: string;
+      rate: number;
+      comment: string;
+    }[];
+    rate: number;
+    session: {
+      user: {
+        name: string;
+        email: string;
+        image: string;
+      };
+    } | null;
+    userReview: string;
+    allUserReviews: string[];
   };
 </script>
 
@@ -50,6 +69,8 @@
     address: {
       "@type": "PostalAddress",
       addressLocality: `${data.city.label}`,
+      avatar: "",
+
       addressCountry: `${data.country.label}`,
       streetAddress: `${data.infoCompany.address}`,
     },
@@ -86,6 +107,16 @@
       </address>
     </footer>
   </div>
+
+  <ReviewsBlock
+    reviews={data.reviews}
+    rating={data.rating}
+    session={data.session}
+    rootId={`company-${$page.params.companyId}`}
+    userReview={data.userReview}
+    allUserReviews={data.allUserReviews}
+  />
+
   <AnotherCompanies
     data={{
       anotherCompanies: data.anotherCompanies,

@@ -45,16 +45,6 @@
 
   $: appointmentInEditId = "";
   $: appointmentInEdit = data.appointments.find((a) => a.id === appointmentInEditId);
-  $: console.log(appointmentInEdit);
-  $: console.log(
-    appointmentInEdit?.servicesIds
-      ?.map((item) => data.services.find((p) => p.id === item))
-      .filter((i) => !!i)
-      .map((item) => ({
-        value: item.id,
-        label: item.name,
-      })) || [],
-  );
 </script>
 
 <div class="flex flex-col items-start p-2 md:p-10 w-full">
@@ -249,7 +239,6 @@
             return data.priceList.find((p) => p.id === item);
           })
           .map((item) => {
-            console.log(item);
             const value = data.priceList.find((p) => p.id === item.id)?.id;
             if (!value) {
               throw new Error("value not found");

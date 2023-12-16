@@ -45,12 +45,24 @@ export const handle: Handle = async ({ resolve, event }) => {
     response.headers.append("Access-Control-Allow-Origin", `*`);
   }
 
+  if (
+    event.url.pathname.startsWith("/auth/callback/google") ||
+    (event.url.pathname.startsWith("/auth/signout") && event.request.method === "POST")
+  ) {
+    return new Response(null, {
+      headers: {
+        Location: event.url.origin + "/auth-callback",
+        "Set-Cookie": response.headers.get("Set-Cookie") || "",
+      },
+      status: 302,
+    });
+  }
+
   return response;
 };
 
 startMongo()
-  .then(() => {
-  })
+  .then(() => {})
   .catch((e) => {
     console.error(e);
   });
