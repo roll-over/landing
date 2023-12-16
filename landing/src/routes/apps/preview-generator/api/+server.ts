@@ -8,7 +8,7 @@ export async function POST(event) {
   }
 
   const params = await event.request.json();
-
+  console.log(params);
   return new Response(
     await fetch(
       `http://${env.DEV_MODE === "true" ? "preview_generator_dev" : "preview_generator"}:8000`,
@@ -17,9 +17,18 @@ export async function POST(event) {
         body: JSON.stringify(params),
         headers: { "Content-Type": "application/json" },
       },
-    ).then(async (res) => {
-      return res.arrayBuffer();
-    }),
+    )
+      .catch((err) => {
+        console.error(err);
+        throw err;
+      })
+      .then(async (res) => {
+        return res.arrayBuffer();
+      })
+      .catch((err) => {
+        console.error(err);
+        throw err;
+      }),
     {
       headers: {
         "Content-Type": "image/png",
