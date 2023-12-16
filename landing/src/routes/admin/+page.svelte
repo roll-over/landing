@@ -14,5 +14,9 @@
     <li>
       <NavLink href="/admin/support">Поддержка</NavLink>
     </li>
+
+    <li>
+      <NavLink href="/apps/preview-generator">Preview generator</NavLink>
+    </li>
   </ul>
 </CenteredPage>
