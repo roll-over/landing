@@ -85,9 +85,10 @@ export const load = async (event) => {
     )
     .toArray();
 
-  const rating =
-    Math.round((reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length) * 10) /
-    10;
+  const rating = reviews.length
+    ? Math.round((reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length) * 10) /
+      10
+    : 0;
 
   const session = await event.locals.getSession();
   const userReview = session
