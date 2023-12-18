@@ -51,16 +51,16 @@ jobs:
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && git stash && git checkout ${{ vars.DEV_BRANCH }} && git pull"
 
       - name: stop containers -- 0 pack
-        if: steps.landing_filter.outputs.workflows == 'true'
+        if: needs.landing_filter.outputs.workflows == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose down landing_roll_over"
       - name: build and run containers -- 0 pack
-        if: steps.landing_filter.outputs.workflows == 'true'
+        if: needs.landing_filter.outputs.workflows == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build landing_roll_over"
       - name: stop containers -- 1 pack
-        if: steps.landing_filter.outputs.workflows == 'true'
+        if: needs.landing_filter.outputs.workflows == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose down landing_roll_over_1"
       - name: build and run containers -- 1 pack
-        if: steps.landing_filter.outputs.workflows == 'true'
+        if: needs.landing_filter.outputs.workflows == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build landing_roll_over_1"
 
       - name: stop containers -- preview_generator
@@ -69,14 +69,14 @@ jobs:
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build preview_generator"
 
       - name: stop containers -- denta -- 0 pack
-        if: steps.denta_filter.outputs.workflows == 'true'
+        if: needs.denta_filter.outputs.workflows == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose down denta_roll_over"
       - name: build and run containers -- denta -- 0 pack
-        if: steps.denta_filter.outputs.workflows == 'true'
+        if: needs.denta_filter.outputs.workflows == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build denta_roll_over"
       - name: stop containers -- denta -- 1 pack
-        if: steps.denta_filter.outputs.workflows == 'true'
+        if: needs.denta_filter.outputs.workflows == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose down denta_roll_over_1"
       - name: build and run containers -- denta -- 1 pack
-        if: steps.denta_filter.outputs.workflows == 'true'
+        if: needs.denta_filter.outputs.workflows == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build denta_roll_over_1"
