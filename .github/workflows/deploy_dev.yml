@@ -11,6 +11,18 @@ env:
   env_var: ${{ vars.ENV_CONTEXT_VAR }}
 
 jobs:
+  landing_filter:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.landing_filter.outputs.workflows }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: landing_filter
+        with:
+          filters: |
+            workflows:
+              - 'landing/**'
   run_pull:
     name: run pull
     runs-on: ubuntu-latest
@@ -25,16 +37,20 @@ jobs:
           ssh-keyscan -H ${{ vars.DEV_SSH_HOST }} > ~/.ssh/known_hosts
       - name: connect and pull
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && git stash && git checkout ${{ vars.DEV_BRANCH }} && git pull"
-     
+
       - name: stop containers -- 0 pack
+        if: steps.landing_filter.outputs.workflows == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose down landing_roll_over"
       - name: build and run containers -- 0 pack
+        if: steps.landing_filter.outputs.workflows == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build landing_roll_over"
       - name: stop containers -- 1 pack
+        if: steps.landing_filter.outputs.workflows == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose down landing_roll_over_1"
       - name: build and run containers -- 1 pack
+        if: steps.landing_filter.outputs.workflows == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build landing_roll_over_1"
-      
+
       - name: stop containers -- preview_generator
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose down preview_generator"
       - name: build and run containers -- preview_generator
