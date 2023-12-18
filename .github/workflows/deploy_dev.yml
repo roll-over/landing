@@ -23,6 +23,18 @@ jobs:
           filters: |
             workflows:
               - 'landing/**'
+  denta_filter:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.denta_filter.outputs.workflows }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: denta_filter
+        with:
+          filters: |
+            workflows:
+              - 'denta/**'
   run_pull:
     name: run pull
     runs-on: ubuntu-latest
@@ -57,10 +69,14 @@ jobs:
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build preview_generator"
 
       - name: stop containers -- denta -- 0 pack
+        if: steps.denta_filter.outputs.workflows == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose down denta_roll_over"
       - name: build and run containers -- denta -- 0 pack
+        if: steps.denta_filter.outputs.workflows == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build denta_roll_over"
       - name: stop containers -- denta -- 1 pack
+        if: steps.denta_filter.outputs.workflows == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose down denta_roll_over_1"
       - name: build and run containers -- denta -- 1 pack
+        if: steps.denta_filter.outputs.workflows == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build denta_roll_over_1"
