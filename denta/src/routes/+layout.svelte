@@ -215,7 +215,7 @@
               {/if}
             </Logout>
           {:else}
-            <Auth>Войти</Auth>
+            <Auth>{l("Войти")}</Auth>
           {/if}
         </li>
       </ol>

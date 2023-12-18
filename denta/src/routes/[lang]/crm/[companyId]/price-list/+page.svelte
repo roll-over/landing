@@ -79,7 +79,7 @@
 
         <SaveButton
           on:click={async () => {
-            const res = await fetch(`/ru/crm/${companyId}/price-list/api/`, {
+            const res = await fetch(`/${$page.params.lang}/crm/${companyId}/price-list/api/`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -124,7 +124,7 @@
         <div>
           <SaveButton
             on:click={async () => {
-              const res = await fetch(`/ru/crm/${companyId}/price-list/api/`, {
+              const res = await fetch(`/${$page.params.lang}/crm/${companyId}/price-list/api/`, {
                 method: "PUT",
                 headers: {
                   "Content-Type": "application/json",
@@ -141,7 +141,7 @@
           ></SaveButton>
           <DeleteButton
             on:click={async () => {
-              const res = await fetch(`/ru/crm/${companyId}/price-list/api/`, {
+              const res = await fetch(`/${$page.params.lang}/crm/${companyId}/price-list/api/`, {
                 method: "DELETE",
                 headers: {
                   "Content-Type": "application/json",

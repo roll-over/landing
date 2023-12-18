@@ -50,7 +50,7 @@
 <div class="flex flex-col items-start p-2 md:p-10 w-full">
   <AddButton
     on:click={async () => {
-      const res = await fetch(`/ru/crm/${companyId}/appointments/api/`, {
+      const res = await fetch(`/${$page.params.lang}/crm/${companyId}/appointments/api/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,7 +74,7 @@
           <option value={client.id}>{client.name}</option>
         {/each}
       </select>
-      <SupportLink href="/ru/crm/{companyId}/clients">Добавить клиента</SupportLink>
+      <SupportLink href="/${$page.params.lang}/crm/{companyId}/clients">Добавить клиента</SupportLink>
     </Section>
 
     <Section>
@@ -89,7 +89,7 @@
           <option value={doctor.id}>{doctor.name}</option>
         {/each}
       </select>
-      <SupportLink href="/ru/crm/{companyId}/employees">Добавить доктора</SupportLink>
+      <SupportLink href="/${$page.params.lang}/crm/{companyId}/employees">Добавить доктора</SupportLink>
     </Section>
 
     <Section>
@@ -104,7 +104,7 @@
           <option value={cabinet.id}>{cabinet.name}</option>
         {/each}
       </select>
-      <SupportLink href="/ru/crm/{companyId}/cabinets">Добавить кабинет</SupportLink>
+      <SupportLink href="/${$page.params.lang}/crm/{companyId}/cabinets">Добавить кабинет</SupportLink>
     </Section>
 
     <Section>
@@ -257,13 +257,13 @@
           appointmentInEdit.servicesIds = e.detail.map((item) => item.value) || [];
         }}
       />
-      <SupportLink href="/ru/crm/{companyId}/price-list"
+      <SupportLink href="/${$page.params.lang}/crm/{companyId}/price-list"
         >Добавить услугу которой нет в списке</SupportLink
       >
     </Section>
     <SaveButton
       on:click={async () => {
-        const res = await fetch(`/ru/crm/${companyId}/appointments/api/`, {
+        const res = await fetch(`/${$page.params.lang}/crm/${companyId}/appointments/api/`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

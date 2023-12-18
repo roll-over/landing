@@ -39,7 +39,7 @@
 
     <AddButton
       on:click={async () => {
-        const res = await fetch(`/ru/crm/${companyId}/cabinets/api/`, {
+        const res = await fetch(`/${$page.params.lang}/crm/${companyId}/cabinets/api/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -227,7 +227,7 @@
         {#if editing.changed}
           <SaveButton
             on:click={async () => {
-              const res = await fetch(`/ru/crm/${companyId}/cabinets/api/`, {
+              const res = await fetch(`/${$page.params.lang}/crm/${companyId}/cabinets/api/`, {
                 method: "PUT",
                 headers: {
                   "Content-Type": "application/json",

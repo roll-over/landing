@@ -45,7 +45,7 @@
     <p>Изменения не сохранены</p>
     <SaveButton
       on:click={async () => {
-        const res = await fetch(`/ru/crm/${$page.params.companyId}/subscription/api/`, {
+        const res = await fetch(`/${$page.params.lang}/crm/${$page.params.companyId}/subscription/api/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

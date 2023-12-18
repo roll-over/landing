@@ -12,19 +12,19 @@
     {
       type: "icon",
       title: BsWallet2,
-      href: `/ru/crm/${data.company.id}/wallet`,
+      href: `/${$page.params.lang}/crm/${data.company.id}/wallet`,
     },
     {
       title: "Подписка",
-      href: `/ru/crm/${data.company.id}/wallet/subscription`,
+      href: `/${$page.params.lang}/crm/${data.company.id}/wallet/subscription`,
     },
     {
       title: "Транзакции",
-      href: `/ru/crm/${data.company.id}/wallet/transactions`,
+      href: `/${$page.params.lang}/crm/${data.company.id}/wallet/transactions`,
     },
     {
       title: "Пополнить",
-      href: `/ru/crm/${data.company.id}/wallet/top-up`,
+      href: `/${$page.params.lang}/crm/${data.company.id}/wallet/top-up`,
     },
   ];
 

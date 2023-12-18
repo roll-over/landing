@@ -41,7 +41,7 @@
         return c.label === data.company.mainAddress.city;
       })?.value || data.company.mainAddress.city;
 
-    const res = await fetch(`/ru/crm/${companyId}/company/api/`, {
+    const res = await fetch(`/${$page.params.lang}/crm/${companyId}/company/api/`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

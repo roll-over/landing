@@ -19,7 +19,7 @@ export const load = async (event) => {
     : null;
 
   if (!company) {
-    throw redirect(302, "/ru/crm/");
+    throw redirect(302, `/${event.params.lang}/crm/`);
   }
 
   return {

@@ -11,27 +11,27 @@
   const links = [
     {
       title: "Записи",
-      href: `/ru/crm/${data.company.id}/appointments`,
+      href: `/${$page.params.lang}/crm/${data.company.id}/appointments`,
     },
     {
       title: "Пациенты",
-      href: `/ru/crm/${data.company.id}/clients`,
+      href: `/${$page.params.lang}/crm/${data.company.id}/clients`,
     },
     {
       title: "Компания",
-      href: `/ru/crm/${data.company.id}/company`,
+      href: `/${$page.params.lang}/crm/${data.company.id}/company`,
     },
     {
       title: "Филиалы",
-      href: `/ru/crm/${data.company.id}/cabinets`,
+      href: `/${$page.params.lang}/crm/${data.company.id}/cabinets`,
     },
     {
       title: "Доктора",
-      href: `/ru/crm/${data.company.id}/employees`,
+      href: `/${$page.params.lang}/crm/${data.company.id}/employees`,
     },
     {
       title: "Прайс лист",
-      href: `/ru/crm/${data.company.id}/price-list`,
+      href: `/${$page.params.lang}/crm/${data.company.id}/price-list`,
     },
   ];
 

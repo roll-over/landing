@@ -17,7 +17,7 @@
     </p>
     <AddButton
       on:click={async () => {
-        const res = await fetch(`/ru/crm/${companyId}/employees/api/`, {
+        const res = await fetch(`/${$page.params.lang}/crm/${companyId}/employees/api/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -96,7 +96,7 @@
         {#if employee.changed}
           <SaveButton
             on:click={async () => {
-              const res = await fetch(`/ru/crm/${companyId}/employees/api/`, {
+              const res = await fetch(`/${$page.params.lang}/crm/${companyId}/employees/api/`, {
                 method: "PUT",
                 headers: {
                   "Content-Type": "application/json",
