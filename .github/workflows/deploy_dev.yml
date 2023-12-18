@@ -35,10 +35,24 @@ jobs:
           filters: |
             workflows:
               - 'denta/**'
+
+  apps_filter:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.apps_filter.outputs.workflows }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: apps_filter
+        with:
+          filters: |
+            workflows:
+              - 'apps/**'
+
   run_pull:
     name: run pull
     runs-on: ubuntu-latest
-    needs: [landing_filter, denta_filter]
+    needs: [landing_filter, denta_filter, apps_filter]
     steps:
       - name: install ssh keys
         # check this thread to understand why its needed:
@@ -64,8 +78,10 @@ jobs:
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build landing_roll_over_1"
 
       - name: stop containers -- preview_generator
+        if: needs.apps_filter.outputs.output1 == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose down preview_generator"
       - name: build and run containers -- preview_generator
+        if: needs.apps_filter.outputs.output1 == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build preview_generator"
 
       - name: stop containers -- denta -- 0 pack
