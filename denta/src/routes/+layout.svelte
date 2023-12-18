@@ -189,7 +189,7 @@
                   class="btn"
                   href={$page.params.lang === "en"
                     ? $page.url.pathname
-                    : $page.url.pathname.replace("/en", "/ru")}
+                    : $page.url.pathname.replace("/ru", "/en")}
                   on:click={() => {
                     pickingLang = false;
                   }}>English</a
