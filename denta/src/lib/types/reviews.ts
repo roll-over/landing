@@ -6,6 +6,7 @@ export const newReviewSchema = z.object({
   rating: z.number().min(1).max(5),
   comment: z.string().max(1000),
   rootId: z.string().min(1).max(400),
+  lang: z.string().min(1).max(2),
   entityId: z.string().optional(),
 });
 

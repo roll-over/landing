@@ -1,3 +1,5 @@
+import { t } from "$lib/backend/localisation";
+import { getCity, getCountry } from "$lib/backend/location";
 import db from "$lib/db";
 import { getAnotherCompanies } from "$lib/db/another-companies";
 import { error } from "@sveltejs/kit";
@@ -35,40 +37,15 @@ export const load = async (event) => {
     throw error(404, "Company not found");
   }
 
-  const country = await _db.collection("countries").findOne(
-    {
-      id: infoCompany.country,
-    },
-    {
-      projection: {
-        _id: 0,
-      },
-    },
-  );
+  const country = await getCountry(infoCompany.country, event.params.lang);
 
-  if (!country) {
-    throw error(404, "Country not found");
-  }
-
-  const city = await _db.collection("cities").findOne(
-    {
-      id: infoCompany.city,
-    },
-    {
-      projection: {
-        _id: 0,
-      },
-    },
-  );
-
-  if (!city) {
-    throw error(404, "City not found");
-  }
+  const city = await getCity(infoCompany.city, event.params.lang);
 
   const { anotherCompanies, anotherInfoCompanies } = await getAnotherCompanies(
     infoCompany.country,
     infoCompany.city,
     infoCompany._id,
+    event.params.lang,
   );
 
   const reviews = await _db
@@ -102,7 +79,12 @@ export const load = async (event) => {
     : [];
 
   return {
-    infoCompany,
+    infoCompany: {
+      ...infoCompany,
+      title: await t(infoCompany.title, infoCompany.lang || "ru", event.params.lang),
+      description: await t(infoCompany.description, infoCompany.lang || "ru", event.params.lang),
+      address: await t(infoCompany.address, infoCompany.lang || "ru", event.params.lang),
+    },
     country: { label: country[event.params.lang], value: country.id },
     city: { label: city[event.params.lang], value: city.id },
     anotherCompanies,

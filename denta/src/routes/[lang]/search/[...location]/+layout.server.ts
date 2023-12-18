@@ -1,3 +1,4 @@
+import { t } from "$lib/backend/localisation";
 import db from "$lib/db";
 import { redirect } from "@sveltejs/kit";
 
@@ -108,7 +109,15 @@ export const load = async (event) => {
       cities,
       city: pickedCity,
       lang: event.params.lang,
-      infoCompanies,
+      infoCompanies: await Promise.all(
+        infoCompanies.map(async (infoCompany) => {
+          return {
+            ...infoCompany,
+            title: await t(infoCompany.title, infoCompany.lang || "ru", event.params.lang),
+            address: await t(infoCompany.address, infoCompany.lang || "ru", event.params.lang),
+          };
+        }),
+      ),
     };
   }
 };

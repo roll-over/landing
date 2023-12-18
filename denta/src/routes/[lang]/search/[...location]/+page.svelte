@@ -3,6 +3,10 @@
   import NavLink from "$lib/components/NavLink.svelte";
   import SupportLink from "$lib/components/SupportLink.svelte";
   import type { Cabinet, Language } from "$lib/types/crm";
+  import { page } from "$app/stores";
+
+  import { localisation } from "$lib/localisation/localisation";
+  $: l = localisation($page.params.lang);
 
   export let data: {
     cabinets: {
@@ -26,10 +30,10 @@
 </script>
 
 <svelte:head>
-  <title>Поиск стоматологий в {data.city.label}, {data.country.label}</title>
+  <title>{l("Поиск стоматологий в")} {data.city.label}, {data.country.label}</title>
   <meta
     name="description"
-    content={`Поиск стоматологий в ${data.city.label}, ${data.country.label}. ${
+    content={`${l("Поиск стоматологий в")} ${data.city.label}, ${data.country.label}. ${
       data.infoCompanies
         .map((cabinet) => cabinet.title)
         .join(", ")
@@ -40,10 +44,10 @@
 
 <div class="p-2 md:p-10 flex flex-col gap-16">
   <div class="flex flex-col w-full items-center">
-    <h1>Поиск стоматологий в {data.city.label}, {data.country.label}</h1>
+    <h1>{l("Поиск стоматологий в")} {data.city.label}, {data.country.label}</h1>
 
     <nav class="flex flex-row flex-wrap gap-3 relative text-2xl p-3">
-      <span>Выберите страну и город:</span>
+      <span>{l("Выберите страну и город:")}</span>
       <div class="relative">
         <button on:click={() => (pickingCountry = !pickingCountry)} class="btn variant-ghost">
           {data.country.label}
@@ -99,8 +103,8 @@
 
   {#if !data.infoCompanies.length}
     <div>
-      <h2>К сожалению, в этом городе мы не нашли стоматологий</h2>
-      <p>Попробуйте выбрать другой город</p>
+      <h2>{l("К сожалению, в этом городе мы не нашли стоматологий")}</h2>
+      <p>{l("Попробуйте выбрать другой город")}</p>
     </div>
   {/if}
 
@@ -113,12 +117,14 @@
           <h2>{cabinet.title}</h2>
         </header>
         <div class="p-4">
-          <p>Адрес: {cabinet.address}</p>
-          <p>Телефон: <a href={`tel:${cabinet.phone.replaceAll(" ", "")}`}>{cabinet.phone}</a></p>
+          <p>{l("Адрес")}: {cabinet.address}</p>
+          <p>
+            {l("Телефон")}: <a href={`tel:${cabinet.phone.replaceAll(" ", "")}`}>{cabinet.phone}</a>
+          </p>
         </div>
         <footer class="card-footer">
           <SupportLink href={`/${data.lang}/company/${cabinet.publicId || cabinet._id}`}
-            >Подробнее</SupportLink
+            >{l("Подробнее")}</SupportLink
           >
         </footer>
       </li>

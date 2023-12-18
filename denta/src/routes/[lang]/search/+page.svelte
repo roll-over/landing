@@ -18,6 +18,9 @@
   import Armenia800 from "$lib/assets/countries/Armenia-800.webp";
   import Armenia480 from "$lib/assets/countries/Armenia-480.webp";
   import Armenia320 from "$lib/assets/countries/Armenia-320.webp";
+  import { localisation } from "$lib/localisation/localisation";
+  $: l = localisation($page.params.lang);
+
   export let data: {
     countries: {
       value: string;
@@ -56,10 +59,10 @@
 </script>
 
 <svelte:head>
-  <title>Поиск стоматологий по странам</title>
+  <title>{l("Поиск стоматологий по странам")}</title>
   <meta
     name="description"
-    content={`Поиск стоматологий по странам: ${data.countries
+    content={`${l("Поиск стоматологий по странам")}: ${data.countries
       .map((c) => c.label)
       .slice(0, 5)
       .join(", ")}`}
@@ -67,12 +70,12 @@
 </svelte:head>
 
 <div class="flex flex-col p-4 gap-4">
-  <h1>Поиск стоматологий в вашей стране по базе denta-crm</h1>
+  <h1>{l("Поиск стоматологий в вашей стране по базе denta-crm")}</h1>
   <p>
-    На данный момент в базе denta-crm есть информация о стоматологиях в следующих странах:
+    {l("На данный момент в базе denta-crm есть информация о стоматологиях в следующих странах")}:
     {data.countries.map((c) => c.label).join(", ")}
   </p>
-  <p>Мы постоянно работаем над тем, чтобы наша база была максимально полной и актуальной.</p>
+  <p>{l("Мы постоянно работаем над тем, чтобы наша база была максимально полной и актуальной.")}</p>
   <ul class="flex flex-row flex-wrap list gap-3 md:gap-10">
     {#each data.countries as country}
       <li>
@@ -90,13 +93,13 @@
                     {pictures[country.value]['800']},
                     {pictures[country.value]['480']},
                     {pictures[country.value]['320']}"
-                alt={`Поиск стоматологий по стране: ${country.label}`}
+                alt={`${l("Поиск стоматологий по стране")}: ${country.label}`}
                 loading="lazy"
               />
             {:else}
               <img
                 src={pictures[country.value]}
-                alt={`Поиск стоматологий по стране: ${country.label}`}
+                alt={`${l("Поиск стоматологий по стране")}: ${country.label}`}
                 loading="lazy"
               />
             {/if}

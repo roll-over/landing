@@ -9,6 +9,12 @@
   import Auth from "$lib/components/Auth.svelte";
   import Logout from "$lib/components/Logout.svelte";
 
+  import { clickOutside } from "$lib/clickOutside";
+
+  import { localisation } from "$lib/localisation/localisation";
+  let l = localisation($page.params.lang);
+  $: l = localisation($page.params.lang);
+
   initializeStores();
   export let data: { countries: any[]; cities: any[] };
 
@@ -18,26 +24,26 @@
     {
       type: "icon",
       title: BsSearch,
-      href: "/ru/search",
-      ariaLabel: "Поиск",
+      href: `/${$page.params.lang}/search`,
+      ariaLabel: l("Поиск"),
     },
     {
       title: "CRM",
       href: data.usersCompanies?.length
-        ? `/ru/crm/${data.usersCompanies[0]?.id}/company`
-        : `/ru/crm/info`,
+        ? `/${$page.params.lang}/crm/${data.usersCompanies[0]?.id}/company`
+        : `/${$page.params.lang}/crm/info`,
     },
     {
-      title: "Статьи",
-      href: "/ru/articles",
+      title: l("Статьи"),
+      href: `/${$page.params.lang}/articles`,
     },
     ...($page.params.companyId && data.usersCompanies?.includes($page.params.companyId)
       ? [
           {
             type: "icon",
             title: BsWallet2,
-            href: `/ru/crm/${$page.params.companyId}/wallet`,
-            ariaLabel: "Кошелек",
+            href: `/${$page.params.lang}/crm/${$page.params.companyId}/wallet`,
+            ariaLabel: l("Кошелек"),
           },
         ]
       : []),
@@ -48,58 +54,58 @@
 
   const stepsWithLinksAndTitles = {
     search: {
-      title: "Поиск",
+      title: l("Поиск"),
     },
     contacts: {
-      title: "Контакты",
+      title: l("Контакты"),
     },
     c: {
-      title: "Компания",
+      title: l("Компания"),
     },
     posts: {
-      title: "Статьи",
+      title: l("Статьи"),
     },
     about: {
-      title: "О нас",
+      title: l("О нас"),
     },
     company: {
-      title: "Компания",
+      title: l("Компания"),
     },
     appointments: {
-      title: "Записи",
+      title: l("Записи"),
     },
     clients: {
-      title: "Пациенты",
+      title: l("Пациенты"),
     },
     cabinets: {
-      title: "Кабинеты",
+      title: l("Кабинеты"),
     },
     employees: {
-      title: "Доктора",
+      title: l("Доктора"),
     },
     "price-list": {
-      title: "Прайс лист",
+      title: l("Прайс-лист"),
     },
     wallet: {
-      title: "Кошелек",
+      title: l("Кошелек"),
     },
     subscription: {
-      title: "Подписка",
+      title: l("Подписка"),
     },
     transactions: {
-      title: "Транзакции",
+      title: l("Транзакции"),
     },
     "top-up": {
-      title: "Пополнить",
+      title: l("Пополнить"),
     },
     signin: {
-      title: "Войти",
+      title: l("Войти"),
     },
     signup: {
-      title: "Зарегистрироваться",
+      title: l("Зарегистрироваться"),
     },
     "create-company": {
-      title: "Создать компанию",
+      title: l("Создать компанию"),
     },
     ...data.countries.reduce((acc, country) => {
       acc[country.id] = {
@@ -127,6 +133,8 @@
     }
     return title;
   };
+
+  $: pickingLang = false;
 </script>
 
 <header class="p-2 flex flex-col justify-between" bind:clientWidth={w}>
@@ -134,7 +142,7 @@
     <Toast position={"tr"} />
 
     <div class="p-2 flex flex-col md:flex-row justify-between items-center">
-      <a href="/ru" class="flex flex-row">
+      <a href={`/${$page.params.lang}`} class="flex flex-row">
         <img src="/logo.webp" class="logo rounded-xl" alt="logo denta-crm" />
       </a>
 
@@ -150,6 +158,46 @@
             </NavLink>
           </li>
         {/each}
+        <li>
+          <div>
+            <button
+              class="btn variant-ghost"
+              on:click={() => {
+                pickingLang = !pickingLang;
+              }}
+            >
+              {$page.params.lang === "ru" ? "Русский" : "English"}
+            </button>
+            <ul
+              class={`bg-transparent ${pickingLang ? "absolute" : "hidden"}`}
+              use:clickOutside
+              on:click_outside={() => (pickingLang = false)}
+            >
+              <li>
+                <a
+                  class="btn"
+                  href={$page.params.lang === "ru"
+                    ? $page.url.pathname
+                    : $page.url.pathname.replace("/en", "/ru")}
+                  on:click={() => {
+                    pickingLang = false;
+                  }}>Русский</a
+                >
+              </li>
+              <li>
+                <a
+                  class="btn"
+                  href={$page.params.lang === "en"
+                    ? $page.url.pathname
+                    : $page.url.pathname.replace("/en", "/ru")}
+                  on:click={() => {
+                    pickingLang = false;
+                  }}>English</a
+                >
+              </li>
+            </ul>
+          </div>
+        </li>
         <li>
           {#if $page.data.session}
             <Logout>

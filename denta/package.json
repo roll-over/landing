@@ -49,6 +49,7 @@
     "openai": "^4.14.2",
     "svelte-icons-pack": "^2.1.0",
     "svelte-markdown": "^0.4.0",
+    "translate": "^2.0.2",
     "uuidv4": "^6.2.13",
     "zod": "^3.22.4"
   }

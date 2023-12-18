@@ -40,6 +40,7 @@ export const load = async (event) => {
     company.mainAddress.country,
     company.mainAddress.city,
     company.id,
+    event.params.lang,
   );
 
   return {

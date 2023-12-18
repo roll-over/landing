@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from "$app/stores";
-
+  import { localisation } from "$lib/localisation/localisation";
+  $: l = localisation($page.params.lang);
   export let data: {
     anotherCompanies: {
       id: string;
@@ -23,7 +24,8 @@
 {#if data.anotherCompanies?.length || data.anotherInfoCompanies?.length}
   <section>
     <h2>
-      Другие стоматологии в {data.city.label}, {data.country.label}
+      {l("Другие стоматологии в")}
+      {data.city.label}, {data.country.label}
     </h2>
     <ol class="flex flex-wrap gap-5 pl-5">
       {#each data.anotherCompanies as cabinet}
@@ -34,7 +36,7 @@
           >
             <h3>{cabinet.name}</h3>
             <p>
-              Адрес: {[cabinet.mainAddress.street, cabinet.mainAddress.street]
+              {l("Адрес")}: {[cabinet.mainAddress.street, cabinet.mainAddress.street]
                 .filter((x) => x)
                 .join(", ")}
             </p></a
@@ -48,7 +50,7 @@
             class=" flex flex-col justify-between gap-2 card card-hover w-full border-2 p-2 rounded-xl variant-glass-tertiary"
           >
             <h3>{cabinet.title}</h3>
-            <p>Адрес: {cabinet.address}</p></a
+            <p>{l("Адрес")}: {cabinet.address}</p></a
           >
         </li>
       {/each}

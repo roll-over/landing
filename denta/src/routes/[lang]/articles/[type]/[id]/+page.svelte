@@ -4,6 +4,10 @@
   import Heading from "$lib/components/markdown/Heading.svelte";
   import SvelteSeo from "svelte-seo";
 
+  import { page } from "$app/stores";
+  import { localisation } from "$lib/localisation/localisation";
+  $: l = localisation($page.params.lang);
+
   export let data: {
     article: {
       publicId: string;
@@ -46,11 +50,11 @@
   />
   <footer class="card-footer">
     <p class="created-at">
-      <span>Создано: </span>{new Date(data.article.createdAt).toLocaleString()}
+      <span>{l("Создано")}: </span>{new Date(data.article.createdAt).toLocaleString()}
     </p>
     {#if data.article.updatedAt}
       <p class="updated-at">
-        <span>Изменено: </span>
+        <span>{l("Изменено")}: </span>
         {new Date(data.article.updatedAt).toLocaleString()}
       </p>
     {/if}

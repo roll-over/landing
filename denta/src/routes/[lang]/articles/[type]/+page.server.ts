@@ -1,3 +1,4 @@
+import { t } from "$lib/backend/localisation";
 import db from "$lib/db";
 import { error } from "@sveltejs/kit";
 
@@ -31,6 +32,14 @@ export const load = async (event) => {
       .toArray()) || [];
 
   return {
-    articles,
+    articles: await Promise.all(
+      articles.map(async (article) => {
+        return {
+          ...article,
+          title: await t(article.title, article.lang || "ru", event.params.lang),
+          description: await t(article.description, article.lang || "ru", event.params.lang),
+        };
+      }),
+    ),
   };
 };

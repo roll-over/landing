@@ -1,6 +1,5 @@
 <script lang="ts">
   import { page } from "$app/stores";
-  import { clickOutside } from "$lib/clickOutside";
   import AddButton from "$lib/components/AddButton.svelte";
   import AutocompliteMultiple from "$lib/components/AutocompliteMultiple.svelte";
   import DeleteButton from "$lib/components/DeleteButton.svelte";

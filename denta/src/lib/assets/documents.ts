@@ -1,3 +1,5 @@
+import { t } from "$lib/backend/localisation";
+
 export const documents = [
   {
     id: "cookie-policy",

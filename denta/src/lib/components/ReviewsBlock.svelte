@@ -5,6 +5,9 @@
   import Icon from "svelte-icons-pack";
   import BsStarHalf from "svelte-icons-pack/bs/BsStarHalf";
   import { newReviewSchema } from "$lib/types/reviews";
+  import { page } from "$app/stores";
+  import { localisation } from "$lib/localisation/localisation";
+  $: l = localisation($page.params.lang);
 
   export let reviews: {
     reviewId: string;
@@ -38,7 +41,7 @@
 <div class="card variant-glass-primary flex flex-col p-4 gap-4">
   <div class="flex flex-row">
     <h2 class="w-full">
-      Отзывы: {reviews.length} (<Icon src={AiFillStar} className="inline w-4 h-4" />
+      {l("Отзывы")}: {reviews.length} (<Icon src={AiFillStar} className="inline w-4 h-4" />
       {rating})
     </h2>
   </div>
@@ -54,7 +57,7 @@
         class="card-footer text-gray-600 flex flex-row flex-wrap items-center justify-between"
       >
         {#if allUserReviews.includes(review.reviewId)}
-          <p>Это Ваш отзыв</p>
+          <p>{l("Это Ваш отзыв")}</p>
           <div>
             <button
               class="btn btn-primary"
@@ -66,9 +69,9 @@
                 window.location.reload();
               }}
             >
-              Удалить
+              {l("Удалить")}
             </button>
-            <button> Редактировать </button>
+            <button> {l("Редактировать")} </button>
           </div>
         {/if}
       </footer>
@@ -76,18 +79,18 @@
   {/each}
   {#if !userReview}
     <div class="p-2 card variant-glass-primary">
-      <h3>Оставить отзыв</h3>
+      <h3>{l("Оставить отзыв")}</h3>
 
       <h4>
         {#if session}
-          Ваше имя: {session.user.name}
+          {l("Ваше имя")}: {session.user.name}
         {:else}
-          Войдите, чтобы оставить отзыв
+          {l("Войдите, чтобы оставить отзыв")}
         {/if}
       </h4>
 
       <section>
-        <h4>Ваша оценка:</h4>
+        <h4>{l("Ваша оценка")}:</h4>
         <Ratings bind:value={value.current} max={value.max} interactive on:icon={iconClick}>
           <svelte:fragment slot="empty">
             <Icon src={AiOutlineStar} className="w-10 h-10" />
@@ -101,7 +104,7 @@
         </Ratings>
       </section>
 
-      <h4>Ваш коментарий:</h4>
+      <h4>{l("Ваш коментарий")}:</h4>
       <textarea class="textarea p-2 md:p-4" bind:value={value.comment}></textarea>
 
       <button
@@ -109,7 +112,7 @@
         on:click={async () => {
           if (!session) {
             toastStore.trigger({
-              message: "Войдите, чтобы оставить отзыв",
+              message: l("Войдите, чтобы оставить отзыв"),
               hideDismiss: true,
               background: "variant-filled-warning",
             });
@@ -118,7 +121,7 @@
 
           if (!value.current) {
             toastStore.trigger({
-              message: "Поставьте оценку",
+              message: l("Поставьте оценку"),
               hideDismiss: true,
               background: "variant-filled-warning",
             });
@@ -131,12 +134,13 @@
             rating: value.current,
             comment: value.comment,
             rootId: rootId,
+            lang: $page.params.lang,
             entityId: "",
           });
 
           if (!body.success) {
             toastStore.trigger({
-              message: "Заполните все поля",
+              message: l("Заполните все поля"),
               hideDismiss: true,
               background: "variant-filled-warning",
             });
@@ -153,7 +157,7 @@
           window.location.reload();
         }}
       >
-        Отправить
+        {l("Отправить")}
       </button>
     </div>
   {/if}

@@ -1,6 +1,7 @@
 
 
 
+import { t } from "$lib/backend/localisation";
 import db from "$lib/db";
 import { error } from "@sveltejs/kit";
 
@@ -35,6 +36,11 @@ export const load = async (event) => {
   }
 
   return {
-    article,
+    article: {
+      ...article,
+      title: await t(article.title, article.lang || "ru", event.params.lang),
+      description: await t(article.description, article.lang || "ru", event.params.lang),
+      source: await t(article.source, article.lang || "ru", event.params.lang),
+    },
   };
 };

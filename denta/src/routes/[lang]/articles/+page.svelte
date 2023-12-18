@@ -1,21 +1,28 @@
 <script>
   import CenteredPage from "$lib/components/CenteredPage.svelte";
+  import { page } from "$app/stores";
+  import { localisation } from "$lib/localisation/localisation";
+  $: l = localisation($page.params.lang);
 </script>
 
 <svelte:head>
-    <title>Статьи на denta-crm</title>
-    <meta name="description" content="Разделы профессиональных статей на denta-crm" />
+  <title>{l("Статьи на denta-crm")}</title>
+  <meta name="description" content={l("Разделы профессиональных статей на denta-crm")} />
 </svelte:head>
 
 <CenteredPage>
-  <h1>Разделы статей на denta-crm</h1>
+  <h1>{l("Разделы статей на denta-crm")}</h1>
 
   <ul class="list">
     <li>
-      <a class="card p-4 variant-filled-primary" href="/ru/articles/crm">Статьи про crm системы для стоматологий</a>
+      <a class="card p-4 variant-filled-primary" href={`/${$page.params.lang}/articles/crm`}
+        >{l("Статьи про crm системы для стоматологий")}</a
+      >
     </li>
     <li>
-      <a href="/ru/articles/services" class="card p-4 variant-filled-primary">Статьи про услуги в стоматологиях</a>
+      <a href={`/${$page.params.lang}/articles/services`} class="card p-4 variant-filled-primary"
+        >{l("Статьи про услуги в стоматологиях")}</a
+      >
     </li>
   </ul>
 </CenteredPage>

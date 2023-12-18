@@ -1,10 +1,11 @@
 <script lang="ts">
   import { page } from "$app/stores";
-  import CenteredPage from "$lib/components/CenteredPage.svelte";
-  import Section from "$lib/components/Section.svelte";
   import { authAction } from "$lib/frontend/auth-action";
-  import type { Cabinet, City, Country, Language } from "$lib/types/crm";
+  import type { City, Country, Language } from "$lib/types/crm";
   import { getToastStore } from "@skeletonlabs/skeleton";
+
+  import { localisation } from "$lib/localisation/localisation";
+  $: l = localisation($page.params.lang);
 
   export let data: {
     countries: Country[];
@@ -32,10 +33,10 @@
 
 <div class="flex flex-col justify-center items-center">
   <div class="flex flex-col max-w-2xl card variant-glass-primary gap-4 p-4">
-    <h1>Создать команию</h1>
+    <h1>{l("Создать команию")}</h1>
     <input
       type="text"
-      placeholder="Название"
+      placeholder={l("Название")}
       bind:value={name}
       on:click={() => {
         checkAuth();
@@ -45,13 +46,13 @@
       }}
     />
     <div class="card variant-glass-secondary">
-      <h2 class="card-header">Расположение головного офиса или клиники (если одна)</h2>
+      <h2 class="card-header">{l("Расположение головного офиса или клиники (если одна)")}</h2>
       <div class="p-4">
-        <p>На следующем шаге вы сможете добавить филиалы и кабинеты.</p>
+        <p>{l("На следующем шаге вы сможете добавить филиалы и кабинеты.")}</p>
         <input
           type="text"
           list="countries"
-          placeholder="Страна"
+          placeholder={l("Страна")}
           bind:value={country}
           on:input={(e) => {
             country = e.target.value;
@@ -82,7 +83,7 @@
         <input
           type="text"
           list="cities"
-          placeholder="Город"
+          placeholder={l("Город")}
           disabled={!country}
           on:click={() => {
             checkAuth();
@@ -108,17 +109,23 @@
         }
 
         if (!name) {
-          toastStore.trigger({ message: "Заполните Название", background: "variant-filled-error" });
+          toastStore.trigger({
+            message: l("Заполните Название"),
+            background: "variant-filled-error",
+          });
           return;
         }
 
         if (!country) {
-          toastStore.trigger({ message: "Заполните Страну", background: "variant-filled-error" });
+          toastStore.trigger({
+            message: l("Заполните Страну"),
+            background: "variant-filled-error",
+          });
           return;
         }
 
         if (!city) {
-          toastStore.trigger({ message: "Заполните Город", background: "variant-filled-error" });
+          toastStore.trigger({ message: l("Заполните Город"), background: "variant-filled-error" });
           return;
         }
 
@@ -130,7 +137,7 @@
           },
         };
 
-        fetch("/ru/crm/new/company/api/", {
+        fetch(`/${$page.params.lang}/crm/new/company/api/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -149,7 +156,7 @@
       }}
       class="btn variant-filled-primary"
     >
-      Создать
+      {l("Создать")}
     </button>
   </div>
 </div>

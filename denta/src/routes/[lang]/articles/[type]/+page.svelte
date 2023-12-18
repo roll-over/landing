@@ -3,7 +3,8 @@
   import CenteredPage from "$lib/components/CenteredPage.svelte";
   import Heading from "$lib/components/markdown/Heading.svelte";
   import SvelteMarkdown from "svelte-markdown";
-
+  import { localisation } from "$lib/localisation/localisation";
+  $: l = localisation($page.params.lang);
   export let data: {
     articles: {
       publicId: string;
@@ -17,28 +18,28 @@
 <svelte:head>
   <title>
     {$page.params.type === "crm"
-      ? "Статьи про crm системы для стоматологий"
+      ? l("Статьи про crm системы для стоматологий")
       : $page.params.type === "services"
-      ? "Статьи про услуги в стоматологиях"
-      : "Статьи на denta-crm"}
+      ? l("Статьи про услуги в стоматологиях")
+      : l("Статьи на denta-crm")}
   </title>
   <meta
     name="description"
     content={$page.params.type === "crm"
-      ? "Статьи про crm системы для стоматологий"
+      ? l("Статьи про crm системы для стоматологий")
       : $page.params.type === "services"
-      ? "Статьи про услуги в стоматологиях"
-      : "Статьи на denta-crm"}
+      ? l("Статьи про услуги в стоматологиях")
+      : l("Статьи на denta-crm")}
   />
 </svelte:head>
 
 <CenteredPage>
   <h1>
     {$page.params.type === "crm"
-      ? "Статьи про crm системы для стоматологий"
+      ? l("Статьи про crm системы для стоматологий")
       : $page.params.type === "services"
-      ? "Статьи про услуги в стоматологиях"
-      : "Статьи на denta-crm"}
+      ? l("Статьи про услуги в стоматологиях")
+      : l("Статьи на denta-crm")}
   </h1>
   {#each data.articles as article}
     <a

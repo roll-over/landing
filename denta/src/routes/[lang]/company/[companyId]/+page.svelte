@@ -7,6 +7,9 @@
   import SvelteMarkdown from "svelte-markdown";
   import SvelteSeo from "svelte-seo";
 
+  import { localisation } from "$lib/localisation/localisation";
+  $: l = localisation($page.params.lang);
+
   export let data: {
     cabinets: {
       address: Cabinet["address"];
@@ -56,8 +59,8 @@
 </script>
 
 <SvelteSeo
-  title={`${data.infoCompany.title} в ${data.city.label}, ${data.country.label}`}
-  description={`Стоматология ${data.infoCompany.title} в ${data.city.label}, ${
+  title={`${data.infoCompany.title} ${l("в")} ${data.city.label}, ${data.country.label}`}
+  description={`${l("Стоматология")} ${data.infoCompany.title} ${l("в")} ${data.city.label}, ${
     data.country.label
   }. ${data.infoCompany.description?.slice(0, 100) || ""}`}
   jsonLd={{
@@ -83,26 +86,25 @@
   <h1>{data.infoCompany.title}</h1>
   <div class="card variant-glass-primary">
     <header class="card-header">
-      <h2>Информация о стоматологии</h2>
+      <h2>{l("Информация о стоматологии")}</h2>
     </header>
     <div class="p-4">
       {#if data.infoCompany.description}
         <section>
-          <h3>Описание:</h3>
+          <h3>{l("Описание")}:</h3>
           <SvelteMarkdown source={data.infoCompany.description} />
         </section>
       {/if}
     </div>
     <footer class="card-footer">
       <address>
-        <p>Адрес: {data.infoCompany.address}, {data.city.label}, {data.country.label}</p>
+        <p>{l("Адрес")}: {data.infoCompany.address}, {data.city.label}, {data.country.label}</p>
         <p>
-          Телефон: <a href={`tel:${data.infoCompany.phone.replaceAll(" ", "")}`}
-            >{data.infoCompany.phone}</a
-          >
+          {l("Телефон")}:
+          <a href={`tel:${data.infoCompany.phone.replaceAll(" ", "")}`}>{data.infoCompany.phone}</a>
         </p>
         <a href={data.infoCompany.href} target="_blank" rel="noopener noreferrer"
-          >Открыть на google карте</a
+          >{l("Открыть на google карте")}</a
         >
       </address>
     </footer>
