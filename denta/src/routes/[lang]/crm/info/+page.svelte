@@ -33,7 +33,7 @@
               <li>
                 <a
                   class="border-2 border-gray-400 rounded-xl px-5 py-2"
-                  href={`/ru/crm/${company.id}/company`}>{company.name} -></a
+                  href={`/${$page.params.lang}/crm/${company.id}/company`}>{company.name} -></a
                 >
               </li>
             {/each}
@@ -49,7 +49,7 @@
       <div class="flex flex-col md:p-10 gap-5 md:gap-10 justify-center text-block">
         <SvelteMarkdown source={data.texts[0]}></SvelteMarkdown>
         {#if !data.companies?.length}
-          <a href="/ru/crm/create-company" class="btn variant-filled-primary">
+          <a href={`/${$page.params.lang}/crm/create-company`} class="btn variant-filled-primary">
             {l("Создать компанию!")}
           </a>
         {/if}
@@ -63,7 +63,7 @@
         <SvelteMarkdown source={data.texts[1]}></SvelteMarkdown>
 
         {#if !data.companies?.length}
-          <a href="/ru/crm/create-company" class="btn variant-filled-primary">
+          <a href={`/${$page.params.lang}/crm/create-company`} class="btn variant-filled-primary">
             {l("Создать компанию!")}
           </a>
         {/if}
@@ -89,7 +89,7 @@
         ></SvelteMarkdown>
 
         {#if !data.companies?.length}
-          <a href="/ru/crm/create-company" class="btn variant-filled-primary">
+          <a href={`/${$page.params.lang}/crm/create-company`} class="btn variant-filled-primary">
             {l("Создать компанию!")}
           </a>
         {/if}
