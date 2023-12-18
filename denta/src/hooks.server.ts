@@ -4,10 +4,23 @@ import { env } from "$env/dynamic/private";
 import { startMongo } from "$lib/db";
 import type { Handle } from "@sveltejs/kit";
 
-const svelteHandle = SvelteKitAuth({
+const _svelteHandle = SvelteKitAuth({
   trustHost: true,
   providers: [Google({ clientId: env.GOOGLE_ID, clientSecret: env.GOOGLE_SECRET })],
 });
+
+const svelteHandle = async ({ resolve, event }) => {
+  const lang = event.url.pathname.startsWith("/ru") ? "ru" : "en";
+
+  const authOptions = await _svelteHandle({
+    resolve: () =>
+      resolve(event, {
+        transformPageChunk: ({ html }) => html.replace("%lang%", lang),
+      }),
+    event,
+  });
+  return authOptions;
+};
 
 export const handle: Handle = async ({ resolve, event }) => {
   if (event.url.pathname === "//") {

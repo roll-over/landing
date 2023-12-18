@@ -12,6 +12,7 @@
   import { clickOutside } from "$lib/clickOutside";
 
   import { localisation } from "$lib/localisation/localisation";
+  import { onMount } from "svelte";
   let l = localisation($page.params.lang);
   $: l = localisation($page.params.lang);
 
@@ -135,6 +136,10 @@
   };
 
   $: pickingLang = false;
+
+  onMount(() => {
+    document.getElementsByTagName("html")[0].setAttribute("lang", $page.params.lang);
+  });
 </script>
 
 <header class="p-2 flex flex-col justify-between" bind:clientWidth={w}>
@@ -179,8 +184,10 @@
                   href={$page.params.lang === "ru"
                     ? $page.url.pathname
                     : $page.url.pathname.replace("/en", "/ru")}
+                  hreflang="ru"
                   on:click={() => {
                     pickingLang = false;
+                    document.getElementsByTagName("html")[0].setAttribute("lang", "ru");
                   }}>Русский</a
                 >
               </li>
@@ -190,8 +197,10 @@
                   href={$page.params.lang === "en"
                     ? $page.url.pathname
                     : $page.url.pathname.replace("/ru", "/en")}
+                  hreflang="en"
                   on:click={() => {
                     pickingLang = false;
+                    document.getElementsByTagName("html")[0].setAttribute("lang", "en");
                   }}>English</a
                 >
               </li>

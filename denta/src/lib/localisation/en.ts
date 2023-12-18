@@ -114,4 +114,19 @@ export const en = {
   "Пользовательское соглашение": "Terms of Service",
   "Политика в отношении файлов cookie": "Cookie Policy",
   "Обратно к документам": "Back to documents",
+  "CRM-система для стоматологий": "CRM system for dentistry",
+  "Ваши компании": "Your companies",
+  "Ой, кажется у вас до сих пор не создана компания":
+    "Oops, it seems you still don't have a company",
+  "CRM-система для стоматологов и стоматолгических клиник":
+    "CRM system for dentists and dental clinics",
+  "Попробуйте бесплатно создать компанию, это займет до 10 минут, и вы сможете управлять своей стоматологией без головной боли в ведении отчетности.":
+    "Try to create a company for free, it will take up to 10 minutes, and you will be able to manage your dentistry without a headache in accounting.",
+  "А ещё, мы займемся продвижением вашей стоматологии в поиске.":
+    "And also, we will promote your dentistry in search.",
+  "Создать компанию!": "Create a company!",
+  "Почему наша CRM для стоматологов так оптимальна?": "Why is our CRM for dentists so optimal?",
+  "Девушка стоматолог за ноутбуком улыбается": "Dentist in front of a laptop smiling",
+  "Стоматолог в кресле": "Dentist in a chair",
+  "Стоматолог за компьютером": "Dentist at the computer",
 } as const;
