@@ -38,7 +38,7 @@ jobs:
   run_pull:
     name: run pull
     runs-on: ubuntu-latest
-
+    needs: [landing_filter, denta_filter]
     steps:
       - name: install ssh keys
         # check this thread to understand why its needed:
