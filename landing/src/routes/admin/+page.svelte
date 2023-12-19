@@ -18,5 +18,9 @@
     <li>
       <NavLink href="/apps/preview-generator">Preview generator</NavLink>
     </li>
+
+    <li>
+      <NavLink href="/admin/anounces">Анонсы</NavLink>
+    </li>
   </ul>
 </CenteredPage>
