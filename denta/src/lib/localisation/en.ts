@@ -129,4 +129,10 @@ export const en = {
   "Девушка стоматолог за ноутбуком улыбается": "Dentist in front of a laptop smiling",
   "Стоматолог в кресле": "Dentist in a chair",
   "Стоматолог за компьютером": "Dentist at the computer",
+  "Зайти в личный кабинет и создать компанию для стоматологии или сети стоматологий в CRM-системе для стоматологов":
+    "Log in to your personal account and create a company for dentistry or a network of dentistry in the CRM system for dentists",
+
+  "Что такое denta-crm - CRM система для стоматологий?":
+    "What is denta-crm - CRM system for dentists?",
+  "О нас - Разработчики denta-crm": "About us - denta-crm developers",
 } as const;

@@ -11,12 +11,12 @@
 </script>
 
 <svelte:head>
-  <title>{l("О нас")}</title>
+  <title>{l("О нас - Разработчики denta-crm")}</title>
   <meta name="description" content={l("О команде разработки CRM-системы для стоматологов")} />
 </svelte:head>
 
 <CenteredPage>
-  <h1>{l("О нас")}</h1>
+  <h1>{l("О нас - Разработчики denta-crm")}</h1>
 
   <SvelteMarkdown source={data.source} />
 

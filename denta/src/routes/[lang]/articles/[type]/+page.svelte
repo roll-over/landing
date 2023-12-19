@@ -3,6 +3,8 @@
   import CenteredPage from "$lib/components/CenteredPage.svelte";
   import Heading from "$lib/components/markdown/Heading.svelte";
   import SvelteMarkdown from "svelte-markdown";
+  import SvelteSeo from "svelte-seo";
+
   import { localisation } from "$lib/localisation/localisation";
   $: l = localisation($page.params.lang);
   export let data: {
@@ -15,23 +17,19 @@
   };
 </script>
 
-<svelte:head>
-  <title>
-    {$page.params.type === "crm"
-      ? l("Статьи про crm системы для стоматологий")
-      : $page.params.type === "services"
-      ? l("Статьи про услуги в стоматологиях")
-      : l("Статьи на denta-crm")}
-  </title>
-  <meta
-    name="description"
-    content={$page.params.type === "crm"
-      ? l("Статьи про crm системы для стоматологий")
-      : $page.params.type === "services"
-      ? l("Статьи про услуги в стоматологиях")
-      : l("Статьи на denta-crm")}
-  />
-</svelte:head>
+<SvelteSeo
+  title={$page.params.type === "crm"
+    ? l("Статьи про crm системы для стоматологий")
+    : $page.params.type === "services"
+    ? l("Статьи про услуги в стоматологиях")
+    : l("Статьи на denta-crm")}
+  description={$page.params.type === "crm"
+    ? l("Статьи про crm системы для стоматологий")
+    : $page.params.type === "services"
+    ? l("Статьи про услуги в стоматологиях")
+    : l("Статьи на denta-crm")}
+  canonical={`https://denta-crm.com/${$page.params.lang}/articles/${$page.params.type}`}
+></SvelteSeo>
 
 <CenteredPage>
   <h1>

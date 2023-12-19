@@ -27,6 +27,7 @@
 <SvelteSeo
   title={data.article.title.slice(0, 70)}
   description={data.article.description.slice(0, 150)}
+  canonical={`https://denta-crm.com/${$page.params.lang}/articles/${$page.params.type}/${data.article.publicId}`}
   jsonLd={{
     "@context": "https://schema.org",
     "@type": "Article",

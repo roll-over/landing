@@ -3,7 +3,7 @@
   import { authAction } from "$lib/frontend/auth-action";
   import type { City, Country, Language } from "$lib/types/crm";
   import { getToastStore } from "@skeletonlabs/skeleton";
-
+  import SvelteSeo from "svelte-seo";
   import { localisation } from "$lib/localisation/localisation";
   $: l = localisation($page.params.lang);
 
@@ -31,11 +31,20 @@
   };
 </script>
 
+<SvelteSeo
+  title={l("Создать компанию")}
+  description={l(
+    "Зайти в личный кабинет и создать компанию для стоматологии или сети стоматологий в CRM-системе для стоматологов",
+  )}
+  canonical={`https://denta-crm.com/${$page.params.lang}/crm/create-company`}
+/>
+
 <div class="flex flex-col justify-center items-center">
   <div class="flex flex-col max-w-2xl card variant-glass-primary gap-4 p-4">
     <h1>{l("Создать команию")}</h1>
     <input
       type="text"
+      class="input"
       placeholder={l("Название")}
       bind:value={name}
       on:click={() => {
@@ -47,10 +56,11 @@
     />
     <div class="card variant-glass-secondary">
       <h2 class="card-header">{l("Расположение головного офиса или клиники (если одна)")}</h2>
-      <div class="p-4">
-        <p>{l("На следующем шаге вы сможете добавить филиалы и кабинеты.")}</p>
+      <p class="p-4">{l("На следующем шаге вы сможете добавить филиалы и кабинеты.")}</p>
+      <div class="p-4 grid md:grid-cols-2" >
         <input
           type="text"
+          class="input max-w-xs"
           list="countries"
           placeholder={l("Страна")}
           bind:value={country}
@@ -83,6 +93,7 @@
         <input
           type="text"
           list="cities"
+          class="input  max-w-xs"
           placeholder={l("Город")}
           disabled={!country}
           on:click={() => {

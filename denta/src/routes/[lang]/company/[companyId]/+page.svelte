@@ -60,9 +60,9 @@
 
 <SvelteSeo
   title={`${data.infoCompany.title} ${l("в")} ${data.city.label}, ${data.country.label}`}
-  description={`${l("Стоматология")} ${data.infoCompany.title} ${l("в")} ${data.city.label}, ${
-    data.country.label
-  }. ${data.infoCompany.description?.slice(0, 100) || ""}`}
+  description={`${l("Стоматология")} ${data.infoCompany.title} ${l("в")} ${data.city.label}. ${
+    data.infoCompany.description || ""
+  }`?.slice(0, 150)}
   jsonLd={{
     "@context": "https://schema.org",
     "@type": "Dentist",

@@ -8,7 +8,7 @@
 
 <svelte:head>
   <title>
-    {l("denta-crm")}
+    {l("Что такое denta-crm - CRM система для стоматологий?")}
   </title>
   <meta
     name="description"
@@ -17,7 +17,7 @@
     )}
   />
 
-  <meta property="og:title" content="denta-crm" />
+  <meta property="og:title" content={l("Что такое denta-crm - CRM система для стоматологий?")} />
   <meta property="og:description" content={l("Система управления стоматологической клиникой")} />
 </svelte:head>
 
