@@ -1,126 +1,24 @@
 <script lang="ts">
+  import { page } from "$app/stores";
   import CenteredPage from "$lib/components/blocks/CenteredPage.svelte";
+  import { defaults, fields } from "$lib/preview-generation/fields";
+  import { downscaleImage } from "$lib/preview-generation/image-methods";
 
-  $: template = "podcast";
-  $: form = {
-    name: "name",
-    host: "IT's open mic",
-    title: "title",
-    image: "",
-  };
+  $: template = template || $page.url.searchParams.get("template") || "podcast";
+
+  const init = $page.url.searchParams;
+
+  $: form =
+    template === "podcast"
+      ? { ...defaults.podcast, name: init.get("name"), title: init.get("title") }
+      : {
+          ...defaults.podcast2,
+          name1: init.get("name1"),
+          name2: init.get("name2"),
+          title: init.get("title"),
+        };
 
   $: newImage = null;
-
-  const fields = {
-    podcast: {
-      name: {
-        type: "text",
-        placeholder: "name",
-      },
-      host: {
-        type: "text",
-        placeholder: "host",
-      },
-      title: {
-        type: "text",
-        placeholder: "title",
-      },
-      image: {
-        type: "image",
-        title: "image",
-      },
-    },
-    podcast2: {
-      name1: {
-        type: "text",
-        placeholder: "name1",
-      },
-      name2: {
-        type: "text",
-        placeholder: "name2",
-      },
-      host: {
-        type: "text",
-        placeholder: "host",
-      },
-      title: {
-        type: "text",
-        placeholder: "title",
-      },
-      image1: {
-        type: "image",
-        title: "image1",
-      },
-      image2: {
-        type: "image",
-        title: "image2",
-      },
-    },
-  };
-
-  const defaults = {
-    podcast: {
-      name: "name",
-      host: "IT's open mic",
-      title: "title",
-      image: "",
-    },
-    podcast2: {
-      name1: "name1",
-      name2: "name2",
-      host: "IT's open mic",
-      title: "title",
-      image1: "",
-      image2: "",
-    },
-  };
-  function getImage(dataUrl: string): Promise<HTMLImageElement> {
-    return new Promise((resolve, reject) => {
-      const image = new Image();
-      image.src = dataUrl;
-      image.onload = () => {
-        resolve(image);
-      };
-      image.onerror = (el: any, err: ErrorEvent) => {
-        reject(err.error);
-      };
-    });
-  }
-  export async function downscaleImage(
-    dataUrl: string,
-    imageType: string, // e.g. 'image/jpeg'
-    resolution: number, // max width/height in pixels
-    quality: number, // e.g. 0.9 = 90% quality
-  ): Promise<string> {
-    // Create a temporary image so that we can compute the height of the image.
-    const image = await getImage(dataUrl);
-    const oldWidth = image.naturalWidth;
-    const oldHeight = image.naturalHeight;
-
-    const longestDimension = oldWidth > oldHeight ? "width" : "height";
-    const currentRes = longestDimension == "width" ? oldWidth : oldHeight;
-
-    if (currentRes > resolution) {
-      const newSize =
-        longestDimension == "width"
-          ? Math.floor((oldHeight / oldWidth) * resolution)
-          : Math.floor((oldWidth / oldHeight) * resolution);
-      const newWidth = longestDimension == "width" ? resolution : newSize;
-      const newHeight = longestDimension == "height" ? resolution : newSize;
-
-      const canvas = document.createElement("canvas");
-      canvas.width = newWidth;
-      canvas.height = newHeight;
-
-      // Draw the downscaled image on the canvas and return the new data URL.
-      const ctx = canvas.getContext("2d")!;
-      ctx.drawImage(image, 0, 0, newWidth, newHeight);
-      const newDataUrl = canvas.toDataURL(imageType, quality);
-      return newDataUrl;
-    } else {
-      return dataUrl;
-    }
-  }
 
   const generateNewPage = async () => {
     const _newImage = await fetch("/apps/preview-generator/api/", {
@@ -153,6 +51,14 @@
     bind:value={template}
     on:change={(e) => {
       form = defaults[e.target.value];
+
+      if (e.target.value === "podcast") {
+        form.name = $page.url.searchParams.get("name");
+        form.title = $page.url.searchParams.get("title");
+      } else if (e.target.value === "podcast2") {
+        form.name1 = $page.url.searchParams.get("name1");
+        form.title1 = $page.url.searchParams.get("title1");
+      }
     }}
   >
     <option value="podcast">podcast</option>
@@ -181,8 +87,12 @@
           reader.onloadend = async () => {
             const base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
 
-            form[field] = await downscaleImage(`data:image/png;base64,${base64String}`, "image/jpeg", 500, 0.9);
-            console.log(form[field]);
+            form[field] = await downscaleImage(
+              `data:image/png;base64,${base64String}`,
+              "image/jpeg",
+              500,
+              0.9,
+            );
           };
           const base64Image = await reader.readAsDataURL(e.target.files[0]);
         }}
