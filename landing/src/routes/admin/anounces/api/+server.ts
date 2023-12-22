@@ -1,8 +1,13 @@
 import db from "$lib/db";
-import { error, json } from "@sveltejs/kit";
+import { useAdminGuard } from "$lib/guards/admin";
+import { json } from "@sveltejs/kit";
 import { uuid } from "uuidv4";
 
 export const POST = async (event) => {
+  const result = await useAdminGuard(event);
+  if (result) {
+    return result;
+  }
   const newAnounce = await event.request.json();
 
   const _db = await db();
@@ -21,6 +26,11 @@ export const POST = async (event) => {
 };
 
 export const PUT = async (event) => {
+  const result = await useAdminGuard(event);
+  if (result) {
+    return result;
+  }
+
   const newAnounce = await event.request.json();
   const _db = await db();
   if (!_db) {
