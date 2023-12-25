@@ -4,8 +4,14 @@ import { redirect } from "@sveltejs/kit";
 export const load = async (event) => {
   const session = await event.locals.getSession();
 
+  const _db = await db();
+
+  if (!_db) {
+    throw new Error("No database connection");
+  }
+
   const companies = session
-    ? await (await db())
+    ? await _db
         .collection("companies")
         .find(
           {
