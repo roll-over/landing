@@ -1,9 +1,15 @@
 import db from "$lib/db";
 import { getAnotherCompanies } from "$lib/db/another-companies";
-import { availableLanguages } from "$lib/languages";
+import { getAvailableReceptionsLanguages } from "$lib/languages";
 
 export const load = async (event) => {
-  const company = await (await db()).collection("companies").findOne(
+  const _db = await db();
+
+  if (!_db) {
+    throw new Error("No database connection");
+  }
+
+  const company = await _db.collection("companies").findOne(
     {
       id: event.params.companyId,
     },
@@ -14,7 +20,11 @@ export const load = async (event) => {
     },
   );
 
-  const country = await (await db()).collection("countries").findOne(
+  if (!company) {
+    throw new Error("Company not found");
+  }
+
+  const country = await _db.collection("countries").findOne(
     {
       id: company.mainAddress.country,
     },
@@ -25,7 +35,11 @@ export const load = async (event) => {
     },
   );
 
-  const city = await (await db()).collection("cities").findOne(
+  if (!country) {
+    throw new Error("Country not found");
+  }
+
+  const city = await _db.collection("cities").findOne(
     {
       id: company.mainAddress.city,
     },
@@ -35,6 +49,10 @@ export const load = async (event) => {
       },
     },
   );
+
+  if (!city) {
+    throw new Error("City not found");
+  }
 
   const { anotherCompanies, anotherInfoCompanies } = await getAnotherCompanies(
     company.mainAddress.country,
@@ -49,6 +67,6 @@ export const load = async (event) => {
     city: { label: city[event.params.lang], value: city.id },
     anotherCompanies,
     anotherInfoCompanies,
-    languages: availableLanguages,
+    languages: await getAvailableReceptionsLanguages(event.params.lang),
   };
 };

@@ -10,6 +10,9 @@
   import type { Company } from "$lib/types/crm";
   import { getToastStore } from "@skeletonlabs/skeleton";
 
+  import { localisation } from "$lib/localisation/localisation";
+  const l = localisation($page.params.lang);
+
   export let data: {
     company: Company;
     countries: any[];
@@ -83,7 +86,7 @@
 <div class="flex flex-col items-center w-full">
   <div class="flex flex-row flex-wrap gap-y-10 md:gap-x-5 md:p-10 justify-between">
     <Section>
-      <h3>Название</h3>
+      <h3>{l("Название")}</h3>
       <input
         type="text"
         bind:value={data.company.name}
@@ -93,28 +96,28 @@
       />
     </Section>
     <Section>
-      <h3>Публичная страница</h3>
+      <h3>{l("Публичная страница")}</h3>
       <a href={`/${$page.params.lang}/c/${companyId}/`}>
         {`/${$page.params.lang}/c/${companyId}/`}
       </a></Section
     >
     <Section>
-      <h3>Владелец</h3>
+      <h3>{l("Владелец")}</h3>
       <p>
         {data.company.owner}
       </p>
     </Section>
     <Section>
-      <h3>Дата создания</h3>
+      <h3>{l("Дата создания")}</h3>
       <p>
         {new Date(data.company.createdAt).toLocaleString()}
       </p>
     </Section>
     <Section>
-      <h3>Контакты</h3>
+      <h3>{l("Контакты")}</h3>
 
       {#if !data.company?.contacts?.length}
-        <p>Нет контактов</p>
+        <p>{l("Нет контактов")}</p>
       {:else}
         <ul>
           {#each data.company.contacts || [] as contact}
@@ -125,7 +128,7 @@
                   contact.type = e.target.value;
                 }}
               >
-                <option value="phone">Телефон</option>
+                <option value="phone">{l("Телефон")}</option>
                 <option value="email">Email</option>
                 <option value="telegram">Telegram</option>
                 <option value="vk">VK</option>
@@ -158,12 +161,12 @@
       />
     </Section>
     <Section>
-      <h3>Адрес</h3>
+      <h3>{l("Адрес")}</h3>
       <div class="flex flex-col gap-3">
         <input
           type="text"
           list="countries"
-          placeholder="Страна"
+          placeholder={l("Страна")}
           bind:value={data.company.mainAddress.country}
           on:input={(e) => {
             data.company.mainAddress.country = e.target.value;
@@ -191,7 +194,7 @@
         <input
           type="text"
           list="cities"
-          placeholder="Город"
+          placeholder={l("Город")}
           bind:value={data.company.mainAddress.city}
           on:input={(e) => {
             data.company.mainAddress.city = e.target.value;
@@ -207,7 +210,7 @@
 
         <input
           type="text"
-          placeholder="Улица"
+          placeholder={l("Улица")}
           bind:value={data.company.mainAddress.street}
           on:input={(e) => {
             data.company.mainAddress.street = e.target.value;
@@ -216,7 +219,7 @@
         />
         <input
           type="text"
-          placeholder="Дом"
+          placeholder={l("Дом")}
           bind:value={data.company.mainAddress.house}
           on:input={(e) => {
             data.company.mainAddress.house = e.target.value;
@@ -226,7 +229,7 @@
       </div>
       <div>
         {#if !data.company.mainAddress.links?.length}
-          <p>Нет ссылок на карте</p>
+          <p>{l("Нет ссылок на карте")}</p>
         {:else}
           <ul>
             {#each data.company.mainAddress.links || [] as link}
@@ -250,7 +253,7 @@
                     data.company.changed = true;
                   }}
                 />
-                <SupportLink href={link.value}>Перейти</SupportLink>
+                <SupportLink href={link.value}>{l("Перейти")}</SupportLink>
                 <DeleteButton
                   on:click={() => {
                     data.company.mainAddress.links = data.company.mainAddress.links.filter(
@@ -258,9 +261,7 @@
                     );
                     data.company.changed = true;
                   }}
-                >
-                  Удалить
-                </DeleteButton>
+                ></DeleteButton>
               </li>
             {/each}
           </ul>
@@ -278,7 +279,7 @@
     </Section>
 
     <Section>
-      <h3>Языки приёма</h3>
+      <h3>{l("Языки приёма")}</h3>
       <AutocompliteMultiple
         datalist={data.languages}
         values={(data.company.languagesIds || []).map((langId) => {
@@ -292,8 +293,8 @@
     </Section>
 
     <Section>
-      <h3>Рабочие часы</h3>
-      <h4>Начало</h4>
+      <h3>{l("Рабочие часы")}</h3>
+      <h4>{l("Начало")}</h4>
       <input
         type="time"
         bind:value={data.company.workingHours.startAt}
@@ -302,7 +303,7 @@
         }}
       />
 
-      <h4>Конец</h4>
+      <h4>{l("Конец")}</h4>
       <input
         type="time"
         bind:value={data.company.workingHours.endAt}
@@ -311,7 +312,7 @@
         }}
       />
 
-      <h4>Step</h4>
+      <h4>{l("Временной шаг")}</h4>
       <select
         bind:value={data.company.workingHours.step}
         on:change={(e) => {
@@ -325,7 +326,7 @@
     </Section>
 
     <Section>
-      <h3>Основная валюта</h3>
+      <h3>{l("Основная валюта")}</h3>
 
       <select
         bind:value={data.company.currency}
@@ -333,15 +334,15 @@
           data.company.currency = e.target.value;
         }}
       >
-        <option value="">Не выбрано</option>
+        <option value="">{l("Не выбрано")}</option>
         {#each availableCurrencies as currency}
           <option value={currency}>{currency}</option>
         {/each}
       </select>
     </Section>
     <Section>
-      <h3>Удалить компанию</h3>
-      <p>Внимание! Это действие нельзя отменить!</p>
+      <h3>{l("Удалить компанию")}</h3>
+      <p>{l("Внимание! Это действие нельзя отменить!")}</p>
       <DeleteButton
         on:click={async () => {
           const res = await fetch(`/${$page.params.lang}/crm/${companyId}/company/api/`, {
@@ -354,9 +355,7 @@
 
           window.location.href = `/${$page.params.lang}/crm/`;
         }}
-      >
-        Удалить компанию
-      </DeleteButton>
+      ></DeleteButton>
     </Section>
   </div>
   <div class="fixed top-4.5 right-1.5">

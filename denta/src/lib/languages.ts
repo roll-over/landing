@@ -1,11 +1,12 @@
-export const availableLanguages = [
-  { value: "ru", label: "Русский" },
+import { t } from "./backend/localisation";
+export const getAvailableReceptionsLanguages = async (lang) => [
+  { value: "ru", label: await t("Русский", "ru", lang) },
   {
     value: "en",
-    label: "English",
+    label: await t("Английский", "ru", lang),
   },
   {
     value: "kg",
-    label: "Кыргызский",
+    label:await t("Кыргызский", "ru", lang) ,
   },
 ];

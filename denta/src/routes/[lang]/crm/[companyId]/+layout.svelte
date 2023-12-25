@@ -48,7 +48,7 @@
 
   if (appParams.availabilities.priceList) {
     links.push({
-      title: l("Прайс лист"),
+      title: l("Прайс-лист"),
       href: `/${$page.params.lang}/crm/${data.company.id}/price-list`,
     });
   }

@@ -1,13 +1,18 @@
 import db from "$lib/db";
-import { availableLanguages } from "$lib/languages";
+import { getAvailableReceptionsLanguages } from "$lib/languages";
 import type { Company } from "$lib/types/crm";
 
 export const load = async (event) => {
   const session = await event.locals.getSession();
+
+  const _db = await db();
+
+  if (!_db) {
+    throw new Error("No database connection");
+  }
+
   const countries = (
-    await (
-      await db()
-    )
+    await _db
       .collection("countries")
       .find(
         {},
@@ -25,20 +30,22 @@ export const load = async (event) => {
     label: country[event.params.lang] || country.id,
   }));
 
-  const company = (await (await db()).collection("companies").findOne(
+  const company = await _db.collection("companies").findOne(
     {
       owner: session.user.email,
       id: event.params.companyId,
     },
     { projection: { _id: 0 } },
-  )) as Company;
+  );
+
+  if (!company) {
+    throw new Error("Company not found");
+  }
 
   const pickedCountry = countries.find((c) => c.value === company.mainAddress.country) || {};
 
   const cities = (
-    await (
-      await db()
-    )
+    await _db
       .collection("cities")
       .find(
         {
@@ -73,6 +80,6 @@ export const load = async (event) => {
         city: pickedCity.label,
       },
     },
-    languages: availableLanguages,
+    languages: await getAvailableReceptionsLanguages(event.params.lang),
   };
 };
