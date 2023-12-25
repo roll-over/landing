@@ -1,5 +1,6 @@
 <script lang="ts">
   import CenteredPage from "$lib/components/blocks/CenteredPage.svelte";
+  import PostAnounces from "./PostAnounces.svelte";
   import PreAnounces from "./PreAnounces.svelte";
   import Video from "./Video.svelte";
 
@@ -16,7 +17,7 @@
   $: date = date || new Date(data.anounce.date).toISOString().slice(0, 16);
 </script>
 
-<CenteredPage class="flex flex-col justify-center items-center">
+<CenteredPage>
   <div class="doc flex flex-col gap-20">
     <a href={`/admin/anounces`}>Обратно к анонсам</a>
     <div class="doc flex flex-col gap-5">
@@ -93,13 +94,15 @@
       <PreAnounces data={{ anounce: data.anounce }} />
     </div>
     <Video data={{ anounce: data.anounce }} />
-  </div></CenteredPage
->
+    <div>
+      <PostAnounces data={{ anounce: data.anounce }} />
+    </div>
+  </div>
+</CenteredPage>
 
 <style>
   input,
-  select,
-  textarea {
+  select {
     color: black;
     font-size: medium;
   }
