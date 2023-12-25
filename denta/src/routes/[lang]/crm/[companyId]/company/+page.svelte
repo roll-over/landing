@@ -11,6 +11,7 @@
   import { getToastStore } from "@skeletonlabs/skeleton";
 
   import { localisation } from "$lib/localisation/localisation";
+  import { appParams } from "$lib/app_name";
   const l = localisation($page.params.lang);
 
   export let data: {
@@ -95,7 +96,8 @@
         }}
       />
     </Section>
-    <Section>
+
+    <Section showen={appParams.availabilities.publicPage}>
       <h3>{l("Публичная страница")}</h3>
       <a href={`/${$page.params.lang}/c/${companyId}/`}>
         {`/${$page.params.lang}/c/${companyId}/`}
@@ -113,7 +115,7 @@
         {new Date(data.company.createdAt).toLocaleString()}
       </p>
     </Section>
-    <Section>
+    <Section showen={appParams.availabilities.publicPage}>
       <h3>{l("Контакты")}</h3>
 
       {#if !data.company?.contacts?.length}
@@ -160,7 +162,7 @@
         }}
       />
     </Section>
-    <Section>
+    <Section showen={appParams.availabilities.publicPage}>
       <h3>{l("Адрес")}</h3>
       <div class="flex flex-col gap-3">
         <input
@@ -278,7 +280,7 @@
       </div>
     </Section>
 
-    <Section>
+    <Section showen={appParams.availabilities.publicPage}>
       <h3>{l("Языки приёма")}</h3>
       <AutocompliteMultiple
         datalist={data.languages}
@@ -292,7 +294,7 @@
       />
     </Section>
 
-    <Section>
+    <Section showen={appParams.availabilities.publicPage}>
       <h3>{l("Рабочие часы")}</h3>
       <h4>{l("Начало")}</h4>
       <input
@@ -325,7 +327,7 @@
       </select>
     </Section>
 
-    <Section>
+    <Section showen={appParams.availabilities.publicPage}>
       <h3>{l("Основная валюта")}</h3>
 
       <select

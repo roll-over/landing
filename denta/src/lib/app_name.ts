@@ -19,6 +19,7 @@ const paramsValidator = z.object({
     cabinets: z.boolean(),
     employees: z.boolean(),
     priceList: z.boolean(),
+    publicPage: z.boolean(),
   }),
 });
 
@@ -33,6 +34,7 @@ const DENTA_APP_PARAMS: z.infer<typeof paramsValidator> = {
     cabinets: true,
     employees: true,
     priceList: true,
+    publicPage: true,
   },
 };
 
@@ -47,6 +49,7 @@ const FEMIDA_APP_PARAMS: z.infer<typeof paramsValidator> = {
     cabinets: false,
     employees: false,
     priceList: false,
+    publicPage: false,
   },
 };
 
