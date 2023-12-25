@@ -49,3 +49,8 @@ export const langs = {
   ru: ru,
   en: en,
 } as const;
+
+export const LOGO_SRC = {
+  denta: "/denta-logo.webp",
+  femida: "/femida-logo.png",
+}[APP_NAME];

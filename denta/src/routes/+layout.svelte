@@ -13,7 +13,7 @@
 
   import { localisation } from "$lib/localisation/localisation";
   import { onMount } from "svelte";
-  import { appParams } from "$lib/app_name";
+  import { LOGO_SRC, appParams } from "$lib/app_name";
   let l = localisation($page.params.lang);
   $: l = localisation($page.params.lang);
 
@@ -157,7 +157,7 @@
 
     <div class="p-2 flex flex-col md:flex-row justify-between items-center">
       <a href={`/${$page.params.lang}`} class="flex flex-row">
-        <img src="/logo.webp" class="logo rounded-xl" alt="logo denta-crm" />
+        <img src={LOGO_SRC} class="logo rounded-xl" alt="logo denta-crm" />
       </a>
 
       <ol class="flex flex-row flex-wrap gap-1 items-center">
@@ -257,16 +257,16 @@
   <div>
     <div class="flex flex-col md:flex-row justify-between p-2 text-xs text-slate-500">
       <div class="flex flex-col gap-2">
-        <span class="text-2xl">denta-crm</span>
-        <span>© 2024 denta-crm</span>
+        <span class="text-2xl">femida-crm</span>
+        <span>© 2024 femida-crm</span>
       </div>
 
       <div class="flex flex-col gap-2">
         <a
-          href="https://github.com/roll-over/landing?utm_source=denta-crm.com"
+          href="https://github.com/roll-over/landing?utm_source=femida-crm.com"
           class="text-slate-500 md:p-1 p-3">Source code</a
         >
-        <a href="https://roll-over.org/?utm_source=denta-crm.com" class="text-slate-500 md:p-1 p-3"
+        <a href="https://roll-over.org/?utm_source=femida-crm.com" class="text-slate-500 md:p-1 p-3"
           >roll-over</a
         >
         <a href={`/${$page.params.lang}/about`} class="text-slate-500 md:p-1 p-3">About</a>
