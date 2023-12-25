@@ -35,7 +35,7 @@ export const en = {
   Контакты: "Contacts",
   Компания: "Company",
   "О нас": "About us",
-  Записи: "Records",
+  Записи: "Appointments",
   Пациенты: "Patients",
   Кабинеты: "Cabinets",
   Доктора: "Doctors",

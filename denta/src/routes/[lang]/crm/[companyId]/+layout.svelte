@@ -5,6 +5,9 @@
   import NavList from "$lib/components/NavList.svelte";
   import type { Company } from "$lib/types/crm";
 
+  import { localisation } from "$lib/localisation/localisation";
+  const l = localisation($page.params.lang);
+
   export let data: {
     company: Company;
   };
@@ -13,43 +16,39 @@
 
   if (appParams.availabilities.appointments) {
     links.push({
-      title: "Записи",
+      title: l("Записи"),
       href: `/${$page.params.lang}/crm/${data.company.id}/appointments`,
     });
   }
 
   if (appParams.availabilities.clients) {
     links.push({
-      title: "Пациенты",
+      title: l("Пациенты"),
       href: `/${$page.params.lang}/crm/${data.company.id}/clients`,
     });
   }
 
-  links.push(
-    ...[
-      {
-        title: "Компания",
-        href: `/${$page.params.lang}/crm/${data.company.id}/company`,
-      },
-    ],
-  );
+  links.push({
+    title: l("Компания"),
+    href: `/${$page.params.lang}/crm/${data.company.id}/company`,
+  });
 
   if (appParams.availabilities.cabinets) {
     links.push({
-      title: "Кабинеты",
+      title: l("Кабинеты"),
       href: `/${$page.params.lang}/crm/${data.company.id}/cabinets`,
     });
   }
   if (appParams.availabilities.employees) {
     links.push({
-      title: "Доктора",
+      title: l("Доктора"),
       href: `/${$page.params.lang}/crm/${data.company.id}/employees`,
     });
   }
 
   if (appParams.availabilities.priceList) {
     links.push({
-      title: "Прайс лист",
+      title: l("Прайс лист"),
       href: `/${$page.params.lang}/crm/${data.company.id}/price-list`,
     });
   }
