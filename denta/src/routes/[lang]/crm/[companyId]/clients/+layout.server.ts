@@ -1,9 +1,19 @@
+import { appParams } from "$lib/app_name";
 import db from "$lib/db";
+import { redirect } from "@sveltejs/kit";
 
 export const load = async (event) => {
-  const session = await event.locals.getSession();
+  if (!appParams.availabilities.clients) {
+    throw redirect(301, `/${event.params.lang}/crm/`);
+  }
 
-  const clients = await (await db())
+  const _db = await db();
+
+  if (!_db) {
+    throw new Error("No database connection");
+  }
+
+  const clients = await _db
     .collection("clients")
     .find(
       {

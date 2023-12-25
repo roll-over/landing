@@ -1,10 +1,19 @@
+import { appParams } from "$lib/app_name";
 import db from "$lib/db";
-import type { PriceListItem, Service } from "$lib/types/crm";
+import { redirect } from "@sveltejs/kit";
 
 export const load = async (event) => {
-  const session = await event.locals.getSession();
+  if (!appParams.availabilities.priceList) {
+    throw redirect(301, `/${event.params.lang}/crm/`);
+  }
 
-  const priceList = (await (await db())
+  const _db = await db();
+
+  if (!_db) {
+    throw new Error("No database connection");
+  }
+
+  const priceList = await _db
     .collection("price-list")
     .find(
       {
@@ -12,12 +21,12 @@ export const load = async (event) => {
       },
       { projection: { _id: 0 } },
     )
-    .toArray()) as PriceListItem[];
+    .toArray();
 
-  const services = (await (await db())
+  const services = await _db
     .collection("services")
     .find({}, { projection: { _id: 0 } })
-    .toArray()) as Service[];
+    .toArray();
 
   return {
     priceList: priceList.map((item) => {

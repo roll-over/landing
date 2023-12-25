@@ -1,8 +1,19 @@
+import { appParams } from "$lib/app_name";
 import db from "$lib/db";
+import { redirect } from "@sveltejs/kit";
 
 export const load = async (event) => {
+  if (!appParams.availabilities.cabinets) {
+    throw redirect(301, `/${event.params.lang}/crm/`);
+  }
+
+  const _db = await db();
+
+  if (!_db) {
+    throw new Error("No database connection");
+  }
   const cabinets =
-    (await (await db())
+    (await _db
       .collection("cabinets")
       .find(
         {
@@ -13,7 +24,7 @@ export const load = async (event) => {
       .toArray()) || [];
 
   const countries = (
-    await (await db())
+    await _db
       .collection("countries")
       .find(
         {},
@@ -32,7 +43,7 @@ export const load = async (event) => {
   }));
 
   const cities = (
-    await (await db())
+    await _db
       .collection("cities")
       .find(
         {},

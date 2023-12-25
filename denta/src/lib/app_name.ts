@@ -14,6 +14,11 @@ const paramsValidator = z.object({
   availabilities: z.object({
     search: z.boolean(),
     articles: z.boolean(),
+    appointments: z.boolean(),
+    clients: z.boolean(),
+    cabinets: z.boolean(),
+    employees: z.boolean(),
+    priceList: z.boolean(),
   }),
 });
 
@@ -23,6 +28,11 @@ const DENTA_APP_PARAMS: z.infer<typeof paramsValidator> = {
   availabilities: {
     search: true,
     articles: true,
+    appointments: true,
+    clients: true,
+    cabinets: true,
+    employees: true,
+    priceList: true,
   },
 };
 
@@ -32,6 +42,11 @@ const FEMIDA_APP_PARAMS: z.infer<typeof paramsValidator> = {
   availabilities: {
     search: false,
     articles: false,
+    appointments: false,
+    clients: false,
+    cabinets: false,
+    employees: false,
+    priceList: false,
   },
 };
 

@@ -1,12 +1,22 @@
+import { appParams } from "$lib/app_name";
 import db from "$lib/db";
 import type { PriceListItem, Service } from "$lib/types/crm";
+import { redirect } from "@sveltejs/kit";
 
 export const load = async (event) => {
+  if (!appParams.availabilities.appointments) {
+    throw redirect(301, `/${event.params.lang}/crm/`);
+  }
+
   const session = await event.locals.getSession();
 
-  const appointments = await (
-    await db()
-  )
+  const _db = await db();
+
+  if (!_db) {
+    throw new Error("No database connection");
+  }
+
+  const appointments = await _db
     .collection("appointments")
     .find(
       {
@@ -16,9 +26,7 @@ export const load = async (event) => {
     )
     .toArray();
 
-  const clients = await (
-    await db()
-  )
+  const clients = await _db
     .collection("clients")
     .find(
       {
@@ -28,9 +36,7 @@ export const load = async (event) => {
     )
     .toArray();
 
-  const employees = await (
-    await db()
-  )
+  const employees = await _db
     .collection("employees")
     .find(
       {
@@ -40,9 +46,7 @@ export const load = async (event) => {
     )
     .toArray();
 
-  const cabinets = await (
-    await db()
-  )
+  const cabinets = await _db
     .collection("cabinets")
     .find(
       {
@@ -52,7 +56,7 @@ export const load = async (event) => {
     )
     .toArray();
 
-  const company = await (await db()).collection("companies").findOne(
+  const company = await _db.collection("companies").findOne(
     {
       owner: session.user.email,
       id: event.params.companyId,
@@ -60,9 +64,7 @@ export const load = async (event) => {
     { projection: { _id: 0 } },
   );
 
-  const priceList = (await (
-    await db()
-  )
+  const priceList = (await _db
     .collection("price-list")
     .find(
       {
@@ -72,9 +74,7 @@ export const load = async (event) => {
     )
     .toArray()) as PriceListItem[];
 
-  const services = (await (
-    await db()
-  )
+  const services = (await _db
     .collection("services")
     .find({}, { projection: { _id: 0 } })
     .toArray()) as Service[];
@@ -86,6 +86,6 @@ export const load = async (event) => {
     cabinets,
     company,
     priceList,
-    services
+    services,
   };
 };
