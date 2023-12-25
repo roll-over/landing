@@ -18,7 +18,21 @@
   $: l = localisation($page.params.lang);
 
   initializeStores();
-  export let data: { countries: any[]; cities: any[]; userCompanies: any[] };
+  export let data: {
+    countries: {
+      id: string;
+      ru: string;
+      en: string;
+    }[];
+    cities: {
+      id: string;
+      ru: string;
+      en: string;
+    }[];
+    usersCompanies: {
+      id: string;
+    }[];
+  };
 
   let w;
 
@@ -47,7 +61,8 @@
           },
         ]
       : []),
-    ...($page.params.companyId && data.usersCompanies?.includes($page.params.companyId)
+    ...($page.params.companyId &&
+    data.usersCompanies?.map((x) => x.id).includes($page.params.companyId)
       ? [
           {
             type: "icon",
@@ -295,7 +310,7 @@
   }
   footer {
     min-height: 150px;
-    background-color: rgba(44, 135, 255, 0.123);
+    background-color: var(--secondary-background-color);
   }
 
   .logo {

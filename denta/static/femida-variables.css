@@ -1,0 +1,11 @@
+:root {
+  --main-text-color: black;
+  --main-link-color: rgb(24, 24, 24);
+
+  --background-color: rgb(191, 200, 212);
+  --secondary-background-color: rgba(150, 150, 150, 0.397);
+  --background-gradient-color-1: rgba(172, 172, 172, 0.24);
+  --background-gradient-color-2: rgba(116, 116, 116, 0.267);
+
+
+}
