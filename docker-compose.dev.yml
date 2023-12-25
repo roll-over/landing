@@ -55,6 +55,37 @@ services:
       - .env
     environment:
       - DEV_MODE=true
+      - APP_NAME=denta
+    depends_on:
+      - landing_mongo_dev
+
+  femida_dev:
+    build:
+      context: ./denta
+      dockerfile: Dockerfile.dev
+    container_name: femida_dev
+    command: pnpm run dev --host
+
+    working_dir: /frontend
+    volumes:
+      - ./denta/.svelte-kit/:/frontend/.svelte-kit/
+      - ./denta/patches/:/frontend/patches/
+      - ./denta/scripts/:/frontend/scripts/
+      - ./denta/src/:/frontend/src/
+      - ./denta/static/:/frontend/static/
+      - ./denta/package.json:/frontend/package.json
+      - ./denta/pnpm-lock.yaml:/frontend/pnpm-lock.yaml
+      - ./denta/postcss.config.cjs:/frontend/postcss.config.cjs
+      - ./denta/svelte.config.js:/frontend/svelte.config.js
+      - ./denta/tailwind.config.cjs:/frontend/tailwind.config.cjs
+      - ./denta/vite.config.ts:/frontend/vite.config.ts
+    ports:
+      - "5175:5173"
+    env_file:
+      - .env
+    environment:
+      - DEV_MODE=true
+      - PUBLIC_APP_NAME=femida
     depends_on:
       - landing_mongo_dev
   landing_mongo_dev:

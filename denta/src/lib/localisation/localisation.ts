@@ -1,13 +1,9 @@
-import { en } from "./en";
-import { ru } from "./ru";
+import { appParams } from "$lib/app_name";
+const langs = appParams.localisation;
 
-const langs = {
-  ru,
-  en,
-} as const;
-if (Object.keys(ru).length !== Object.keys(en).length) {
-  const ruKeys = Object.keys(ru);
-  const enKeys = Object.keys(en);
+if (Object.keys(langs.ru).length !== Object.keys(langs.en).length) {
+  const ruKeys = Object.keys(langs.ru);
+  const enKeys = Object.keys(langs.en);
   const ruKeysSet = new Set(ruKeys);
   const enKeysSet = new Set(enKeys);
   const ruDiff = ruKeys.filter((x) => !enKeysSet.has(x));
@@ -21,7 +17,7 @@ export const localisation = (lang: string) => {
   if (!langs[lang]) {
     throw new Error(`Unknown language: ${lang}`);
   }
-  return (key: keyof typeof ru) => {
+  return (key: keyof typeof langs.ru) => {
     const localisation = langs[lang][key];
 
     if (!localisation) {

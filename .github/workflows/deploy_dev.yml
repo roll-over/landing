@@ -96,3 +96,16 @@ jobs:
       - name: build and run containers -- denta -- 1 pack
         if: needs.denta_filter.outputs.output1 == 'true'
         run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build denta_roll_over_1"
+
+      - name: stop containers -- femida -- 0 pack
+        if: needs.denta_filter.outputs.output1 == 'true'
+        run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose down femida_roll_over"
+      - name: build and run containers -- femida -- 0 pack
+        if: needs.denta_filter.outputs.output1 == 'true'
+        run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build femida_roll_over"
+      - name: stop containers -- femida -- 1 pack
+        if: needs.denta_filter.outputs.output1 == 'true'
+        run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose down femida_roll_over_1"
+      - name: build and run containers -- femida -- 1 pack
+        if: needs.denta_filter.outputs.output1 == 'true'
+        run: ssh ${{ vars.DEV_SSH_USER }}@${{ vars.DEV_SSH_HOST }} "cd ${{ vars.DEV_DIR }} && docker-compose up -d --build femida_roll_over_1"

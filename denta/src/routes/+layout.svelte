@@ -13,31 +13,40 @@
 
   import { localisation } from "$lib/localisation/localisation";
   import { onMount } from "svelte";
+  import { appParams } from "$lib/app_name";
   let l = localisation($page.params.lang);
   $: l = localisation($page.params.lang);
 
   initializeStores();
-  export let data: { countries: any[]; cities: any[] };
+  export let data: { countries: any[]; cities: any[]; userCompanies: any[] };
 
   let w;
 
   $: links = [
-    {
-      type: "icon",
-      title: BsSearch,
-      href: `/${$page.params.lang}/search`,
-      ariaLabel: l("Поиск"),
-    },
+    ...(appParams.availabilities.search
+      ? [
+          {
+            type: "icon",
+            title: BsSearch,
+            href: `/${$page.params.lang}/search`,
+            ariaLabel: l("Поиск"),
+          },
+        ]
+      : []),
     {
       title: "CRM",
       href: data.usersCompanies?.length
         ? `/${$page.params.lang}/crm/${data.usersCompanies[0]?.id}/company`
         : `/${$page.params.lang}/crm/info`,
     },
-    {
-      title: l("Статьи"),
-      href: `/${$page.params.lang}/articles`,
-    },
+    ...(appParams.availabilities.articles
+      ? [
+          {
+            title: l("Статьи"),
+            href: `/${$page.params.lang}/articles`,
+          },
+        ]
+      : []),
     ...($page.params.companyId && data.usersCompanies?.includes($page.params.companyId)
       ? [
           {

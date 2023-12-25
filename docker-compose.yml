@@ -41,7 +41,7 @@ services:
     build: ./apps/preview-generator
     container_name: preview_generator
     command: uvicorn main:app --host 0.0.0.0
-    working_dir: /backend/src      
+    working_dir: /backend/src
   mongo_express:
     image: mongo-express
     env_file:
@@ -50,8 +50,7 @@ services:
       - landing_mongo
     restart: unless-stopped
     ports:
-      - "127.0.0.1:8088:8081"    
-
+      - "127.0.0.1:8088:8081"
 
   denta_roll_over:
     build: ./denta
@@ -67,6 +66,7 @@ services:
       - landing_mongo
     environment:
       - DEV_MODE=false
+      - APP_NAME=denta
   denta_roll_over_1:
     build: ./denta
     container_name: denta_roll_over_1
@@ -80,4 +80,36 @@ services:
     depends_on:
       - landing_mongo
     environment:
-      - DEV_MODE=false      
+      - DEV_MODE=false
+      - APP_NAME=denta
+
+  femida_roll_over:
+    build: ./denta
+    container_name: femida_roll_over
+    working_dir: /frontend
+    command: node build
+    restart: unless-stopped
+    ports:
+      - "3041:3000"
+    env_file:
+      - .env
+    depends_on:
+      - landing_mongo
+    environment:
+      - DEV_MODE=false
+      - PUBLIC_APP_NAME=femida
+  femida_roll_over_1:
+    build: ./denta
+    container_name: femida_roll_over_1
+    working_dir: /frontend
+    command: node build
+    restart: unless-stopped
+    ports:
+      - "3042:3000"
+    env_file:
+      - .env
+    depends_on:
+      - landing_mongo
+    environment:
+      - DEV_MODE=false
+      - PUBLIC_APP_NAME=femida
