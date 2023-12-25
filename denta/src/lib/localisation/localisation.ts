@@ -1,5 +1,4 @@
-import { appParams } from "$lib/app_name";
-const langs = appParams.localisation;
+import { appParams,langs } from "$lib/app_name";
 
 if (Object.keys(langs.ru).length !== Object.keys(langs.en).length) {
   const ruKeys = Object.keys(langs.ru);
@@ -21,7 +20,8 @@ export const localisation = (lang: string) => {
     const localisation = langs[lang][key];
 
     if (!localisation) {
-      throw new Error(`Unknown localisation key: ${key}`);
+      console.error(`Unknown localisation key: ${key}`);
+      return key;
     }
 
     return localisation as string;

@@ -135,4 +135,19 @@ export const en = {
   "Что такое denta-crm - CRM система для стоматологий?":
     "What is denta-crm - CRM system for dentists?",
   "О нас - Разработчики denta-crm": "About us - denta-crm developers",
+  ...{
+    "femida-crm": "femida-crm",
+    "Что такое femida-crm?": "What is femida-crm?",
+    "Что такое femida-crm - CRM система для юридических компаний?":
+      "What is femida-crm - CRM system for law firms?",
+
+    "Система управления юридической компанией, создание сайта для юридической компании и поиск юридических компаний.":
+      "System for managing a law firm, creating a website for a law firm and searching for law firms.",
+
+    "femida-crm - это система управления стоматологической клиникой, которая позволяет вам управлять клиникой, а также взаимодействовать с пациентами.":
+      "femida-crm is a system for managing a dental clinic that allows you to manage a clinic and interact with patients.",
+    "femida-crm - это больше чем crm": "femida-crm is more than crm",
+    "femida-crm - это еще и система создания сайтов для стоматологических клиник, которая позволяет вам создать сайт для вашей клиники, а также взаимодействовать с пациентами.":
+      "femida-crm is also a system for creating websites for dental clinics that allows you to create a website for your clinic and interact with patients.",
+  },
 } as const;
