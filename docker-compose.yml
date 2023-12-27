@@ -113,3 +113,17 @@ services:
     environment:
       - DEV_MODE=false
       - PUBLIC_APP_NAME=femida
+
+  minio:
+    image: quay.io/minio/minio
+    container_name: minio
+    command: server /data --console-address ":9900"
+    ports:
+      - "127.0.0.1:9900:9900"
+      - "127.0.0.1:9001:9001"
+    volumes:
+      - "./minio_data:/data"
+    environment:
+      - MINIO_ROOT_USER=your_username
+      - MINIO_ROOT_PASSWORD=your_pasword
+      - MINIO_DEFAULT_BUCKETS=femida,landing,denta

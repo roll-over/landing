@@ -265,7 +265,7 @@
     </ol>
   </nav>
 </header>
-<main>
+<main class="w-full">
   <slot />
 </main>
 <footer>

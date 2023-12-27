@@ -115,3 +115,16 @@ services:
     volumes:
       - ./apps/preview-generator/src:/backend/src
       - ./apps/preview-generator/requirements.txt:/backend/requirements.txt
+  minio-dev:
+    image: quay.io/minio/minio
+    container_name: minio-dev
+    command: server /data --console-address ":9900"
+    ports:
+      - "9900:9900"
+      - "9001:9001"
+    volumes:
+      - "./minio_data:/data"
+    environment:
+      - MINIO_ROOT_USER=your_username
+      - MINIO_ROOT_PASSWORD=your_pasword
+      - MINIO_DEFAULT_BUCKETS=your_bucket_name

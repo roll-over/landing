@@ -167,5 +167,7 @@ export const en = {
     "femida-crm - это больше чем crm": "femida-crm is more than crm",
     "femida-crm - это еще и система создания сайтов для стоматологических клиник, которая позволяет вам создать сайт для вашей клиники, а также взаимодействовать с пациентами.":
       "femida-crm is also a system for creating websites for dental clinics that allows you to create a website for your clinic and interact with patients.",
+
+    Уведомления: "Notifications",
   },
 } as const;

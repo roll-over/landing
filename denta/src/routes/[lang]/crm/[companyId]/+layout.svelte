@@ -52,10 +52,18 @@
       href: `/${$page.params.lang}/crm/${data.company.id}/price-list`,
     });
   }
+
+  if(appParams.availabilities.contractsNotifications){
+    links.push({
+      title: l("Уведомления"),
+      href: `/${$page.params.lang}/crm/${data.company.id}/contracts-notifications`,
+    });
+  }
+
   $: menuVisible = false;
 </script>
 
-<div class="flex flex-col md:flex-row">
+<div class="flex flex-col md:flex-row w-full">
   <nav
     class="md:bg-transparent py-2 gap-2 text-grey-800 w-full md:max-w-[20%]"
     use:clickOutside
@@ -72,5 +80,5 @@
   </nav>
 
   <slot />
-  <aside class="w-full md:max-w-[20%]"></aside>
+  <aside class="hidden md:block w-full md:max-w-[20%]"></aside>
 </div>
