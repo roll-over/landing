@@ -169,5 +169,16 @@ export const en = {
       "femida-crm is also a system for creating websites for dental clinics that allows you to create a website for your clinic and interact with patients.",
 
     Уведомления: "Notifications",
+    "Название не может быть пустым": "The name cannot be empty",
+    "Дата не может быть пустой": "Date cannot be empty",
+    "Дата не может быть меньше текущей": "The date cannot be earlier than the current one",
+    "Файл не может быть пустым": "The file cannot be empty",
+    "Ошибка при загрузке файла": "Error loading file",
+    "Ошибка при сохранении контракта": "Error saving contract",
+    "Добавить контракт": "Add contract",
+    Документ: "Document",
+    "Ошибка при удалении файла": "Error deleting file",
+    Скачать: "Download",
+    "Ошибка при удалении контракта": "Error deleting contract",
   },
 } as const;

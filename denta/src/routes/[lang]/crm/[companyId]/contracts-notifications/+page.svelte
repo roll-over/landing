@@ -1,6 +1,10 @@
 <script lang="ts">
   import { invalidate, invalidateAll } from "$app/navigation";
   import { page } from "$app/stores";
+  import { getToastStore } from "@skeletonlabs/skeleton";
+  import { localisation } from "$lib/localisation/localisation";
+  const l = localisation($page.params.lang);
+  const toastStore = getToastStore();
 
   export let data: {
     contractsNotifications: {
@@ -13,8 +17,6 @@
     }[];
   };
 
-  $: console.log(data.contractsNotifications);
-
   $: form = {
     fileNames: [],
     description: "",
@@ -23,8 +25,33 @@
   };
   $: adding = false;
   $: editing = false;
+
   const submit = async (e) => {
     e.preventDefault();
+
+    if (!form.title) {
+      toastStore.trigger({
+        message: l("Название не может быть пустым"),
+        background: "variant-filled-error",
+      });
+      return;
+    }
+
+    if (!form.date) {
+      toastStore.trigger({
+        message: l("Дата не может быть пустой"),
+        background: "variant-filled-error",
+      });
+      return;
+    }
+
+    if (form.date < new Date().toISOString().split("T")[0]) {
+      toastStore.trigger({
+        message: l("Дата не может быть меньше текущей"),
+        background: "variant-filled-error",
+      });
+      return;
+    }
 
     const files = [];
 
@@ -32,6 +59,14 @@
       if (_file) {
         files.push(_file);
       }
+    }
+
+    if (files.length === 0 && form.fileNames.length === 0) {
+      toastStore.trigger({
+        message: l("Файл не может быть пустым"),
+        background: "variant-filled-error",
+      });
+      return;
     }
 
     let newFileNames = await Promise.all(
@@ -47,7 +82,13 @@
           return data.fileName;
         }
       }),
-    );
+    ).catch((e) => {
+      toastStore.trigger({
+        message: l("Ошибка при загрузке файла"),
+        background: "variant-filled-error",
+      });
+      throw e;
+    });
 
     const res2 = await fetch($page.url.pathname + "/contracts-notifications", {
       method: editing ? "PUT" : "POST",
@@ -61,6 +102,12 @@
         title: form.title,
         id: editing ? form?.id : undefined,
       }),
+    }).catch((e) => {
+      toastStore.trigger({
+        message: l("Ошибка при сохранении контракта"),
+        background: "variant-filled-error",
+      });
+      throw e;
     });
 
     const data2 = await res2.json();
@@ -76,6 +123,11 @@
         title: "",
         fileNames: [],
       };
+    } else {
+      toastStore.trigger({
+        message: l("Ошибка при сохранении контракта"),
+        background: "variant-filled-error",
+      });
     }
   };
 </script>
@@ -140,7 +192,7 @@
         class=" btn variant-filled-secondary"
         on:click={() => {
           adding = !adding;
-        }}>Добавить контракт</button
+        }}>{l("Добавить контракт")}</button
       >
     </div>
 
@@ -153,7 +205,7 @@
         </header>
         <div class="p-2 md:p-6 gap-2 md:gap-6 flex flex-col w-full">
           <div class="p-4 card w-full">
-            <h2>Документ:</h2>
+            <h2>{l("Документ")}:</h2>
             {#each contractsNotifications.fileNames as fileName}
               <div class="p-4 text-pretty">
                 <p class="text-wrap overflow-hidden">
@@ -172,12 +224,29 @@
                         {
                           method: "DELETE",
                         },
-                      );
-                      const data = await res.json();
+                      ).catch((e) => {
+                        toastStore.trigger({
+                          message: l("Ошибка при удалении файла"),
+                          background: "variant-filled-error",
+                        });
+                        throw e;
+                      });
+                      const data = await res.json().catch((e) => {
+                        toastStore.trigger({
+                          message: l("Ошибка при удалении файла"),
+                          background: "variant-filled-error",
+                        });
+                        throw e;
+                      });
                       if (data.status === "ok") {
                         invalidateAll();
+                      } else {
+                        toastStore.trigger({
+                          message: l("Ошибка при удалении файла"),
+                          background: "variant-filled-error",
+                        });
                       }
-                    }}>Удалить</button
+                    }}>{l("Удалить")}</button
                   >
 
                   <a
@@ -185,14 +254,14 @@
                     download
                     class="btn variant-filled-secondary"
                   >
-                    Скачать
+                    {l("Скачать")}
                   </a>
                 </div>
               </div>
             {/each}
           </div>
           <div class="p-4 card w-full">
-            <h2>Описание:</h2>
+            <h2>{l("Описание")}:</h2>
             {contractsNotifications.description}
           </div>
         </div>
@@ -202,7 +271,7 @@
             on:click={() => {
               editing = !editing;
               form = contractsNotifications;
-            }}>Редактировать</button
+            }}>{l("Редактировать")}</button
           >
           <button
             class="btn variant-filled-secondary"
@@ -212,12 +281,29 @@
                 {
                   method: "DELETE",
                 },
-              );
-              const data = await res.json();
+              ).catch((e) => {
+                toastStore.trigger({
+                  message: l("Ошибка при удалении контракта"),
+                  background: "variant-filled-error",
+                });
+                throw e;
+              });
+              const data = await res.json().catch((e) => {
+                toastStore.trigger({
+                  message: l("Ошибка при удалении контракта"),
+                  background: "variant-filled-error",
+                });
+                throw e;
+              });
               if (data.status === "ok") {
                 invalidateAll();
+              } else {
+                toastStore.trigger({
+                  message: l("Ошибка при удалении контракта"),
+                  background: "variant-filled-error",
+                });
               }
-            }}>Удалить</button
+            }}>{l("Удалить")}</button
           >
         </footer>
       </div>
