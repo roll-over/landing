@@ -180,5 +180,6 @@ export const en = {
     "Ошибка при удалении файла": "Error deleting file",
     Скачать: "Download",
     "Ошибка при удалении контракта": "Error deleting contract",
+    "Вы уверены что хотите удалить?": "Are you sure you want to delete?",
   },
 } as const;

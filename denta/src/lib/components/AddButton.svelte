@@ -12,7 +12,8 @@
   on:click={(e) => {
     dispatch("click", e);
   }}
-  class="btn variant-filled-primary w-14 h-14"
+  class="btn variant-filled-primary flex flex-row items-center justify-center h-14 gap-2"
 >
+  <slot />
   <Icon {src} />
 </button>

@@ -3,6 +3,10 @@
   import { page } from "$app/stores";
   import { getToastStore } from "@skeletonlabs/skeleton";
   import { localisation } from "$lib/localisation/localisation";
+  import DeleteButton from "$lib/components/DeleteButton.svelte";
+  import EditButton from "$lib/components/EditButton.svelte";
+  import AddButton from "$lib/components/AddButton.svelte";
+  import DownloadButton from "$lib/components/DownloadButton.svelte";
   const l = localisation($page.params.lang);
   const toastStore = getToastStore();
 
@@ -188,11 +192,10 @@
 
   <div class={`${adding || editing ? "hidden" : "flex"} flex-col p-4 gap-4 w-full`}>
     <div>
-      <button
-        class=" btn variant-filled-secondary"
+      <AddButton
         on:click={() => {
           adding = !adding;
-        }}>{l("Добавить контракт")}</button
+        }}>{l("Добавить контракт")}</AddButton
       >
     </div>
 
@@ -211,9 +214,8 @@
                 <p class="text-wrap overflow-hidden">
                   {fileName?.split("/")[2] || fileName}
                 </p>
-                <div>
-                  <button
-                    class="btn variant-filled-secondary"
+                <div class="flex flex-wrap gap-5">
+                  <DeleteButton
                     on:click={async () => {
                       const res = await fetch(
                         $page.url.pathname +
@@ -246,16 +248,14 @@
                           background: "variant-filled-error",
                         });
                       }
-                    }}>{l("Удалить")}</button
-                  >
+                    }}
+                  ></DeleteButton>
 
-                  <a
+                  <DownloadButton
                     href={`${$page.url.pathname}/documents/${encodeURIComponent(fileName)}`}
-                    download
-                    class="btn variant-filled-secondary"
                   >
                     {l("Скачать")}
-                  </a>
+                  </DownloadButton>
                 </div>
               </div>
             {/each}
@@ -265,16 +265,14 @@
             {contractsNotifications.description}
           </div>
         </div>
-        <footer class="card-footer">
-          <button
-            class="btn variant-filled-secondary"
+        <footer class="flex flex-wrap gap-5 card-footer">
+          <EditButton
             on:click={() => {
               editing = !editing;
               form = contractsNotifications;
-            }}>{l("Редактировать")}</button
-          >
-          <button
-            class="btn variant-filled-secondary"
+            }}
+          ></EditButton>
+          <DeleteButton
             on:click={async () => {
               const res = await fetch(
                 $page.url.pathname + "/contracts-notifications/" + contractsNotifications.id,
@@ -303,8 +301,8 @@
                   background: "variant-filled-error",
                 });
               }
-            }}>{l("Удалить")}</button
-          >
+            }}
+          ></DeleteButton>
         </footer>
       </div>
     {/each}

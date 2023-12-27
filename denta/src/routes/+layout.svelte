@@ -2,7 +2,7 @@
   import "../styles/app.css";
   import { page } from "$app/stores";
   import NavLink from "$lib/components/NavLink.svelte";
-  import { Toast, initializeStores } from "@skeletonlabs/skeleton";
+  import { Modal, Toast, initializeStores } from "@skeletonlabs/skeleton";
   import Icon from "svelte-icons-pack";
   import BsWallet2 from "svelte-icons-pack/bs/BsWallet2";
   import BsSearch from "svelte-icons-pack/bs/BsSearch";
@@ -169,6 +169,7 @@
 <header class="p-2 flex flex-col justify-between" bind:clientWidth={w}>
   <nav>
     <Toast position={"tr"} />
+    <Modal />
 
     <div class="p-2 flex flex-col md:flex-row justify-between items-center">
       <a href={`/${$page.params.lang}`} class="flex flex-row">
