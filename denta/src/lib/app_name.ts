@@ -4,9 +4,11 @@ import { ru } from "./localisation/denta/ru";
 import { en } from "./localisation/denta/en";
 export type APP_NAMES = "denta" | "femida";
 
-export const APP_NAME = (env.PUBLIC_APP_NAME || "denta") as APP_NAMES;
-console.log("APP_NAME", APP_NAME, env.PUBLIC_APP_NAME);
-z.enum(["denta", "femida"]).parse(APP_NAME);
+export const getAppName = () => {
+  const APP_NAME = (env.PUBLIC_APP_NAME || "denta") as APP_NAMES;
+  z.enum(["denta", "femida"]).parse(APP_NAME);
+  return APP_NAME;
+};
 
 const paramsValidator = z.object({
   availableLanguages: z.array(z.string()),
@@ -64,14 +66,16 @@ export const APPS_PARAMS = {
   femida: FEMIDA_APP_PARAMS,
 } as const;
 
-export const appParams = APPS_PARAMS[APP_NAME];
+export const getAppParams = () => APPS_PARAMS[getAppName()];
+
 export type DatabaseNames = z.infer<typeof paramsValidator>["databaseName"];
 export const langs = {
   ru: ru,
   en: en,
 } as const;
 
-export const LOGO_SRC = {
-  denta: "/denta-logo.webp",
-  femida: "/femida-logo.png",
-}[APP_NAME];
+export const getLogoSrc = () =>
+  ({
+    denta: "/denta-logo.webp",
+    femida: "/femida-logo.png",
+  })[getAppName()];

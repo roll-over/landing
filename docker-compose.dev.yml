@@ -55,7 +55,7 @@ services:
       - .env
     environment:
       - DEV_MODE=true
-      - APP_NAME=denta
+      - PUBLIC_APP_NAME=denta
     depends_on:
       - landing_mongo_dev
 

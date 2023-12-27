@@ -13,7 +13,7 @@
 
   import { localisation } from "$lib/localisation/localisation";
   import { onMount } from "svelte";
-  import { LOGO_SRC, appParams } from "$lib/app_name";
+  import { getLogoSrc, getAppParams } from "$lib/app_name";
   let l = localisation($page.params.lang);
   $: l = localisation($page.params.lang);
 
@@ -37,7 +37,7 @@
   let w;
 
   $: links = [
-    ...(appParams.availabilities.search
+    ...(getAppParams().availabilities.search
       ? [
           {
             type: "icon",
@@ -53,7 +53,7 @@
         ? `/${$page.params.lang}/crm/${data.usersCompanies[0]?.id}/company`
         : `/${$page.params.lang}/crm/info`,
     },
-    ...(appParams.availabilities.articles
+    ...(getAppParams().availabilities.articles
       ? [
           {
             title: l("Статьи"),
@@ -172,7 +172,7 @@
 
     <div class="p-2 flex flex-col md:flex-row justify-between items-center">
       <a href={`/${$page.params.lang}`} class="flex flex-row">
-        <img src={LOGO_SRC} class="logo rounded-xl" alt="logo denta-crm" />
+        <img src={getLogoSrc()} class="logo rounded-xl" alt="logo denta-crm" />
       </a>
 
       <ol class="flex flex-row flex-wrap gap-1 items-center">

@@ -1,4 +1,4 @@
-import { appParams,langs } from "$lib/app_name";
+import { langs } from "$lib/app_name";
 
 if (Object.keys(langs.ru).length !== Object.keys(langs.en).length) {
   const ruKeys = Object.keys(langs.ru);

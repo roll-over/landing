@@ -1,9 +1,9 @@
-import { appParams } from "$lib/app_name";
+import { getAppParams } from "$lib/app_name";
 import db from "$lib/db";
 import { redirect } from "@sveltejs/kit";
 
 export const load = async (event) => {
-  if (!appParams.availabilities.priceList) {
+  if (!getAppParams().availabilities.priceList) {
     throw redirect(301, `/${event.params.lang}/crm/`);
   }
 

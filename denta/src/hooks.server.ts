@@ -3,7 +3,7 @@ import Google from "@auth/core/providers/google";
 import { env } from "$env/dynamic/private";
 import { startMongo } from "$lib/db";
 import type { Handle } from "@sveltejs/kit";
-import { APP_NAME } from "$lib/app_name";
+import { getAppName } from "$lib/app_name";
 
 const _svelteHandle = SvelteKitAuth({
   trustHost: true,
@@ -19,9 +19,9 @@ const svelteHandle = async ({ resolve, event }) => {
         transformPageChunk: ({ html }) => {
           html = html.replace("%lang%", lang);
 
-          if (APP_NAME === "denta") {
+          if (getAppName() === "denta") {
             html = html.replace("%variables%", "/denta-variables.css");
-          } else if (APP_NAME === "femida") {
+          } else if (getAppName() === "femida") {
             html = html.replace("%variables%", "/femida-variables.css");
           }
           return html;

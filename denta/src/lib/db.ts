@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 import { env } from "$env/dynamic/private";
-import { appParams } from "./app_name";
+import { getAppParams } from "./app_name";
 import type { Db } from "mongodb";
 
 const client = new MongoClient(env.ME_CONFIG_MONGODB_URL);
@@ -17,7 +17,7 @@ class DB {
       return this.db;
     }
     await client.connect();
-    this.db = client.db(appParams.databaseName);
+    this.db = client.db(getAppParams().databaseName);
     return this.db;
   }
 

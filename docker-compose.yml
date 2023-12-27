@@ -66,7 +66,7 @@ services:
       - landing_mongo
     environment:
       - DEV_MODE=false
-      - APP_NAME=denta
+      - PUBLIC_APP_NAME=denta
   denta_roll_over_1:
     build: ./denta
     container_name: denta_roll_over_1
@@ -81,7 +81,7 @@ services:
       - landing_mongo
     environment:
       - DEV_MODE=false
-      - APP_NAME=denta
+      - PUBLIC_APP_NAME=denta
 
   femida_roll_over:
     build: ./denta
