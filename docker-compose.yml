@@ -118,6 +118,7 @@ services:
     image: quay.io/minio/minio
     container_name: minio
     command: server /data --console-address ":9900"
+    restart: unless-stopped
     ports:
       - "127.0.0.1:9900:9900"
       - "127.0.0.1:9001:9001"
