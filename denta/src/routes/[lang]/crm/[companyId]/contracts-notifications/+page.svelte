@@ -9,6 +9,7 @@
   import DownloadButton from "$lib/components/DownloadButton.svelte";
   const l = localisation($page.params.lang);
   const toastStore = getToastStore();
+  let files: FileList;
 
   export let data: {
     contractsNotifications: {
@@ -22,6 +23,7 @@
   };
 
   $: form = {
+    id: "",
     fileNames: [],
     description: "",
     date: "",
@@ -57,15 +59,15 @@
       return;
     }
 
-    const files = [];
+    const _files: File[] = [];
 
-    for (const _file of file.files) {
+    for (const _file of files) {
       if (_file) {
-        files.push(_file);
+        _files.push(_file);
       }
     }
 
-    if (files.length === 0 && form.fileNames.length === 0) {
+    if (_files.length === 0 && form.fileNames.length === 0) {
       toastStore.trigger({
         message: l("Файл не может быть пустым"),
         background: "variant-filled-error",
@@ -74,7 +76,7 @@
     }
 
     let newFileNames = await Promise.all(
-      files.map(async (f) => {
+      _files.map(async (f) => {
         if (f) {
           const formData = new FormData();
           formData.append("file", f);
@@ -122,6 +124,7 @@
       adding = false;
       editing = false;
       form = {
+        id: "",
         description: "",
         date: "",
         title: "",
@@ -139,8 +142,15 @@
 <div class="w-full">
   <div class={`${adding || editing ? "flex" : "hidden"} flex-col card `}>
     <header class="card-header">
-      <label for="title">Название</label>
-      <input type="text" name="title" id="title" bind:value={form.title} class="input" />
+      <label for="title" class="label">{l("Название")}</label>
+      <input
+        type="text"
+        name="title"
+        id="title"
+        bind:value={form.title}
+        class="input"
+        placeholder={l("Название")}
+      />
     </header>
     <div class="p-4">
       <ul class="list">
@@ -155,38 +165,34 @@
                 class="btn variant-filled-secondary"
                 on:click={() => {
                   form.fileNames = form.fileNames.filter((f) => f !== fileName);
-                }}>Удалить</button
+                }}>{l("Удалить")}</button
               >
             </span>
             <span>
-              <a
+              <DownloadButton
                 href={`${$page.url.pathname}/documents/${encodeURIComponent(fileName)}`}
-                download
-                class="btn variant-filled-secondary"
-              >
-                Скачать
-              </a>
+              ></DownloadButton>
             </span>
           </li>
         {/each}
       </ul>
-      <label for="file">Выберите файл</label>
-      <input type="file" name="file" id="file" multiple="multiple" class="input" />
+      <label for="file" class="label">{l("Выберите файл")}</label>
+      <input type="file" name="file" bind:files multiple={true} class="input" />
 
-      <label for="description">Описание</label>
-      <input
-        type="text"
+      <label for="description" class="label" placeholder={l("Описание")}>{l("Описание")}</label>
+      <textarea
         name="description"
         id="description"
-        class="input"
+        class="textarea p-2"
+        placeholder={l("Описание")}
         bind:value={form.description}
       />
 
-      <label for="date">Дата окончания</label>
-      <input type="date" name="date" id="date" bind:value={form.date} class="input" />
+      <label for="date" class="label"><span>{l("Дата окончания")} </span> </label>
+      <input type="date" name="date" id="date" bind:value={form.date} class="input" required />
     </div>
     <footer class="card-footer">
-      <button class="btn variant-filled-secondary" on:click={submit}>Загрузить</button>
+      <button class="btn variant-filled-secondary" on:click={submit}>{l("Загрузить")}</button>
     </footer>
   </div>
 
