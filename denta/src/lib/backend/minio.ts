@@ -3,7 +3,7 @@ import * as Minio from "minio";
 import { env } from "$env/dynamic/private";
 
 let minioClient = new Minio.Client({
-  endPoint: env.MINIO_DEV_ENDPOINT,
+  endPoint: env.MINIO_ENDPOINT,
   port: 9000,
   useSSL: false,
   accessKey: "5VqZ0JdGSKWnLUqxU63s",
