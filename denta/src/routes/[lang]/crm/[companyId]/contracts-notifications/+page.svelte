@@ -157,7 +157,7 @@
             {#each contractsNotifications.fileNames as fileName}
               <div class="p-4 text-pretty">
                 <p class="text-wrap overflow-hidden">
-                  {fileName.split("/")[2] || fileName}
+                  {fileName?.split("/")[2] || fileName}
                 </p>
                 <div>
                   <button
