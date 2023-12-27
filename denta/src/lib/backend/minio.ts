@@ -2,22 +2,15 @@ import * as Minio from "minio";
 
 import { env } from "$env/dynamic/private";
 
-let minioClient = new Minio.Client({
-  endPoint: env.MINIO_ENDPOINT,
-  port: 9000,
-  useSSL: false,
-  accessKey: "5VqZ0JdGSKWnLUqxU63s",
-  secretKey: "jwraboJM3OIJbeaJTBfGZplJLeiAgGd1qGRFl1BY",
-});
-
+let minioClient;
 export const getMinioClient = () => {
   if (minioClient === undefined) {
     minioClient = new Minio.Client({
-      endPoint: "minio_dev",
+      endPoint: env.MINIO_ENDPOINT,
       port: 9000,
       useSSL: false,
-      accessKey: "5VqZ0JdGSKWnLUqxU63s",
-      secretKey: "jwraboJM3OIJbeaJTBfGZplJLeiAgGd1qGRFl1BY",
+      accessKey: env.MINIO_ACCESS_KEY,
+      secretKey: env.MINIO_SECRET_KEY,
     });
   }
   return minioClient;
