@@ -1,6 +1,9 @@
+import { usersCompanyGuard } from "$lib/backend/guards/byCompany";
 import { getMinioClient } from "$lib/backend/minio";
 
 export const GET = async (event) => {
+  await usersCompanyGuard(event);
+
   const file = await getMinioClient().getObject(
     "femida",
     decodeURIComponent(event.params.fileName),

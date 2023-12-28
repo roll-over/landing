@@ -42,6 +42,7 @@
     "@skeletonlabs/skeleton": "^2.5.1",
     "@skeletonlabs/tw-plugin": "^0.2.4",
     "auth": "^0.0.9",
+    "emailjs": "^4.0.3",
     "google": "link:@auth/core/providers/google",
     "jsonwebtoken": "^9.0.2",
     "minio": "^7.1.3",

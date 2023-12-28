@@ -1,7 +1,10 @@
+import { usersCompanyGuard } from "$lib/backend/guards/byCompany";
 import db from "$lib/db";
 import { json } from "@sveltejs/kit";
 
 export const DELETE = async (event) => {
+  await usersCompanyGuard(event);
+
   const _db = await db();
 
   if (!_db) {
