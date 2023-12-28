@@ -187,5 +187,12 @@ export const en = {
     Истек: "Expired",
     Действует: "Valid",
     "Дней до окончания": "Days until expiration",
+    "Добавить уведомление": "Add notification",
+    Неактивно: "Inactive",
+    Активно: "Active",
+    "Статус уведомления": "Notification status",
+    "За сколько дней": "How many days",
+    "Сохранить изменения": "Save changes",
+    Ожидается: "Expected",
   },
 } as const;

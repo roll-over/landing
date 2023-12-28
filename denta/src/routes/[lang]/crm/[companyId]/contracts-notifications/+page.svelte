@@ -19,6 +19,10 @@
       date: string;
       fileNames: string[];
       title: string;
+      notifications: {
+        daysBefore: number;
+        status: string;
+      }[];
     }[];
   };
 
@@ -28,6 +32,12 @@
     description: "",
     date: "",
     title: "",
+    notifications: [] as
+      | {
+          daysBefore: number;
+          status: string;
+        }[]
+      | undefined,
   };
   $: adding = false;
   $: editing = false;
@@ -61,9 +71,11 @@
 
     const _files: File[] = [];
 
-    for (const _file of files) {
-      if (_file) {
-        _files.push(_file);
+    if (files) {
+      for (const _file of files) {
+        if (_file) {
+          _files.push(_file);
+        }
       }
     }
 
@@ -102,11 +114,8 @@
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        description: form.description,
-        date: form.date,
+        ...form,
         fileNames: [...(newFileNames || []), ...(form?.fileNames || [])],
-        title: form.title,
-        id: editing ? form?.id : undefined,
       }),
     }).catch((e) => {
       toastStore.trigger({
@@ -129,6 +138,7 @@
         date: "",
         title: "",
         fileNames: [],
+        notifications: [],
       };
     } else {
       toastStore.trigger({
@@ -152,47 +162,98 @@
         placeholder={l("Название")}
       />
     </header>
-    <div class="p-4">
+    <div class="p-2 md:p-4 card flex flex-col gap-2 md:gap-4">
       <ul class="list">
         {#each form.fileNames as fileName, i}
           <li class="flex flex-wrap">
-            <span>{i}. </span>
+            <span>{i + 1}. </span>
             <span>
               {fileName}
             </span>
             <span>
-              <button
-                class="btn variant-filled-secondary"
+              <DeleteButton
                 on:click={() => {
                   form.fileNames = form.fileNames.filter((f) => f !== fileName);
-                }}>{l("Удалить")}</button
-              >
+                }}
+              ></DeleteButton>
             </span>
             <span>
               <DownloadButton
                 href={`${$page.url.pathname}/documents/${encodeURIComponent(fileName)}`}
-              ></DownloadButton>
+              >
+                {l("Скачать")}
+              </DownloadButton>
             </span>
           </li>
         {/each}
       </ul>
-      <label for="file" class="label">{l("Выберите файл")}</label>
-      <input type="file" name="file" bind:files multiple={true} class="input" />
+      <div class="p-2 md:p-4 card">
+        <label for="file" class="label">{l("Выберите файл")}</label>
+        <input type="file" name="file" bind:files multiple={true} class="input" />
+      </div>
+      <div class="p-2 md:p-4 card">
+        <label for="description" class="label" placeholder={l("Описание")}>{l("Описание")}</label>
+        <textarea
+          name="description"
+          id="description"
+          class="textarea p-2"
+          placeholder={l("Описание")}
+          bind:value={form.description}
+        />
+      </div>
 
-      <label for="description" class="label" placeholder={l("Описание")}>{l("Описание")}</label>
-      <textarea
-        name="description"
-        id="description"
-        class="textarea p-2"
-        placeholder={l("Описание")}
-        bind:value={form.description}
-      />
+      <div class="p-2 md:p-4 card">
+        <label for="date" class="label"><span>{l("Дата окончания")} </span> </label>
+        <input type="date" name="date" id="date" bind:value={form.date} class="input" required />
+      </div>
 
-      <label for="date" class="label"><span>{l("Дата окончания")} </span> </label>
-      <input type="date" name="date" id="date" bind:value={form.date} class="input" required />
+      <div class="p-2 md:p-4 card flex flex-col gap-2 md:gap-4">
+        <h3>
+          {l("Уведомления")}:
+        </h3>
+        {#each form.notifications || [] as notification, i}
+          <div class="flex flex-wrap gap-5 card p-2 md:p-4">
+            <label for="daysBefore" class="label">{l("За сколько дней")}</label>
+            <input
+              type="number"
+              name="daysBefore"
+              id="daysBefore"
+              bind:value={notification.daysBefore}
+              class="input"
+              placeholder={l("За сколько дней")}
+            />
+            <label for="status" class="label">{l("Статус уведомления")}</label>
+            <select name="status" id="status" bind:value={notification.status} class="input">
+              <option value="wait">{l("Ожидается")}</option>
+              <option value="inactive" disabled>{l("Неактивно")}</option>
+            </select>
+            <DeleteButton
+              on:click={() => {
+                form.notifications = form.notifications?.filter((n) => n !== notification) || [];
+              }}>{l("Удалить")}</DeleteButton
+            >
+          </div>
+        {/each}
+        <AddButton
+          on:click={() => {
+            form.notifications = [
+              ...(form.notifications || []),
+              {
+                daysBefore: 3,
+                status:
+                  (new Date(form.date).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24) > 3
+                    ? "waiting"
+                    : "inactive",
+              },
+            ];
+          }}>{l("Добавить уведомление")}</AddButton
+        >
+      </div>
     </div>
     <footer class="card-footer">
-      <button class="btn variant-filled-secondary" on:click={submit}>{l("Загрузить")}</button>
+      <button class="btn variant-filled-secondary" on:click={submit}
+        >{l("Сохранить изменения")}</button
+      >
     </footer>
   </div>
 
@@ -290,6 +351,34 @@
             <div class="p-4 card w-full">
               <h2>{l("Описание")}:</h2>
               {contractsNotifications.description}
+            </div>
+          {/if}
+
+          {#if contractsNotifications.notifications}
+            <div class="p-4 card w-full list">
+              <h2>{l("Уведомления")}:</h2>
+              {#each contractsNotifications.notifications as notification, i}
+                <div class="flex flex-wrap gap-5">
+                  <span>
+                    {i + 1}.
+                  </span>
+                  <span>
+                    <span>{l("За сколько дней")}:</span>
+                    <span>{notification.daysBefore}</span>
+                    {#if notification.status === "waiting"}
+                      <span class="text-green-500">{notification.status}</span>
+                    {:else if notification.status === "inactive"}
+                      <span class="text-red-500">{notification.status}</span>
+                    {:else if notification.status === "done"}
+                      <span class="text-blue-500">{notification.status}</span>
+                    {:else if notification.status === "error"}
+                      <span class="text-red-500">{notification.status}</span>
+                    {:else}
+                      <span>{notification.status}</span>
+                    {/if}
+                  </span>
+                </div>
+              {/each}
             </div>
           {/if}
         </div>
