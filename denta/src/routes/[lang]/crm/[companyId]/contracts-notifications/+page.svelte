@@ -208,9 +208,9 @@
     {#each data.contractsNotifications as contractsNotifications}
       <div class="card w-full">
         <header class="card-header overflow-hidden">
-          <p class="card-header-title text-pretty">
+          <h2 class="card-header-title text-pretty">
             {contractsNotifications.title}
-          </p>
+          </h2>
         </header>
         <div class="p-2 md:p-6 gap-2 md:gap-6 flex flex-col w-full">
           <div class="p-4 card w-full">
