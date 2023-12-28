@@ -184,5 +184,8 @@ export const en = {
     "Выберите файл": "Select a file",
     "Дата окончания": "End date",
     Загрузить: "Upload",
+    Истек: "Expired",
+    Действует: "Valid",
+    "Дней до окончания": "Days until expiration",
   },
 } as const;

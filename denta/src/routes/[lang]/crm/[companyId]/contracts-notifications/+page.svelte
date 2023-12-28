@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { invalidate, invalidateAll } from "$app/navigation";
+  import { invalidateAll } from "$app/navigation";
   import { page } from "$app/stores";
   import { getToastStore } from "@skeletonlabs/skeleton";
   import { localisation } from "$lib/localisation/localisation";
@@ -24,7 +24,7 @@
 
   $: form = {
     id: "",
-    fileNames: [],
+    fileNames: [] as string[],
     description: "",
     date: "",
     title: "",
@@ -214,13 +214,13 @@
         </header>
         <div class="p-2 md:p-6 gap-2 md:gap-6 flex flex-col w-full">
           <div class="p-4 card w-full">
-            <h2>{l("Документ")}:</h2>
+            <h2>{l("Документы")}:</h2>
             {#each contractsNotifications.fileNames as fileName}
               <div class="p-4 text-pretty">
                 <p class="text-wrap overflow-hidden">
                   {fileName?.split("/")[2] || fileName}
                 </p>
-                <div class="flex flex-wrap gap-5">
+                <div class="flex flex-wrap gap-5 justify-end">
                   <DeleteButton
                     on:click={async () => {
                       const res = await fetch(
@@ -266,12 +266,34 @@
               </div>
             {/each}
           </div>
-          <div class="p-4 card w-full">
-            <h2>{l("Описание")}:</h2>
-            {contractsNotifications.description}
-          </div>
+          {#if contractsNotifications.date}
+            <div class="p-4 card w-full">
+              <h2>{l("Дата окончания")}:</h2>
+              {contractsNotifications.date}
+              <span>
+                ({new Date(contractsNotifications.date) < new Date() ? l("Истек") : l("Действует")})
+              </span>
+              <div>
+                <span>
+                  {l("Дней до окончания")}:
+                </span>
+                <span>
+                  {Math.floor(
+                    (new Date(contractsNotifications.date).getTime() - new Date().getTime()) /
+                      (1000 * 60 * 60 * 24),
+                  )}
+                </span>
+              </div>
+            </div>
+          {/if}
+          {#if contractsNotifications.description}
+            <div class="p-4 card w-full">
+              <h2>{l("Описание")}:</h2>
+              {contractsNotifications.description}
+            </div>
+          {/if}
         </div>
-        <footer class="flex flex-wrap gap-5 card-footer">
+        <footer class="flex flex-wrap gap-5 card-footer justify-end">
           <EditButton
             on:click={() => {
               editing = !editing;
