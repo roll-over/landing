@@ -194,5 +194,8 @@ export const en = {
     "За сколько дней": "How many days",
     "Сохранить изменения": "Save changes",
     Ожидается: "Expected",
+    "CRM-система для юристов": "CRM system for lawyers",
+    "Девушка юрист за ноутбуком улыбается": "A lawyer in front of a laptop smiling",
+    "Юрист в кресле": "Lawyer in a chair",
   },
 } as const;
