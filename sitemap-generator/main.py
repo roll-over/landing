@@ -11,7 +11,14 @@ if __name__ == "__main__":
     )
     crawler(
         "https://denta-crm.com/",
-        out_file="denta/static/sitemap.xml",
+        out_file="denta/src/routes/sitemap.xml/denta.xml",
+        exclude_urls=[".pdf", ".jpg", ".zip"],
+        http_request_options={"ssl": True},
+        parser=Parser,
+    )
+    crawler(
+        "https://femida-crm.com/",
+        out_file="denta/src/routes/sitemap.xml/femida.xml",
         exclude_urls=[".pdf", ".jpg", ".zip"],
         http_request_options={"ssl": True},
         parser=Parser,
