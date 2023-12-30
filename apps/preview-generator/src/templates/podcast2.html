@@ -21,8 +21,10 @@
         document.querySelector(".title").innerHTML = title;
         document.querySelector(".name1").innerHTML = name1;
         document.querySelector(".name2").innerHTML = name2;
-        document.querySelector('svg image[id="image1"]').href.baseVal = "" + image1;
-        document.querySelector('svg image[id="image2"]').href.baseVal = "" + image2;
+        document.querySelector('svg image[id="image1"]').href.baseVal =
+          "" + image1;
+        document.querySelector('svg image[id="image2"]').href.baseVal =
+          "" + image2;
       });
     </script>
   </head>
@@ -52,11 +54,7 @@
       </pattern>
       <defs>
         <filter id="crop-me" x="0" y="0">
-          <feImage
-            
-            width="400"
-            height="400"
-          />
+          <feImage width="400" height="400" />
           <feComposite operator="in" in2="SourceAlpha" />
         </filter>
       </defs>
@@ -67,8 +65,20 @@
         stroke-width="3"
         fill="white"
       ></path>
-      <image href="/static/circle_PNG50.png" width="540" height="540" x="130" y="50" />
-      <image href="/static/circle_PNG50.png" width="540" height="540" x="430" y="350" />
+      <image
+        href="/static/circle_PNG50.png"
+        width="540"
+        height="540"
+        x="130"
+        y="50"
+      />
+      <image
+        href="/static/circle_PNG50.png"
+        width="540"
+        height="540"
+        x="430"
+        y="350"
+      />
       <circle cx="400" cy="300" r="200" fill="url(#pattern1)"></circle>
       <circle cx="700" cy="600" r="200" fill="url(#pattern2)"></circle>
 
@@ -111,19 +121,20 @@
     .name1 {
       position: fixed;
       left: 50px;
-      bottom: 40px;
+      bottom: 80px;
       width: 900px;
       text-align: left;
       background-color: #ffffff00;
-
+      font-size: 70px;
     }
     .name2 {
       position: fixed;
       left: 50px;
-      bottom: -40px;
+      bottom: 0px;
       width: 800px;
       text-align: left;
       background-color: #ffffff00;
+      font-size: 70px;
     }
   </style>
 </html>
