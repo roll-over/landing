@@ -101,3 +101,9 @@ CRM система для малых стоматологий -  https://denta-c
     >
   </div>
 </div>
+
+<style>
+  textarea {
+    color: black;
+  }
+  </style>
