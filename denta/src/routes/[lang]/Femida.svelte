@@ -4,6 +4,8 @@
   import { page } from "$app/stores";
   import { localisation } from "$lib/localisation/localisation";
   $: l = localisation($page.params.lang);
+
+  export let data;
 </script>
 
 <svelte:head>
@@ -31,23 +33,14 @@
 
 <CenteredPage>
   <h1>{l("femida-crm")}</h1>
-  <p>{l("Система управления стоматологической клиникой")}</p>
+  <p>{data.localisation["Система управления юридической компанией"]}</p>
 
   <Section>
     <h2>{l("Что такое femida-crm?")}</h2>
     <p>
-      {l(
-        "femida-crm - это система управления стоматологической клиникой, которая позволяет вам управлять клиникой, а также взаимодействовать с пациентами.",
-      )}
-    </p>
-  </Section>
-
-  <Section>
-    <h2>{l("femida-crm - это больше чем crm")}</h2>
-    <p>
-      {l(
-        "femida-crm - это еще и система создания сайтов для стоматологических клиник, которая позволяет вам создать сайт для вашей клиники, а также взаимодействовать с пациентами.",
-      )}
+      {data.localisation[
+        "femida-crm - это система управления юридической компанией, которая позволяет вам управлять организацией, а также взаимодействовать с клиентами."
+      ]}
     </p>
     <a href={`/${$page.params.lang}/crm/create-company`}>{l("Создать компанию")}</a>
   </Section>

@@ -197,5 +197,7 @@ export const en = {
     "CRM-система для юристов": "CRM system for lawyers",
     "Девушка юрист за ноутбуком улыбается": "A lawyer in front of a laptop smiling",
     "Юрист в кресле": "Lawyer in a chair",
+    "femida-crm - это система управления юридической компанией, которая позволяет вам управлять организацией, а также взаимодействовать с клиентами.":
+      "femida-crm is a system for managing a law firm that allows you to manage an organization and interact with clients.",
   },
 } as const;
