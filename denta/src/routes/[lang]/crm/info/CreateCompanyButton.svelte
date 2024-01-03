@@ -4,10 +4,10 @@
   import { localisation } from "$lib/localisation/localisation";
   $: l = localisation($page.params.lang);
 
-  export let data: { company: Company; companies: Company[]; texts: string[] };
+  export let data: { company: Company; usersCompanies: Company[]; texts: string[] };
 </script>
 
-{#if !data.companies?.length}
+{#if !data.usersCompanies?.length}
   <a href={`/${$page.params.lang}/crm/create-company`} class="btn variant-filled-primary">
     {l("Создать компанию!")}
   </a>

@@ -17,18 +17,6 @@ export const load = async (event) => {
     throw new Error("No db connection");
   }
 
-  const companies = session
-    ? await _db
-        .collection("companies")
-        .find(
-          {
-            owner: session.user.email,
-          },
-          { projection: { _id: 0 } },
-        )
-        .toArray()
-    : [];
-
   const appName = getAppName();
 
   const text = {
@@ -37,7 +25,6 @@ export const load = async (event) => {
   }[appName];
 
   return {
-    companies: companies,
     texts: Promise.all(
       text.map(async (_t) => {
         return await t(_t, "ru", event.params.lang);

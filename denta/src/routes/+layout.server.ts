@@ -91,7 +91,6 @@ export const load = async (event) => {
             {
               projection: {
                 _id: 0,
-                id: 1,
               },
             },
           )

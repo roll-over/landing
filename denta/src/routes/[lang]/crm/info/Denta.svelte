@@ -12,7 +12,7 @@
   import CreateCompanyButton from "./CreateCompanyButton.svelte";
   $: l = localisation($page.params.lang);
 
-  export let data: { company: Company; companies: Company[]; texts: string[] };
+  export let data: { company: Company; usersCompanies: Company[]; texts: string[] };
 </script>
 
 <svelte:head>

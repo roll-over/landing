@@ -8,7 +8,7 @@
   import { getAppName } from "$lib/app_name";
   $: l = localisation($page.params.lang);
 
-  export let data: { company: Company; companies: Company[]; texts: string[] };
+  export let data: { company: Company; usersCompanies: Company[]; texts: string[] };
 
   const Component = {
     denta: Denta,
@@ -21,11 +21,11 @@
     <div class="w-full flex justify-center">
       <div class="flex flex-col gap-5 w-96">
         <h2>{l("Ваши компании")}</h2>
-        {#if !data.companies?.length}
+        {#if !data.usersCompanies?.length}
           <p>{l("Ой, кажется у вас до сих пор не создана компания")}</p>
         {:else}
           <ol class="flex flex-col gap-10">
-            {#each data.companies as company}
+            {#each data.usersCompanies as company}
               <li>
                 <a
                   class="border-2 border-gray-400 rounded-xl px-5 py-2"
