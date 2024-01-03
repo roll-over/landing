@@ -74,8 +74,6 @@ const getCountriesAndCities = async (lang: string) => {
 };
 
 export const load = async (event) => {
-  console.time("localisation");
-
   const { countries, cities } = await getCountriesAndCities(event.params.lang);
 
   try {
@@ -101,8 +99,6 @@ export const load = async (event) => {
       : [];
 
     const localisationObj = await getLocalisation(event.params.lang);
-
-    console.timeEnd("localisation");
 
     return {
       session: session,
