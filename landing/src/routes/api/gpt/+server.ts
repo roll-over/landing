@@ -1,11 +1,7 @@
-import OpenAI from "openai";
-import { OPENAI_API_KEY } from "$env/static/private";
+import { openai } from "$lib/backend/openai";
 import { useAdminGuard } from "$lib/guards/admin";
 import type { PromptByGroupAndType } from "$lib/types/gpt";
 
-const openai = new OpenAI({
-  apiKey: OPENAI_API_KEY,
-});
 const system = `
 Представь, что ты копирайтер, который помогает писать статьи для социальных сетей и сайта.
 
@@ -104,7 +100,7 @@ const semanticCore = {
     "бот психолог онлайн телеграмм",
     "виртуальный психолог бот",
     "чат бот психолог телеграмм",
-    "разговорный бот психолог"
+    "разговорный бот психолог",
   ],
 } as const;
 

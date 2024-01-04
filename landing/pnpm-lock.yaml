@@ -32,6 +32,9 @@ dependencies:
   uuidv4:
     specifier: ^6.2.13
     version: 6.2.13
+  youtube-captions-scraper:
+    specifier: ^2.0.1
+    version: 2.0.1
 
 devDependencies:
   '@sveltejs/adapter-node':
@@ -891,6 +894,16 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
+  /axios@0.17.1:
+    resolution: {integrity: sha512-mZzWRyJeJ0rtK7e1/6iYBUzmeXjzei+1h1IvbedyU0sB52++tU5AU6r6TLXpwNVR0ebXIpvTVW+9CpWNyc1n8w==}
+    deprecated: Critical security vulnerability fixed in v0.21.1. For more information, see https://github.com/axios/axios/pull/3410
+    dependencies:
+      follow-redirects: 1.15.4
+      is-buffer: 1.1.6
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /axobject-query@3.2.1:
     resolution: {integrity: sha512-jsyHu61e6N4Vbz/v18DHwWYKK0bSWLqn47eeDSKPB7m8tqMHF9YJ+mhIk2lVteyZrY8tnSj/jHOv4YiTCuCJgg==}
     dependencies:
@@ -1619,6 +1632,16 @@ packages:
     resolution: {integrity: sha512-36yxDn5H7OFZQla0/jFJmbIKTdZAQHngCedGxiMmpNfEZM0sdEeT+WczLQrjK6D7o2aiyLYDnkw0R3JK0Qv1RQ==}
     dev: true
 
+  /follow-redirects@1.15.4:
+    resolution: {integrity: sha512-Cr4D/5wlrb0z9dgERpUL3LrmPKVDsETIJhaCMeDfuFYcqa5bldGV6wBsAN6X/vxlXQtFBMrXdXxdL8CbDTGniw==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dev: false
+
   /form-data-encoder@1.7.2:
     resolution: {integrity: sha512-qfqtYan3rxrnCk1VYaA4H+Ms9xdpPqvLZa6xmMgFvhO32x7/3J/ExcTd6qpxM0vH2GdMI+poehyBZvqfMTto8A==}
     dev: false
@@ -1742,6 +1765,11 @@ packages:
     resolution: {integrity: sha512-xyD4XgslstNAs72ENaoFvgMwtv8xhiDtC2AtzCG+8yF7W/Knxxm9BX+e2s25mm+HxMKh0rBmXVOEGF3zNImXvA==}
     dependencies:
       traverse: 0.6.7
+    dev: false
+
+  /he@1.2.0:
+    resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
+    hasBin: true
     dev: false
 
   /humanize-ms@1.2.1:
@@ -2001,6 +2029,10 @@ packages:
   /lodash.uniq@4.5.0:
     resolution: {integrity: sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==}
     dev: true
+
+  /lodash@4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+    dev: false
 
   /lru-cache@6.0.0:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
@@ -2961,6 +2993,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /striptags@3.2.0:
+    resolution: {integrity: sha512-g45ZOGzHDMe2bdYMdIvdAfCQkCTDMGBazSw1ypMowwGIee7ZQ5dU0rBJ8Jqgl+jAKIv4dbeE1jscZq9wid1Tkw==}
+    dev: false
+
   /structr@0.2.4:
     resolution: {integrity: sha512-hL77hWtJhhuhDb4od5ywwAnVUlq9Krzk4BCoWhfiPtTEHvqBqRUm6lJ5PQlCrMWyi8Cv4+AXA/Mu6dbeTN/fGA==}
     dev: false
@@ -3474,3 +3510,14 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  /youtube-captions-scraper@2.0.1:
+    resolution: {integrity: sha512-gkfa+FEusEDU8cDb8fENo6B+3yTeMK5BAn2TdP22vNIDwNyKML6YYRezgPSYyXEIix/QHdiI/zqgT1FWCvQx5A==}
+    dependencies:
+      axios: 0.17.1
+      he: 1.2.0
+      lodash: 4.17.21
+      striptags: 3.2.0
+    transitivePeerDependencies:
+      - debug
+    dev: false

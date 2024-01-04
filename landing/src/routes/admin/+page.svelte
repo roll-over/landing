@@ -22,5 +22,9 @@
     <li>
       <NavLink href="/admin/anounces">Анонсы</NavLink>
     </li>
+
+    <li>
+      <NavLink href="/admin/timecodes-generator">timecodes-generator</NavLink>
+    </li>
   </ul>
 </CenteredPage>
