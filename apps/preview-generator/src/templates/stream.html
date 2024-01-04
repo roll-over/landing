@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
+      rel="stylesheet"
+      preload
+      as="font"
+    />
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const searchParams = new URLSearchParams(window.location.search);
+        const name = searchParams.get("name");
+        const title = searchParams.get("title");
+        const image = searchParams.get("image");
+        document.querySelector(".title").innerHTML = title;
+        document.querySelector(".name").innerHTML = name;
+        document.getElementsByTagName("svg").href = "." + image;
+        document.querySelector('svg image[id="image"]').href.baseVal =
+          "" + image;
+      });
+    </script>
+  </head>
+  <body>
+    <svg
+      width="1920"
+      height="1080"
+      viewBox="0 0 1920 1080"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <rect width="1920" height="1080" style="fill: #fff"></rect>
+      <path
+        d="M 0 1000 820 1000 Q 880 1000 940 900 Q 1000 800 1060 800 L 1920 800"
+        stroke="#000d72"
+        stroke-width="3"
+        fill="white"
+      ></path>
+
+      <image
+        href="/static/roll-over.png"
+        width="240"
+        height="240"
+        x="1480"
+        y="590"
+      />
+    </svg>
+
+    <p class="title">До чего доводит нетворкинг</p>
+    <p class="host-title">roll-over stream</p>
+  </body>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 1920px;
+      height: 1080px;
+    }
+    p {
+      font-size: 100px;
+      font-family: "Montserrat";
+      color: #000d72;
+      background-color: #fff;
+    }
+    .title {
+      position: fixed;
+      font-size: 80px;
+      left: 50px;
+      top: 50px;
+      max-width: 900px;
+      text-align: left;
+    }
+    .host-title {
+      position: fixed;
+      right: 150px;
+      bottom: 50px;
+      width: 700px;
+      font-size: 80px;
+      text-align: right;
+    }
+    .name {
+      position: fixed;
+      left: 50px;
+      bottom: 40px;
+      width: 700px;
+      text-align: left;
+    }
+  </style>
+</html>

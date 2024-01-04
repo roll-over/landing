@@ -8,15 +8,25 @@
 
   const init = $page.url.searchParams;
 
-  $: form =
-    template === "podcast"
-      ? { ...defaults.podcast, name: init.get("name"), title: init.get("title") }
-      : {
-          ...defaults.podcast2,
-          name1: init.get("name1"),
-          name2: init.get("name2"),
-          title: init.get("title"),
-        };
+  const forms = {
+    podcast: {
+      name: init.get("name"),
+      title: init.get("title"),
+    },
+    podcast2: {
+      name1: init.get("name1"),
+      name2: init.get("name2"),
+      title: init.get("title"),
+    },
+    stream: {
+      title: init.get("title"),
+    },
+  };
+
+  $: form = {
+    ...defaults[template],
+    ...forms[template],
+  };
 
   $: newImage = null;
 
@@ -58,11 +68,14 @@
       } else if (e.target.value === "podcast2") {
         form.name1 = $page.url.searchParams.get("name1");
         form.title1 = $page.url.searchParams.get("title1");
+      } else if (e.target.value === "stream") {
+        form.title = $page.url.searchParams.get("title");
       }
     }}
   >
-    <option value="podcast">podcast</option>
-    <option value="podcast2">podcast2</option>
+    {#each Object.keys(fields) as template}
+      <option value={template}>{template}</option>
+    {/each}
   </select>
 
   {#each Object.keys(fields[template]) as field}
@@ -114,7 +127,7 @@
 
   <button on:click={generateNewPage}>Generate</button>
 
-  <img src={newImage} alt="new image" />
+  <img src={newImage} alt="generated preview" />
 </CenteredPage>
 
 <style>

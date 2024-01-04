@@ -43,6 +43,12 @@ export const fields = {
       title: "image2",
     },
   },
+  stream: {
+    title: {
+      type: "text",
+      placeholder: "title",
+    },
+  },
 };
 
 export const defaults = {
@@ -59,5 +65,8 @@ export const defaults = {
     title: "title",
     image1: "",
     image2: "",
+  },
+  stream: {
+    title: "title",
   },
 };

@@ -30,9 +30,16 @@ class Form2(BaseModel):
     image: str
 
 
+class Form3(BaseModel):
+    template: Literal["stream"]
+    title: str
+
+
 class GenByTamplate(BaseModel):
     template: str
-    form: Union[Form1, Form2] = Field(..., alias="form", discriminator="template")
+    form: Union[Form1, Form2, Form3] = Field(
+        ..., alias="form", discriminator="template"
+    )
 
 
 @app.post("/")
@@ -61,22 +68,24 @@ async def root(body: GenByTamplate):
                 "image2": body.form.image2,
             }
         )
+    elif body.template == "stream":
+        path = f"{body.form.title}.png"
+        paramsQuery = urllib.parse.urlencode({"title": body.form.title})
     else:
         return {"error": "template not found"}
-    # print(paramsQuery[0:50])
-    # return paramsQuery[0:50]
     try:
         async with async_playwright() as p:
             browser = await p.chromium.launch()
             page = await browser.new_page(screen=screen, viewport=screen)
-            await page.goto(f"http://localhost:8000/items/{body.template}?{paramsQuery}")
+            await page.goto(
+                f"http://localhost:8000/items/{body.template}?{paramsQuery}"
+            )
             await page.screenshot(path=path)
             await browser.close()
             await p.stop()
         return FileResponse(path)
     except Exception as e:
         return {"error": e}
-        
 
 
 @app.get("/items/{name}", response_class=HTMLResponse)
