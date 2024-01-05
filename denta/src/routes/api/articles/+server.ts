@@ -1,5 +1,6 @@
 import db from "$lib/db";
 import { env } from "$env/dynamic/private";
+import { error, json } from "@sveltejs/kit";
 
 export async function POST(event) {
   if (event.cookies.get("ADMIN_SESSION") !== env.ADMIN_SESSION) {
@@ -10,30 +11,31 @@ export async function POST(event) {
       },
     });
   }
+
+  const _db = await db();
+  if (!_db) {
+    throw error(500, "Database connection failed");
+  }
+
   const infoCompanies = await event.request.json();
 
   infoCompanies.forEach(async (infoCompany) => {
-    await (await db())
-      .collection("articles")
-      .updateOne(
-        {
-          _id: infoCompany._id,
+    await _db.collection("articles").updateOne(
+      {
+        _id: infoCompany._id,
+      },
+      {
+        $set: {
+          ...infoCompany,
         },
-        {
-          $set: {
-            ...infoCompany,
-          },
-        },
-        {
-          upsert: true,
-        },
-      );
+      },
+      {
+        upsert: true,
+      },
+    );
   });
 
-  return new Response(JSON.stringify({}), {
-    status: 200,
-    headers: {
-      "content-type": "application/json",
-    },
+  return json({
+    success: true,
   });
 }

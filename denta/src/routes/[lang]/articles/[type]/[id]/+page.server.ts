@@ -1,6 +1,3 @@
-
-
-
 import { t } from "$lib/backend/localisation";
 import db from "$lib/db";
 import { error } from "@sveltejs/kit";
@@ -10,7 +7,13 @@ export const load = async (event) => {
     throw error(404, "Page not found");
   }
 
-  const article = await (await db()).collection("articles").findOne(
+  const _db = await db();
+
+  if (!_db) {
+    throw error(500, "Database connection failed");
+  }
+
+  const article = await _db.collection("articles").findOne(
     {
       type: event.params.type,
       publicId: event.params.id,
@@ -24,6 +27,7 @@ export const load = async (event) => {
         faqs: 1,
         description: 1,
         createdAt: 1,
+        lang: 1,
       },
       sort: {
         createdAt: -1,
