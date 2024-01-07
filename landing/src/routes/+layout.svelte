@@ -91,8 +91,8 @@
 <nav class="p-2 flex flex-col justify-between max-h-40" bind:clientWidth={w}>
   <div class="p-2 flex justify-between max-h-20">
     <a href="/" class="flex flex-row">
-      <img src='/logo.webp' alt="logo" class="h-10 w-14" />
-      <img src={Header} alt="roll-over" class="h-10 hidden xl:block" />
+      <img src="/logo.webp" alt="logo" class="h-10 w-14" />
+      <span class="text-4xl font-bold text-center text-green-500">roll-over</span>
     </a>
 
     {#if visible}
