@@ -4,10 +4,19 @@
   import { Owners, projects, Status } from "$lib/projects";
   import SvelteSeo from "svelte-seo";
 
-  const oursOpenProjects = projects.filter(
-    (project) => project.status !== Status.closed && project.owner === Owners.rollOver,
+  const oursOpenProjectsFirstly = projects.filter(
+    (project) =>
+      project.status !== Status.closed &&
+      project.owner === Owners.rollOver &&
+      (!project.order || project.order !== 2),
   );
-  const historyProjects = projects.filter((project) => project.status === Status.closed);
+  const oursOpenProjectsSecondly = projects.filter(
+    (project) =>
+      project.status !== Status.closed && project.owner === Owners.rollOver && project.order === 2,
+  );
+  const historyProjects = projects.filter(
+    (project) => project.status === Status.closed && project.owner === Owners.rollOver,
+  );
 </script>
 
 <SvelteSeo
@@ -37,17 +46,27 @@
   </div>
 
   <ul class="flex flex-wrap gap-x-5 gap-y-10 max-w-2xl justify-center">
-    {#each oursOpenProjects as project}
+    {#each oursOpenProjectsFirstly as project}
       <ProjectCard {project} />
     {/each}
   </ul>
+  <div class="flex flex-col">
+    <section>
+      <h2>Наши проекты поменьше</h2>
+      <ul class="flex flex-wrap gap-x-5 gap-y-10 max-w-2xl justify-center">
+        {#each oursOpenProjectsSecondly as project}
+          <ProjectCard {project} />
+        {/each}
+      </ul>
+    </section>
 
-  <section id="old-projects" class="max-w-2xl">
-    <h2>Наши старые проекты</h2>
-    <ul class="flex flex-wrap gap-x-5 gap-y-10 max-w-2xl justify-center">
-      {#each historyProjects as project}
-        <ProjectCard {project} />
-      {/each}
-    </ul>
-  </section>
+    <section id="old-projects" class="max-w-2xl">
+      <h2>Наши старые проекты</h2>
+      <ul class="flex flex-wrap gap-x-5 gap-y-10 max-w-2xl justify-center">
+        {#each historyProjects as project}
+          <ProjectCard {project} />
+        {/each}
+      </ul>
+    </section>
+  </div>
 </div>

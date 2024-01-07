@@ -52,12 +52,21 @@ export const projects = [
     owner: Owners.rollOver,
   },
   {
+    href: "/projects/crafts",
+    title: "crafts",
+    description: "Заказная разработка",
+    status: Status.releasedFirstVersion,
+    logo: "",
+    owner: Owners.rollOver,
+  },
+  {
     href: "/projects/simple-psychologist",
     title: "simple-psychologist",
     description: "Бот для психологической помощи",
     status: Status.releasedFirstVersion,
     logo: SimplePsychologist,
     owner: Owners.rollOver,
+    order: 2
   },
   {
     href: "/projects/its-open-mic",
