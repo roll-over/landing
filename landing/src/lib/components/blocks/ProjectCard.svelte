@@ -6,7 +6,10 @@
   let project: Project;
 </script>
 
-<li class="w-80 min-h-60 flex flex-col justify-between bg-slate-800 p-1 rounded-2xl">
+<li
+  class={` min-h-60 flex flex-col justify-between bg-slate-800 p-1 rounded-2xl 
+    ${project.status === Status.closed ? "opacity-70 w-60" : "w-80"}`}
+>
   <div class="flex flex-col">
     <div
       class="flex justify-between items-center text-2xl font-bold bg-slate-700 py-2 px-4 rounded-xl"
@@ -25,6 +28,10 @@
         <p class="text-violet-600 font-bold bg-slate-800 flex justify-end p-2">
           Доступна первая версия
         </p>
+      {:else if project.status === Status.released}
+        <p class="text-green-600 font-bold bg-slate-800 flex justify-end p-2">Доступен</p>
+      {:else if project.status === Status.closed}
+        <p class="text-red-600 font-bold bg-slate-800 flex justify-end p-2">Закрыт</p>
       {:else}
         <p class="font-bold bg-slate-800 flex justify-end p-2">
           {project.status}

@@ -26,6 +26,10 @@
       href: "/posts",
     },
     {
+      title: "Наши друзья",
+      href: "/friends",
+    },
+    {
       title: "О нас",
       href: "/about",
     },

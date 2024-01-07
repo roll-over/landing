@@ -4,11 +4,13 @@ import RedFlags from "$lib/assets/logos/red-flags.jpg";
 import HideHire from "$lib/assets/logos/hide-hire.png";
 import SimplePsychologist from "$lib/assets/logos/simple-psychologist.png";
 import DentaCRM from "$lib/assets/logos/denta-crm.webp";
+import ReLife from "$lib/assets/logos/relife.svg";
 
 export const Status = {
   comingSoon: "coming-soon",
   releasedFirstVersion: "releasedFirstVersion",
   closed: "closed",
+  released: "released",
 } as const;
 
 export const Owners = {
@@ -66,9 +68,17 @@ export const projects = [
     owner: Owners.rollOver,
   },
   {
+    href: "https://relifeglobal.org/?utm_source=roll-over.org",
+    title: "ReLife Global",
+    status: Status.released,
+    description: "Социальная сеть ReLife. Объединяем людей, знания и услуги по всему миру",
+    logo: ReLife,
+    owner: Owners.friends,
+  },
+  {
     href: "https://www.notion.so/HRBRO-43bdc175552446aca06d254a867b11b9?pvs=21",
     title: "HRBRO",
-    status: Status.releasedFirstVersion,
+    status: Status.closed,
     description: "Школа поисков работы",
     logo: "",
     owner: Owners.friends,

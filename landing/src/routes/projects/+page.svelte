@@ -7,6 +7,7 @@
   const oursOpenProjects = projects.filter(
     (project) => project.status !== Status.closed && project.owner === Owners.rollOver,
   );
+  const historyProjects = projects.filter((project) => project.status === Status.closed);
 </script>
 
 <SvelteSeo
@@ -41,9 +42,12 @@
     {/each}
   </ul>
 
-  <ul class="w-full">
-    <li>
-      <a href="/about#old-projects"> Смотреть наши старые проекты</a>
-    </li>
-  </ul>
+  <section id="old-projects" class="max-w-2xl">
+    <h2>Наши старые проекты</h2>
+    <ul class="flex flex-wrap gap-x-5 gap-y-10 max-w-2xl justify-center">
+      {#each historyProjects as project}
+        <ProjectCard {project} />
+      {/each}
+    </ul>
+  </section>
 </div>
