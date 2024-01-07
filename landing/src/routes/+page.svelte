@@ -2,6 +2,7 @@
   import Link from "$lib/components/Link.svelte";
   import Mission from "$lib/components/blocks/Mission.svelte";
   import WhatIsProject from "$lib/components/blocks/WhatIsProject.svelte";
+  import RollOverSnail from "$lib/assets/roll-over-snail.webp";
 </script>
 
 <svelte:head>
@@ -30,6 +31,7 @@
         в своей области.
       </p>
     </WhatIsProject>
+    <img src={RollOverSnail} alt="Большое лого roll-over" class="huge-simbol" />
 
     <Mission
       >Сделать запуск <a href="/projects"> проектов </a> максимально легким и безболезненным</Mission
@@ -48,3 +50,4 @@
     </aside>
   </div>
 </div>
+

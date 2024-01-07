@@ -1,6 +1,7 @@
 <script>
   import { vacancies } from "$lib/vacancies.js";
   import SvelteSeo from "svelte-seo";
+  import Snail from "$lib/assets/astonaut_with_studio_microphone_on_the_pu_66329422-5e89-4667-b2d9-fb3346d768ac.png";
 
   const itsOpenMicVacancies = vacancies.filter((vacancy) => vacancy.company === "its-open-mic");
 </script>
@@ -23,6 +24,8 @@
       </li>
     </ul>
   </section>
+
+  <img src={Snail} alt="Большое лого IT's open mic" class="huge-simbol" />
   <section>
     <h2>Дополнительные сслыки</h2>
     <ul class="list-disc pl-10 grid grid-col gap-2">

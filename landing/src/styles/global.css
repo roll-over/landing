@@ -46,6 +46,12 @@ section {
   gap: 15px;
 }
 
+
+.huge-simbol {
+  width: 100%;
+  max-width: 1024px;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   border-radius: 10px;
