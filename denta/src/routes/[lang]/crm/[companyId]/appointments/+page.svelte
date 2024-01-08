@@ -74,7 +74,9 @@
           <option value={client.id}>{client.name}</option>
         {/each}
       </select>
-      <SupportLink href="/${$page.params.lang}/crm/{companyId}/clients">Добавить клиента</SupportLink>
+      <SupportLink href="/${$page.params.lang}/crm/{companyId}/clients"
+        >Добавить клиента</SupportLink
+      >
     </Section>
 
     <Section>
@@ -89,7 +91,9 @@
           <option value={doctor.id}>{doctor.name}</option>
         {/each}
       </select>
-      <SupportLink href="/${$page.params.lang}/crm/{companyId}/employees">Добавить доктора</SupportLink>
+      <SupportLink href="/${$page.params.lang}/crm/{companyId}/employees"
+        >Добавить доктора</SupportLink
+      >
     </Section>
 
     <Section>
@@ -104,7 +108,9 @@
           <option value={cabinet.id}>{cabinet.name}</option>
         {/each}
       </select>
-      <SupportLink href="/${$page.params.lang}/crm/{companyId}/cabinets">Добавить кабинет</SupportLink>
+      <SupportLink href="/${$page.params.lang}/crm/{companyId}/cabinets"
+        >Добавить кабинет</SupportLink
+      >
     </Section>
 
     <Section>
@@ -179,13 +185,13 @@
                       : ''}
               {moment().get('hours') > i + (k * step) / 60 && 0 === j
                       ? 'bg-red-300 text-white'
-                      : ''}  
+                      : ''}
               {moment(appointmentInEdit.startAt).get('hours') * 60 +
                       moment(appointmentInEdit.startAt).get('minutes') ===
                       i * 60 + k * step &&
                     moment(appointmentInEdit.startAt).get('D') === moment().get('D') + j + 1
                       ? 'bg-green-300 text-white'
-                      : ''}  
+                      : ''}
 
                     {moment(appointmentInEdit.startAt).get('hours') * 60 +
                       moment(appointmentInEdit.startAt).get('minutes') <
@@ -197,7 +203,7 @@
                     moment(appointmentInEdit.endAt).get('D') === moment().get('D') + j + 1
                       ? 'bg-green-300 text-white'
                       : ''}
-              
+
               "
                     on:click={() => {
                       const date = moment();
@@ -285,48 +291,56 @@
     </SaveButton>
   {:else}
     <div>
-      <div class="hidden lg:grid grid-cols-7 gap-2 appointments-table">
+      <div class="hidden lg:grid grid-cols-6 gap-2 appointments-table">
         <p>Клиент</p>
         <p>Доктор</p>
         <p>Кабинет</p>
         <p>Время</p>
         <p>Дата</p>
         <p>Услуги</p>
-        <p></p>
       </div>
       <div class="flex flex-row flex-wrap gap-2 w-full justify-start">
         {#each data.appointments as appointment}
-          <div
-            class="grid grid-cols-1 lg:grid-cols-7 p-5 gap-5 appointments-table border-2 border-grey-700 min-w-[30%] lg:w-full"
-          >
-            <p class={appointment.clientId ? "" : "bg-red-200"}>
-              {appointment.clientId
-                ? data.clients.find((c) => c.id === appointment.clientId)?.name
-                : "NaN"}
-            </p>
-            <p class={appointment.doctorId ? "" : "bg-red-200"}>
-              {appointment.doctorId
-                ? data.employees.find((e) => e.id === appointment.doctorId)?.name
-                : "NaN"}
-            </p>
-            <p class={appointment.cabinetId ? "" : "bg-red-200"}>
-              {appointment.cabinetId
-                ? data.cabinets.find((c) => c.id === appointment.cabinetId)?.name
-                : "NaN"}
-            </p>
-            <p class={appointment.startAt && appointment.endAt ? "" : "bg-red-200"}>
-              {appointment.startAt ? moment(appointment.startAt).format("HH:mm") : "NaN"}
-              -
-              {appointment.endAt ? moment(appointment.endAt).format("HH:mm ") : "NaN"}
-            </p>
-            <p>
-              {moment(appointment.startAt || appointment.endAt).format("DD.MM")}
-            </p>
-            <p class={appointment.servicesIds?.length ? "" : "bg-red-200"}>
-              {appointment.servicesIds
-                ?.map((item) => data.services.find(s=> s.id === data.priceList.find(p=> p.id === item)?.serviceId)?.name)
-                .join(", ")}
-            </p>
+          <div class="gap-5 border-2 border-grey-700 appointments-table min-w-[30%] lg:w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-6 p-5 gap-2">
+              <p class={appointment.clientId ? "p-3" : "bg-red-200 rounded-lg p-3"}>
+                {appointment.clientId
+                  ? data.clients.find((c) => c.id === appointment.clientId)?.name
+                  : "NaN"}
+              </p>
+              <p class={appointment.doctorId ? "p-3" : "bg-red-200 rounded-lg p-3"}>
+                {appointment.doctorId
+                  ? data.employees.find((e) => e.id === appointment.doctorId)?.name
+                  : "NaN"}
+              </p>
+              <p class={appointment.cabinetId ? "p-3" : "bg-red-200 rounded-lg p-3"}>
+                {appointment.cabinetId
+                  ? data.cabinets.find((c) => c.id === appointment.cabinetId)?.name
+                  : "NaN"}
+              </p>
+              <p
+                class={appointment.startAt && appointment.endAt
+                  ? "p-3"
+                  : "bg-red-200 rounded-lg p-3"}
+              >
+                {appointment.startAt ? moment(appointment.startAt).format("HH:mm") : "NaN"}
+                -
+                {appointment.endAt ? moment(appointment.endAt).format("HH:mm ") : "NaN"}
+              </p>
+              <p class="p-3">
+                {moment(appointment.startAt || appointment.endAt).format("DD.MM")}
+              </p>
+              <p class={appointment.servicesIds?.length ? "p-3" : "bg-red-200 rounded-lg p-3"}>
+                {appointment.servicesIds
+                  ?.map(
+                    (item) =>
+                      data.services.find(
+                        (s) => s.id === data.priceList.find((p) => p.id === item)?.serviceId,
+                      )?.name,
+                  )
+                  .join(", ")}
+              </p>
+            </div>
             <div>
               <EditButton
                 on:click={() => {
