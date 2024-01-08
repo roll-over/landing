@@ -15,8 +15,8 @@
 ></SvelteSeo>
 
 <CenteredPage>
-  <div class="md:relative">
-    <h1 class="md:absolute p-5 md:min-w-full md:header">roll-over.crafts - Заказная разработка</h1>
+  <div class="sm:relative">
+    <h1 class="sm:absolute p-5 sm:min-w-full header">roll-over.crafts - Заказная разработка</h1>
     <img
       src={Crafts}
       srcset={`${Crafts256} 256w, ${Crafts512} 512w, ${Crafts1024} 1024w, ${Crafts2048} 2048w`}
@@ -68,12 +68,14 @@
 </CenteredPage>
 
 <style>
-  .header {
-    background-color: rgba(38, 169, 38, 0.162);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(13, 76, 2, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(68, 196, 21, 0.3);
+  @media screen and (min-width: 640px) {
+    .header {
+      background-color: rgba(38, 169, 38, 0.162);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(13, 76, 2, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid rgba(68, 196, 21, 0.3);
+    }
   }
 </style>
