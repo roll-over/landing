@@ -9,10 +9,12 @@
 <CenteredPage>
   <h1>Транзакции</h1>
   <p>
-    Всего пополнений: {0} руб.
+    Всего пополнений: {0}
+    {data.company.currency}
   </p>
   <p>
-    Всего расхода: {0} руб.
+    Всего расхода: {0}
+    {data.company.currency}
   </p>
 
   <SupportLink href={`/${$page.params.lang}/crm/${$page.params.companyId}/top-up`}

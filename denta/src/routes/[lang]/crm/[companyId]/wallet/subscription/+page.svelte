@@ -21,7 +21,7 @@
       {#each data.availableServices as service}
         <div class="flex flex-row gap-5 w-full">
           <p class="flex-1">{service.title}</p>
-          <p class="flex-1">{service.price} руб.</p>
+          <p class="flex-1">{service.price} {data.company.currency}</p>
           <input
             bind:value={service.count}
             type="number"
@@ -36,7 +36,10 @@
               changed = true;
             }}
           />
-          <p class="flex-1">{service.price * (service.count - service.freeCount)} руб.</p>
+          <p class="flex-1">
+            {service.price * (service.count - service.freeCount)}
+            {data.company.currency}
+          </p>
         </div>
       {/each}
     </div>
@@ -45,13 +48,16 @@
     <p>Изменения не сохранены</p>
     <SaveButton
       on:click={async () => {
-        const res = await fetch(`/${$page.params.lang}/crm/${$page.params.companyId}/subscription/api/`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
+        const res = await fetch(
+          `/${$page.params.lang}/crm/${$page.params.companyId}/subscription/api/`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data.availableServices),
           },
-          body: JSON.stringify(data.availableServices),
-        });
+        );
         window.location.reload();
       }}>Сохранить</SaveButton
     >
