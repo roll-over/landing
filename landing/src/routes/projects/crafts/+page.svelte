@@ -10,18 +10,19 @@
 
 <SvelteSeo
   title="roll-over.crafts - Заказная разработка"
-  description="Заказная разработка"
+  description="Заказная разработка сайтов и web-приложений, дизайн, SEO-оптимизация, развёртывание и поддержка."
   canonical="https://roll-over.org/projects/crafts"
 ></SvelteSeo>
 
 <CenteredPage>
-  <div class="relative">
-    <h1 class="absolute p-5 min-w-full header">roll-over.crafts - Заказная разработка</h1>
+  <div class="md:relative">
+    <h1 class="md:absolute p-5 md:min-w-full md:header">roll-over.crafts - Заказная разработка</h1>
     <img
       src={Crafts}
       srcset={`${Crafts256} 256w, ${Crafts512} 512w, ${Crafts1024} 1024w, ${Crafts2048} 2048w`}
       sizes="(max-width: 1024px) 100vw, 1024px"
       alt="crafts"
+      class="rounded-xl"
     />
   </div>
 
@@ -32,6 +33,7 @@
       <li>Разработка сайтов под решение ваших задач</li>
       <li>Дизайн с необходимой детализацией</li>
       <li>Базовая SEO-оптимизация</li>
+      <li>Развёртывание и поддержка ваших сайтов</li>
     </ul>
   </section>
 
@@ -42,7 +44,10 @@
       изучение новых технологий и сконцентрироваться на решении задач.
     </p>
     <p>
-      Мы используем <a href="https://kit.svelte.dev/?utm_source=roll-over.org"> SvelteKit</a>
+      Мы используем <a href="https://kit.svelte.dev/?utm_source=roll-over.org"> SvelteKit</a>,
+      <a href="https://tailwindcss.com/?utm_source=roll-over.org">Tailwind</a> и в исключительных
+      случаях делаем модули на
+      <a href="https://www.python.org/?utm_source=roll-over.org">Python</a>.
     </p>
   </section>
 
@@ -64,6 +69,11 @@
 
 <style>
   .header {
-    background-color: rgba(0, 178, 0, 0.273);
+    background-color: rgba(38, 169, 38, 0.162);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(13, 76, 2, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(68, 196, 21, 0.3);
   }
 </style>
