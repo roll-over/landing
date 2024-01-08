@@ -6,6 +6,7 @@
   import SvelteSeo from "svelte-seo";
 
   import { localisation } from "$lib/localisation/localisation";
+  import type { LocalisationData } from "$lib/localisation/dynamic-localisation";
   $: l = localisation($page.params.lang);
   export let data: {
     articles: {
@@ -13,7 +14,9 @@
       title: string;
       description: string;
       createdAt: string;
+      views: number;
     }[];
+    localisation: LocalisationData;
   };
 </script>
 
@@ -57,6 +60,9 @@
       </div>
       <footer class="card-footer">
         <p class="created-at">{new Date(article.createdAt).toLocaleString()}</p>
+        <p>
+          {data.localisation["Просмотров"]}: {article.views || 0}
+        </p>
       </footer>
     </a>
   {/each}

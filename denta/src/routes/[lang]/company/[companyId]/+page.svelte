@@ -8,6 +8,7 @@
   import SvelteSeo from "svelte-seo";
 
   import { localisation } from "$lib/localisation/localisation";
+  import type { LocalisationData } from "$lib/localisation/dynamic-localisation";
   $: l = localisation($page.params.lang);
 
   export let data: {
@@ -25,6 +26,7 @@
       address: string;
       phone: string;
       href: string;
+      views: number;
     };
     anotherCompanies: {
       _id: string;
@@ -44,6 +46,7 @@
       avatar: string;
       rate: number;
       comment: string;
+      views: number;
     }[];
     rate: number;
     session: {
@@ -55,6 +58,7 @@
     } | null;
     userReview: string;
     allUserReviews: string[];
+    localisation: LocalisationData;
   };
 </script>
 
@@ -107,6 +111,10 @@
           >{l("Открыть на google карте")}</a
         >
       </address>
+
+      <p class="p-5 text-gray-600">
+        {data.localisation["Просмотров"]}: {data.infoCompany.views || 0}
+      </p>
     </footer>
   </div>
 

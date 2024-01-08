@@ -6,6 +6,7 @@
   import { page } from "$app/stores";
 
   import { localisation } from "$lib/localisation/localisation";
+  import type { LocalisationData } from "$lib/localisation/dynamic-localisation";
   $: l = localisation($page.params.lang);
 
   export let data: {
@@ -22,7 +23,9 @@
       title: string;
       address: string;
       phone: string;
+      views: number;
     }[];
+    localisation: LocalisationData;
   };
 
   $: pickingCountry = false;
@@ -123,6 +126,9 @@
           </p>
         </div>
         <footer class="card-footer">
+          <p>
+            {data.localisation["Просмотров"]}: {cabinet.views || 0}
+          </p>
           <SupportLink href={`/${data.lang}/company/${cabinet.publicId || cabinet._id}`}
             >{l("Подробнее")}</SupportLink
           >

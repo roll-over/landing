@@ -1,13 +1,9 @@
 import { isAdmin } from "$lib/backend/is-admin";
 import { t } from "$lib/backend/localisation";
 import db from "$lib/db";
+import { keys } from "$lib/localisation/dynamic-localisation";
 
-const localisation = [
-  "Система управления юридической компанией",
-  "femida-crm - это система управления юридической компанией, которая позволяет вам управлять организацией, а также взаимодействовать с клиентами.",
-  "femida-crm - это больше чем crm",
-  "femida-crm - это еще и система создания сайтов для стоматологических клиник, которая позволяет вам создать сайт для вашей клиники, а также взаимодействовать с пациентами.",
-] as const;
+const localisation = keys;
 
 const localisationCache = {};
 

@@ -6,11 +6,14 @@ export const load = async (event) => {
   if (!["crm", "services"].includes(event.params.type)) {
     throw error(404, "Page not found");
   }
+  const _db = await db();
+
+  if (!_db) {
+    throw error(500, "Database connection failed");
+  }
 
   const articles =
-    (await (
-      await db()
-    )
+    (await _db
       .collection("articles")
       .find(
         {
@@ -23,8 +26,10 @@ export const load = async (event) => {
             title: 1,
             description: 1,
             createdAt: 1,
+            views: 1,
           },
           sort: {
+            views: -1,
             createdAt: -1,
           },
         },

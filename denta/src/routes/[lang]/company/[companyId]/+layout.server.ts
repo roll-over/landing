@@ -78,6 +78,29 @@ export const load = async (event) => {
         .map((review) => review.reviewId)
     : [];
 
+  await _db.collection("views").insertOne({
+    type: "company",
+    publicId: infoCompany.publicId || infoCompany._id,
+    createdAt: new Date(),
+    email: session.user?.email,
+  });
+
+  const views = await _db.collection("views").countDocuments({
+    type: "company",
+    publicId: infoCompany.publicId || infoCompany._id,
+  });
+
+  await _db.collection("info-companies").updateOne(
+    {
+      _id: infoCompany._id,
+    },
+    {
+      $set: {
+        views,
+      },
+    },
+  );
+
   return {
     infoCompany: {
       ...infoCompany,
