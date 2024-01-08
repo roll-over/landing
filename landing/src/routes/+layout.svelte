@@ -1,6 +1,5 @@
 <script lang="ts">
   import "../styles/app.css";
-  import Header from "$lib/assets/roll-over.webp";
   import { page } from "$app/stores";
   import NavLink from "$lib/components/NavLink.svelte";
   import BurgerIcon from "$lib/assets/burger.svg";
