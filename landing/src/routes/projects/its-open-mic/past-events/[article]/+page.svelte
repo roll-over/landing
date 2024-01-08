@@ -12,7 +12,7 @@
 
 <SvelteSeo
   title={a?.title}
-  description="Статья: {a?.title}. {a?.source.slice(0, 100)}"
+  description="Статья: {a?.title}. {a?.description.slice(0, 100)}"
   canonical={"https://roll-over.org/projects/its-open-mic/past-events/" + a?.id}
 />
 
