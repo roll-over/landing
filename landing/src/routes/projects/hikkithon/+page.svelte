@@ -33,14 +33,14 @@
   <Mission>Сделать кооперацию повседневным инструментом</Mission>
   <section>
     <h2>Наши цели</h2>
-    <ul class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="grid-col grid list-disc gap-2 pl-10">
       <li>Популяризация свободного исходного кода</li>
       <li>Создание открытой площадки безопасных и регулярных соревнований в создании продуктов</li>
     </ul>
   </section>
   <section>
     <h2>Участие</h2>
-    <ul class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="grid-col grid list-disc gap-2 pl-10">
       <li>
         <p>Место проведения:</p>
         <Link href="https://discord.gg/KdC4u4WqQZ">Сервер дискорд</Link>
@@ -53,7 +53,7 @@
   </section>
   <section>
     <h2>Связаться</h2>
-    <ul class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="grid-col grid list-disc gap-2 pl-10">
       <li>
         <a href="mailto:roll.over.projects@gmail.com">roll.over.projects@gmail.com </a>
       </li>

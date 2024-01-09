@@ -13,11 +13,11 @@
   canonical="https://roll-over.org/posts"
 />
 
-<div class="flex flex-col gap-10 p-5 sm:pl-3 w-full justify-left">
+<div class="justify-left flex w-full flex-col gap-10 p-5 sm:pl-3">
   <h1>Все сборники статей:</h1>
   <ul class="flex flex-row flex-wrap gap-10">
     {#each articlesStacksList as stack}
-      <li class="flex flex-col w-96 gap-2 border-2 border-stone-900 rounded-xl p-5 justify-between">
+      <li class="flex w-96 flex-col justify-between gap-2 rounded-xl border-2 border-stone-900 p-5">
         <h2>{stack.title}</h2>
         <p>{stack.description}</p>
         <Link href={stack.link}>Перейти к списку</Link>

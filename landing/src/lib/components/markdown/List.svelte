@@ -3,13 +3,13 @@
 </script>
 
 {#if ordered}
-  <ul class="list-decimal pl-10 flex flex-col gap-5">
+  <ul class="flex list-decimal flex-col gap-5 pl-10">
     {#each $$props.items as item}
       <li>{item.text}</li>
     {/each}
   </ul>
 {:else}
-  <ol class="list-disc pl-10 flex flex-col gap-5">
+  <ol class="flex list-disc flex-col gap-5 pl-10">
     {#each $$props.items as item}
       <li>{item.text}</li>
     {/each}

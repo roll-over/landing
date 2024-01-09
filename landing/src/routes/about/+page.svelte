@@ -39,13 +39,13 @@
 ></SvelteSeo>
 
 <CenteredPage title="О нас">
-  <section id="contacts" class="max-w-xl w-full">
+  <section id="contacts" class="w-full max-w-xl">
     <Contacts></Contacts>
   </section>
 
   <Divider></Divider>
 
-  <section id="donations" class="max-w-xl w-full">
+  <section id="donations" class="w-full max-w-xl">
     <Donations></Donations>
   </section>
 
@@ -65,7 +65,7 @@
 
   <section class="max-w-2xl">
     <h2>Наши друзья</h2>
-    <ul class="flex flex-wrap gap-x-5 gap-y-10 max-w-2xl justify-center">
+    <ul class="flex max-w-2xl flex-wrap justify-center gap-x-5 gap-y-10">
       {#each friendsProjects as project}
         <ProjectCard {project} />
       {/each}

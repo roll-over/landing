@@ -40,25 +40,23 @@
 
 <h2 class="">Донаты</h2>
 {#each donations as contact}
-  <div class="flex justify-between flex-wrap sm:flex-row flex-col">
+  <div class="flex flex-col flex-wrap justify-between sm:flex-row">
     <h3>{contact.title}</h3>
     {#if contact.type === "crypto"}
       <button
-        class="truncate sm:w-1/2 w-full underline-offset-1 underline"
+        class="w-full truncate underline underline-offset-1 sm:w-1/2"
         on:click={(e) => copyToClipboard(contact.wallet)}>{contact.wallet}</button
       >
     {:else if contact.type === "boost"}
-      <a href={contact.link} class="underline-offset-1 underline"
-        >{contact.link}</a
-      >
+      <a href={contact.link} class="underline underline-offset-1">{contact.link}</a>
     {:else if contact.type === "service"}
-      <a href={contact.link} class="underline-offset-1 underline">{contact.link}</a>
+      <a href={contact.link} class="underline underline-offset-1">{contact.link}</a>
     {/if}
   </div>
 {/each}
 <p>
   Если хотите поддержать по другому, пожалуйста, наришите нам: <a
-    class="underline-offset-1 underline"
+    class="underline underline-offset-1"
     href="mailto:roll.over.projects@gmail.com">roll.over.projects@gmail.com</a
   >
 </p>

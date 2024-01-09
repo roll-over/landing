@@ -12,7 +12,7 @@
   canonical="https://roll-over.org/vacancies/{vacancy?.id}"
 />
 
-<div class="flex flex-col gap-5 p-5 sm:pl-0 max-w-2xl justify-left">
+<div class="justify-left flex max-w-2xl flex-col gap-5 p-5 sm:pl-0">
   {#if vacancy}
     <h1>Вакансия: {vacancy?.title}</h1>
     <p>

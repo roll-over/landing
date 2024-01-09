@@ -10,8 +10,6 @@ body {
   min-height: 100vh;
 }
 
-
-
 body {
   background-image: url("/layerstyle.webp");
   background-size: 200px auto;
@@ -44,7 +42,6 @@ section {
   flex-direction: column;
   gap: 15px;
 }
-
 
 .huge-simbol {
   width: 100%;

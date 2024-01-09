@@ -23,7 +23,7 @@
     <div class="doc flex flex-col gap-5">
       <select
         bind:value={data.anounce.openMicType}
-        class="border-2 border-gray-400 rounded-xl px-5 py-2"
+        class="rounded-xl border-2 border-gray-400 px-5 py-2"
       >
         <option value="meetup">meetup</option>
         <option value="podcast">podcast</option>
@@ -34,7 +34,7 @@
         type="text"
         placeholder="Название"
         bind:value={data.anounce.title}
-        class="border-2 border-gray-400 rounded-xl px-5 py-2"
+        class="rounded-xl border-2 border-gray-400 px-5 py-2"
       />
 
       {#if data.anounce.openMicType === "podcast"}
@@ -42,27 +42,27 @@
           type="text"
           placeholder="Имена спикеров через запятые"
           bind:value={data.anounce.speakerName}
-          class="border-2 border-gray-400 rounded-xl px-5 py-2"
+          class="rounded-xl border-2 border-gray-400 px-5 py-2"
         />
       {:else}
         <input
           type="text"
           placeholder="Имя спикера"
           bind:value={data.anounce.speakerName}
-          class="border-2 border-gray-400 rounded-xl px-5 py-2"
+          class="rounded-xl border-2 border-gray-400 px-5 py-2"
         />
       {/if}
       <input
         type="text"
         placeholder="Ссылка на видео"
         bind:value={data.anounce.videoUrl}
-        class="border-2 border-gray-400 rounded-xl px-5 py-2"
+        class="rounded-xl border-2 border-gray-400 px-5 py-2"
       />
       <p>Время проведения указано по UTC+0:</p>
       <input
         type="datetime-local"
         bind:value={date}
-        class="border-2 border-gray-400 rounded-xl px-5 py-2"
+        class="rounded-xl border-2 border-gray-400 px-5 py-2"
         on:change={() => {
           console.log(date);
         }}
@@ -85,7 +85,7 @@
             window.location.reload();
           });
         }}
-        class="p-3 rounded-xl bg-gray-700"
+        class="rounded-xl bg-gray-700 p-3"
       >
         Сохранить
       </button>

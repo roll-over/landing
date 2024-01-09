@@ -16,7 +16,7 @@
 
 <CenteredPage>
   <div class="sm:relative">
-    <h1 class="sm:absolute p-5 sm:min-w-full header">roll-over.crafts - Заказная разработка</h1>
+    <h1 class="header p-5 sm:absolute sm:min-w-full">roll-over.crafts - Заказная разработка</h1>
     <img
       src={Crafts}
       srcset={`${Crafts256} 256w, ${Crafts512} 512w, ${Crafts1024} 1024w, ${Crafts2048} 2048w`}

@@ -14,7 +14,7 @@
   />
 </svelte:head>
 
-<div class="flex flex-col gap-10 p-5 sm:pl-3 w-full max-w-2xl justify-left">
+<div class="justify-left flex w-full max-w-2xl flex-col gap-10 p-5 sm:pl-3">
   <h2>Проект: simple-psychologist</h2>
   <p>Сервис быстрой психологической помощи</p>
   <section>
@@ -30,7 +30,7 @@
   </section>
   <section>
     <h2>Миссия</h2>
-    <ul class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="grid-col grid list-disc gap-2 pl-10">
       <li>Нормализовать психологическую поддержку</li>
       <li>Сделать психологическую поддержку доступной</li>
     </ul>
@@ -41,7 +41,7 @@
   </section>
   <section>
     <h2>Связаться</h2>
-    <ul class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="grid-col grid list-disc gap-2 pl-10">
       <li>
         <a href="mailto:roll.over.projects@gmail.com">roll.over.projects@gmail.com </a>
       </li>
@@ -49,7 +49,7 @@
   </section>
   <section>
     <h2>Участие</h2>
-    <ul class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="grid-col grid list-disc gap-2 pl-10">
       <li>
         <a href="https://github.com/roll-over/tg-bot-psychologist"
           >https://github.com/roll-over/tg-bot-psychologist</a

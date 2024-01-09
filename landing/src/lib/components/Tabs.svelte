@@ -36,12 +36,12 @@
   }
 </script>
 
-<div class="flex flex-wrap gap-3 tabs">
+<div class="tabs flex flex-wrap gap-3">
   {#each tabs as tab, index (tab.id)}
     <button
       class="tab {index === activeTab
         ? 'active'
-        : ''} text-teal-400 hover:text-teal-600 border-2 border-cyan-900 hover:border-cyan-800 hover:underline underline-offset-1 rounded-2xl p-2"
+        : ''} rounded-2xl border-2 border-cyan-900 p-2 text-teal-400 underline-offset-1 hover:border-cyan-800 hover:text-teal-600 hover:underline"
       on:click={() => switchTab(index)}
     >
       {tab.name}
@@ -51,22 +51,22 @@
 
 <div class="tab-content">
   {#if tabs[activeTab] && activeTabContent}
-    <ul class="flex justify-center flex-wrap sm:flex-row gap-3">
+    <ul class="flex flex-wrap justify-center gap-3 sm:flex-row">
       {#each activeTabContent as content}
-        <li class="w-60 flex flex-col justify-between bg-slate-800 p-1 rounded-2xl">
+        <li class="flex w-60 flex-col justify-between rounded-2xl bg-slate-800 p-1">
           <a class="flex flex-col" href={content.html_url} target="_blank">
             <h3
-              class="flex flex-col space-around h-36 text-2xl font-bold bg-slate-700 hover:bg-slate-600 text-slate-500 py-2 px-4 rounded-xl"
+              class="space-around flex h-36 flex-col rounded-xl bg-slate-700 px-4 py-2 text-2xl font-bold text-slate-500 hover:bg-slate-600"
             >
               {content.login}
               <img
                 src={content.avatar_url}
                 alt={`Аватарка ${content.login}'`}
-                class="w-14 mt-auto rounded-full"
+                class="mt-auto w-14 rounded-full"
               />
             </h3>
 
-            <p class="text-slate-500 font-bold bg-slate-800 flex justify-end p-2">
+            <p class="flex justify-end bg-slate-800 p-2 font-bold text-slate-500">
               Участие: {content.contributions}
             </p>
           </a>
@@ -76,7 +76,7 @@
     </ul>
   {:else}
     <p>Загрузка:</p>
-    <img src="/logo.webp" alt="loader" class="h-10 w-14 loader" />
+    <img src="/logo.webp" alt="loader" class="loader h-10 w-14" />
   {/if}
 </div>
 

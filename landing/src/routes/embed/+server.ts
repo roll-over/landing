@@ -21,7 +21,9 @@ export async function GET(event) {
   const WidgetFulled = `
 let project = "${project}";
 let lang = "${lang}";
-let supportServer = "${env.DEV_MODE === "true" ? "http://localhost:5173" : "https://roll-over.org"}";
+let supportServer = "${
+    env.DEV_MODE === "true" ? "http://localhost:5173" : "https://roll-over.org"
+  }";
 
 let localisation = ${JSON.stringify(localisation[lang])};
 

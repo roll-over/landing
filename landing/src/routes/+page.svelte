@@ -13,8 +13,8 @@
   достигать результатов."
   />
 </svelte:head>
-<div class="flex flex-col items-center w-full">
-  <div class="flex flex-col max-w-xl p-5 sm:p-2 gap-20">
+<div class="flex w-full flex-col items-center">
+  <div class="flex max-w-xl flex-col gap-20 p-5 sm:p-2">
     <h1>roll-over</h1>
     <WhatIsProject title="roll-over">
       <p>
@@ -50,4 +50,3 @@
     </aside>
   </div>
 </div>
-

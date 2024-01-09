@@ -49,13 +49,13 @@
       </li>
     {/each}
   </ul>
-  <div class="flex flex-col h-full">
+  <div class="flex h-full flex-col">
     <ul bind:this={element} class="max-h-[70vh] overflow-y-auto">
       {#each data.messages.filter((x) => x.userId === pickedChat) as message}
         <li class="p-4 {message.author !== 'user' ? 'pl-20 ' : 'pr-20 '}">
-          <div class="p-6 rounded-xl {message.author !== 'user' ? ' bg-gray-500' : ' bg-gray-700'}">
+          <div class="rounded-xl p-6 {message.author !== 'user' ? ' bg-gray-500' : ' bg-gray-700'}">
             <div class="text-2xl">{message.text}</div>
-            <div class="flex flex-row justify-between text-ls opacity-50">
+            <div class="text-ls flex flex-row justify-between opacity-50">
               <p>
                 {new Date(message.date).toLocaleString()}
               </p>
@@ -71,11 +71,11 @@
       <input
         type="text"
         bind:value={newMessage}
-        class="p-5 rounded-xl text-black"
+        class="rounded-xl p-5 text-black"
         placeholder="Новое сообщение"
       />
       <button
-        class="p-5 rounded-xl bg-gray-300"
+        class="rounded-xl bg-gray-300 p-5"
         on:click={() => {
           sendNewMessage();
         }}>Send</button

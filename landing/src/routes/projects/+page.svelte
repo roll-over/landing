@@ -25,8 +25,8 @@
   canonical="https://roll-over.org/projects"
 />
 
-<div class="flex flex-wrap gap-10 justify-evenly p-5 sm:pl-3">
-  <div class="flex flex-col gap-10 w-full max-w-xl justify-left">
+<div class="flex flex-wrap justify-evenly gap-10 p-5 sm:pl-3">
+  <div class="justify-left flex w-full max-w-xl flex-col gap-10">
     <h1>Открытые проекты roll-over</h1>
 
     <Divider></Divider>
@@ -45,7 +45,7 @@
     </p>
   </div>
 
-  <ul class="flex flex-wrap gap-x-5 gap-y-10 max-w-2xl justify-center">
+  <ul class="flex max-w-2xl flex-wrap justify-center gap-x-5 gap-y-10">
     {#each oursOpenProjectsFirstly as project}
       <ProjectCard {project} />
     {/each}
@@ -53,7 +53,7 @@
   <div class="flex flex-col">
     <section>
       <h2>Наши проекты поменьше</h2>
-      <ul class="flex flex-wrap gap-x-5 gap-y-10 max-w-2xl justify-center">
+      <ul class="flex max-w-2xl flex-wrap justify-center gap-x-5 gap-y-10">
         {#each oursOpenProjectsSecondly as project}
           <ProjectCard {project} />
         {/each}
@@ -62,7 +62,7 @@
 
     <section id="old-projects" class="max-w-2xl">
       <h2>Наши старые проекты</h2>
-      <ul class="flex flex-wrap gap-x-5 gap-y-10 max-w-2xl justify-center">
+      <ul class="flex max-w-2xl flex-wrap justify-center gap-x-5 gap-y-10">
         {#each historyProjects as project}
           <ProjectCard {project} />
         {/each}

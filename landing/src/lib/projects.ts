@@ -66,7 +66,7 @@ export const projects = [
     status: Status.releasedFirstVersion,
     logo: SimplePsychologist,
     owner: Owners.rollOver,
-    order: 2
+    order: 2,
   },
   {
     href: "/projects/its-open-mic",

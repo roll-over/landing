@@ -15,7 +15,7 @@
   <meta name="description" content={project.description} />
 </svelte:head>
 
-<div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
+<div class="justify-left flex w-full max-w-2xl flex-col gap-10 p-10 sm:pl-3">
   <ProjectTitle title={project.title} panch={project.description} logo={project.logo} />
   <slot />
 </div>

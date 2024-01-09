@@ -63,80 +63,80 @@ ${data.anounce.videoUrl}
   on:click={() => {
     preAnouncesVisible = !preAnouncesVisible;
   }}
-  class="p-3 rounded-xl bg-gray-700"
+  class="rounded-xl bg-gray-700 p-3"
 >
   Показать постанонсы для соцсетей после выступления
 </button>
 
 <div class={`${preAnouncesVisible ? "flex" : "hidden"} flex-col`}>
   <h1>постанонсы для соцсетей (просто скопируйте текст и вставьте в соцсети)</h1>
-  <div class="flex flex-row flex-wrap w-full justify-between">
-    <div class="w-60 flex flex-col">
+  <div class="flex w-full flex-row flex-wrap justify-between">
+    <div class="flex w-60 flex-col">
       <h2>
         Для дискорда:
         <button
-          class="p-1 rounded-xl bg-gray-700"
+          class="rounded-xl bg-gray-700 p-1"
           on:click={() => {
             navigator.clipboard.writeText(preAnounceForDiscord);
           }}>Копировать</button
         >
       </h2>
       <textarea
-        class="border-2 border-gray-400 rounded-xl px-5 py-2"
+        class="rounded-xl border-2 border-gray-400 px-5 py-2"
         rows="10"
         cols="50"
         bind:value={preAnounceForDiscord}
       ></textarea>
     </div>
 
-    <div class="w-60 flex flex-col">
+    <div class="flex w-60 flex-col">
       <h2>
         Для твиттера:
         <button
-          class="p-1 rounded-xl bg-gray-700"
+          class="rounded-xl bg-gray-700 p-1"
           on:click={() => {
             navigator.clipboard.writeText(preAnounceForTwitter);
           }}>Копировать</button
         >
       </h2>
       <textarea
-        class="border-2 border-gray-400 rounded-xl px-5 py-2"
+        class="rounded-xl border-2 border-gray-400 px-5 py-2"
         rows="10"
         cols="50"
         bind:value={preAnounceForTwitter}
       ></textarea>
     </div>
 
-    <div class="w-60 flex flex-col">
+    <div class="flex w-60 flex-col">
       <h2>
         Для LinkedIn:
         <button
-          class="p-1 rounded-xl bg-gray-700"
+          class="rounded-xl bg-gray-700 p-1"
           on:click={() => {
             navigator.clipboard.writeText(preAnounceForLinkedIn);
           }}>Копировать</button
         >
       </h2>
       <textarea
-        class="border-2 border-gray-400 rounded-xl px-5 py-2"
+        class="rounded-xl border-2 border-gray-400 px-5 py-2"
         rows="10"
         cols="50"
         bind:value={preAnounceForLinkedIn}
       ></textarea>
     </div>
 
-    <div class="w-60 flex flex-col">
+    <div class="flex w-60 flex-col">
       <h2>
         Для Telegram:
         <button
-          class="p-1 rounded-xl bg-gray-700"
+          class="rounded-xl bg-gray-700 p-1"
           on:click={() => {
             navigator.clipboard.writeText(preAnounceForTelegram);
           }}>Копировать</button
         >
       </h2>
       <textarea
-        class="border-2 border-gray-400 rounded-xl px-5 py-2"
+        class="rounded-xl border-2 border-gray-400 px-5 py-2"
         rows="10"
         cols="50"
         bind:value={preAnounceForTelegram}

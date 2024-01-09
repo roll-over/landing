@@ -13,7 +13,7 @@
   canonical="https://roll-over.org/projects/red-flags"
 />
 
-<div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
+<div class="justify-left flex w-full max-w-2xl flex-col gap-10 p-10 sm:pl-3">
   <h1>Проект: red-flags</h1>
   <p>Твой консультант при поиске работы</p>
   <h2>Миссия</h2>
@@ -33,7 +33,7 @@
   </section>
   <section>
     <h2>Самостоятельная подготовка:</h2>
-    <ul class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="grid-col grid list-disc gap-2 pl-10">
       <li>
         <a href="https://t.me/red_flags_project">https://t.me/red_flags_project</a>
       </li>
@@ -44,7 +44,7 @@
   </section>
   <section>
     <h2>Наши сервисы:</h2>
-    <ul class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="grid-col grid list-disc gap-2 pl-10">
       <li>
         <a href="/projects/red-flags/employee/check-cv"> Проверка резюме </a>
       </li>
@@ -72,7 +72,7 @@
   </section>
   <section>
     <h2>Связаться</h2>
-    <ul class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="grid-col grid list-disc gap-2 pl-10">
       <li>
         <a href="mailto:red.flags.service@gmail.com">red.flags.service@gmail.com </a>
       </li>
@@ -80,7 +80,7 @@
   </section>
   <section>
     <h2>Участие</h2>
-    <ul class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="grid-col grid list-disc gap-2 pl-10">
       <li>
         <a href="https://github.com/roll-over/unknown-interview"
           >https://github.com/roll-over/unknown-interview</a

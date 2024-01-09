@@ -9,7 +9,7 @@
   canonical="https://roll-over.org/vacancies"
 />
 
-<div class="flex flex-col gap-10 p-10 sm:pl-0 max-w-2xl justify-left">
+<div class="justify-left flex max-w-2xl flex-col gap-10 p-10 sm:pl-0">
   <h1>Вакансии в roll-over</h1>
   <p>
     Проекты пока не приносят деньги, но мы можем предложить опыт работы в команде и работу над open
@@ -20,15 +20,15 @@
     поможем.
   </p>
 </div>
-<ul class="flex flex-wrap gap-x-5 gap-y-10 max-w-2xl justify-center">
+<ul class="flex max-w-2xl flex-wrap justify-center gap-x-5 gap-y-10">
   {#each vacancies as project}
-    <li class="w-80 flex flex-col justify-between bg-slate-800 p-1 rounded-2xl">
+    <li class="flex w-80 flex-col justify-between rounded-2xl bg-slate-800 p-1">
       <div class="flex flex-col">
-        <h3 class="text-2xl font-bold bg-slate-700 py-2 px-4 rounded-xl">
+        <h3 class="rounded-xl bg-slate-700 px-4 py-2 text-2xl font-bold">
           {project.title}
         </h3>
 
-        <p class="text-slate-500 font-bold bg-slate-800 flex justify-end p-2">
+        <p class="flex justify-end bg-slate-800 p-2 font-bold text-slate-500">
           {project.company}
         </p>
       </div>
@@ -49,7 +49,7 @@
       </div>
       <a
         href="/vacancies/{project.id}"
-        class="bg-blue-800 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-xl text-center"
+        class="rounded-xl bg-blue-800 px-4 py-2 text-center font-bold text-white hover:bg-blue-600"
       >
         Подробнее</a
       >
@@ -57,7 +57,7 @@
   {/each}
 </ul>
 
-<div class="flex flex-col p-10 max-w-2xl">
+<div class="flex max-w-2xl flex-col p-10">
   <p>Даже если вы не нашли подходящую, не стесняйтесь написать нам на почту:</p>
   <a href="mailto:roll.over.projects@gmail.com">roll.over.projects@gmail.com</a>
 </div>

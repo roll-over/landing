@@ -60,7 +60,7 @@
         <a href={anounce.videoUrl}> {anounce.videoUrl} </a>
       </p>
 
-      <a href={`/admin/anounces/${anounce.id}`} class="p-10 rounded-2xl bg-gray-700"> Подробнее </a>
+      <a href={`/admin/anounces/${anounce.id}`} class="rounded-2xl bg-gray-700 p-10"> Подробнее </a>
     </div>
   {/each}
 </CenteredPage>

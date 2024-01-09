@@ -7,33 +7,33 @@
 </script>
 
 <li
-  class={` min-h-60 flex flex-col justify-between bg-slate-800 p-1 rounded-2xl 
-    ${project.status === Status.closed ? "opacity-70 w-60" : "w-80"}`}
+  class={` min-h-60 flex flex-col justify-between rounded-2xl bg-slate-800 p-1 
+    ${project.status === Status.closed ? "w-60 opacity-70" : "w-80"}`}
 >
   <div class="flex flex-col">
     <div
-      class="flex justify-between items-center text-2xl font-bold bg-slate-700 py-2 px-4 rounded-xl"
+      class="flex items-center justify-between rounded-xl bg-slate-700 px-4 py-2 text-2xl font-bold"
     >
       <h3>
         {project.title}
       </h3>
       {#if project.logo}
-        <img src={project.logo} alt="logo" class="max-h-14 max-w-14 rounded-xl" />
+        <img src={project.logo} alt="logo" class="max-w-14 max-h-14 rounded-xl" />
       {/if}
     </div>
     {#if project.status}
       {#if project.status === Status.comingSoon}
-        <p class="text-slate-500 font-bold bg-slate-800 flex justify-end p-2">Уже скоро</p>
+        <p class="flex justify-end bg-slate-800 p-2 font-bold text-slate-500">Уже скоро</p>
       {:else if project.status === Status.releasedFirstVersion}
-        <p class="text-violet-600 font-bold bg-slate-800 flex justify-end p-2">
+        <p class="flex justify-end bg-slate-800 p-2 font-bold text-violet-600">
           Доступна первая версия
         </p>
       {:else if project.status === Status.released}
-        <p class="text-green-600 font-bold bg-slate-800 flex justify-end p-2">Доступен</p>
+        <p class="flex justify-end bg-slate-800 p-2 font-bold text-green-600">Доступен</p>
       {:else if project.status === Status.closed}
-        <p class="text-red-600 font-bold bg-slate-800 flex justify-end p-2">Закрыт</p>
+        <p class="flex justify-end bg-slate-800 p-2 font-bold text-red-600">Закрыт</p>
       {:else}
-        <p class="font-bold bg-slate-800 flex justify-end p-2">
+        <p class="flex justify-end bg-slate-800 p-2 font-bold">
           {project.status}
         </p>
       {/if}

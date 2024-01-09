@@ -60,8 +60,7 @@
   canonical="https://roll-over.org/projects/red-flags/employee/check-cv"
 />
 
-
-<div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
+<div class="justify-left flex w-full max-w-2xl flex-col gap-10 p-10 sm:pl-3">
   <h2>Проверка резюме</h2>
   <p>Твой консультант при составлении резюме</p>
   <section>
@@ -84,13 +83,13 @@
     </p>
     <a
       href="/projects/red-flags/employee/check-cv/posts"
-      class="text-teal-400 hover:text-teal-400 border-2 border-cyan-900 hover:border-cyan-800 hover:underline underline-offset-1 rounded-2xl p-2"
+      class="rounded-2xl border-2 border-cyan-900 p-2 text-teal-400 underline-offset-1 hover:border-cyan-800 hover:text-teal-400 hover:underline"
       >Читать статьи</a
     >
   </section>
   <section>
     <h2>Как это работает?</h2>
-    <ul class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="grid-col grid list-disc gap-2 pl-10">
       <li>
         Вы заполняете <a href="https://forms.gle/ZKc6UYADyizm8LULA">форму</a> с резюме и контактной информацией.
       </li>
@@ -111,12 +110,12 @@
   </section>
   <section>
     <h2>Сколько это стоит?</h2>
-    <ul class="flex flex-wrap gap-5 justify-around">
+    <ul class="flex flex-wrap justify-around gap-5">
       {#each cards as card}
         <li
-          class="bg-slate-800 p-4 rounded-2xl w-full min-w-[250px] max-w-[300px] flex flex-col gap-3"
+          class="flex w-full min-w-[250px] max-w-[300px] flex-col gap-3 rounded-2xl bg-slate-800 p-4"
         >
-          <h3 class="bg-slate-700 p-3 rounded-xl">{card.title}</h3>
+          <h3 class="rounded-xl bg-slate-700 p-3">{card.title}</h3>
           <div class="flex justify-between p-5">
             <p>{card.price}</p>
             <p>{card.time}</p>
@@ -139,7 +138,7 @@
         <li class="grid grid-cols-5 gap-5">
           <p class="flex justify-center">{point}</p>
           {#each cards as card}
-            <p class="flex justify-center items-center">
+            <p class="flex items-center justify-center">
               {#if card.maxPoint >= index}
                 ✅
               {:else}
