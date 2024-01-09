@@ -2,6 +2,8 @@
   "scripts": {
     "gen:sitemap": "python3 ./sitemap-generator/main.py",
     "prettier:landing": "cd landing && pnpm run prettier",
-    "format-prettier:landing": "pnpm run prettier:landing -w"
+    "prettier:denta": "cd denta && pnpm run prettier",
+    "format-prettier:landing": "pnpm run prettier:landing -w",
+    "format-prettier:denta": "pnpm run prettier:denta -w"
   }
 }

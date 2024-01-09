@@ -10,7 +10,8 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
     "lint": "prettier --plugin prettier-plugin-svelte --check . && eslint .",
     "format": "prettier --plugin prettier-plugin-svelte --write .",
-    "gen:sitemap": "python3 ../sitemap-generaor/main.py"
+    "gen:sitemap": "python3 ../sitemap-generaor/main.py",
+    "prettier": "prettier . -c --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss"
   },
   "devDependencies": {
     "@sveltejs/adapter-node": "^1.3.1",
