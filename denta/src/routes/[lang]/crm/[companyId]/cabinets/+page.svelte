@@ -55,7 +55,7 @@
   </Section>
 
   {#if editing}
-    <Section class="flex flex-col border-2 rounded-xl md:border-gray-300 md:p-5">
+    <Section class="flex flex-col rounded-xl border-2 md:border-gray-300 md:p-5">
       <section>
         <h3>Название</h3>
 
@@ -251,7 +251,7 @@
   {:else}
     <div class="flex flex-row flex-wrap gap-10">
       {#each data.cabinets as cabinet}
-        <Section class="flex flex-col border-2 rounded-xl border-gray-300 p-5">
+        <Section class="flex flex-col rounded-xl border-2 border-gray-300 p-5">
           <h3>{cabinet.name}</h3>
           <p>Контакты:</p>
           <ul>

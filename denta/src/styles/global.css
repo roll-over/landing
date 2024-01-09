@@ -1,7 +1,7 @@
 html,
 body {
   width: 100%;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 300;
   font-size: 16px;
   color: var(--main-text-color);
@@ -14,14 +14,16 @@ body {
   background-color: var(--background-color);
 }
 
-
-
 body {
   background-size: 100% auto;
   background-repeat: repeat-y;
 
   background: var(--background-color);
-  background: linear-gradient(135deg, var(--background-gradient-color-1) 0%, var(--background-gradient-color-2) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--background-gradient-color-1) 0%,
+    var(--background-gradient-color-2) 100%
+  );
 }
 
 h1 {

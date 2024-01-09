@@ -25,8 +25,6 @@ const newSubject = (formData) => {
   return `Добавлен новый контракт в femida-crm`;
 };
 
-
-
 export const POST = async (event) => {
   await usersCompanyGuard(event);
 

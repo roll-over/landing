@@ -18,14 +18,14 @@
   <h1>{l("Не выбрана компания для просмотра")}</h1>
   <Section>
     <h2 class="card-header w-full">{l("Как выбрать компанию?")}</h2>
-    <p class="p-4 w-full">{l("Пожалуйста, выберите компанию в поиске для просмотра.")}</p>
+    <p class="w-full p-4">{l("Пожалуйста, выберите компанию в поиске для просмотра.")}</p>
     <footer class="card-footer w-full">
       <SupportLink href={`/${$page.params.lang}/search/`}>{l("Перейти в поиск")}</SupportLink>
     </footer>
   </Section>
   <Section>
     <h2 class="card-header w-full">{l("Как создать компанию?")}</h2>
-    <p class="p-4 w-full">
+    <p class="w-full p-4">
       {l("Если у вас нет компании, то создайте её в соответствующем разделе")}
     </p>
     <footer class="card-footer w-full">

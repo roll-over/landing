@@ -22,7 +22,7 @@
     "Нормативные документы",
   )}`}
 />
-<div class="flex flex-col justify-center items-center">
+<div class="flex flex-col items-center justify-center">
   <div class="doc">
     <a href={`/${$page.params.lang}/documents`}>{l("Обратно к документам")}</a>
     <h1>{data.documents.find((item) => item.id === $page.params.document)?.label}</h1>

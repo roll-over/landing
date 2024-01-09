@@ -2,7 +2,7 @@
   export let showen = true;
 </script>
 
-<section class={`${showen ? "flex" : "hidden"} flex-col p-2 md:p-5 card variant-glass-primary`}>
+<section class={`${showen ? "flex" : "hidden"} card variant-glass-primary flex-col p-2 md:p-5`}>
   <slot />
 </section>
 

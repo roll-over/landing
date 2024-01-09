@@ -38,7 +38,7 @@
   }
 </script>
 
-<div class="card variant-glass-primary flex flex-col p-4 gap-4">
+<div class="card variant-glass-primary flex flex-col gap-4 p-4">
   <div class="flex flex-row">
     <h2 class="w-full">
       {l("Отзывы")}: {reviews.length} (<Icon src={AiFillStar} className="inline w-4 h-4" />
@@ -50,17 +50,17 @@
       <header class="card-header">
         <h3>{review.name} <Icon src={AiFillStar} className="inline w-4 h-4" /> {review.rating}</h3>
       </header>
-      <div class="pl-8 p-4">
+      <div class="p-4 pl-8">
         <p>{review.comment}</p>
       </div>
       <footer
-        class="card-footer text-gray-600 flex flex-row flex-wrap items-center justify-between"
+        class="card-footer flex flex-row flex-wrap items-center justify-between text-gray-600"
       >
         {#if allUserReviews.includes(review.reviewId)}
           <p>{l("Это Ваш отзыв")}</p>
           <div>
             <button
-              class="btn btn-primary"
+              class="btn-primary btn"
               on:click={async () => {
                 await fetch(`/api/reviews/${review.reviewId}`, {
                   method: "DELETE",
@@ -78,7 +78,7 @@
     </div>
   {/each}
   {#if !userReview}
-    <div class="p-2 card variant-glass-primary">
+    <div class="card variant-glass-primary p-2">
       <h3>{l("Оставить отзыв")}</h3>
 
       <h4>
@@ -108,7 +108,7 @@
       <textarea class="textarea p-2 md:p-4" bind:value={value.comment}></textarea>
 
       <button
-        class="btn btn-primary"
+        class="btn-primary btn"
         on:click={async () => {
           if (!session) {
             toastStore.trigger({

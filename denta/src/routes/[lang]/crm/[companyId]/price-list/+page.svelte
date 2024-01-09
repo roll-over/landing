@@ -97,7 +97,7 @@
       </section>
     </Section>
   {:else}
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+    <div class="grid grid-cols-1 gap-3 md:grid-cols-4">
       {#each data.priceList as service}
         <p class="flex flex-col items-center justify-center">
           {service.name}

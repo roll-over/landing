@@ -8,7 +8,7 @@
 </script>
 
 {#if !data.usersCompanies?.length}
-  <a href={`/${$page.params.lang}/crm/create-company`} class="btn variant-filled-primary">
+  <a href={`/${$page.params.lang}/crm/create-company`} class="variant-filled-primary btn">
     {l("Создать компанию!")}
   </a>
 {/if}

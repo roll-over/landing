@@ -44,13 +44,13 @@
   </h1>
   {#each data.articles as article}
     <a
-      class="card p-4 variant-filled-primary"
+      class="card variant-filled-primary p-4"
       href={`/${$page.params.lang}/articles/${$page.params.type}/${article.publicId}`}
     >
       <header class="card-header">
         <h2>{article.title}</h2>
       </header>
-      <div class="p-4 article-preview">
+      <div class="article-preview p-4">
         <SvelteMarkdown
           source={article.description}
           renderers={{

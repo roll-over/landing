@@ -1,7 +1,6 @@
 import db from "$lib/db";
 
 export const load = async (event) => {
-
   const countries = (
     await (
       await db()

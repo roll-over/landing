@@ -166,17 +166,17 @@
   });
 </script>
 
-<header class="p-2 flex flex-col justify-between" bind:clientWidth={w}>
+<header class="flex flex-col justify-between p-2" bind:clientWidth={w}>
   <nav>
     <Toast position={"tr"} />
     <Modal />
 
-    <div class="p-2 flex flex-col md:flex-row justify-between items-center">
+    <div class="flex flex-col items-center justify-between p-2 md:flex-row">
       <a href={`/${$page.params.lang}`} class="flex flex-row">
         <img src={getLogoSrc()} class="logo rounded-xl" alt="logo denta-crm" />
       </a>
 
-      <ol class="flex flex-row flex-wrap gap-1 items-center">
+      <ol class="flex flex-row flex-wrap items-center gap-1">
         {#each links as link}
           <li>
             <NavLink href={link.href} ariaLabel={link.ariaLabel}>
@@ -191,7 +191,7 @@
         <li>
           <div>
             <button
-              class="btn variant-ghost"
+              class="variant-ghost btn"
               on:click={() => {
                 pickingLang = !pickingLang;
               }}
@@ -236,7 +236,7 @@
           {#if $page.data.session}
             <Logout>
               {#if $page.data.session.user?.image}
-                <img src={$page.data.session.user.image} class="rounded-2xl w-8 h-8" alt="avatar" />
+                <img src={$page.data.session.user.image} class="h-8 w-8 rounded-2xl" alt="avatar" />
               {/if}
             </Logout>
           {:else}
@@ -245,7 +245,7 @@
         </li>
       </ol>
     </div>
-    <ol class="pl-5 breadcrumb flex-wrap" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <ol class="breadcrumb flex-wrap pl-5" itemscope itemtype="https://schema.org/BreadcrumbList">
       {#each steps.slice(1) as step, i}
         <li
           class="crumb"
@@ -271,7 +271,7 @@
 </main>
 <footer>
   <div>
-    <div class="flex flex-col md:flex-row justify-between p-2 text-xs text-slate-500">
+    <div class="flex flex-col justify-between p-2 text-xs text-slate-500 md:flex-row">
       <div class="flex flex-col gap-2">
         <span class="text-2xl">femida-crm</span>
         <span>© 2024 femida-crm</span>
@@ -280,24 +280,24 @@
       <div class="flex flex-col gap-2">
         <a
           href="https://github.com/roll-over/landing?utm_source=femida-crm.com"
-          class="text-slate-500 md:p-1 p-3">Source code</a
+          class="p-3 text-slate-500 md:p-1">Source code</a
         >
-        <a href="https://roll-over.org/?utm_source=femida-crm.com" class="text-slate-500 md:p-1 p-3"
+        <a href="https://roll-over.org/?utm_source=femida-crm.com" class="p-3 text-slate-500 md:p-1"
           >roll-over</a
         >
-        <a href={`/${$page.params.lang}/about`} class="text-slate-500 md:p-1 p-3">About</a>
+        <a href={`/${$page.params.lang}/about`} class="p-3 text-slate-500 md:p-1">About</a>
       </div>
 
       <div class="flex flex-col gap-2">
-        <a href={`/${$page.params.lang}/documents/cookie-policy`} class="text-slate-500 md:p-1 p-3"
+        <a href={`/${$page.params.lang}/documents/cookie-policy`} class="p-3 text-slate-500 md:p-1"
           >Cookie Policy</a
         >
-        <a href={`/${$page.params.lang}/documents/privacy-policy`} class="text-slate-500 md:p-1 p-3"
+        <a href={`/${$page.params.lang}/documents/privacy-policy`} class="p-3 text-slate-500 md:p-1"
           >Privacy Policy</a
         >
         <a
           href={`/${$page.params.lang}/documents/terms-of-service`}
-          class="text-slate-500 md:p-1 p-3">Terms of Service</a
+          class="p-3 text-slate-500 md:p-1">Terms of Service</a
         >
       </div>
     </div>

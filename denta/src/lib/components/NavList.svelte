@@ -21,13 +21,13 @@
   export let pathname: string = "";
 </script>
 
-<ol class="w-full md:block default-bg pl-3">
+<ol class="default-bg w-full pl-3 md:block">
   {#each items || [] as link}
-    <li class="w-full p-1 ">
+    <li class="w-full p-1">
       <a
         on:click={(e) => dispatch("click", e)}
         href={link.href}
-        class="{link.href === pathname ? 'variant-filled-secondary' : ''} p-1 w-full btn"
+        class="{link.href === pathname ? 'variant-filled-secondary' : ''} btn w-full p-1"
         >{link.title}
       </a>
       {#if link.children}

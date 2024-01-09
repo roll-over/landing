@@ -50,24 +50,22 @@ export async function PUT(event) {
   const countryId = await upsertCountry(cabinet.address.country, event.params.lang);
   const cityId = await upsertCity(cabinet.address.city, countryId, event.params.lang);
 
-  await (await db())
-    .collection("cabinets")
-    .updateOne(
-      {
-        companyId: companyId,
-        id: cabinet.id,
-      },
-      {
-        $set: {
-          ...cabinet,
-          address: {
-            ...cabinet.address,
-            country: countryId,
-            city: cityId,
-          },
+  await (await db()).collection("cabinets").updateOne(
+    {
+      companyId: companyId,
+      id: cabinet.id,
+    },
+    {
+      $set: {
+        ...cabinet,
+        address: {
+          ...cabinet.address,
+          country: countryId,
+          city: cityId,
         },
       },
-    );
+    },
+  );
   return new Response(JSON.stringify(cabinet), {
     status: 200,
     headers: {

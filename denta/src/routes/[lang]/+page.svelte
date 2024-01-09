@@ -9,5 +9,5 @@
 {#if getAppName() === "denta"}
   <Denta />
 {:else}
-  <Femida {data}/>
+  <Femida {data} />
 {/if}

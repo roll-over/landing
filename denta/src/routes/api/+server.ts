@@ -13,21 +13,19 @@ export async function POST(event) {
   const infoCompanies = await event.request.json();
 
   infoCompanies.forEach(async (infoCompany) => {
-    await (await db())
-      .collection("info-companies")
-      .updateOne(
-        {
-          _id: infoCompany._id,
+    await (await db()).collection("info-companies").updateOne(
+      {
+        _id: infoCompany._id,
+      },
+      {
+        $set: {
+          ...infoCompany,
         },
-        {
-          $set: {
-            ...infoCompany,
-          },
-        },
-        {
-          upsert: true,
-        },
-      );
+      },
+      {
+        upsert: true,
+      },
+    );
   });
 
   return new Response(JSON.stringify({}), {

@@ -12,9 +12,7 @@
 <div class="flex flex-col flex-wrap gap-10 md:p-10">
   <Section>
     <h2>Добавить доктора</h2>
-    <p>
-      Вы можете добавить доктора, чтобы в дальнейшем записывать клиентов на приёмы.
-    </p>
+    <p>Вы можете добавить доктора, чтобы в дальнейшем записывать клиентов на приёмы.</p>
     <AddButton
       on:click={async () => {
         const res = await fetch(`/${$page.params.lang}/crm/${companyId}/employees/api/`, {
@@ -30,7 +28,7 @@
   </Section>
   <div class="flex flex-row flex-wrap gap-10">
     {#each data.employees as employee}
-      <Section class="flex flex-col border-2 rounded-xl border-gray-300 p-5 w-full md:max-w-sm">
+      <Section class="flex w-full flex-col rounded-xl border-2 border-gray-300 p-5 md:max-w-sm">
         <section>
           <h3>Имя</h3>
 

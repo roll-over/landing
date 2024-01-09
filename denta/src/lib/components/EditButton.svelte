@@ -13,7 +13,7 @@
   on:click={(e) => {
     dispatch("click", e);
   }}
-  class="btn variant-filled-warning flex flex-row items-center justify-center h-14 gap-2"
+  class="variant-filled-warning btn flex h-14 flex-row items-center justify-center gap-2"
 >
   {l("Редактировать")}
   <Icon src={FiEdit2} />

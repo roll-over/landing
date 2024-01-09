@@ -47,7 +47,7 @@
   $: appointmentInEdit = data.appointments.find((a) => a.id === appointmentInEditId);
 </script>
 
-<div class="flex flex-col items-start p-2 md:p-10 w-full">
+<div class="flex w-full flex-col items-start p-2 md:p-10">
   <AddButton
     on:click={async () => {
       const res = await fetch(`/${$page.params.lang}/crm/${companyId}/appointments/api/`, {
@@ -74,7 +74,9 @@
           <option value={client.id}>{client.name}</option>
         {/each}
       </select>
-      <SupportLink href="/${$page.params.lang}/crm/{companyId}/clients">Добавить клиента</SupportLink>
+      <SupportLink href="/${$page.params.lang}/crm/{companyId}/clients"
+        >Добавить клиента</SupportLink
+      >
     </Section>
 
     <Section>
@@ -89,7 +91,9 @@
           <option value={doctor.id}>{doctor.name}</option>
         {/each}
       </select>
-      <SupportLink href="/${$page.params.lang}/crm/{companyId}/employees">Добавить доктора</SupportLink>
+      <SupportLink href="/${$page.params.lang}/crm/{companyId}/employees"
+        >Добавить доктора</SupportLink
+      >
     </Section>
 
     <Section>
@@ -104,12 +108,14 @@
           <option value={cabinet.id}>{cabinet.name}</option>
         {/each}
       </select>
-      <SupportLink href="/${$page.params.lang}/crm/{companyId}/cabinets">Добавить кабинет</SupportLink>
+      <SupportLink href="/${$page.params.lang}/crm/{companyId}/cabinets"
+        >Добавить кабинет</SupportLink
+      >
     </Section>
 
     <Section>
       <h3>Дата</h3>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <h4>Начало:</h4>
         <input
           type="datetime-local"
@@ -120,7 +126,7 @@
         />
       </div>
 
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <h4>Продолжительность</h4>
         {Math.floor(durationSession / 60)} ч.
         {durationSession % 60} м.
@@ -142,7 +148,7 @@
         >
       </div>
 
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <h4>Конец:</h4>
         <input
           type="datetime-local"
@@ -153,7 +159,7 @@
         />
       </div>
 
-      <div class="grid grid-cols-8 grid-rows-26">
+      <div class="grid-rows-26 grid grid-cols-8">
         {#each Array.from({ length: 8 }) as _, i}
           <p>
             {#if i !== 0}
@@ -285,7 +291,7 @@
     </SaveButton>
   {:else}
     <div>
-      <div class="hidden lg:grid grid-cols-7 gap-2 appointments-table">
+      <div class="appointments-table hidden grid-cols-7 gap-2 lg:grid">
         <p>Клиент</p>
         <p>Доктор</p>
         <p>Кабинет</p>
@@ -294,10 +300,10 @@
         <p>Услуги</p>
         <p></p>
       </div>
-      <div class="flex flex-row flex-wrap gap-2 w-full justify-start">
+      <div class="flex w-full flex-row flex-wrap justify-start gap-2">
         {#each data.appointments as appointment}
           <div
-            class="grid grid-cols-1 lg:grid-cols-7 p-5 gap-5 appointments-table border-2 border-grey-700 min-w-[30%] lg:w-full"
+            class="appointments-table border-grey-700 grid min-w-[30%] grid-cols-1 gap-5 border-2 p-5 lg:w-full lg:grid-cols-7"
           >
             <p class={appointment.clientId ? "" : "bg-red-200"}>
               {appointment.clientId
@@ -324,7 +330,12 @@
             </p>
             <p class={appointment.servicesIds?.length ? "" : "bg-red-200"}>
               {appointment.servicesIds
-                ?.map((item) => data.services.find(s=> s.id === data.priceList.find(p=> p.id === item)?.serviceId)?.name)
+                ?.map(
+                  (item) =>
+                    data.services.find(
+                      (s) => s.id === data.priceList.find((p) => p.id === item)?.serviceId,
+                    )?.name,
+                )
                 .join(", ")}
             </p>
             <div>

@@ -45,18 +45,18 @@
   />
 </svelte:head>
 
-<div class="p-2 md:p-10 flex flex-col gap-16">
-  <div class="flex flex-col w-full items-center">
+<div class="flex flex-col gap-16 p-2 md:p-10">
+  <div class="flex w-full flex-col items-center">
     <h1>{l("Поиск стоматологий в")} {data.city.label}, {data.country.label}</h1>
 
-    <nav class="flex flex-row flex-wrap gap-3 relative text-2xl p-3">
+    <nav class="relative flex flex-row flex-wrap gap-3 p-3 text-2xl">
       <span>{l("Выберите страну и город:")}</span>
       <div class="relative">
-        <button on:click={() => (pickingCountry = !pickingCountry)} class="btn variant-ghost">
+        <button on:click={() => (pickingCountry = !pickingCountry)} class="variant-ghost btn">
           {data.country.label}
         </button>
         <ol
-          class="card flex flex-col z-50 top-10 p-2 gap-2 default-bg {pickingCountry
+          class="default-bg card top-10 z-50 flex flex-col gap-2 p-2 {pickingCountry
             ? 'absolute'
             : 'hidden'}"
           use:clickOutside
@@ -77,11 +77,11 @@
         </ol>
       </div>
       <div class="relative">
-        <button on:click={() => (pickingCity = !pickingCity)} class="btn variant-ghost">
+        <button on:click={() => (pickingCity = !pickingCity)} class="variant-ghost btn">
           {data.city.label}
         </button>
         <ol
-          class="card flex flex-col z-50 top-10 p-2 gap-2 default-bg {pickingCity
+          class="default-bg card top-10 z-50 flex flex-col gap-2 p-2 {pickingCity
             ? 'absolute'
             : 'hidden'}"
           use:clickOutside
@@ -111,10 +111,10 @@
     </div>
   {/if}
 
-  <ul class="flex flex-row flex-wrap gap-10 justify-between">
+  <ul class="flex flex-row flex-wrap justify-between gap-10">
     {#each data.infoCompanies as cabinet}
       <li
-        class="card card-hover w-96 border-2 p-2 rounded-xl variant-glass-secondary flex flex-col justify-between"
+        class="card variant-glass-secondary card-hover flex w-96 flex-col justify-between rounded-xl border-2 p-2"
       >
         <header class="card-header">
           <h2>{cabinet.title}</h2>

@@ -39,8 +39,8 @@
   canonical={`https://denta-crm.com/${$page.params.lang}/crm/create-company`}
 />
 
-<div class="flex flex-col justify-center items-center">
-  <div class="flex flex-col max-w-2xl card variant-glass-primary gap-4 p-4">
+<div class="flex flex-col items-center justify-center">
+  <div class="card variant-glass-primary flex max-w-2xl flex-col gap-4 p-4">
     <h1>{l("Создать команию")}</h1>
     <input
       type="text"
@@ -57,7 +57,7 @@
     <div class="card variant-glass-secondary">
       <h2 class="card-header">{l("Расположение головного офиса или клиники (если одна)")}</h2>
       <p class="p-4">{l("На следующем шаге вы сможете добавить филиалы и кабинеты.")}</p>
-      <div class="p-4 grid md:grid-cols-2" >
+      <div class="grid p-4 md:grid-cols-2">
         <input
           type="text"
           class="input max-w-xs"
@@ -93,7 +93,7 @@
         <input
           type="text"
           list="cities"
-          class="input  max-w-xs"
+          class="input max-w-xs"
           placeholder={l("Город")}
           disabled={!country}
           on:click={() => {
@@ -165,7 +165,7 @@
             window.location.href = `/${$page.params.lang}/crm/`;
           });
       }}
-      class="btn variant-filled-primary"
+      class="variant-filled-primary btn"
     >
       {l("Создать")}
     </button>

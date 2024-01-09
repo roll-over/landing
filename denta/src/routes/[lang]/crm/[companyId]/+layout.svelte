@@ -53,7 +53,7 @@
     });
   }
 
-  if(getAppParams().availabilities.contractsNotifications){
+  if (getAppParams().availabilities.contractsNotifications) {
     links.push({
       title: l("Уведомления"),
       href: `/${$page.params.lang}/crm/${data.company.id}/contracts-notifications`,
@@ -63,9 +63,9 @@
   $: menuVisible = false;
 </script>
 
-<div class="flex flex-col md:flex-row w-full">
+<div class="flex w-full flex-col md:flex-row">
   <nav
-    class="md:bg-transparent py-2 gap-2 text-grey-800 w-full md:max-w-[20%]"
+    class="text-grey-800 w-full gap-2 py-2 md:max-w-[20%] md:bg-transparent"
     use:clickOutside
     on:click_outside={() => (menuVisible = false)}
   >
@@ -73,12 +73,12 @@
     <div
       class="{menuVisible
         ? 'absolute'
-        : 'hidden'}  md:block default-bg border-2 rounded-xl border-gray-400 md:border-none z-50"
+        : 'hidden'}  default-bg z-50 rounded-xl border-2 border-gray-400 md:block md:border-none"
     >
       <NavList items={links} pathname={$page.url.pathname} on:click={() => (menuVisible = false)} />
     </div>
   </nav>
 
   <slot />
-  <aside class="hidden md:block w-full md:max-w-[20%]"></aside>
+  <aside class="hidden w-full md:block md:max-w-[20%]"></aside>
 </div>

@@ -9,7 +9,9 @@ export async function GET(event) {
   return new Response(
     JSON.stringify(
       (
-        await (await db())
+        await (
+          await db()
+        )
           .collection("cities")
           .find({
             countryId: event.params.country,

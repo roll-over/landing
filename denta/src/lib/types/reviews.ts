@@ -9,4 +9,3 @@ export const newReviewSchema = z.object({
   lang: z.string().min(1).max(2),
   entityId: z.string().optional(),
 });
-
