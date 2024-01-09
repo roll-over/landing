@@ -1,5 +1,4 @@
 {
-  "packageManager": "pnpm@8.10.2",
   "scripts": {
     "gen:sitemap": "python3 ./sitemap-generator/main.py",
     "prettier:landing": "cd landing && prettier . -c --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss",
