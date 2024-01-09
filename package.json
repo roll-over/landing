@@ -1,7 +1,7 @@
 {
   "scripts": {
     "gen:sitemap": "python3 ./sitemap-generator/main.py",
-    "prettier:landing": "cd landing && prettier . -c --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss",
+    "prettier:landing": "cd landing && pnpm run prettier",
     "format-prettier:landing": "pnpm run prettier:landing -w"
   }
 }
