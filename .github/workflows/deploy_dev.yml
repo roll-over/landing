@@ -69,7 +69,7 @@ jobs:
       - run: pnpm install
         name: Setup node_modules
         working-directory: ./landing
-      - run: pnpm format-prettier:landing
+      - run: pnpm prettier:landing
         name: Formatter
         working-directory: ./landing
         if: always()
