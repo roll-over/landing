@@ -15,7 +15,7 @@
   <meta name="description" content="Статья: {a?.title}. {a?.source.slice(0, 100)}" />
 </svelte:head>
 
-<div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
+<div class="justify-left flex w-full max-w-2xl flex-col gap-10 p-10 sm:pl-3">
   <Article
     article={a}
     seeAlso={allArticles

@@ -6,15 +6,15 @@
   let link = "";
 </script>
 
-<section class="border-2 border-gray-800 p-2 sm:p-5 rounded-2xl">
+<section class="rounded-2xl border-2 border-gray-800 p-2 sm:p-5">
   {#if article.type === "md"}
-    <div class="max-h-56 sm:h-36 overflow-hidden article">
+    <div class="article max-h-56 overflow-hidden sm:h-36">
       <OnePost source={article.source} />
       <div class="frosted" />
     </div>
     <a
       href={link}
-      class="text-teal-400 hover:text-teal-600 border-2 border-cyan-900 hover:border-cyan-800 hover:underline underline-offset-1 rounded-xl p-2"
+      class="rounded-xl border-2 border-cyan-900 p-2 text-teal-400 underline-offset-1 hover:border-cyan-800 hover:text-teal-600 hover:underline"
       >Читать</a
     >
   {:else if article.type === "youtube"}
@@ -29,13 +29,13 @@
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
       />
-      <div class="max-h-56 sm:h-36 overflow-hidden article">
+      <div class="article max-h-56 overflow-hidden sm:h-36">
         <OnePost source={article.description} />
         <div class="frosted" />
       </div>
       <a
         href={link}
-        class="text-teal-400 hover:text-teal-600 border-2 border-cyan-900 hover:border-cyan-800 hover:underline underline-offset-1 rounded-xl p-2"
+        class="rounded-xl border-2 border-cyan-900 p-2 text-teal-400 underline-offset-1 hover:border-cyan-800 hover:text-teal-600 hover:underline"
         >Подробнее</a
       >
     </div>

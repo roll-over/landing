@@ -1,11 +1,15 @@
 import { t } from "$lib/backend/localisation";
 import db from "$lib/db";
-import { redirect } from "@sveltejs/kit";
+import { error, redirect } from "@sveltejs/kit";
 
 export const load = async (event) => {
-  const cabinets = await (
-    await db()
-  )
+  const _db = await db();
+
+  if (!_db) {
+    throw error(500, "DB not found");
+  }
+
+  const cabinets = await _db
     .collection("cabinets")
     .find(
       {},
@@ -19,9 +23,7 @@ export const load = async (event) => {
     .toArray();
 
   const countries = (
-    await (
-      await db()
-    )
+    await _db
       .collection("countries")
       .find(
         {},
@@ -51,9 +53,7 @@ export const load = async (event) => {
   }
 
   const cities = (
-    await (
-      await db()
-    )
+    await _db
       .collection("cities")
       .find(
         {
@@ -82,9 +82,7 @@ export const load = async (event) => {
     throw redirect(302, `/${event.params.lang}/search/${pickedCountry.value}/${cities[0].value}`);
   }
 
-  const infoCompanies = await (
-    await db()
-  )
+  const infoCompanies = await _db
     .collection("info-companies")
     .find(
       {
@@ -96,6 +94,9 @@ export const load = async (event) => {
       },
       {
         projection: {},
+        sort: {
+          views: -1,
+        },
       },
     )
     .toArray();

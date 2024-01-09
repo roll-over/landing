@@ -5,7 +5,7 @@
   $: result = null;
 </script>
 
-<div class="flex justify-center items-center w-full">
+<div class="flex w-full items-center justify-center">
   <div class="flex flex-col gap-5">
     <input type="text" bind:value={videoId} placeholder="Video Id" />
     <select bind:value={lang}>

@@ -25,7 +25,7 @@
 
 <h2 class="">Контакты</h2>
 {#each contacts as contact}
-  <div class="flex justify-between flex-wrap w-full flex-col sm:flex-row">
+  <div class="flex w-full flex-col flex-wrap justify-between sm:flex-row">
     <h3>{contact.title}</h3>
     <a href={contact.href}>{contact.description}</a>
   </div>

@@ -14,7 +14,7 @@
   canonical="https://roll-over.org/projects/hide-hire"
 />
 
-<div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
+<div class="justify-left flex w-full max-w-2xl flex-col gap-10 p-10 sm:pl-3">
   <h2>Проект: hide-hire</h2>
   <p>Сервис поиска работы и кандидатов</p>
   <section>
@@ -28,7 +28,7 @@
   </section>
   <section>
     <h2>Миссия</h2>
-    <ul class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="grid-col grid list-disc gap-2 pl-10">
       <li>Сделать найм честным и прозрачным</li>
       <li>Борьба с дискриминацией</li>
     </ul>
@@ -40,7 +40,7 @@
 
   <section>
     <h2>Связаться</h2>
-    <ul class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="grid-col grid list-disc gap-2 pl-10">
       <li>
         <a href="mailto:hide.n.hire@gmail.com">hide.n.hire@gmail.com </a>
       </li>
@@ -48,7 +48,7 @@
   </section>
   <section>
     <h2>Участие</h2>
-    <ul class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="grid-col grid list-disc gap-2 pl-10">
       <li>
         <a href="https://github.com/roll-over/unknown-interview"
           >https://github.com/roll-over/unknown-interview</a

@@ -6,6 +6,7 @@
   import SvelteSeo from "svelte-seo";
 
   import { localisation } from "$lib/localisation/localisation";
+  import type { LocalisationData } from "$lib/localisation/dynamic-localisation";
   $: l = localisation($page.params.lang);
   export let data: {
     articles: {
@@ -13,7 +14,9 @@
       title: string;
       description: string;
       createdAt: string;
+      views: number;
     }[];
+    localisation: LocalisationData;
   };
 </script>
 
@@ -41,13 +44,13 @@
   </h1>
   {#each data.articles as article}
     <a
-      class="card p-4 variant-filled-primary"
+      class="card variant-filled-primary p-4"
       href={`/${$page.params.lang}/articles/${$page.params.type}/${article.publicId}`}
     >
       <header class="card-header">
         <h2>{article.title}</h2>
       </header>
-      <div class="p-4 article-preview">
+      <div class="article-preview p-4">
         <SvelteMarkdown
           source={article.description}
           renderers={{
@@ -57,6 +60,9 @@
       </div>
       <footer class="card-footer">
         <p class="created-at">{new Date(article.createdAt).toLocaleString()}</p>
+        <p>
+          {data.localisation["Просмотров"]}: {article.views || 0}
+        </p>
       </footer>
     </a>
   {/each}

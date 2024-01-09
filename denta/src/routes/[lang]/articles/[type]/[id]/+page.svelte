@@ -6,6 +6,7 @@
 
   import { page } from "$app/stores";
   import { localisation } from "$lib/localisation/localisation";
+  import { LocalisationData } from "$lib/localisation/dynamic-localisation";
   $: l = localisation($page.params.lang);
 
   export let data: {
@@ -20,7 +21,9 @@
         question: string;
         answer: string;
       }[];
+      views: number;
     };
+    localisation: LocalisationData;
   };
 </script>
 
@@ -36,6 +39,7 @@
     description: data.article.description,
     datePublished: data.article.createdAt,
     dateModified: data.article.updatedAt,
+    views: data.article.views,
   }}
 ></SvelteSeo>
 
@@ -59,12 +63,17 @@
         {new Date(data.article.updatedAt).toLocaleString()}
       </p>
     {/if}
+
+    <p class="views">
+      {data.localisation["Просмотров"]}: {data.article.views || 0}
+    </p>
   </footer>
 </CenteredPage>
 
 <style>
   .created-at,
-  .updated-at {
+  .updated-at,
+  .views {
     font-size: 0.8rem;
     color: rgb(75, 75, 75);
   }

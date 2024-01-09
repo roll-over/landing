@@ -18,11 +18,11 @@
   canonical="https://roll-over.org/projects/hide-hire/posts"
 />
 
-<div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
+<div class="justify-left flex w-full max-w-2xl flex-col gap-10 p-10 sm:pl-3">
   <h2>Статьи</h2>
   <div class="flex flex-col gap-10">
     {#each a as article}
-      <ArticlePreview {article} link={link + "/"+ article.id} />
+      <ArticlePreview {article} link={link + "/" + article.id} />
     {/each}
   </div>
 </div>

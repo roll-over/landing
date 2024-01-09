@@ -1,7 +1,6 @@
 html,
 body {
   width: 100%;
-  font-family: 'Montserrat';
   font-weight: 300;
   font-size: 16px;
   background-color: black;
@@ -11,12 +10,10 @@ body {
   min-height: 100vh;
 }
 
-
-
 body {
   background-image: url("/layerstyle.webp");
-  background-size: 100% auto;
-  background-repeat: repeat-y;
+  background-size: 200px auto;
+  background-repeat: repeat;
 }
 
 h1 {
@@ -45,7 +42,6 @@ section {
   flex-direction: column;
   gap: 15px;
 }
-
 
 .huge-simbol {
   width: 100%;

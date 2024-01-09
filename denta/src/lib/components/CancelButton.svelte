@@ -9,7 +9,7 @@
   on:click={(e) => {
     dispatch("click", e);
   }}
-  class="btn variant-filled-warning w-14 h-14"
+  class="variant-filled-warning btn h-14 w-14"
 >
   <Icon src={ImCancelCircle} />
 </button>

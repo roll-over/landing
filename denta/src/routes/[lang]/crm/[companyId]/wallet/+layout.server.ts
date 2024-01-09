@@ -4,7 +4,9 @@ import type { PriceListItem, Service } from "$lib/types/crm";
 export const load = async (event) => {
   const session = await event.locals.getSession();
 
-  const priceList = (await (await db())
+  const priceList = (await (
+    await db()
+  )
     .collection("price-list")
     .find(
       {
@@ -14,7 +16,9 @@ export const load = async (event) => {
     )
     .toArray()) as PriceListItem[];
 
-  const services = (await (await db())
+  const services = (await (
+    await db()
+  )
     .collection("services")
     .find({}, { projection: { _id: 0 } })
     .toArray()) as Service[];

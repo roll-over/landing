@@ -5,7 +5,7 @@
 
 <a
   {href}
-  class="text-stone-900 bg-sky-200 hover:text-stone-700 border-2 border-stone-400 hover:border-stone-600 rounded-xl p-1 flex justify-center"
+  class="flex justify-center rounded-xl border-2 border-stone-400 bg-sky-200 p-1 text-stone-900 hover:border-stone-600 hover:text-stone-700"
 >
   <slot />
 </a>

@@ -31,8 +31,8 @@
   $: menuVisible = false;
 </script>
 
-<div class="flex flex-col md:flex-col w-full">
-  <ol class="flex flex-row w-full justify-between">
+<div class="flex w-full flex-col md:flex-col">
+  <ol class="flex w-full flex-row justify-between">
     {#each links || [] as link}
       <li>
         <a

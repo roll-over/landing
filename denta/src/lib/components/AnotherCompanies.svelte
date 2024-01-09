@@ -32,7 +32,7 @@
         <li class="w-full">
           <a
             href={`/${$page.params.lang}/c/${cabinet.id}`}
-            class="flex flex-col justify-between gap-2 card card-hover w-full border-2 p-4 rounded-xl variant-glass-secondary"
+            class="card variant-glass-secondary card-hover flex w-full flex-col justify-between gap-2 rounded-xl border-2 p-4"
           >
             <h3>{cabinet.name}</h3>
             <p>
@@ -47,7 +47,7 @@
         <li class="w-full">
           <a
             href={`/${$page.params.lang}/company/${cabinet.publicId || cabinet._id}`}
-            class=" flex flex-col justify-between gap-2 card card-hover w-full border-2 p-2 rounded-xl variant-glass-tertiary"
+            class=" card variant-glass-tertiary card-hover flex w-full flex-col justify-between gap-2 rounded-xl border-2 p-2"
           >
             <h3>{cabinet.title}</h3>
             <p>{l("Адрес")}: {cabinet.address}</p></a

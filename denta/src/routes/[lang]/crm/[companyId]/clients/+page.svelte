@@ -34,7 +34,7 @@
     />
   </Section>
 
-  <div class="flex gap-10 flex-wrap">
+  <div class="flex flex-wrap gap-10">
     {#each data.clients as client}
       <Section>
         <h3>Имя</h3>

@@ -224,18 +224,18 @@
   };
 </script>
 
-<div class="flex flex-col w-full items-center">
+<div class="flex w-full flex-col items-center">
   <h1>Admin panel</h1>
 
-  <div class="border-2 rounded-xl flex flex-col gap-8 p-10">
+  <div class="flex flex-col gap-8 rounded-xl border-2 p-10">
     <button class="buttonPrimary" on:click={() => addArticle()}> Add new </button>
   </div>
-  <ul class="w-full md:w-9/12 flex flex-col gap-10">
+  <ul class="flex w-full flex-col gap-10 md:w-9/12">
     {#each data.entities || [] as entitiy}
       {#if inEditing && entitiy.id === inEditing.id}
-        <li class="flex flex-col gap-8 p-10 rounded-xl border-2">
+        <li class="flex flex-col gap-8 rounded-xl border-2 p-10">
           {#if inEditing.status === "new"}
-            <div class="flex flex-col gap-16 justify-center">
+            <div class="flex flex-col justify-center gap-16">
               <textarea bind:value={prompt} />
               <div class="flex flex-row justify-center gap-16">
                 <button on:click={() => genHeader()}>Новый заголовок</button>
@@ -277,9 +277,9 @@
 
             <div class="flex flex-col gap-10">
               {#each inEditing?.faq || [] as faq, i}
-                <div class="flex flex-col pd-10">
+                <div class="pd-10 flex flex-col">
                   <button
-                    class="text-stone-400 hover:text-stone-500 border-2 border-stone-700 hover:border-stone-600 rounded-2xl p-2 flex justify-center"
+                    class="flex justify-center rounded-2xl border-2 border-stone-700 p-2 text-stone-400 hover:border-stone-600 hover:text-stone-500"
                     on:click={() => {
                       inEditing.faq.splice(i, 1);
                       inEditing.faq = [...inEditing.faq];
@@ -302,15 +302,15 @@
             </div>
           {/if}
 
-          <div class="flex flex-row gap-16 justify-center">
+          <div class="flex flex-row justify-center gap-16">
             <button
-              class="text-stone-400 hover:text-stone-500 border-2 border-stone-700 hover:border-stone-600 rounded-2xl p-2 flex justify-center"
+              class="flex justify-center rounded-2xl border-2 border-stone-700 p-2 text-stone-400 hover:border-stone-600 hover:text-stone-500"
               on:click={() => {
                 saveArticle(entitiy.id);
               }}>Save</button
             >
             <button
-              class="text-stone-400 hover:text-stone-500 border-2 border-stone-700 hover:border-stone-600 rounded-2xl p-2 flex justify-center"
+              class="flex justify-center rounded-2xl border-2 border-stone-700 p-2 text-stone-400 hover:border-stone-600 hover:text-stone-500"
               on:click={() => {
                 inEditing = {};
               }}>Cancel</button
@@ -318,7 +318,7 @@
           </div>
         </li>
       {:else}
-        <li class="flex flex-row gap-4 p-10 rounded-xl border-2">
+        <li class="flex flex-row gap-4 rounded-xl border-2 p-10">
           <div class="flex flex-col gap-3">
             <p>{entitiy.title}</p>
             <p>{entitiy.id.slice(0, 20)}</p>
@@ -346,9 +346,9 @@
               />
             </div>
           {/if}
-          <div class="flex flex-col gap-16 justify-center">
+          <div class="flex flex-col justify-center gap-16">
             <button
-              class="text-stone-400 hover:text-stone-500 border-2 border-stone-700 hover:border-stone-600 rounded-2xl p-2 flex justify-center"
+              class="flex justify-center rounded-2xl border-2 border-stone-700 p-2 text-stone-400 hover:border-stone-600 hover:text-stone-500"
               on:click={() => {
                 inEditing = entitiy;
                 oldId = entitiy.id;
@@ -356,14 +356,14 @@
             >
             {#if entitiy.status !== "published"}
               <button
-                class="text-stone-400 hover:text-stone-500 border-2 border-stone-700 hover:border-stone-600 rounded-2xl p-2 flex justify-center"
+                class="flex justify-center rounded-2xl border-2 border-stone-700 p-2 text-stone-400 hover:border-stone-600 hover:text-stone-500"
                 on:click={() => {
                   publishArticle(entitiy.id);
                 }}>Publish</button
               >
             {:else if entitiy.status !== "archived"}
               <button
-                class="text-stone-400 hover:text-stone-500 border-2 border-stone-700 hover:border-stone-600 rounded-2xl p-2 flex justify-center"
+                class="flex justify-center rounded-2xl border-2 border-stone-700 p-2 text-stone-400 hover:border-stone-600 hover:text-stone-500"
                 on:click={() => {
                   archiveArticle(entitiy.id);
                 }}>Archive</button

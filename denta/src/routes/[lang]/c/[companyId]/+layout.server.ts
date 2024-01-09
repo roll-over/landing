@@ -61,6 +61,30 @@ export const load = async (event) => {
     event.params.lang,
   );
 
+  const session = await event.locals.getSession();
+
+  await _db.collection("views").insertOne({
+    type: "c",
+    publicId: company.publicId || company._id,
+    createdAt: new Date(),
+    email: session?.user?.email,
+  });
+  const views = await _db.collection("views").countDocuments({
+    type: "c",
+    publicId: company.publicId || company._id,
+  });
+
+  await _db.collection("info-companies").updateOne(
+    {
+      _id: company._id,
+    },
+    {
+      $set: {
+        views,
+      },
+    },
+  );
+
   return {
     infoCompany: company,
     country: { label: country[event.params.lang], value: country.id },

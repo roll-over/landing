@@ -20,13 +20,13 @@
   <meta name="description" content={l("CRM-система для стоматологий")} />
 </svelte:head>
 
-<div class="flex flex-col p-2 md:p-10 w-full gap-5 md:gap-10">
+<div class="flex w-full flex-col gap-5 p-2 md:gap-10 md:p-10">
   <h1>{l("CRM-система для стоматологий")}</h1>
   <slot />
   <Section>
-    <div class="flex gap-5 justify-center items-center flex-col-reverse md:flex-row">
-      <img src={Dantist1} class="w-96 h-96 rounded-xl" alt={l("Стоматолог в кресле")} />
-      <div class="flex flex-col md:p-10 gap-5 md:gap-10 justify-center text-block">
+    <div class="flex flex-col-reverse items-center justify-center gap-5 md:flex-row">
+      <img src={Dantist1} class="h-96 w-96 rounded-xl" alt={l("Стоматолог в кресле")} />
+      <div class="text-block flex flex-col justify-center gap-5 md:gap-10 md:p-10">
         <SvelteMarkdown source={data.texts[0]}></SvelteMarkdown>
         <CreateCompanyButton {data} />
       </div>
@@ -34,24 +34,24 @@
   </Section>
 
   <Section>
-    <div class="flex gap-5 justify-center items-center flex-col md:flex-row">
-      <div class="flex flex-col md:p-10 gap-5 md:gap-10 justify-center text-block">
+    <div class="flex flex-col items-center justify-center gap-5 md:flex-row">
+      <div class="text-block flex flex-col justify-center gap-5 md:gap-10 md:p-10">
         <SvelteMarkdown source={data.texts[1]}></SvelteMarkdown>
 
         <CreateCompanyButton {data} />
       </div>
-      <img src={Dantist2} class="w-96 h-96 rounded-xl" alt={l("Стоматолог за компьютером")} />
+      <img src={Dantist2} class="h-96 w-96 rounded-xl" alt={l("Стоматолог за компьютером")} />
     </div>
   </Section>
 
   <Section>
-    <div class="flex gap-5 justify-center items-center flex-col-reverse md:flex-row">
+    <div class="flex flex-col-reverse items-center justify-center gap-5 md:flex-row">
       <img
         src={Dantist3}
-        class="w-96 h-80 rounded-xl"
+        class="h-80 w-96 rounded-xl"
         alt={l("Девушка стоматолог за ноутбуком улыбается")}
       />
-      <div class="flex flex-col md:p-10 gap-5 md:gap-10 justify-center text-block">
+      <div class="text-block flex flex-col justify-center gap-5 md:gap-10 md:p-10">
         <SvelteMarkdown
           source={data.texts[2]}
           renderers={{

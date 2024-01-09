@@ -3,7 +3,7 @@
 </script>
 
 <button
-  class="text-stone-700 hover:text-stone-500 hover:border-stone-600 p-2 flex justify-center"
+  class="flex justify-center p-2 text-stone-700 hover:border-stone-600 hover:text-stone-500"
   on:click={() => {
     authAction();
   }}

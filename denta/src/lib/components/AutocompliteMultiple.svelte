@@ -29,7 +29,7 @@
 <div class="flex flex-wrap gap-5">
   {#each values as value}
     <button
-      class="chip variant-soft hover:variant-filled rounded-lg"
+      class="variant-soft chip rounded-lg hover:variant-filled"
       on:click={() => {
         values = values.filter((item) => item.label !== value.label);
         dispatch("change", values);

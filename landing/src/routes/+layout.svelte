@@ -1,6 +1,5 @@
 <script lang="ts">
   import "../styles/app.css";
-  import Header from "$lib/assets/roll-over.webp";
   import { page } from "$app/stores";
   import NavLink from "$lib/components/NavLink.svelte";
   import BurgerIcon from "$lib/assets/burger.svg";
@@ -92,16 +91,16 @@
   };
 </script>
 
-<nav class="p-2 flex flex-col justify-between max-h-40" bind:clientWidth={w}>
-  <div class="p-2 flex justify-between max-h-20">
+<nav class="flex max-h-40 flex-col justify-between p-2" bind:clientWidth={w}>
+  <div class="flex max-h-20 justify-between p-2">
     <a href="/" class="flex flex-row">
       <img src="/logo.webp" alt="logo" class="h-10 w-14" />
-      <span class="text-4xl font-bold text-center text-green-500">roll-over</span>
+      <span class="text-center text-4xl font-bold text-green-500">roll-over</span>
     </a>
 
     {#if visible}
       <div
-        class=" border-2 border-teal-400 bg-black fixed top-6 right-6 rounded-b-xl rounded-tl-xl z-10"
+        class=" fixed right-6 top-6 z-10 rounded-b-xl rounded-tl-xl border-2 border-teal-400 bg-black"
       >
         <div class="flex justify-between p-2">
           <p>Меню</p>
@@ -120,7 +119,7 @@
             {#if $page.data.session}
               <NavLink href="/auth/signout">
                 {#if $page.data.session.user?.image}
-                  <img src={$page.data.session.user.image} class="rounded-2xl w-8" alt="avatar" />
+                  <img src={$page.data.session.user.image} class="w-8 rounded-2xl" alt="avatar" />
                 {/if}
               </NavLink>
             {:else}
@@ -140,7 +139,7 @@
       </button>
     {/if}
   </div>
-  <ol class="pl-5 flex items-end" itemscope itemtype="https://schema.org/BreadcrumbList">
+  <ol class="flex items-end pl-5" itemscope itemtype="https://schema.org/BreadcrumbList">
     {#each steps as step, i}
       <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
         <a itemprop="item" href={getUrl(steps, step)}

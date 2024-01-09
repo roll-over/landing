@@ -4,10 +4,19 @@
   import { Owners, projects, Status } from "$lib/projects";
   import SvelteSeo from "svelte-seo";
 
-  const oursOpenProjects = projects.filter(
-    (project) => project.status !== Status.closed && project.owner === Owners.rollOver,
+  const oursOpenProjectsFirstly = projects.filter(
+    (project) =>
+      project.status !== Status.closed &&
+      project.owner === Owners.rollOver &&
+      (!project.order || project.order !== 2),
   );
-  const historyProjects = projects.filter((project) => project.status === Status.closed);
+  const oursOpenProjectsSecondly = projects.filter(
+    (project) =>
+      project.status !== Status.closed && project.owner === Owners.rollOver && project.order === 2,
+  );
+  const historyProjects = projects.filter(
+    (project) => project.status === Status.closed && project.owner === Owners.rollOver,
+  );
 </script>
 
 <SvelteSeo
@@ -16,8 +25,8 @@
   canonical="https://roll-over.org/projects"
 />
 
-<div class="flex flex-wrap gap-10 justify-evenly p-5 sm:pl-3">
-  <div class="flex flex-col gap-10 w-full max-w-xl justify-left">
+<div class="flex flex-wrap justify-evenly gap-10 p-5 sm:pl-3">
+  <div class="justify-left flex w-full max-w-xl flex-col gap-10">
     <h1>Открытые проекты roll-over</h1>
 
     <Divider></Divider>
@@ -36,18 +45,28 @@
     </p>
   </div>
 
-  <ul class="flex flex-wrap gap-x-5 gap-y-10 max-w-2xl justify-center">
-    {#each oursOpenProjects as project}
+  <ul class="flex max-w-2xl flex-wrap justify-center gap-x-5 gap-y-10">
+    {#each oursOpenProjectsFirstly as project}
       <ProjectCard {project} />
     {/each}
   </ul>
+  <div class="flex flex-col">
+    <section>
+      <h2>Наши проекты поменьше</h2>
+      <ul class="flex max-w-2xl flex-wrap justify-center gap-x-5 gap-y-10">
+        {#each oursOpenProjectsSecondly as project}
+          <ProjectCard {project} />
+        {/each}
+      </ul>
+    </section>
 
-  <section id="old-projects" class="max-w-2xl">
-    <h2>Наши старые проекты</h2>
-    <ul class="flex flex-wrap gap-x-5 gap-y-10 max-w-2xl justify-center">
-      {#each historyProjects as project}
-        <ProjectCard {project} />
-      {/each}
-    </ul>
-  </section>
+    <section id="old-projects" class="max-w-2xl">
+      <h2>Наши старые проекты</h2>
+      <ul class="flex max-w-2xl flex-wrap justify-center gap-x-5 gap-y-10">
+        {#each historyProjects as project}
+          <ProjectCard {project} />
+        {/each}
+      </ul>
+    </section>
+  </div>
 </div>

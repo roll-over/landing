@@ -84,8 +84,8 @@
   };
 </script>
 
-<div class="flex flex-col items-center w-full">
-  <div class="flex flex-row flex-wrap gap-y-10 md:gap-x-5 md:p-10 justify-between">
+<div class="flex w-full flex-col items-center">
+  <div class="flex flex-row flex-wrap justify-between gap-y-10 md:gap-x-5 md:p-10">
     <Section>
       <h3>{l("Название")}</h3>
       <input
@@ -360,7 +360,7 @@
       ></DeleteButton>
     </Section>
   </div>
-  <div class="fixed top-4.5 right-1.5">
+  <div class="top-4.5 fixed right-1.5">
     <SaveButton
       on:click={async () => {
         await save();

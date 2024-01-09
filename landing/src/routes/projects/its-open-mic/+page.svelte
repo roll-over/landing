@@ -12,12 +12,12 @@
   canonical="https://roll-over.org/projects/its-open-mic"
 />
 
-<div class="flex flex-col gap-10 p-10 sm:pl-3 w-full max-w-2xl justify-left">
+<div class="justify-left flex w-full max-w-2xl flex-col gap-10 p-10 sm:pl-3">
   <h2>Проект: IT’s-open-mic</h2>
   <p>Открытая онлайн-платформа для проведения выступлений об или около IT.</p>
   <section>
     <h2>Миссия</h2>
-    <ul class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="grid-col grid list-disc gap-2 pl-10">
       <li>
         Создавая и работая над этой площадкой, мы стремимся сделать путь к выступлениям максимально
         простым.
@@ -28,7 +28,7 @@
   <img src={Snail} alt="Большое лого IT's open mic" class="huge-simbol" />
   <section>
     <h2>Дополнительные сслыки</h2>
-    <ul class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="grid-col grid list-disc gap-2 pl-10">
       <li>
         <a href="/projects/its-open-mic/anounces">Анонсы</a>
       </li>
@@ -61,7 +61,7 @@
   </section>
   <section>
     <h2>Участие</h2>
-    <ul class="list-disc pl-10 grid grid-col gap-2">
+    <ul class="grid-col grid list-disc gap-2 pl-10">
       <li>
         Форма подачи заявок на выступление:
         <a href="https://forms.gle/bkodXfTocGPfK3zR8">https://forms.gle/bkodXfTocGPfK3zR8</a>

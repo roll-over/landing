@@ -1,5 +1,6 @@
 import { t } from "$lib/backend/localisation";
 import db from "$lib/db";
+import { getSession } from "@auth/sveltekit";
 import { error } from "@sveltejs/kit";
 
 export const load = async (event) => {
@@ -8,6 +9,7 @@ export const load = async (event) => {
   }
 
   const _db = await db();
+  const session = await event.locals.getSession();
 
   if (!_db) {
     throw error(500, "Database connection failed");
@@ -28,6 +30,7 @@ export const load = async (event) => {
         description: 1,
         createdAt: 1,
         lang: 1,
+        views: 1,
       },
       sort: {
         createdAt: -1,
@@ -38,6 +41,30 @@ export const load = async (event) => {
   if (!article) {
     throw error(404, "Page not found");
   }
+
+  await _db.collection("views").insertOne({
+    type: "article",
+    publicId: article.publicId,
+    createdAt: new Date(),
+    email: session?.user?.email,
+  });
+
+  const views = await _db.collection("views").countDocuments({
+    type: "article",
+    publicId: article.publicId,
+  });
+
+  await _db.collection("articles").updateOne(
+    {
+      type: event.params.type,
+      publicId: event.params.id,
+    },
+    {
+      $set: {
+        views,
+      },
+    },
+  );
 
   return {
     article: {

@@ -150,7 +150,7 @@
 </script>
 
 <div class="w-full">
-  <div class={`${adding || editing ? "flex" : "hidden"} flex-col card `}>
+  <div class={`${adding || editing ? "flex" : "hidden"} card flex-col `}>
     <header class="card-header">
       <label for="title" class="label">{l("Название")}</label>
       <input
@@ -162,7 +162,7 @@
         placeholder={l("Название")}
       />
     </header>
-    <div class="p-2 md:p-4 card flex flex-col gap-2 md:gap-4">
+    <div class="card flex flex-col gap-2 p-2 md:gap-4 md:p-4">
       <ul class="list">
         {#each form.fileNames as fileName, i}
           <li class="flex flex-wrap">
@@ -187,11 +187,11 @@
           </li>
         {/each}
       </ul>
-      <div class="p-2 md:p-4 card">
+      <div class="card p-2 md:p-4">
         <label for="file" class="label">{l("Выберите файл")}</label>
         <input type="file" name="file" bind:files multiple={true} class="input" />
       </div>
-      <div class="p-2 md:p-4 card">
+      <div class="card p-2 md:p-4">
         <label for="description" class="label" placeholder={l("Описание")}>{l("Описание")}</label>
         <textarea
           name="description"
@@ -202,17 +202,17 @@
         />
       </div>
 
-      <div class="p-2 md:p-4 card">
+      <div class="card p-2 md:p-4">
         <label for="date" class="label"><span>{l("Дата окончания")} </span> </label>
         <input type="date" name="date" id="date" bind:value={form.date} class="input" required />
       </div>
 
-      <div class="p-2 md:p-4 card flex flex-col gap-2 md:gap-4">
+      <div class="card flex flex-col gap-2 p-2 md:gap-4 md:p-4">
         <h3>
           {l("Уведомления")}:
         </h3>
         {#each form.notifications || [] as notification, i}
-          <div class="flex flex-wrap gap-5 card p-2 md:p-4">
+          <div class="card flex flex-wrap gap-5 p-2 md:p-4">
             <label for="daysBefore" class="label">{l("За сколько дней")}</label>
             <input
               type="number"
@@ -251,13 +251,13 @@
       </div>
     </div>
     <footer class="card-footer">
-      <button class="btn variant-filled-secondary" on:click={submit}
+      <button class="variant-filled-secondary btn" on:click={submit}
         >{l("Сохранить изменения")}</button
       >
     </footer>
   </div>
 
-  <div class={`${adding || editing ? "hidden" : "flex"} flex-col p-4 gap-4 w-full`}>
+  <div class={`${adding || editing ? "hidden" : "flex"} w-full flex-col gap-4 p-4`}>
     <div>
       <AddButton
         on:click={() => {
@@ -273,15 +273,15 @@
             {contractsNotifications.title}
           </h2>
         </header>
-        <div class="p-2 md:p-6 gap-2 md:gap-6 flex flex-col w-full">
-          <div class="p-4 card w-full">
+        <div class="flex w-full flex-col gap-2 p-2 md:gap-6 md:p-6">
+          <div class="card w-full p-4">
             <h2>{l("Документы")}:</h2>
             {#each contractsNotifications.fileNames as fileName}
-              <div class="p-4 text-pretty">
+              <div class="text-pretty p-4">
                 <p class="text-wrap overflow-hidden">
                   {fileName?.split("/")[2] || fileName}
                 </p>
-                <div class="flex flex-wrap gap-5 justify-end">
+                <div class="flex flex-wrap justify-end gap-5">
                   <DeleteButton
                     on:click={async () => {
                       const res = await fetch(
@@ -328,7 +328,7 @@
             {/each}
           </div>
           {#if contractsNotifications.date}
-            <div class="p-4 card w-full">
+            <div class="card w-full p-4">
               <h2>{l("Дата окончания")}:</h2>
               {contractsNotifications.date}
               <span>
@@ -348,14 +348,14 @@
             </div>
           {/if}
           {#if contractsNotifications.description}
-            <div class="p-4 card w-full">
+            <div class="card w-full p-4">
               <h2>{l("Описание")}:</h2>
               {contractsNotifications.description}
             </div>
           {/if}
 
           {#if contractsNotifications.notifications}
-            <div class="p-4 card w-full list">
+            <div class="card list w-full p-4">
               <h2>{l("Уведомления")}:</h2>
               {#each contractsNotifications.notifications as notification, i}
                 <div class="flex flex-wrap gap-5">
@@ -382,7 +382,7 @@
             </div>
           {/if}
         </div>
-        <footer class="flex flex-wrap gap-5 card-footer justify-end">
+        <footer class="card-footer flex flex-wrap justify-end gap-5">
           <EditButton
             on:click={() => {
               editing = !editing;

@@ -10,20 +10,18 @@ export async function POST(event) {
   const countryId = await upsertCountry(company.mainAddress.country, event.params.lang);
   const cityId = await upsertCity(company.mainAddress.city, countryId, event.params.lang);
   const companyId = uuid();
-  await (await db())
-    .collection("companies")
-    .insertOne({
-      ...company,
-      id: companyId,
-      owner: session.user.email,
-      createdAt: new Date().toISOString(),
-      workingHours: {},
-      contacts: [],
-      mainAddress: {
-        country: countryId,
-        city: cityId,
-      },
-    } as Company);
+  await (await db()).collection("companies").insertOne({
+    ...company,
+    id: companyId,
+    owner: session.user.email,
+    createdAt: new Date().toISOString(),
+    workingHours: {},
+    contacts: [],
+    mainAddress: {
+      country: countryId,
+      city: cityId,
+    },
+  } as Company);
   return new Response(JSON.stringify({ id: companyId }), {
     status: 200,
     headers: {
@@ -49,25 +47,23 @@ export async function PUT(event) {
   const countryId = await upsertCountry(company.mainAddress.country, event.params.lang);
   const cityId = await upsertCity(company.mainAddress.city, countryId, event.params.lang);
 
-  await (await db())
-    .collection("companies")
-    .updateOne(
-      {
-        owner: session.user.email,
-        id: companyId,
-      },
-      {
-        $set: {
-          ...company,
-          mainAddress: {
-            country: countryId,
-            city: cityId,
-            street: company.mainAddress.street,
-            house: company.mainAddress.house,
-          },
+  await (await db()).collection("companies").updateOne(
+    {
+      owner: session.user.email,
+      id: companyId,
+    },
+    {
+      $set: {
+        ...company,
+        mainAddress: {
+          country: countryId,
+          city: cityId,
+          street: company.mainAddress.street,
+          house: company.mainAddress.house,
         },
       },
-    );
+    },
+  );
   return new Response(JSON.stringify(company), {
     status: 200,
     headers: {

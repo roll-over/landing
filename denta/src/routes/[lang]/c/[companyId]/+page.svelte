@@ -50,9 +50,9 @@
   }}
 ></SvelteSeo>
 
-<div class="flex flex-col justify-center items-center p-2">
+<div class="flex flex-col items-center justify-center p-2">
   <div class="page flex flex-col gap-14">
-    <div class="flex flex-col gap-14 card variant-glass-primary">
+    <div class="card variant-glass-primary flex flex-col gap-14">
       <header class="card-header">
         <h1>{data.infoCompany.name}</h1>
       </header>
@@ -70,7 +70,7 @@
             <ul class="flex gap-4">
               {#each data.infoCompany.languagesIds as id}
                 <li>
-                  <p class="chip variant-filled-primary">
+                  <p class="variant-filled-primary chip">
                     {data.languages.find((l) => l.value === id)?.label}
                   </p>
                 </li>

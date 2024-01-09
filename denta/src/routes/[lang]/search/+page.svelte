@@ -69,18 +69,18 @@
   />
 </svelte:head>
 
-<div class="flex flex-col p-4 gap-4">
+<div class="flex flex-col gap-4 p-4">
   <h1>{l("Поиск стоматологий в вашей стране по базе denta-crm")}</h1>
   <p>
     {l("На данный момент в базе denta-crm есть информация о стоматологиях в следующих странах")}:
     {data.countries.map((c) => c.label).join(", ")}
   </p>
   <p>{l("Мы постоянно работаем над тем, чтобы наша база была максимально полной и актуальной.")}</p>
-  <ul class="flex flex-row flex-wrap list gap-3 md:gap-10">
+  <ul class="list flex flex-row flex-wrap gap-3 md:gap-10">
     {#each data.countries as country}
       <li>
         <a
-          class="card card-hover p-4 variant-glass-primary relative min-h-2xl"
+          class="min-h-2xl card variant-glass-primary card-hover relative p-4"
           href={`/${$page.params.lang}/search/${country.value}` +
             (cities[country.value] ? `/${cities[country.value]}` : "")}
         >
@@ -103,7 +103,7 @@
                 loading="lazy"
               />
             {/if}
-            <span class="absolute bottom-0 right-1 p-4 text-2xl label">{country.label}</span>
+            <span class="label absolute bottom-0 right-1 p-4 text-2xl">{country.label}</span>
           {:else}
             {country.label}
           {/if}

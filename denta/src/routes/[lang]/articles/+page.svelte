@@ -15,12 +15,12 @@
 
   <ul class="list">
     <li>
-      <a class="card p-4 variant-filled-primary" href={`/${$page.params.lang}/articles/crm`}
+      <a class="card variant-filled-primary p-4" href={`/${$page.params.lang}/articles/crm`}
         >{l("Статьи про crm системы для стоматологий")}</a
       >
     </li>
     <li>
-      <a href={`/${$page.params.lang}/articles/services`} class="card p-4 variant-filled-primary"
+      <a href={`/${$page.params.lang}/articles/services`} class="card variant-filled-primary p-4"
         >{l("Статьи про услуги в стоматологиях")}</a
       >
     </li>

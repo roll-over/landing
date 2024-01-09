@@ -53,13 +53,15 @@ export async function POST(event) {
     return new Response("No message", { status: 400 });
   }
 
-  await db().collection("supportChat").insertOne({
-    projectId: project,
-    userId: userId,
-    ...message,
-    date: new Date(),
-    author: "user",
-  });
+  await db()
+    .collection("supportChat")
+    .insertOne({
+      projectId: project,
+      userId: userId,
+      ...message,
+      date: new Date(),
+      author: "user",
+    });
 
   await db().collection("supportChat").insertOne({
     projectId: project,

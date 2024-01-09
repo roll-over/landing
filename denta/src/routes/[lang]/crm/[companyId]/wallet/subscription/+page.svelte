@@ -7,19 +7,19 @@
   $: changed = false;
 </script>
 
-<div class="flex flex-col items-start p-10 w-full">
+<div class="flex w-full flex-col items-start p-10">
   <h1>Подписка</h1>
 
-  <div class="flex flex-col md:flex-row gap-10 w-full">
-    <div class="flex flex-col gap-5 w-full">
-      <div class="flex flex-row gap-5 w-full">
+  <div class="flex w-full flex-col gap-10 md:flex-row">
+    <div class="flex w-full flex-col gap-5">
+      <div class="flex w-full flex-row gap-5">
         <p class="flex-1">Услуга</p>
         <p class="flex-1">Стоимость единицы</p>
         <p class="flex-1">Колличество</p>
         <p class="flex-1">Стоимость</p>
       </div>
       {#each data.availableServices as service}
-        <div class="flex flex-row gap-5 w-full">
+        <div class="flex w-full flex-row gap-5">
           <p class="flex-1">{service.title}</p>
           <p class="flex-1">{service.price} руб.</p>
           <input
@@ -45,13 +45,16 @@
     <p>Изменения не сохранены</p>
     <SaveButton
       on:click={async () => {
-        const res = await fetch(`/${$page.params.lang}/crm/${$page.params.companyId}/subscription/api/`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
+        const res = await fetch(
+          `/${$page.params.lang}/crm/${$page.params.companyId}/subscription/api/`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data.availableServices),
           },
-          body: JSON.stringify(data.availableServices),
-        });
+        );
         window.location.reload();
       }}>Сохранить</SaveButton
     >

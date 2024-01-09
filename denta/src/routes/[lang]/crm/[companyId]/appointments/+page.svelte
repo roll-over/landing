@@ -47,7 +47,7 @@
   $: appointmentInEdit = data.appointments.find((a) => a.id === appointmentInEditId);
 </script>
 
-<div class="flex flex-col items-start p-2 md:p-10 w-full">
+<div class="flex w-full flex-col items-start p-2 md:p-10">
   <AddButton
     on:click={async () => {
       const res = await fetch(`/${$page.params.lang}/crm/${companyId}/appointments/api/`, {
@@ -115,7 +115,7 @@
 
     <Section>
       <h3>Дата</h3>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <h4>Начало:</h4>
         <input
           type="datetime-local"
@@ -126,7 +126,7 @@
         />
       </div>
 
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <h4>Продолжительность</h4>
         {Math.floor(durationSession / 60)} ч.
         {durationSession % 60} м.
@@ -148,7 +148,7 @@
         >
       </div>
 
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <h4>Конец:</h4>
         <input
           type="datetime-local"
@@ -159,7 +159,7 @@
         />
       </div>
 
-      <div class="grid grid-cols-8 grid-rows-26">
+      <div class="grid-rows-26 grid grid-cols-8">
         {#each Array.from({ length: 8 }) as _, i}
           <p>
             {#if i !== 0}
@@ -291,6 +291,7 @@
     </SaveButton>
   {:else}
     <div>
+
       <div class="hidden lg:grid grid-cols-6 gap-2 appointments-table">
         <p>Клиент</p>
         <p>Доктор</p>
@@ -299,7 +300,7 @@
         <p>Дата</p>
         <p>Услуги</p>
       </div>
-      <div class="flex flex-row flex-wrap gap-2 w-full justify-start">
+      <div class="flex w-full flex-row flex-wrap justify-start gap-2">
         {#each data.appointments as appointment}
           <div class="gap-5 border-2 border-grey-700 appointments-table min-w-[30%] lg:w-full">
             <div class="grid grid-cols-1 lg:grid-cols-6 p-5 gap-2">

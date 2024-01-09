@@ -17,25 +17,23 @@ export async function POST(event) {
     return new Response("Not found", { status: 404 });
   }
   subscribtions.forEach(async (subscribtion) => {
-    await (await db())
-      .collection("subscription")
-      .updateOne(
-        {
+    await (await db()).collection("subscription").updateOne(
+      {
+        companyId: companyId,
+        referenceId: subscribtion.id,
+      },
+      {
+        $set: {
           companyId: companyId,
           referenceId: subscribtion.id,
+          type: subscribtion.type,
+          count: subscribtion.count,
         },
-        {
-          $set: {
-            companyId: companyId,
-            referenceId: subscribtion.id,
-            type: subscribtion.type,
-            count: subscribtion.count,
-          },
-        },
-        {
-          upsert: true,
-        },
-      );
+      },
+      {
+        upsert: true,
+      },
+    );
   });
 
   return new Response(JSON.stringify({}), {

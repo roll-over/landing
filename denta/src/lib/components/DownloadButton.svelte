@@ -8,7 +8,7 @@
 
 <a
   {href}
-  class="btn variant-filled-primary flex flex-row items-center justify-center h-14 gap-2 w-min"
+  class="variant-filled-primary btn flex h-14 w-min flex-row items-center justify-center gap-2"
   download
 >
   <slot />

@@ -28,7 +28,7 @@
   on:click={(e) => {
     modalStore.trigger(modal);
   }}
-  class="btn variant-filled-error flex flex-row items-center justify-center h-14 gap-2"
+  class="variant-filled-error btn flex h-14 flex-row items-center justify-center gap-2"
 >
   {l("Удалить")}
   <Icon src={AiOutlineDelete} />

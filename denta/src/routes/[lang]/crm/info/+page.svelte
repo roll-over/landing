@@ -18,8 +18,8 @@
 
 <Component {data}>
   <Section>
-    <div class="w-full flex justify-center">
-      <div class="flex flex-col gap-5 w-96">
+    <div class="flex w-full justify-center">
+      <div class="flex w-96 flex-col gap-5">
         <h2>{l("Ваши компании")}</h2>
         {#if !data.usersCompanies?.length}
           <p>{l("Ой, кажется у вас до сих пор не создана компания")}</p>
@@ -28,7 +28,7 @@
             {#each data.usersCompanies as company}
               <li>
                 <a
-                  class="border-2 border-gray-400 rounded-xl px-5 py-2"
+                  class="rounded-xl border-2 border-gray-400 px-5 py-2"
                   href={`/${$page.params.lang}/crm/${company.id}/company`}>{company.name} -></a
                 >
               </li>

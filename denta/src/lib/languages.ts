@@ -7,6 +7,6 @@ export const getAvailableReceptionsLanguages = async (lang) => [
   },
   {
     value: "kg",
-    label:await t("Кыргызский", "ru", lang) ,
+    label: await t("Кыргызский", "ru", lang),
   },
 ];

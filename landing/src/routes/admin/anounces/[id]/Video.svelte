@@ -53,7 +53,7 @@ CRM система для малых стоматологий -  https://denta-c
   on:click={() => {
     videoVisible = !videoVisible;
   }}
-  class="p-3 rounded-xl bg-gray-700"
+  class="rounded-xl bg-gray-700 p-3"
 >
   Показать блок для видео
 </button>
@@ -91,7 +91,7 @@ CRM система для малых стоматологий -  https://denta-c
       rows="10"
       cols="50"
       bind:value={videoDescription}
-      class="border-2 border-gray-400 rounded-xl px-5 py-2"
+      class="rounded-xl border-2 border-gray-400 px-5 py-2"
     ></textarea>
 
     <button
@@ -106,4 +106,4 @@ CRM система для малых стоматологий -  https://denta-c
   textarea {
     color: black;
   }
-  </style>
+</style>
