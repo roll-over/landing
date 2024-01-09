@@ -46,7 +46,7 @@ export const load = async (event) => {
     type: "article",
     publicId: article.publicId,
     createdAt: new Date(),
-    email: session.user?.email,
+    email: session?.user?.email,
   });
 
   const views = await _db.collection("views").countDocuments({

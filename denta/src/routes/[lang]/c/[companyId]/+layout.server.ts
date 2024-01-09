@@ -67,7 +67,7 @@ export const load = async (event) => {
     type: "c",
     publicId: company.publicId || company._id,
     createdAt: new Date(),
-    email: session.user?.email,
+    email: session?.user?.email,
   });
   const views = await _db.collection("views").countDocuments({
     type: "c",

@@ -82,7 +82,7 @@ export const load = async (event) => {
     type: "company",
     publicId: infoCompany.publicId || infoCompany._id,
     createdAt: new Date(),
-    email: session.user?.email,
+    email: session?.user?.email,
   });
 
   const views = await _db.collection("views").countDocuments({
