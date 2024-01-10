@@ -291,8 +291,7 @@
     </SaveButton>
   {:else}
     <div>
-
-      <div class="hidden lg:grid grid-cols-6 gap-2 appointments-table">
+      <div class="appointments-table hidden grid-cols-6 gap-2 lg:grid">
         <p>Клиент</p>
         <p>Доктор</p>
         <p>Кабинет</p>
@@ -302,19 +301,19 @@
       </div>
       <div class="flex w-full flex-row flex-wrap justify-start gap-2">
         {#each data.appointments as appointment}
-          <div class="gap-5 border-2 border-grey-700 appointments-table min-w-[30%] lg:w-full">
-            <div class="grid grid-cols-1 lg:grid-cols-6 p-5 gap-2">
-              <p class={appointment.clientId ? "p-3" : "bg-red-200 rounded-lg p-3"}>
+          <div class="border-grey-700 appointments-table min-w-[30%] gap-5 border-2 lg:w-full">
+            <div class="grid grid-cols-1 gap-2 p-5 lg:grid-cols-6">
+              <p class={appointment.clientId ? "p-3" : "rounded-lg bg-red-200 p-3"}>
                 {appointment.clientId
                   ? data.clients.find((c) => c.id === appointment.clientId)?.name
                   : "NaN"}
               </p>
-              <p class={appointment.doctorId ? "p-3" : "bg-red-200 rounded-lg p-3"}>
+              <p class={appointment.doctorId ? "p-3" : "rounded-lg bg-red-200 p-3"}>
                 {appointment.doctorId
                   ? data.employees.find((e) => e.id === appointment.doctorId)?.name
                   : "NaN"}
               </p>
-              <p class={appointment.cabinetId ? "p-3" : "bg-red-200 rounded-lg p-3"}>
+              <p class={appointment.cabinetId ? "p-3" : "rounded-lg bg-red-200 p-3"}>
                 {appointment.cabinetId
                   ? data.cabinets.find((c) => c.id === appointment.cabinetId)?.name
                   : "NaN"}
@@ -322,7 +321,7 @@
               <p
                 class={appointment.startAt && appointment.endAt
                   ? "p-3"
-                  : "bg-red-200 rounded-lg p-3"}
+                  : "rounded-lg bg-red-200 p-3"}
               >
                 {appointment.startAt ? moment(appointment.startAt).format("HH:mm") : "NaN"}
                 -
@@ -331,7 +330,7 @@
               <p class="p-3">
                 {moment(appointment.startAt || appointment.endAt).format("DD.MM")}
               </p>
-              <p class={appointment.servicesIds?.length ? "p-3" : "bg-red-200 rounded-lg p-3"}>
+              <p class={appointment.servicesIds?.length ? "p-3" : "rounded-lg bg-red-200 p-3"}>
                 {appointment.servicesIds
                   ?.map(
                     (item) =>
