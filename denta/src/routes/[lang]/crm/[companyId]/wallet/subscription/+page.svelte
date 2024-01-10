@@ -21,7 +21,7 @@
       {#each data.availableServices as service}
         <div class="flex flex-row gap-5 w-full">
           <p class="flex-1">{service.title}</p>
-          <p class="flex-1">{service.price} {data.company.currency}</p>
+          <p class="flex-1">{service.price[data.company.currency]} {data.company.currency}</p>
           <input
             bind:value={service.count}
             type="number"
@@ -37,7 +37,7 @@
             }}
           />
           <p class="flex-1">
-            {service.price * (service.count - service.freeCount)}
+            {service.price[data.company.currency] * (service.count - service.freeCount)}
             {data.company.currency}
           </p>
         </div>
