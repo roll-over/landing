@@ -63,7 +63,7 @@
 </script>
 
 <SvelteSeo
-  title={`${data.infoCompany.title} ${l("в")} ${data.city.label}, ${data.country.label}`}
+  title={`${data.infoCompany.title} ${l("в")} ${data.city.label}, ${data.country.label}`.slice(0, 60)}
   description={`${l("Стоматология")} ${data.infoCompany.title} ${l("в")} ${data.city.label}. ${
     data.infoCompany.description || ""
   }`?.slice(0, 150)}
