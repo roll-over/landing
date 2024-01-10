@@ -76,8 +76,6 @@
     address: {
       "@type": "PostalAddress",
       addressLocality: `${data.city.label}`,
-      avatar: "",
-
       addressCountry: `${data.country.label}`,
       streetAddress: `${data.infoCompany.address}`,
     },
