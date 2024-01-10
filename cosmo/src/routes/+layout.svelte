@@ -90,11 +90,16 @@
     <div class="loader-mini2"></div>
     <div class="loader-mini3"></div>
     <div class="loader-mini4"></div>
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <svg xmlns="http://www.calc(w3.org/2)000/svg" version="1.1">
       <defs>
         <filter id="goo">
           <fegaussianblur in="SourceGraphic" stddeviation="15" result="blur"></fegaussianblur>
-          <fecolormatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -7" result="goo"></fecolormatrix>
+          <fecolormatrix
+            in="blur"
+            mode="matrix"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -7"
+            result="goo"
+          ></fecolormatrix>
           <feblend in="SourceGraphic" in2="goo"></feblend>
         </filter>
       </defs>
@@ -150,591 +155,592 @@
     width: 220px;
   }
 
-
   $intro-dark-color: #273355;
-$intro-light-color: #11DBD9;
-$angle: 5deg;
+  $intro-light-color: #11dbd9;
+  $angle: 5deg;
 
-$color1:#FF217B;
-$color2:#FF7878;
-$color3:#FFA283;
-$color4:#962A4E;
-$color5:#13C2D3;
+  $color1: #ff217b;
+  $color2: #ff7878;
+  $color3: #ffa283;
+  $color4: #962a4e;
+  $color5: #13c2d3;
 
+  $iteration: Infinite;
+  $goocolor: #11dbd9;
+  $orbitcolor: grey;
+  $bigsize: 8vw;
+  $smallsize: 3vw;
+  $containerwidth: 100vw;
+  $animoffset1: 15vw;
+  $animoffset2: 25vw;
+  $animoffset3: 35vw;
+  $animoffset4: 45vw;
+  $animtime: 16s;
+  $containerheight: 100vw;
+  $radius1: $smallsize * 2;
+  $radius2: $smallsize * 3;
+  $radius3: $smallsize * 4;
+  $radius4: $smallsize * 5;
 
-$iteration: Infinite;
-$goocolor: #11DBD9;
-$orbitcolor: grey;
-$bigsize:8vw;
-$smallsize:3vw;
-$containerwidth:100vw;
-$animoffset1:15vw;
-$animoffset2:25vw;
-$animoffset3:35vw;
-$animoffset4:45vw;
-$animtime:16s;
-$containerheight:100vw;
-$radius1: $smallsize*2;
-$radius2: $smallsize*3;
-$radius3: $smallsize*4;
-$radius4: $smallsize*5;
+  .game-loader {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: $intro-dark-color;
+  }
 
-.game-loader {
-  width:100vw;
-  height:100vh;
-  position: fixed;
-  top:0;
-  left:0;
-  z-index:-2;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	overflow:hidden;
-  background: $intro-dark-color;
-}
+  .game-loader__btn {
+    position: fixed;
+    outline: none;
+    min-width: $bigsize * 2;
+    min-height: calc($bigsize/2);
+    bottom: 10vh;
 
-.game-loader__btn{
-  position: fixed;
-  outline:none;
-  		min-width:$bigsize*2;
-		min-height:$bigsize/2;
-  bottom:10vh;
+    z-index: -1;
+    background: transparent;
+    border: 2px solid $intro-light-color;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    transition: 1s;
+    &:hover {
+      background: $intro-light-color;
+    }
+  }
 
-  z-index:-1;
-  background: transparent;
-  border: 2px solid $intro-light-color;
-  border-radius:25px;
-  color: white;
-  cursor: pointer;
-  padding:0.5em 1em;
-  transition: 1s;
-  &:hover{
-    background: $intro-light-color;
+  .game-loader__planet {
+    filter: url("#goo");
+    position: relative;
+    width: $containerwidth;
+    height: $containerheight;
+    &::after {
+      //big goo in middle
+      content: "";
+      display: block;
+      width: $bigsize;
+      height: $bigsize;
+      border-radius: 50%;
+      background: $goocolor;
+      box-shadow: $goocolor 0 0 24px 4px;
+      margin: 0 auto;
+      position: absolute;
+      top: calc($containerheight/2) - calc($bigsize/2);
+      left: calc($containerwidth/2) - calc($bigsize/2);
+      animation:
+        scale $animtime * 2 linear infinite,
+        color5 $animtime linear $iteration;
+    }
+    .loader-mini1 {
+      position: absolute;
+      width: $smallsize;
+      height: $smallsize;
+      border-radius: 50%;
+      // background:darken($goocolor, 10%);
+      background: $goocolor;
+      top: calc($containerheight/2) calc(-$smallsize/2);
+      left: calc($containerwidth/2) - calc($smallsize/2);
+      animation:
+        move1 $animtime linear $iteration,
+        color1 $animtime linear $iteration;
+    }
+    .loader-mini2 {
+      position: absolute;
+      width: $smallsize * 1.2;
+      height: $smallsize * 1.2;
+      border-radius: 50%;
+      // background:darken($goocolor, 10%);
+      background: $goocolor;
+      top: calc($containerheight/2) calc(-$smallsize/2);
+      left: calc($containerwidth/2) - calc($smallsize/2);
+      animation:
+        move2 $animtime + 1s linear $iteration,
+        color2 $animtime + 1s linear $iteration;
+    }
+    .loader-mini3 {
+      position: absolute;
+      width: $smallsize * 1.4;
+      height: $smallsize * 1.4;
+      border-radius: 50%;
+      // background:darken($goocolor, 15%);
+      background: $goocolor;
+      top: calc($containerheight/2) calc(-$smallsize/2);
+      left: calc($containerwidth/2) - calc($smallsize/2);
+      animation:
+        move3 $animtime + 2s linear $iteration,
+        color3 $animtime + 2s linear $iteration;
+    }
+    .loader-mini4 {
+      position: absolute;
+      width: $smallsize * 1.6;
+      height: $smallsize * 1.6;
+      border-radius: 50%;
+      // background:darken($goocolor, 20%);
+      background: $goocolor;
+      top: calc($containerheight/2) calc(-$smallsize/2);
+      left: calc($containerwidth/2) - calc($smallsize/2);
+      animation:
+        move4 $animtime + 3s linear $iteration,
+        color4 $animtime + 3s linear $iteration;
+    }
+    .loader-radius1 {
+      position: absolute;
+      width: $radius1 * 2;
+      height: $radius1 * 2;
+      border-radius: 50%;
+      // background:darken($goocolor, 10%);
+      border: 0.5px solid $goocolor;
+      opacity: 0.2;
+      background: transparent;
+      top: calc($containerheight/2) - $radius1;
+      left: calc($containerwidth/2) - $radius1;
+      transform: scale(0);
+      animation: orbit1 $animtime linear $iteration;
+    }
+    .loader-radius2 {
+      position: absolute;
+      width: $radius2 * 2;
+      height: $radius2 * 2;
+      border-radius: 50%;
+      // background:darken($goocolor, 10%);
+      border: 0.5px solid $goocolor;
+      opacity: 0.2;
+      background: transparent;
+      transform: scale(0);
+      top: calc($containerheight/2) - $radius2;
+      left: calc($containerwidth/2) - $radius2;
+      animation: orbit2 $animtime + 1s linear $iteration;
+    }
+    .loader-radius3 {
+      position: absolute;
+      width: $radius3 * 2;
+      height: $radius3 * 2;
+      border-radius: 50%;
+      // background:darken($goocolor, 10%);
+      border: 0.5px solid $goocolor;
+      opacity: 0.2;
+      background: transparent;
+      transform: scale(0);
+      top: calc($containerheight/2) - $radius3;
+      left: calc($containerwidth/2) - $radius3;
+      animation: orbit3 $animtime + 2s linear $iteration;
+    }
+    .loader-radius4 {
+      position: absolute;
+      width: $radius4 * 2;
+      height: $radius4 * 2;
+      border-radius: 50%;
+      // background:darken($goocolor, 10%);
+      border: 0.5px solid $goocolor;
+      opacity: 0.2;
+      background: transparent;
+      transform: scale(0);
+      top: calc($containerheight/2) - $radius4;
+      left: calc($containerwidth/2) - $radius4;
+      animation: orbit4 $animtime + 3s linear $iteration;
+    }
   }
-}
 
-.game-loader__planet{
-	filter:url('#goo');
-	position:relative;
-	width:$containerwidth;
-	height:$containerheight;
-	&::after { //big goo in middle
-		content:'';
-		display:block;
-		width:$bigsize;
-		height:$bigsize;
-		border-radius:50%;
-		background:$goocolor;
-	  box-shadow: $goocolor 0 0 24px 4px;
-		margin:0 auto;
-		position:absolute;
-		top:$containerheight/2 - $bigsize/2;
-		left:$containerwidth/2 - $bigsize/2;
-		animation:scale $animtime*2 linear infinite, color5 $animtime linear $iteration;
-	}
-	.loader-mini1 {
-		position:absolute;
-		width:$smallsize;
-		height:$smallsize;
-		border-radius:50%;
-		// background:darken($goocolor, 10%);
-    background:$goocolor;
-		top:$containerheight/2 -$smallsize/2;
-		left:$containerwidth/2 - $smallsize/2;
-		animation:move1 $animtime linear $iteration, color1 $animtime linear $iteration;
-	}
-  .loader-mini2 {
-		position:absolute;
-		width:$smallsize*1.2;
-		height:$smallsize*1.2;
-		border-radius:50%;
-		// background:darken($goocolor, 10%);
-    background:$goocolor;
-		top:$containerheight/2 -$smallsize/2;
-		left:$containerwidth/2 - $smallsize/2;
-		animation:move2 $animtime+1s linear $iteration, color2 $animtime+1s linear $iteration;
-	}
-  .loader-mini3 {
-		position:absolute;
-		width:$smallsize*1.4;
-		height:$smallsize*1.4;
-		border-radius:50%;
-		// background:darken($goocolor, 15%);
-    background:$goocolor;
-		top:$containerheight/2 -$smallsize/2;
-		left:$containerwidth/2 - $smallsize/2;
-		animation:move3 $animtime+2s linear $iteration, color3 $animtime+2s linear $iteration;
-	}
-  .loader-mini4 {
-		position:absolute;
-		width:$smallsize*1.6;
-		height:$smallsize*1.6;
-		border-radius:50%;
-		// background:darken($goocolor, 20%);
-    background:$goocolor;
-		top:$containerheight/2 -$smallsize/2;
-		left:$containerwidth/2 - $smallsize/2;
-		animation:move4 $animtime+3s linear $iteration, color4 $animtime+3s linear $iteration;
-	}
-  .loader-radius1 {
-		position:absolute;
-		width:$radius1*2;
-		height:$radius1*2;
-		border-radius:50%;
-		// background:darken($goocolor, 10%);
-    border:0.5px solid $goocolor;
-    opacity: 0.2;
-    background:transparent;
-		top:$containerheight/2 - $radius1;
-		left:$containerwidth/2 - $radius1;
-    transform:scale(0);
-		animation: orbit1 $animtime linear $iteration;
-	}
-  .loader-radius2 {
-		position:absolute;
-		width:$radius2*2;
-		height:$radius2*2;
-		border-radius:50%;
-		// background:darken($goocolor, 10%);
-    border:0.5px solid $goocolor;
-    opacity: 0.2;
-    background:transparent;
-        transform:scale(0);
-		top:$containerheight/2 - $radius2;
-		left:$containerwidth/2 - $radius2;
-		animation: orbit2 $animtime+1s linear $iteration;
-	}
-  .loader-radius3 {
-		position:absolute;
-		width:$radius3*2;
-		height:$radius3*2;
-		border-radius:50%;
-		// background:darken($goocolor, 10%);
-    border:0.5px solid $goocolor;
-    opacity: 0.2;
-    background:transparent;
-        transform:scale(0);
-		top:$containerheight/2 - $radius3;
-		left:$containerwidth/2 - $radius3;
-		animation: orbit3 $animtime+2s linear $iteration;
-	}
-  .loader-radius4 {
-		position:absolute;
-		width:$radius4*2;
-		height:$radius4*2;
-		border-radius:50%;
-		// background:darken($goocolor, 10%);
-    border:0.5px solid $goocolor;
-    opacity: 0.2;
-    background:transparent;
-        transform:scale(0);
-		top:$containerheight/2 - $radius4;
-		left:$containerwidth/2 - $radius4;
-		animation: orbit4 $animtime+3s linear $iteration;
-	}
-}
+  .game-loader__planet--color {
+    .loader-mini1 {
+      background: darken($goocolor, 5%);
+    }
+    .loader-mini2 {
+      background: darken($goocolor, 10%);
+    }
+    .loader-mini3 {
+      background: darken($goocolor, 15%);
+    }
+    .loader-mini4 {
+      background: darken($goocolor, 20%);
+    }
+  }
 
-.game-loader__planet--color{
-  .loader-mini1 {
-		background:darken($goocolor, 5%);
-	}
-  .loader-mini2 {
-		background:darken($goocolor, 10%);
-	}
-  .loader-mini3 {
-		background:darken($goocolor, 15%);
-	}
-  .loader-mini4 {
-		background:darken($goocolor, 20%);
-	}
-}
+  .btn-play {
+    left: calc($containerwidth/2) - ($bigsize + 1);
+  }
+  @keyframes move1 {
+    0% {
+      transform: skewX($angle) rotate(0deg) translateY(0em) rotate(0deg) skewX(-$angle) rotate(0deg);
+      // background:$goocolor;
+    }
 
-.btn-play{
-  left:$containerwidth/2 - ($bigsize+1);
-}
-@keyframes move1 {
-	0% {
-    transform: skewX($angle) rotate(0deg) translateY(0em) 
-               rotate(0deg) skewX(-$angle) rotate(0deg);
-    // background:$goocolor;
-  }
-  
-  10% {
-    transform: skewX($angle) rotate(180deg) translateY(-$radius1) 
-               rotate(-180deg) skewX(-$angle) rotate(180deg);
-  }
-  25% {
-    transform: skewX($angle) rotate(360deg) translateY(-$radius1*2) 
-               rotate(-360deg) skewX(-$angle) rotate(360deg);
-  }
-  
-  50% {
-    transform: skewX($angle) rotate(720deg) translateY(-$radius1*2) 
-               rotate(720deg) skewX(-$angle) rotate(720deg);
-    // background:red;
-  }
-  
-  75% {
-    transform: skewX($angle) rotate(1080deg) translateY(-$radius1*2) 
-               rotate(-1080deg) skewX(-$angle) rotate(1080deg);
-                 }
-  90% {
-    transform: skewX($angle) rotate(1260deg) translateY(-$radius1) 
-               rotate(-1260deg) skewX(-$angle) rotate(1260deg);
-  }
-  
-  
-  100% {
-    transform: skewX($angle) rotate(1440deg) translateY(0em) 
-               rotate(-1440deg) skewX(-$angle) rotate(1440deg);
-    // background:$goocolor;
-  }
-}
+    10% {
+      transform: skewX($angle) rotate(180deg) translateY(-$radius1) rotate(-180deg) skewX(-$angle)
+        rotate(180deg);
+    }
+    25% {
+      transform: skewX($angle) rotate(360deg) translateY(-$radius1 * 2) rotate(-360deg)
+        skewX(-$angle) rotate(360deg);
+    }
 
-@keyframes move2 {
-	0% {
-    transform: skewX($angle) rotate(0deg) translateY(0em) 
-               rotate(0deg) skewX(-$angle) rotate(0deg);
-  }
-  
-  10% {
-    transform: skewX($angle) rotate(180deg) translateY(-$radius2) 
-               rotate(-180deg) skewX(-$angle) rotate(180deg);
-  }
-  25% {
-    transform: skewX($angle) rotate(360deg) translateY(-$radius2*2) 
-               rotate(-360deg) skewX(-$angle) rotate(360deg);
-  }
-  
-  50% {
-    transform: skewX($angle) rotate(720deg) translateY(-$radius2*2) 
-               rotate(720deg) skewX(-$angle) rotate(720deg);
-  }
-  
-  75% {
-    transform: skewX($angle) rotate(1080deg) translateY(-$radius2*2) 
-               rotate(-1080deg) skewX(-$angle) rotate(1080deg);
-                 }
-  90% {
-    transform: skewX($angle) rotate(1260deg) translateY(-$radius2) 
-               rotate(-1260deg) skewX(-$angle) rotate(1260deg);
-  }
-  
-  
-  100% {
-    transform: skewX($angle) rotate(1440deg) translateY(0em) 
-               rotate(-1440deg) skewX(-$angle) rotate(1440deg);
-  }
-}
+    50% {
+      transform: skewX($angle) rotate(720deg) translateY(-$radius1 * 2) rotate(720deg)
+        skewX(-$angle) rotate(720deg);
+      // background:red;
+    }
 
-@keyframes move3 {
-	0% {
-    transform: skewX($angle) rotate(0deg) translateY(0em) 
-               rotate(0deg) skewX(-$angle) rotate(0deg);
-  }
-  
-  10% {
-    transform: skewX($angle) rotate(180deg) translateY(-$radius3) 
-               rotate(-180deg) skewX(-$angle) rotate(180deg);
-  }
-  25% {
-    transform: skewX($angle) rotate(360deg) translateY(-$radius3*2) 
-               rotate(-360deg) skewX(-$angle) rotate(360deg);
-  }
-  
-  50% {
-    transform: skewX($angle) rotate(720deg) translateY(-$radius3*2) 
-               rotate(720deg) skewX(-$angle) rotate(720deg);
-  }
-  
-  75% {
-    transform: skewX($angle) rotate(1080deg) translateY(-$radius3*2) 
-               rotate(-1080deg) skewX(-$angle) rotate(1080deg);
-                 }
-  90% {
-    transform: skewX($angle) rotate(1260deg) translateY(-$radius3) 
-               rotate(-1260deg) skewX(-$angle) rotate(1260deg);
-  }
-  
-  
-  100% {
-    transform: skewX($angle) rotate(1440deg) translateY(0em) 
-               rotate(-1440deg) skewX(-$angle) rotate(1440deg);
-  }
-}
+    75% {
+      transform: skewX($angle) rotate(1080deg) translateY(-$radius1 * 2) rotate(-1080deg)
+        skewX(-$angle) rotate(1080deg);
+    }
+    90% {
+      transform: skewX($angle) rotate(1260deg) translateY(-$radius1) rotate(-1260deg) skewX(-$angle)
+        rotate(1260deg);
+    }
 
-@keyframes move4 {
-	0% {
-    transform: skewX($angle) rotate(0deg) translateY(0em) 
-               rotate(0deg) skewX(-$angle) rotate(0deg);
+    100% {
+      transform: skewX($angle) rotate(1440deg) translateY(0em) rotate(-1440deg) skewX(-$angle)
+        rotate(1440deg);
+      // background:$goocolor;
+    }
   }
-  
-  10% {
-    transform: skewX($angle) rotate(180deg) translateY(-$radius4)
-               rotate(-180deg) skewX(-$angle) rotate(180deg);
-  }
-  25% {
-    transform: skewX($angle) rotate(360deg) translateY(-$radius4*2) 
-               rotate(-360deg) skewX(-$angle) rotate(360deg);
-  }
-  
-  50% {
-    transform: skewX($angle) rotate(720deg) translateY(-$radius4*2) 
-               rotate(720deg) skewX(-$angle) rotate(720deg);
-  }
-  
-  75% {
-    transform: skewX($angle) rotate(1080deg) translateY(-$radius4*2) 
-               rotate(-1080deg) skewX(-$angle) rotate(1080deg);
-                 }
-  90% {
-    transform: skewX($angle) rotate(1260deg) translateY(-$radius4) 
-               rotate(-1260deg) skewX(-$angle) rotate(1260deg);
-  }
-  
-  
-  100% {
-    transform: skewX($angle) rotate(1440deg) translateY(0em) 
-               rotate(-1440deg) skewX(-$angle) rotate(1440deg);
-  }
-}
 
-@keyframes scale {
-	0% {
-		transform:scale(1.5);
-  }
-	50% {
-		transform:scale(1);
-	}
-	100% {
-		transform:scale(1.5);
-	}
-}
+  @keyframes move2 {
+    0% {
+      transform: skewX($angle) rotate(0deg) translateY(0em) rotate(0deg) skewX(-$angle) rotate(0deg);
+    }
 
-@keyframes orbit1 {
-	0% {
-    transform:scale(0);
+    10% {
+      transform: skewX($angle) rotate(180deg) translateY(-$radius2) rotate(-180deg) skewX(-$angle)
+        rotate(180deg);
+    }
+    25% {
+      transform: skewX($angle) rotate(360deg) translateY(-$radius2 * 2) rotate(-360deg)
+        skewX(-$angle) rotate(360deg);
+    }
+
+    50% {
+      transform: skewX($angle) rotate(720deg) translateY(-$radius2 * 2) rotate(720deg)
+        skewX(-$angle) rotate(720deg);
+    }
+
+    75% {
+      transform: skewX($angle) rotate(1080deg) translateY(-$radius2 * 2) rotate(-1080deg)
+        skewX(-$angle) rotate(1080deg);
+    }
+    90% {
+      transform: skewX($angle) rotate(1260deg) translateY(-$radius2) rotate(-1260deg) skewX(-$angle)
+        rotate(1260deg);
+    }
+
+    100% {
+      transform: skewX($angle) rotate(1440deg) translateY(0em) rotate(-1440deg) skewX(-$angle)
+        rotate(1440deg);
+    }
   }
-  
-  10% {
-    transform:scale(1);
+
+  @keyframes move3 {
+    0% {
+      transform: skewX($angle) rotate(0deg) translateY(0em) rotate(0deg) skewX(-$angle) rotate(0deg);
+    }
+
+    10% {
+      transform: skewX($angle) rotate(180deg) translateY(-$radius3) rotate(-180deg) skewX(-$angle)
+        rotate(180deg);
+    }
+    25% {
+      transform: skewX($angle) rotate(360deg) translateY(-$radius3 * 2) rotate(-360deg)
+        skewX(-$angle) rotate(360deg);
+    }
+
+    50% {
+      transform: skewX($angle) rotate(720deg) translateY(-$radius3 * 2) rotate(720deg)
+        skewX(-$angle) rotate(720deg);
+    }
+
+    75% {
+      transform: skewX($angle) rotate(1080deg) translateY(-$radius3 * 2) rotate(-1080deg)
+        skewX(-$angle) rotate(1080deg);
+    }
+    90% {
+      transform: skewX($angle) rotate(1260deg) translateY(-$radius3) rotate(-1260deg) skewX(-$angle)
+        rotate(1260deg);
+    }
+
+    100% {
+      transform: skewX($angle) rotate(1440deg) translateY(0em) rotate(-1440deg) skewX(-$angle)
+        rotate(1440deg);
+    }
   }
-  25% {
-    transform:scale(2.2);
+
+  @keyframes move4 {
+    0% {
+      transform: skewX($angle) rotate(0deg) translateY(0em) rotate(0deg) skewX(-$angle) rotate(0deg);
+    }
+
+    10% {
+      transform: skewX($angle) rotate(180deg) translateY(-$radius4) rotate(-180deg) skewX(-$angle)
+        rotate(180deg);
+    }
+    25% {
+      transform: skewX($angle) rotate(360deg) translateY(-$radius4 * 2) rotate(-360deg)
+        skewX(-$angle) rotate(360deg);
+    }
+
+    50% {
+      transform: skewX($angle) rotate(720deg) translateY(-$radius4 * 2) rotate(720deg)
+        skewX(-$angle) rotate(720deg);
+    }
+
+    75% {
+      transform: skewX($angle) rotate(1080deg) translateY(-$radius4 * 2) rotate(-1080deg)
+        skewX(-$angle) rotate(1080deg);
+    }
+    90% {
+      transform: skewX($angle) rotate(1260deg) translateY(-$radius4) rotate(-1260deg) skewX(-$angle)
+        rotate(1260deg);
+    }
+
+    100% {
+      transform: skewX($angle) rotate(1440deg) translateY(0em) rotate(-1440deg) skewX(-$angle)
+        rotate(1440deg);
+    }
   }
-  
-   35% {
-    transform:scale(2.1);
+
+  @keyframes scale {
+    0% {
+      transform: scale(1.5);
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.5);
+    }
   }
-  
-  50% {
-    transform:scale(2);
-  }
-  
+
+  @keyframes orbit1 {
+    0% {
+      transform: scale(0);
+    }
+
+    10% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(2.2);
+    }
+
+    35% {
+      transform: scale(2.1);
+    }
+
+    50% {
+      transform: scale(2);
+    }
+
     65% {
-    transform:scale(2.1);
-  }
-  
-  75% {
-    transform: scale(2);
-  }
-  90% {
-    transform:scale(1);
-  }
-  
-  100% {
-    transform: scale(0);
-  }
-}
+      transform: scale(2.1);
+    }
 
-@keyframes orbit2 {
-	0% {
-    transform:scale(0);
+    75% {
+      transform: scale(2);
+    }
+    90% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(0);
+    }
   }
-  
-  10% {
-    transform:scale(1);
-  }
-  25% {
-    transform:scale(2.2);
-  }
-  
-   35% {
-    transform:scale(2.1);
-  }
-  
-  50% {
-    transform:scale(2);
-  }
-  
+
+  @keyframes orbit2 {
+    0% {
+      transform: scale(0);
+    }
+
+    10% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(2.2);
+    }
+
+    35% {
+      transform: scale(2.1);
+    }
+
+    50% {
+      transform: scale(2);
+    }
+
     65% {
-    transform:scale(2.1);
-  }
-  
-  75% {
-    transform: scale(2);
-  }
-  90% {
-    transform:scale(1);
-  }
-  
-  100% {
-    transform: scale(0);
-  }
-}
+      transform: scale(2.1);
+    }
 
-@keyframes orbit3 {
-		0% {
-    transform:scale(0);
+    75% {
+      transform: scale(2);
+    }
+    90% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(0);
+    }
   }
-  
-  10% {
-    transform:scale(1);
-  }
-  25% {
-    transform:scale(2.2);
-  }
-  
-   35% {
-    transform:scale(2.1);
-  }
-  
-  50% {
-    transform:scale(2);
-  }
-  
+
+  @keyframes orbit3 {
+    0% {
+      transform: scale(0);
+    }
+
+    10% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(2.2);
+    }
+
+    35% {
+      transform: scale(2.1);
+    }
+
+    50% {
+      transform: scale(2);
+    }
+
     65% {
-    transform:scale(2.1);
-  }
-  
-  75% {
-    transform: scale(2);
-  }
-  90% {
-    transform:scale(1);
-  }
-  
-  100% {
-    transform: scale(0);
-  }
-}
+      transform: scale(2.1);
+    }
 
-@keyframes orbit4 {
-		0% {
-    transform:scale(0);
+    75% {
+      transform: scale(2);
+    }
+    90% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(0);
+    }
   }
-  
-  10% {
-    transform:scale(1);
-  }
-  25% {
-    transform:scale(2.2);
-  }
-  
-   35% {
-    transform:scale(2.1);
-  }
-  
-  50% {
-    transform:scale(2);
-  }
-  
+
+  @keyframes orbit4 {
+    0% {
+      transform: scale(0);
+    }
+
+    10% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(2.2);
+    }
+
+    35% {
+      transform: scale(2.1);
+    }
+
+    50% {
+      transform: scale(2);
+    }
+
     65% {
-    transform:scale(2.1);
+      transform: scale(2.1);
+    }
+
+    75% {
+      transform: scale(2);
+    }
+    90% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(0);
+    }
   }
-  
-  75% {
-    transform: scale(2);
+
+  @keyframes color1 {
+    10% {
+      background: $goocolor;
+    }
+    50% {
+      background: $color1;
+    }
+    90% {
+      background: $goocolor;
+    }
   }
-  90% {
-    transform:scale(1);
+
+  @keyframes color2 {
+    10% {
+      background: $goocolor;
+    }
+    50% {
+      background: $color2;
+    }
+    90% {
+      background: $goocolor;
+    }
   }
-  
-  100% {
-    transform: scale(0);
+
+  @keyframes color3 {
+    10% {
+      background: $goocolor;
+    }
+    50% {
+      background: $color3;
+    }
+    90% {
+      background: $goocolor;
+    }
   }
-}
 
-@keyframes color1 {
-	10% {
-		background: $goocolor;
-	}
-	50% {
-		background: $color1;
-	}
-	90% {
-		background: $goocolor;
-	}
-}
+  @keyframes color4 {
+    10% {
+      background: $goocolor;
+    }
+    50% {
+      background: $color4;
+    }
+    90% {
+      background: $goocolor;
+    }
+  }
 
-@keyframes color2 {
-	10% {
-		background: $goocolor;
-	}
-	50% {
-		background: $color2;
-	}
-	90% {
-		background: $goocolor;
-	}
-}
+  @keyframes color5 {
+    10% {
+      background: $goocolor;
+      box-shadow: $goocolor 0 0 24px 4px;
+    }
+    50% {
+      background: $color5;
+      box-shadow: $color5 0 0 24px 4px;
+    }
+    90% {
+      background: $goocolor;
+      box-shadow: $goocolor 0 0 24px 4px;
+    }
+  }
 
-@keyframes color3 {
-	10% {
-		background: $goocolor;
-	}
-	50% {
-		background: $color3;
-	}
-	90% {
-		background: $goocolor;
-	}
-}
+  .game-loader {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
 
-@keyframes color4 {
-	10% {
-		background: $goocolor;
-	}
-	50% {
-		background: $color4;
-	}
-	90% {
-		background: $goocolor;
-	}
-}
-
-@keyframes color5 {
-	10% {
-		background: $goocolor;
-    box-shadow: $goocolor 0 0 24px 4px;
-	}
-	50% {
-		background: $color5;
-    box-shadow: $color5 0 0 24px 4px;
-	}
-	90% {
-		background: $goocolor;
-     box-shadow: $goocolor 0 0 24px 4px;
-	}
-}
-
-.game-loader {
-  width:100%;
-  height:100%;
-  position: fixed;
-  top:0;
-  left:0;
-  z-index: -2;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	overflow:hidden;
-}
-
-svg { //Firefox bug fix
-	position:absolute;
-	z-index:-100;
-	pointer-events:none;
-}
-
+  svg {
+    //Firefox bug fix
+    position: absolute;
+    z-index: -100;
+    pointer-events: none;
+  }
 </style>

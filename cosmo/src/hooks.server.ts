@@ -20,7 +20,7 @@ const svelteHandle = async ({ resolve, event }) => {
           html = html.replace("%lang%", lang);
           html = html.replace("%app_name%", getAppName());
 
-            html = html.replace("%variables%", "/cosmo-variables.css");
+          html = html.replace("%variables%", "/cosmo-variables.css");
           return html;
         },
       }),

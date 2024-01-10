@@ -5,7 +5,7 @@
 
 <SvelteSeo title="Созвездие CRM-систем" />
 
-<div class="flex flex-col justify-center items-center">
+<div class="flex flex-col items-center justify-center">
   <h1>Созвездие CRM-систем</h1>
 
   <p class="p p-4">
