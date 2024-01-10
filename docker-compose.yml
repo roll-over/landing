@@ -1,6 +1,35 @@
 version: "3.7"
 
 services:
+  cosmo_roll_over:
+    build: ./cosmo
+    container_name: cosmo_roll_over
+    working_dir: /frontend
+    command: node build
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    env_file:
+      - .env
+    depends_on:
+      - landing_mongo
+    environment:
+      - DEV_MODE=false
+  cosmo_roll_over_1:
+    build: ./cosmo
+    container_name: cosmo_roll_over_1
+    working_dir: /frontend
+    command: node build
+    restart: unless-stopped
+    ports:
+      - "3002:3000"
+    env_file:
+      - .env
+    depends_on:
+      - landing_mongo
+    environment:
+      - DEV_MODE=false    
+
   landing_mongo:
     image: mongo
     container_name: landing_mongo
@@ -16,7 +45,7 @@ services:
     command: node build
     restart: unless-stopped
     ports:
-      - "3011:3000"
+      - 03011:3000"
     env_file:
       - .env
     depends_on:
@@ -37,6 +66,7 @@ services:
       - landing_mongo
     environment:
       - DEV_MODE=false
+  
   preview_generator:
     build: ./apps/preview-generator
     container_name: preview_generator

@@ -1,6 +1,34 @@
 version: "3.7"
 
 services:
+  cosmo_roll_over_dev:
+    build:
+      context: ./cosmo
+      dockerfile: Dockerfile.dev
+    container_name: cosmo_roll_over_dev
+    command: pnpm run dev --host
+
+    working_dir: /frontend
+    volumes:
+      - ./cosmo/.svelte-kit/:/frontend/.svelte-kit/
+      - ./cosmo/patches/:/frontend/patches/
+      - ./cosmo/scripts/:/frontend/scripts/
+      - ./cosmo/src/:/frontend/src/
+      - ./cosmo/static/:/frontend/static/
+      - ./cosmo/package.json:/frontend/package.json
+      - ./cosmo/pnpm-lock.yaml:/frontend/pnpm-lock.yaml
+      - ./cosmo/postcss.config.cjs:/frontend/postcss.config.cjs
+      - ./cosmo/svelte.config.js:/frontend/svelte.config.js
+      - ./cosmo/tailwind.config.cjs:/frontend/tailwind.config.cjs
+      - ./cosmo/vite.config.ts:/frontend/vite.config.ts
+    ports:
+      - "5172:5173"
+    env_file:
+      - .env
+    environment:
+      - DEV_MODE=true
+    depends_on:
+      - landing_mongo_dev
   landing_roll_over_dev:
     build:
       context: ./landing
