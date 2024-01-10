@@ -245,7 +245,7 @@
       border-radius: 50%;
       // background:darken($goocolor, 10%);
       background: $goocolor;
-      top: calc($containerheight/2) calc(-$smallsize/2);
+      top: calc($containerheight/2) - calc($smallsize/2);
       left: calc($containerwidth/2) - calc($smallsize/2);
       animation:
         move1 $animtime linear $iteration,
@@ -258,7 +258,7 @@
       border-radius: 50%;
       // background:darken($goocolor, 10%);
       background: $goocolor;
-      top: calc($containerheight/2) calc(-$smallsize/2);
+      top: calc($containerheight/2) - calc($smallsize/2);
       left: calc($containerwidth/2) - calc($smallsize/2);
       animation:
         move2 $animtime + 1s linear $iteration,
@@ -271,7 +271,7 @@
       border-radius: 50%;
       // background:darken($goocolor, 15%);
       background: $goocolor;
-      top: calc($containerheight/2) calc(-$smallsize/2);
+      top: calc($containerheight/2) - calc($smallsize/2);
       left: calc($containerwidth/2) - calc($smallsize/2);
       animation:
         move3 $animtime + 2s linear $iteration,
@@ -284,7 +284,7 @@
       border-radius: 50%;
       // background:darken($goocolor, 20%);
       background: $goocolor;
-      top: calc($containerheight/2) calc(-$smallsize/2);
+      top: calc($containerheight/2) - calc($smallsize/2);
       left: calc($containerwidth/2) - calc($smallsize/2);
       animation:
         move4 $animtime + 3s linear $iteration,
