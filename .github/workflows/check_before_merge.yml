@@ -1,0 +1,99 @@
+name: "Check Before Merge"
+
+on:
+  pull_request:
+    branches:
+      - main
+
+env:
+  # Setting an environment variable with the value of a configuration variable
+  env_var: ${{ vars.ENV_CONTEXT_VAR }}
+
+jobs:
+  landing_filter:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.landing_filter.outputs.workflows }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: landing_filter
+        with:
+          filters: |
+            workflows:
+              - 'landing/**'
+  denta_filter:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.denta_filter.outputs.workflows }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: denta_filter
+        with:
+          filters: |
+            workflows:
+              - 'denta/**'
+
+  apps_filter:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.apps_filter.outputs.workflows }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: apps_filter
+        with:
+          filters: |
+            workflows:
+              - 'apps/**'
+
+  prettier_check_landing:
+    runs-on: ubuntu-latest
+    needs: [landing_filter]
+    steps:
+      - uses: actions/checkout@v3
+        name: Setup workspace
+      - uses: pnpm/action-setup@v2.4.0
+        name: Setup pnpm
+        with:
+          package_json_file: "./landing/package.json"
+      - uses: actions/setup-node@v3
+        name: Setup node
+        id: node
+        with:
+          node-version: ">=18.10.0"
+          cache: "pnpm"
+          cache-dependency-path: "./landing/pnpm-lock.yaml"
+      - run: pnpm install
+        name: Setup node_modules
+        working-directory: ./landing
+      - run: pnpm run prettier
+        name: Formatter
+        working-directory: ./landing
+        if: always()
+
+  prettier_check_denta:
+    runs-on: ubuntu-latest
+    needs: [denta_filter]
+    steps:
+      - uses: actions/checkout@v3
+        name: Setup workspace
+      - uses: pnpm/action-setup@v2.4.0
+        name: Setup pnpm
+        with:
+          package_json_file: "./denta/package.json"
+      - uses: actions/setup-node@v3
+        name: Setup node
+        id: node
+        with:
+          node-version: ">=18.10.0"
+          cache: "pnpm"
+          cache-dependency-path: "./denta/pnpm-lock.yaml"
+      - run: pnpm install
+        name: Setup node_modules
+        working-directory: ./denta
+      - run: pnpm run prettier
+        name: Formatter
+        working-directory: ./denta
+        if: always()
