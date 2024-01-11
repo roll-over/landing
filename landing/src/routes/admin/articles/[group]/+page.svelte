@@ -157,7 +157,6 @@
     if (data.error) {
       alert(data.error);
     } else {
-      console.log(data);
       inEditing.faq = JSON.parse(data);
     }
   };

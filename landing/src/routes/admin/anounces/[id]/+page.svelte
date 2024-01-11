@@ -101,16 +101,11 @@
           id="date"
           bind:value={date}
           class="rounded-xl border-2 border-gray-400 px-5 py-2"
-          on:change={() => {
-            console.log(date);
-          }}
         />
       </div>
 
       <button
         on:click={async () => {
-          console.log(date);
-
           await fetch(`/admin/anounces/api`, {
             method: "PUT",
             headers: {

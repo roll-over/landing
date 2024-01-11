@@ -53,11 +53,9 @@
 
   const getRangeOfWeeksFromThiWeek = () => {
     return new Array(7).fill(0).map((_, i) => {
-      console.log(thisWeek + i);
       return thisWeek + i;
     });
   };
-  console.log(getRangeOfWeeksFromThiWeek());
 
   const getAnounceByDate = (dayOnWeek: number, week: number) => {
     return data.anounces.find((x) => {
@@ -89,7 +87,7 @@
     }}>Добавить</button
   >
 
-  <div class="grid grid-cols-8 w-full gap-1">
+  <div class="grid w-full grid-cols-8 gap-1">
     {#each ["", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"] as day}
       <div class="text-center">
         {day}
@@ -101,7 +99,7 @@
       </div>
       {#each [1, 2, 3, 4, 5, 6, 7] as dayOnWeek}
         <div
-          class={`rounded-xl border-2 p-1 w-full ${
+          class={`w-full rounded-xl border-2 p-1 ${
             week === thisWeek && dayOnWeek === thisDay + 1 ? "border-blue-200" : "border-black"
           }`}
         >
@@ -114,13 +112,13 @@
                   : getAnounceByDate(dayOnWeek, week).status === "cancel"
                   ? "bg-yellow-400"
                   : "bg-red-700"
-              } hover:bg-green-500 p-1 w-full`}
+              } w-full p-1 hover:bg-green-500`}
             >
               {getDateBy(dayOnWeek, week).toLocaleString().split(",")[0].split("/")[1]}
             </a>
           {:else}
             <button
-              class="text-center hover:bg-slate-700 p-1 w-full"
+              class="w-full p-1 text-center hover:bg-slate-700"
               on:click={async () => {
                 await fetch("/admin/anounces/api", {
                   method: "POST",
