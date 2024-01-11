@@ -98,6 +98,17 @@ export const GET = async (event) => {
       }
 
       const filter = async (line) => {
+        const lineFromDb = await _db.collection("timecodes-cache").findOne(
+          {
+            line: line,
+          },
+          { projection: { _id: 0 } },
+        );
+
+        if (lineFromDb) {
+          return lineFromDb.result;
+        }
+
         const system = {
           ru: `
   Представь, что ты профессиональный редактор описаний и тебе нужно отредактировать описания для видео.  
@@ -126,22 +137,34 @@ export const GET = async (event) => {
           model: "gpt-4",
         });
 
+        await _db.collection("timecodes-cache").updateOne(
+          {
+            line: line,
+          },
+          {
+            $set: {
+              line: line,
+              result: chatCompletion.choices[0].message.content,
+            },
+          },
+          { upsert: true },
+        );
+
         return chatCompletion.choices[0].message.content;
       };
 
-      const result = await Promise.all(
-        (limit ? grouped.slice(0, limit) : grouped).map(async (i) => {
-          return (
-            `${i[0].start} - ` +
-            (await filter(
-              i
-                .filter((x) => x)
-                .map((j) => `${j.text}`)
-                .join("\n"),
-            ))
-          );
-        }),
-      );
+      const result: string[] = [];
+      for await (const i of grouped) {
+        const item =
+          `${i[0].start} - ` +
+          (await filter(
+            i
+              .filter((x) => x)
+              .map((j) => `${j.text}`)
+              .join("\n"),
+          ));
+        result.push(item);
+      }
 
       await _db.collection("timecodes").updateOne(
         {
