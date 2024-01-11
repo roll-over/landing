@@ -48,3 +48,23 @@ export const PUT = async (event) => {
 
   return json({ status: "ok" });
 };
+
+export const DELETE = async (event) => {
+  const result = await useAdminGuard(event);
+  if (result) {
+    return result;
+  }
+
+  const body = await event.request.json();
+  const id = body.id;
+  const _db = await db();
+  if (!_db) {
+    throw Error("No database connection");
+  }
+
+  await _db.collection("anounces").deleteOne({
+    id: id,
+  });
+
+  return json({ status: "ok" });
+};

@@ -1,5 +1,5 @@
 import db from "$lib/db";
-import { json } from "@sveltejs/kit";
+import { json, redirect } from "@sveltejs/kit";
 
 export const load = async (event) => {
   const _db = await db();
@@ -18,6 +18,10 @@ export const load = async (event) => {
       },
     },
   );
+
+  if (!anounce) {
+    throw redirect(302, `/admin/anounces/`);
+  }
 
   return {
     anounce,

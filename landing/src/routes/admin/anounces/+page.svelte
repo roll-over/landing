@@ -26,11 +26,9 @@
     date.setUTCMinutes(0);
     date.setUTCSeconds(0);
     date.setUTCMilliseconds(0);
-   
 
     date.setUTCDate(date.getUTCDate() + ((dayOnWeek - date.getUTCDay() + 7) % 7));
     date.setUTCDate(date.getUTCDate() + (week - getWeekByDate(date)) * 7);
-
 
     return date;
   };
@@ -51,6 +49,7 @@
   };
 
   $: thisWeek = getWeek();
+  $: thisDay = new Date().getUTCDay();
 
   const getRangeOfWeeksFromThiWeek = () => {
     return new Array(7).fill(0).map((_, i) => {
@@ -82,6 +81,7 @@
           openMicType: "meetup",
           speakerName: "",
           videoUrl: "",
+          status: "planing",
           date: getNextThursdayDateWith11HoursInUTC(),
         }),
       });
@@ -97,52 +97,75 @@
     {/each}
     {#each getRangeOfWeeksFromThiWeek() as week}
       <div>
-        {week}:
+        {week} ({getDateBy(1, week).toLocaleString().split(",")[0].split("/")[0]}):
       </div>
       {#each [1, 2, 3, 4, 5, 6, 7] as dayOnWeek}
-        {#if getAnounceByDate(dayOnWeek, week)}
-          <a
-            href={`/admin/anounces/${getAnounceByDate(dayOnWeek, week).id}`}
-            class="text-center bg-green-700 hover:bg-green-500 p-1 w-full"
-          >
-          </a>
-        {:else}
-          <button
-            class="text-center hover:bg-slate-700 p-1 w-full"
-            on:click={async () => {
-              await fetch("/admin/anounces/api", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  title: "",
-                  openMicType: "meetup",
-                  speakerName: "",
-                  videoUrl: "",
-                  date: getDateBy(dayOnWeek, week),
-                }),
-              });
-              window.location.reload();
-            }}
-          >
-            +
-          </button>
-        {/if}
+        <div
+          class={`rounded-xl border-2 p-1 w-full ${
+            week === thisWeek && dayOnWeek === thisDay + 1 ? "border-blue-200" : "border-black"
+          }`}
+        >
+          {#if getAnounceByDate(dayOnWeek, week)}
+            <a
+              href={`#anounce-id-${getAnounceByDate(dayOnWeek, week).id}`}
+              class={`block text-center ${
+                getAnounceByDate(dayOnWeek, week).status === "planing"
+                  ? "bg-green-700"
+                  : getAnounceByDate(dayOnWeek, week).status === "cancel"
+                  ? "bg-yellow-400"
+                  : "bg-red-700"
+              } hover:bg-green-500 p-1 w-full`}
+            >
+              {getDateBy(dayOnWeek, week).toLocaleString().split(",")[0].split("/")[1]}
+            </a>
+          {:else}
+            <button
+              class="text-center hover:bg-slate-700 p-1 w-full"
+              on:click={async () => {
+                await fetch("/admin/anounces/api", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    title: "",
+                    openMicType: "meetup",
+                    speakerName: "",
+                    videoUrl: "",
+                    status: "planing",
+                    date: getDateBy(dayOnWeek, week),
+                  }),
+                });
+                window.location.reload();
+              }}
+            >
+              {getDateBy(dayOnWeek, week).toLocaleString().split(",")[0].split("/")[1]}
+            </button>
+          {/if}
+        </div>
       {/each}
     {/each}
   </div>
 
   {#each data.anounces as anounce}
-    <div class="flex flex-col">
+    <div class="flex flex-col" id={`anounce-id-${anounce.id}`}>
       <h1 class={anounce.title ? "" : "text-red-500"}>Тема: {anounce.title}</h1>
       <p>
         Дата проведения: {anounce.date
           ? new Date(anounce.date).toLocaleString()
           : "Не указана дата"}
       </p>
-      <p>
+      <p class={anounce.openMicType ? "" : "text-red-500"}>
         Тип: {anounce.openMicType}
+      </p>
+      <p
+        class={anounce.status === "planing"
+          ? "text-green-500"
+          : anounce.status === "cancel"
+          ? "text-yellow-400"
+          : "text-red-500"}
+      >
+        Статус: {anounce.status}
       </p>
       <p class={anounce.speakerName ? "" : "text-red-500"}>
         Имя выступащего: {anounce.speakerName}
