@@ -206,7 +206,6 @@
     border: 2px solid $intro-light-color;
     border-radius: 25px;
     color: white;
-    cursor: pointer;
     padding: 0.5em 1em;
     transition: 1s;
     &:hover {
@@ -220,7 +219,6 @@
     width: $containerwidth;
     height: $containerheight;
     &::after {
-      //big goo in middle
       content: "";
       display: block;
       width: $bigsize;
@@ -241,7 +239,6 @@
       width: $smallsize;
       height: $smallsize;
       border-radius: 50%;
-      // background:darken($goocolor, 10%);
       background: $goocolor;
       top: calc($containerheight/2) - calc($smallsize/2);
       left: calc($containerwidth/2) - calc($smallsize/2);
@@ -254,7 +251,6 @@
       width: $smallsize * 1.2;
       height: $smallsize * 1.2;
       border-radius: 50%;
-      // background:darken($goocolor, 10%);
       background: $goocolor;
       top: calc($containerheight/2) - calc($smallsize/2);
       left: calc($containerwidth/2) - calc($smallsize/2);
@@ -267,7 +263,6 @@
       width: $smallsize * 1.4;
       height: $smallsize * 1.4;
       border-radius: 50%;
-      // background:darken($goocolor, 15%);
       background: $goocolor;
       top: calc($containerheight/2) - calc($smallsize/2);
       left: calc($containerwidth/2) - calc($smallsize/2);
@@ -280,7 +275,6 @@
       width: $smallsize * 1.6;
       height: $smallsize * 1.6;
       border-radius: 50%;
-      // background:darken($goocolor, 20%);
       background: $goocolor;
       top: calc($containerheight/2) - calc($smallsize/2);
       left: calc($containerwidth/2) - calc($smallsize/2);
@@ -293,7 +287,6 @@
       width: $radius1 * 2;
       height: $radius1 * 2;
       border-radius: 50%;
-      // background:darken($goocolor, 10%);
       border: 0.5px solid $goocolor;
       opacity: 0.2;
       background: transparent;
@@ -307,7 +300,6 @@
       width: $radius2 * 2;
       height: $radius2 * 2;
       border-radius: 50%;
-      // background:darken($goocolor, 10%);
       border: 0.5px solid $goocolor;
       opacity: 0.2;
       background: transparent;
@@ -321,7 +313,6 @@
       width: $radius3 * 2;
       height: $radius3 * 2;
       border-radius: 50%;
-      // background:darken($goocolor, 10%);
       border: 0.5px solid $goocolor;
       opacity: 0.2;
       background: transparent;
@@ -335,7 +326,6 @@
       width: $radius4 * 2;
       height: $radius4 * 2;
       border-radius: 50%;
-      // background:darken($goocolor, 10%);
       border: 0.5px solid $goocolor;
       opacity: 0.2;
       background: transparent;
@@ -346,28 +336,12 @@
     }
   }
 
-  .game-loader__planet--color {
-    .loader-mini1 {
-      background: darken($goocolor, 5%);
-    }
-    .loader-mini2 {
-      background: darken($goocolor, 10%);
-    }
-    .loader-mini3 {
-      background: darken($goocolor, 15%);
-    }
-    .loader-mini4 {
-      background: darken($goocolor, 20%);
-    }
-  }
-
   .btn-play {
     left: calc($containerwidth/2) - ($bigsize + 1);
   }
   @keyframes move1 {
     0% {
       transform: skewX($angle) rotate(0deg) translateY(0em) rotate(0deg) skewX(-$angle) rotate(0deg);
-      // background:$goocolor;
     }
 
     10% {
@@ -382,7 +356,6 @@
     50% {
       transform: skewX($angle) rotate(720deg) translateY(-$radius1 * 2) rotate(720deg)
         skewX(-$angle) rotate(720deg);
-      // background:red;
     }
 
     75% {
@@ -397,7 +370,6 @@
     100% {
       transform: skewX($angle) rotate(1440deg) translateY(0em) rotate(-1440deg) skewX(-$angle)
         rotate(1440deg);
-      // background:$goocolor;
     }
   }
 
@@ -736,7 +708,6 @@
   }
 
   svg {
-    //Firefox bug fix
     position: absolute;
     z-index: -100;
     pointer-events: none;
