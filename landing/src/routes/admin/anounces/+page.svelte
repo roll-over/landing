@@ -19,6 +19,53 @@
     }
     return date;
   };
+
+  const getDateBy = (dayOnWeek: number, week: number) => {
+    const date = new Date();
+    date.setUTCHours(11);
+    date.setUTCMinutes(0);
+    date.setUTCSeconds(0);
+    date.setUTCMilliseconds(0);
+   
+
+    date.setUTCDate(date.getUTCDate() + ((dayOnWeek - date.getUTCDay() + 7) % 7));
+    date.setUTCDate(date.getUTCDate() + (week - getWeekByDate(date)) * 7);
+
+
+    return date;
+  };
+
+  const getWeek = () => {
+    const date = new Date();
+    const onejan = new Date(date.getFullYear(), 0, 1);
+    const today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    const dayOfYear = (today - onejan + 86400000) / 86400000;
+    return Math.ceil(dayOfYear / 7);
+  };
+
+  const getWeekByDate = (date: Date) => {
+    const onejan = new Date(date.getFullYear(), 0, 1);
+    const today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    const dayOfYear = (today - onejan + 86400000) / 86400000;
+    return Math.ceil(dayOfYear / 7);
+  };
+
+  $: thisWeek = getWeek();
+
+  const getRangeOfWeeksFromThiWeek = () => {
+    return new Array(7).fill(0).map((_, i) => {
+      console.log(thisWeek + i);
+      return thisWeek + i;
+    });
+  };
+  console.log(getRangeOfWeeksFromThiWeek());
+
+  const getAnounceByDate = (dayOnWeek: number, week: number) => {
+    return data.anounces.find((x) => {
+      const date = new Date(x.date);
+      return date.getUTCDay() === dayOnWeek && getWeekByDate(date) === week;
+    });
+  };
 </script>
 
 <CenteredPage>
@@ -41,6 +88,51 @@
       window.location.reload();
     }}>Добавить</button
   >
+
+  <div class="grid grid-cols-8 w-full gap-1">
+    {#each ["", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"] as day}
+      <div class="text-center">
+        {day}
+      </div>
+    {/each}
+    {#each getRangeOfWeeksFromThiWeek() as week}
+      <div>
+        {week}:
+      </div>
+      {#each [1, 2, 3, 4, 5, 6, 7] as dayOnWeek}
+        {#if getAnounceByDate(dayOnWeek, week)}
+          <a
+            href={`/admin/anounces/${getAnounceByDate(dayOnWeek, week).id}`}
+            class="text-center bg-green-700 hover:bg-green-500 p-1 w-full"
+          >
+          </a>
+        {:else}
+          <button
+            class="text-center hover:bg-slate-700 p-1 w-full"
+            on:click={async () => {
+              await fetch("/admin/anounces/api", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  title: "",
+                  openMicType: "meetup",
+                  speakerName: "",
+                  videoUrl: "",
+                  date: getDateBy(dayOnWeek, week),
+                }),
+              });
+              window.location.reload();
+            }}
+          >
+            +
+          </button>
+        {/if}
+      {/each}
+    {/each}
+  </div>
+
   {#each data.anounces as anounce}
     <div class="flex flex-col">
       <h1 class={anounce.title ? "" : "text-red-500"}>Тема: {anounce.title}</h1>
