@@ -1,19 +1,19 @@
-
 const langs = {
   ru: {
     "Созвездие CRM-систем": "Созвездие CRM-систем",
-    "Созвездие CRM-систем — это сервис, где вы можете найти подходящую CRM-систему для вашего бизнеса.": "Созвездие CRM-систем — это сервис, где вы можете найти подходящую CRM-систему для вашего бизнеса.",
+    "Созвездие CRM-систем — это сервис, где вы можете найти подходящую CRM-систему для вашего бизнеса.":
+      "Созвездие CRM-систем — это сервис, где вы можете найти подходящую CRM-систему для вашего бизнеса.",
     "CRM-система для стоматологий": "CRM-система для стоматологий",
     "CRM-система для юристов": "CRM-система для юристов",
   },
-  en : {
+  en: {
     "Созвездие CRM-систем": "Constellation of CRM systems",
-    "Созвездие CRM-систем — это сервис, где вы можете найти подходящую CRM-систему для вашего бизнеса.": "Constellation of CRM systems is a service where you can find a suitable CRM system for your business.",
+    "Созвездие CRM-систем — это сервис, где вы можете найти подходящую CRM-систему для вашего бизнеса.":
+      "Constellation of CRM systems is a service where you can find a suitable CRM system for your business.",
     "CRM-система для стоматологий": "CRM system for dentistry",
     "CRM-система для юристов": "CRM system for lawyers",
-  }
-}
-
+  },
+};
 
 if (Object.keys(langs.ru).length !== Object.keys(langs.en).length) {
   const ruKeys = Object.keys(langs.ru);

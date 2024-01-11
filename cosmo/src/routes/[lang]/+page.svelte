@@ -21,7 +21,7 @@
     )}
   </p>
 </div>
-<ul class="flex flex-col p-2 md:p-5 gap-5 md:gap-10 justify-center items-center w-full">
+<ul class="flex w-full flex-col items-center justify-center gap-5 p-2 md:gap-10 md:p-5">
   <li>
     <a href={`https://denta-crm.com/${$page.params.lang}?utm_source=cosmo-crm.com`} class="card">
       <header class="card-header">
