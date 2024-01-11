@@ -1,6 +1,5 @@
 import { t } from "$lib/backend/localisation";
 import db from "$lib/db";
-import { getSession } from "@auth/sveltekit";
 import { error } from "@sveltejs/kit";
 
 export const load = async (event) => {
