@@ -2,6 +2,7 @@ import { SvelteKitAuth } from "@auth/sveltekit";
 import Google from "@auth/core/providers/google";
 import { env } from "$env/dynamic/private";
 import type { Handle } from "@sveltejs/kit";
+import { startMongo } from "$lib/db";
 
 const _svelteHandle = SvelteKitAuth({
   trustHost: true,
@@ -77,3 +78,9 @@ export const handle: Handle = async ({ resolve, event }) => {
 
   return response;
 };
+
+startMongo()
+  .then(() => {})
+  .catch((e) => {
+    console.error(e);
+  });
