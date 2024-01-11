@@ -1,9 +1,7 @@
 import { SvelteKitAuth } from "@auth/sveltekit";
 import Google from "@auth/core/providers/google";
 import { env } from "$env/dynamic/private";
-import { startMongo } from "$lib/db";
 import type { Handle } from "@sveltejs/kit";
-import { getAppName } from "$lib/app_name";
 
 const _svelteHandle = SvelteKitAuth({
   trustHost: true,
@@ -18,7 +16,6 @@ const svelteHandle = async ({ resolve, event }) => {
       resolve(event, {
         transformPageChunk: ({ html }) => {
           html = html.replace("%lang%", lang);
-          html = html.replace("%app_name%", getAppName());
 
           html = html.replace("%variables%", "/cosmo-variables.css");
           return html;
@@ -80,9 +77,3 @@ export const handle: Handle = async ({ resolve, event }) => {
 
   return response;
 };
-
-startMongo()
-  .then(() => {})
-  .catch((e) => {
-    console.error(e);
-  });

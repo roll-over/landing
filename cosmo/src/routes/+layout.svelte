@@ -5,10 +5,7 @@
 
   import { clickOutside } from "$lib/clickOutside";
 
-  import { localisation } from "$lib/localisation/localisation";
   import { onMount } from "svelte";
-  let l = localisation($page.params.lang);
-  $: l = localisation($page.params.lang);
 
   initializeStores();
 
@@ -122,7 +119,6 @@
         <a href="https://roll-over.org/?utm_source=cosmo-crm.com" class="p-3 text-slate-500 md:p-1"
           >roll-over</a
         >
-        <a href={`/${$page.params.lang}/about`} class="p-3 text-slate-500 md:p-1">About</a>
       </div>
 
       <div class="flex flex-col gap-2">
@@ -143,10 +139,12 @@
 
 <style lang="scss">
   main {
-    min-height: calc(100vh - 150px);
+    min-height: calc(100vh);
   }
+
   footer {
-    min-height: 150px;
+    min-height: 180px;
+    height: min-content;
     background-color: var(--secondary-background-color);
   }
 
