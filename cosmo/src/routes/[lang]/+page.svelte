@@ -5,7 +5,12 @@
   $: l = localisation($page.params.lang);
 </script>
 
-<SvelteSeo title={l("Созвездие CRM-систем")} />
+<SvelteSeo
+  title={l("Созвездие CRM-систем")}
+  description={l(
+    "Созвездие CRM-систем — это сервис, где вы можете найти подходящую CRM-систему для вашего бизнеса.",
+  )}
+/>
 
 <div class="flex flex-col items-center justify-center">
   <h1>{l("Созвездие CRM-систем")}</h1>
