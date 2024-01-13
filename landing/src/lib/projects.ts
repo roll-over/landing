@@ -3,7 +3,7 @@ import OpenMic from "$lib/assets/logos/its-open-mic.jpg";
 import RedFlags from "$lib/assets/logos/red-flags.jpg";
 import HideHire from "$lib/assets/logos/hide-hire.png";
 import SimplePsychologist from "$lib/assets/logos/simple-psychologist.png";
-import DentaCRM from "$lib/assets/logos/denta-crm.webp";
+import CosmoCRM from "$lib/assets/logos/cosmo.png";
 import ReLife from "$lib/assets/logos/relife.svg";
 
 export const Status = {
@@ -28,11 +28,11 @@ export const projects = [
     owner: Owners.rollOver,
   },
   {
-    href: "https://denta-crm.com/?utm_source=roll-over.org",
-    title: "denta-crm",
-    description: "CRM для стоматологических клиник",
+    href: "https://cosmo-crm.com/?utm_source=roll-over.org",
+    title: "cosmo-crm",
+    description: "Созвездие CRM-систем",
     status: Status.releasedFirstVersion,
-    logo: DentaCRM,
+    logo: CosmoCRM,
     owner: Owners.rollOver,
   },
   {
