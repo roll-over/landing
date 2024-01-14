@@ -13,7 +13,7 @@
 
   import { localisation } from "$lib/localisation/localisation";
   import { onMount } from "svelte";
-  import { getLogoSrc, getAppParams } from "$lib/app_name";
+  import { getLogoSrc, getAppParams, getAppName } from "$lib/app_name";
   let l = localisation($page.params.lang);
   $: l = localisation($page.params.lang);
 
@@ -173,7 +173,15 @@
 
     <div class="flex flex-col items-center justify-between p-2 md:flex-row">
       <a href={`/${$page.params.lang}`} class="flex flex-row">
-        <img src={getLogoSrc()} class="logo rounded-xl" alt="logo denta-crm" />
+        {#if getAppName() === "denta"}
+          <span class="text-3xl bg-gray-400 p-3 rounded-2xl border-2 border-gray-200"
+            >🦷 denta-crm</span
+          >
+        {:else if getAppName() === "femida"}
+          <span class="text-3xl bg-gray-400 p-3 rounded-2xl border-2 border-gray-200"
+            >⚖️ femida-crm</span
+          >
+        {:else}{/if}
       </a>
 
       <ol class="flex flex-row flex-wrap items-center gap-1">
