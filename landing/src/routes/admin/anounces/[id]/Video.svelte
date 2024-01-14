@@ -27,6 +27,21 @@
   $: shortTranscribatedTitle = makeTranscribationFromRuToEn(data.anounce.title);
 
   $: videoDescription = `
+Заказная разработка:
+https://roll-over.org/projects/crafts?utm_source=Youtube&utm_campaign=kak-porvat-russkoyazychnyj-it-blogging
+ 
+------------------------
+
+Контакты гостя:
+
+------------------------
+
+Поддержать канал:
+https://boosty.to/roll-over
+https://www.patreon.com/roll_over
+
+------------------------
+
 IT's open mic - https://roll-over.org/projects/its-open-mic?utm_source=Youtube&utm_campaign=${shortTranscribatedTitle}
 Сервер дискорд для живого участия - https://discord.gg/N36R25pMRa
 Анонсы в телеграме - https://t.me/its_open_mic
@@ -40,10 +55,9 @@ IT's open mic - https://roll-over.org/projects/its-open-mic?utm_source=Youtube&u
 ------------------------
 
 Самореклама:
-CRM система для малых стоматологий -  https://denta-crm.com/?utm_source=Youtube&utm_campaign=${shortTranscribatedTitle}
+Созвездие CRM-систем -  https://cosmo-crm.com/?utm_source=Youtube&utm_campaign=${shortTranscribatedTitle}
 
-------------------------
-  
+------------------------  
 `;
 
   $: videoVisible = false;
