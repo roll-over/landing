@@ -1,6 +1,5 @@
 <script lang="ts">
   import { invalidateAll } from "$app/navigation";
-  import { page } from "$app/stores";
   import CenteredPage from "$lib/components/blocks/CenteredPage.svelte";
   import PostAnounces from "./PostAnounces.svelte";
   import PreAnounces from "./PreAnounces.svelte";
@@ -18,7 +17,8 @@
     };
   };
 
-  $: date = date || new Date(data.anounce.date).toISOString().slice(0, 16);
+  $: date =
+    date || data.anounce.date ? new Date(data.anounce.date).toISOString().slice(0, 16) : null;
 </script>
 
 <CenteredPage>
@@ -48,6 +48,8 @@
         >
           <option value="cancel">Отменен</option>
           <option value="planing">Планируется</option>
+          <option value="pending-ghost">Ожидается ответ гостя</option>
+          <option value="past">Прошел</option>
         </select>
       </div>
 

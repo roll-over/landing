@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { anounces } from "$lib/assets/anounces/anounces";
+  import Anounce from "./Anounce.svelte";
   import CenteredPage from "$lib/components/blocks/CenteredPage.svelte";
 
   export let data: {
@@ -65,29 +65,51 @@
   };
 </script>
 
-<CenteredPage>
-  <button
-    class=""
-    on:click={async () => {
-      await fetch("/admin/anounces/api", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: "",
-          openMicType: "meetup",
-          speakerName: "",
-          videoUrl: "",
-          status: "planing",
-          date: getNextThursdayDateWith11HoursInUTC(),
-        }),
-      });
-      window.location.reload();
-    }}>Добавить</button
-  >
+<div class="flex flex-col justify-center items-center w-full gap-5">
+  <div class="flex flex-wrap gap-2">
+    <button
+      class="p-2 rounded-2xl bg-green-700 hover:bg-green-900"
+      on:click={async () => {
+        await fetch("/admin/anounces/api", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: "",
+            openMicType: "meetup",
+            speakerName: "",
+            videoUrl: "",
+            status: "planing",
+            date: getNextThursdayDateWith11HoursInUTC(),
+          }),
+        });
+        window.location.reload();
+      }}>Добавить</button
+    >
 
-  <div class="grid w-full grid-cols-8 gap-1">
+    <button
+      class="p-2 rounded-2xl bg-green-700 hover:bg-green-900"
+      on:click={async () => {
+        await fetch("/admin/anounces/api", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: "",
+            openMicType: "meetup",
+            speakerName: "",
+            videoUrl: "",
+            status: "planing",
+          }),
+        });
+        window.location.reload();
+      }}>Добавить без даты</button
+    >
+  </div>
+
+  <div class="grid w-full grid-cols-8 gap-1 max-w-lg">
     {#each ["", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"] as day}
       <div class="text-center">
         {day}
@@ -99,20 +121,20 @@
       </div>
       {#each [1, 2, 3, 4, 5, 6, 7] as dayOnWeek}
         <div
-          class={`w-full rounded-xl border-2 p-1 ${
+          class={`w-full  p-1 ${
             week === thisWeek && dayOnWeek === thisDay + 1 ? "border-blue-200" : "border-black"
           }`}
         >
           {#if getAnounceByDate(dayOnWeek, week)}
             <a
               href={`#anounce-id-${getAnounceByDate(dayOnWeek, week).id}`}
-              class={`block text-center ${
+              class={`block text-center rounded-xl ${
                 getAnounceByDate(dayOnWeek, week).status === "planing"
                   ? "bg-green-700"
                   : getAnounceByDate(dayOnWeek, week).status === "cancel"
                   ? "bg-yellow-400"
                   : "bg-red-700"
-              } w-full p-1 hover:bg-green-500`}
+              } w-full p-1 hover:bg-green-500 hover:text-black`}
             >
               {getDateBy(dayOnWeek, week).toLocaleString().split(",")[0].split("/")[1]}
             </a>
@@ -144,36 +166,22 @@
       {/each}
     {/each}
   </div>
-
-  {#each data.anounces as anounce}
-    <div class="flex flex-col" id={`anounce-id-${anounce.id}`}>
-      <h1 class={anounce.title ? "" : "text-red-500"}>Тема: {anounce.title}</h1>
-      <p>
-        Дата проведения: {anounce.date
-          ? new Date(anounce.date).toLocaleString()
-          : "Не указана дата"}
-      </p>
-      <p class={anounce.openMicType ? "" : "text-red-500"}>
-        Тип: {anounce.openMicType}
-      </p>
-      <p
-        class={anounce.status === "planing"
-          ? "text-green-500"
-          : anounce.status === "cancel"
-          ? "text-yellow-400"
-          : "text-red-500"}
-      >
-        Статус: {anounce.status}
-      </p>
-      <p class={anounce.speakerName ? "" : "text-red-500"}>
-        Имя выступащего: {anounce.speakerName}
-      </p>
-      <p class={anounce.videoUrl ? "" : "text-red-500"}>
-        Ссылка на видео:
-        <a href={anounce.videoUrl}> {anounce.videoUrl} </a>
-      </p>
-
-      <a href={`/admin/anounces/${anounce.id}`} class="rounded-2xl bg-gray-700 p-10"> Подробнее </a>
+  <div class="flex flex-wrap gap-5">
+    <div class="w-[45%] min-w-min">
+      <h2>Без даты</h2>
+      <div class="flex flex-col gap-5">
+        {#each data.anounces.filter((x) => !x.date) as anounce}
+          <Anounce {anounce} />
+        {/each}
+      </div>
     </div>
-  {/each}
-</CenteredPage>
+    <div class="w-[50%]">
+      <h2>С датой</h2>
+      <div class="flex flex-col gap-5">
+        {#each data.anounces.filter((x) => x.date) as anounce}
+          <Anounce {anounce} />
+        {/each}
+      </div>
+    </div>
+  </div>
+</div>
