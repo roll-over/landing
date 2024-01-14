@@ -65,10 +65,10 @@
   };
 </script>
 
-<div class="flex flex-col justify-center items-center w-full gap-5">
+<div class="flex w-full flex-col items-center justify-center gap-5">
   <div class="flex flex-wrap gap-2">
     <button
-      class="p-2 rounded-2xl bg-green-700 hover:bg-green-900"
+      class="rounded-2xl bg-green-700 p-2 hover:bg-green-900"
       on:click={async () => {
         await fetch("/admin/anounces/api", {
           method: "POST",
@@ -89,7 +89,7 @@
     >
 
     <button
-      class="p-2 rounded-2xl bg-green-700 hover:bg-green-900"
+      class="rounded-2xl bg-green-700 p-2 hover:bg-green-900"
       on:click={async () => {
         await fetch("/admin/anounces/api", {
           method: "POST",
@@ -109,7 +109,7 @@
     >
   </div>
 
-  <div class="grid w-full grid-cols-8 gap-1 max-w-lg">
+  <div class="grid w-full max-w-lg grid-cols-8 gap-1">
     {#each ["", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"] as day}
       <div class="text-center">
         {day}
@@ -128,7 +128,7 @@
           {#if getAnounceByDate(dayOnWeek, week)}
             <a
               href={`#anounce-id-${getAnounceByDate(dayOnWeek, week).id}`}
-              class={`block text-center rounded-xl ${
+              class={`block rounded-xl text-center ${
                 getAnounceByDate(dayOnWeek, week).status === "planing"
                   ? "bg-green-700"
                   : getAnounceByDate(dayOnWeek, week).status === "cancel"

@@ -4,7 +4,7 @@
 
 <a
   href={`/admin/anounces/${anounce.id}`}
-  class="flex flex-col border-2 border-gray-400 p-2 rounded-xl"
+  class="flex flex-col rounded-xl border-2 border-gray-400 p-2"
   id={`anounce-id-${anounce.id}`}
 >
   <h1 class={anounce.title ? "" : "text-red-500"}>Тема: {anounce.title}</h1>
