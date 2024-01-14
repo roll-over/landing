@@ -2,7 +2,10 @@
   $: videoId = videoId;
   $: lang = lang;
 
-  $: result = null;
+  $: result = null as {
+    timecodes: string[];
+    srt: string;
+  } | null;
 </script>
 
 <div class="flex w-full items-center justify-center">

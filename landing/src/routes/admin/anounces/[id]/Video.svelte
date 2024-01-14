@@ -1,11 +1,12 @@
 <script lang="ts">
   import { makeTranscribationFromRuToEn } from "$lib/transcribation";
-
+  import { onMount } from "svelte";
   export let data: {
     anounce: {
       title: string;
       speakerName: string;
       openMicType: string;
+      videoUrl: string;
     };
   };
   $: countSpeakers = data.anounce.speakerName.split(",").length;
@@ -26,6 +27,7 @@
 
   $: shortTranscribatedTitle = makeTranscribationFromRuToEn(data.anounce.title);
 
+  $: timecodes = [] as string[];
   $: videoDescription = `
 Заказная разработка:
 https://roll-over.org/projects/crafts?utm_source=Youtube&utm_campaign=kak-porvat-russkoyazychnyj-it-blogging
@@ -58,9 +60,31 @@ IT's open mic - https://roll-over.org/projects/its-open-mic?utm_source=Youtube&u
 Созвездие CRM-систем -  https://cosmo-crm.com/?utm_source=Youtube&utm_campaign=${shortTranscribatedTitle}
 
 ------------------------  
+
+Таймкоды:
+${timecodes.join("\n")}
 `;
 
   $: videoVisible = false;
+
+  const loadTimecodes = async () => {
+    if (!data.anounce.videoUrl) return;
+    const res = await fetch(
+      `/apps/timecodes-generator/ru/${data.anounce.videoUrl
+        .split("/")
+        .filter((x) => x)
+        .pop()
+        ?.split("=")
+        .filter((x) => x)
+        .pop()}`,
+    );
+    const _data = await res.json();
+    timecodes = _data?.timecodes || [];
+  };
+
+  onMount(() => {
+    loadTimecodes();
+  });
 </script>
 
 <button
@@ -107,6 +131,12 @@ IT's open mic - https://roll-over.org/projects/its-open-mic?utm_source=Youtube&u
       bind:value={videoDescription}
       class="rounded-xl border-2 border-gray-400 px-5 py-2"
     ></textarea>
+
+    <button
+      on:click={() => {
+        loadTimecodes();
+      }}>Загрузить таймкоды</button
+    >
 
     <button
       on:click={() => {
