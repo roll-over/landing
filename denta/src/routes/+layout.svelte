@@ -16,6 +16,7 @@
   import { getLogoSrc, getAppParams, getAppName } from "$lib/app_name";
   let l = localisation($page.params.lang);
   $: l = localisation($page.params.lang);
+  $: appName = getAppName();
 
   initializeStores();
   export let data: {
@@ -281,17 +282,22 @@
   <div>
     <div class="flex flex-col justify-between p-2 text-xs text-slate-500 md:flex-row">
       <div class="flex flex-col gap-2">
-        <span class="text-2xl">femida-crm</span>
-        <span>© 2024 femida-crm</span>
+        <span class="text-2xl">{appName}-crm</span>
+        <span>© 2024 {appName}-crm</span>
+        <a
+          href={`https://cosmo-crm.com/${$page.params.lang}?utm_source=${appName}-crm.com`}
+          class="p-3 text-slate-500 md:p-1">cosmo-crm</a
+        >
       </div>
 
       <div class="flex flex-col gap-2">
         <a
-          href="https://github.com/roll-over/landing?utm_source=femida-crm.com"
+          href={`https://github.com/roll-over/landing?utm_source=${appName}-crm.com`}
           class="p-3 text-slate-500 md:p-1">Source code</a
         >
-        <a href="https://roll-over.org/?utm_source=femida-crm.com" class="p-3 text-slate-500 md:p-1"
-          >roll-over</a
+        <a
+          href={`https://roll-over.org/?utm_source=${appName}-crm.com`}
+          class="p-3 text-slate-500 md:p-1">roll-over</a
         >
         <a href={`/${$page.params.lang}/about`} class="p-3 text-slate-500 md:p-1">About</a>
       </div>
