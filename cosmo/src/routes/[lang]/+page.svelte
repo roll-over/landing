@@ -71,12 +71,12 @@
       color: inherit;
       text-align: right;
     }
-    h2{
+    h2 {
       text-align: left;
     }
   }
 
-   li:hover {
+  li:hover {
     border-width: 3px;
     box-shadow: 0 0 50px rgba(156, 156, 156, 0.5);
   }

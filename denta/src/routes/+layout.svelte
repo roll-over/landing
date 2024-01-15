@@ -174,11 +174,11 @@
     <div class="flex flex-col items-center justify-between p-2 md:flex-row">
       <a href={`/${$page.params.lang}`} class="flex flex-row">
         {#if getAppName() === "denta"}
-          <span class="text-3xl bg-gray-400 p-3 rounded-2xl border-2 border-gray-200"
+          <span class="rounded-2xl border-2 border-gray-200 bg-gray-400 p-3 text-3xl"
             >🦷 denta-crm</span
           >
         {:else if getAppName() === "femida"}
-          <span class="text-3xl bg-gray-400 p-3 rounded-2xl border-2 border-gray-200"
+          <span class="rounded-2xl border-2 border-gray-200 bg-gray-400 p-3 text-3xl"
             >⚖️ femida-crm</span
           >
         {:else}{/if}
