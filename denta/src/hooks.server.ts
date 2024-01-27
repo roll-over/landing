@@ -19,6 +19,7 @@ const svelteHandle = async ({ resolve, event }) => {
         transformPageChunk: ({ html }) => {
           html = html.replace("%lang%", lang);
           html = html.replace("%app_name%", getAppName());
+          html = html.replace("%metrics_app_name%", getAppName());
 
           if (getAppName() === "denta") {
             html = html.replace("%variables%", "/denta-variables.css");
