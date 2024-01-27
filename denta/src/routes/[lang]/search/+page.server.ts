@@ -1,13 +1,20 @@
 import db from "$lib/db";
+import { error } from "@sveltejs/kit";
 
 export const load = async (event) => {
+  const _db = await db();
+
+  if (!_db) {
+    throw error(500, "Database connection error");
+  }
+
   const countries = (
-    await (
-      await db()
-    )
+    await _db
       .collection("countries")
       .find(
-        {},
+        {
+          searchHidden: { $ne: true },
+        },
         {
           projection: {
             _id: 0,
