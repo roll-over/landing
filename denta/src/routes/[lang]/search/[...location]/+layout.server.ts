@@ -26,7 +26,9 @@ export const load = async (event) => {
     await _db
       .collection("countries")
       .find(
-        {},
+        {
+          searchHidden: { $ne: true },
+        },
         {
           projection: {
             _id: 0,
