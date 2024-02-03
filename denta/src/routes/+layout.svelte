@@ -2,7 +2,13 @@
   import "../styles/app.css";
   import { page } from "$app/stores";
   import NavLink from "$lib/components/NavLink.svelte";
-  import { Modal, Toast, initializeStores } from "@skeletonlabs/skeleton";
+  import {
+    Modal,
+    Toast,
+    initializeStores,
+    type ModalSettings,
+    getModalStore,
+  } from "@skeletonlabs/skeleton";
   import Icon from "svelte-icons-pack";
   import BsWallet2 from "svelte-icons-pack/bs/BsWallet2";
   import BsSearch from "svelte-icons-pack/bs/BsSearch";
@@ -36,6 +42,40 @@
   };
 
   let w;
+  const modalStore = getModalStore();
+
+  const runAdsModal = async () => {
+    return new Promise<boolean>((resolve) => {
+      const modal: ModalSettings = {
+        type: "confirm",
+        title: "Изучаем Землю вместе!",
+        image: "/ads/terra.webp",
+        body: `Статьи о земле, ее истории, географии, экологии и многом другом.`,
+        buttonTextCancel: "Отмена",
+        buttonTextConfirm: "Перейти",
+        response: (r: boolean) => {
+          resolve(r);
+        },
+      };
+      modalStore.trigger(modal);
+    }).then((r: any) => {
+      console.log("resolved response:", r);
+      if (r) {
+        const win = window.open(
+          `https://terra.orby-tech.space/?utm_source=${appName}-crm.com&utm_campaign=ads`,
+          "_blank",
+        );
+      } else {
+        console.log("User clicked Cancel");
+      }
+    });
+  };
+
+  onMount(async () => {
+    setTimeout(() => {
+      runAdsModal();
+    }, 5000);
+  });
 
   $: links = [
     ...(getAppParams().availabilities.search
