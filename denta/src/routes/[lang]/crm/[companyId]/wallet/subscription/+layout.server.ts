@@ -1,12 +1,18 @@
 import db from "$lib/db";
 
 export const load = async (event) => {
+  const priceByCurrency = {
+    KGZ: 980,
+    USD: 11,
+    RUB: 1000,
+  };
+
   const availableServices = [
     {
       type: "count",
       id: 1,
       title: "Добавить дополнительные кресла",
-      price: 1000,
+      price: priceByCurrency,
       description: "Добавить дополнительные кресла",
       freeCount: 2,
     },
@@ -14,7 +20,7 @@ export const load = async (event) => {
       type: "count",
       id: 2,
       title: "Дать доступ другим сотрудникам",
-      price: 1000,
+      price: priceByCurrency,
       description: "Дать доступ другим сотрудникам",
       freeCount: 1,
     },
